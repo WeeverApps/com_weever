@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="system">
+	<name>System - Cartographer for K2</name>
+	<author>Robert Gerald Porter</author>
+	<creationDate>2011-07-04</creationDate>
+	<copyright>
+		Copyright (C) 2011 Weever Apps Inc.
+	</copyright>
+	<license>GPLv3</license>
+	<authorEmail>rob.porter@weever.ca</authorEmail>
+	<authorUrl>http://www.weeverapps.com/</authorUrl>
+	<version>0.8</version>
+	<description>Cartographer for K2: Generates R3S Feed of K2 Content.</description>
+	<files>
+		<filename plugin="cartographerk2">cartographerk2.php</filename>
+		<folder>cartographerk2</folder>
+	</files>
+</install>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.6.0" method="upgrade">
+ <name>COM_WEEVER</name>
+ <creationDate>2011-08-05</creationDate>
+ <author>Robert Gerald Porter</author>
+ <authorEmail>rob@weeverapps.com</authorEmail>
+ <authorUrl>http://www.weeverapps.com/</authorUrl>
+ <copyright>(c) 2010-2011 Weever Apps Inc.</copyright>
+ <license>GPLv3 Compatible</license>
+ <version>0.9.1.0</version>
+ <description>COM_WEEVER_DESCRIPTION</description>
+ 
+ <scriptfile>install.weever.joomla.1.6.php</scriptfile>
+ 
+  <install>
+   <sql>
+     <file charset="utf8" driver="mysql">install.sql</file>
+   </sql>
+  </install>
+  <uninstall>
+   <sql>
+     <file charset="utf8" driver="mysql">uninstall.sql</file>
+   </sql>
+  </uninstall>
+  <update>
+  		<schemas>
+  			<schemapath type="mysql">sql/updates/mysql</schemapath>
+  		</schemas>
+  </update>
+ 
+ 
+ <administration>
+ 	 <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">COM_WEEVER_MENU</menu>
+	 <files folder="admin">
+		<filename>weever.php</filename>
+		<filename>config.xml</filename>
+		<filename>index.html</filename>
+		<folder>assets</folder>
+		<folder>helpers</folder>
+		<folder>models</folder>
+		<folder>tables</folder>
+		<folder>views</folder>
+		<folder>sql</folder>
+		<filename>install.sql</filename>
+		<filename>uninstall.sql</filename>
+	  </files>
+	  
+	  <languages folder="admin">
+	  	<language tag="en-GB">language/en-GB/en-GB.com_weever.ini</language>
+	  	<language tag="en-GB">language/en-GB/en-GB.com_weever.sys.ini</language>
+	  </languages>
+	  
+ </administration>
+ 
+ <media destination="com_weever" folder="media">
+ 	<filename>index.html</filename>
+	<filename>phone_load_.png</filename>
+	<filename>tablet_load_.png</filename>
+	<filename>tablet_landscape_load_.png</filename>
+	<filename>icon_.png</filename>
+	<filename>titlebar_logo_.png</filename>
+	<filename>phone_load_low_.png</filename>
+	<filename>tablet_load_low_.png</filename>
+	<filename>tablet_landscape_load_low_.png</filename>
+ </media>
+ 
+ 
+ <plugins>
+ <plugin folder="plugins/system" plugin="mobileesp" name="System - MobileESP for Joomla" group="system" />
+ <plugin folder="plugins/system" plugin="cartographer" name="Cartographer for Joomla Content" group="system" />
+ </plugins>
+ 
+ 
+ <templates>
+ <template folder="templates" template="weever_cartographerdetails" name="Weever R3S Details JSON Feed Template" />
+</templates>
+
+<updateservers>
+	<server type="extension" priority="1" name="Weever Apps Website">http://weeverapps.com/download_files/extension.xml</server>
+</updateservers>
+ 
+</extension>
