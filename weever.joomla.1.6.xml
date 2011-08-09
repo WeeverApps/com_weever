@@ -6,7 +6,7 @@
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>
  <copyright>(c) 2010-2011 Weever Apps Inc.</copyright>
- <license>GPLv3 Compatible</license>
+ <license>GPLv3</license>
  <version>0.9.1.0</version>
  <description>COM_WEEVER_DESCRIPTION</description>
  
@@ -46,8 +46,8 @@
 	  </files>
 	  
 	  <languages folder="admin">
-	  	<language tag="en-GB">language/en-GB/en-GB.com_weever.ini</language>
-	  	<language tag="en-GB">language/en-GB/en-GB.com_weever.sys.ini</language>
+	  	<language tag="en-GB">languages/en-GB/en-GB.com_weever.ini</language>
+	  	<language tag="en-GB">languages/en-GB/en-GB.com_weever.sys.ini</language>
 	  </languages>
 	  
  </administration>
