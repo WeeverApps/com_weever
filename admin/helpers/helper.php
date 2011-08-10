@@ -1075,7 +1075,7 @@ class comWeeverHelper
 	
 		if($tag != "undefined")
 		{
-			JRequest::setVar('cms_feed', 'index.php?option=com_k2&view=itemlist&task=tag&layout=blog&tag='.urlencode($tag).'&format=rthrees');
+			JRequest::setVar('cms_feed', 'index.php?option=com_k2&view=itemlist&task=tag&layout=blog&tag='.urlencode($tag).'&template=weever_cartographer');
 		}
 			
 		return true;

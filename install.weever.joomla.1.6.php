@@ -3,8 +3,8 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.1
+*	Author: 	Robert Gerald Porter (rob@weeverapps.com)
+*	Version: 	0.9.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -255,42 +255,57 @@ class com_WeeverInstallerScript
  		}
  		
  				
- 				$installer = new JInstaller();
- 				
- 				foreach($manifest->plugins->plugin as $plugin) 
- 				{
- 					$attributes = $plugin->attributes();
- 					// 'folder' for install. No idea why this works.
- 					$plg = $source . DS . $attributes['folder'].DS.$attributes['plugin'];
- 					$result = $installer->install($plg);
- 					
- 					if($result)
- 						$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
- 					else
- 						$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
- 					?>
- 					<p><?php echo JText::_("WEEVER_INSTALLING_PLUGIN"); ?><?php echo $attributes['folder']."/".$attributes['plugin'].": <b>".$message."</b>"; ?></p>
- 					<?php	
- 		
- 					$this->enableExtension($attributes['plugin'], 'plugin');
- 					echo " <p><i>".JText::_("WEEVER_ENABLED_PLUGIN").$attributes['plugin']."</i></p>";
- 				}
- 				
- 				foreach($manifest->templates->template as $template) 
- 				{
- 					$attributes = $template->attributes();
- 					$tmpl = $source . DS . 'templates'. DS . $attributes['template'];
- 					$result = $installer->install($tmpl);
- 					
- 					if($result)
- 						$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
- 					else
- 						$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
- 					?>
- 					<p><?php echo JText::_("WEEVER_INSTALLING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
- 					<?php	
+		$installer = new JInstaller();
+		
+		foreach($manifest->plugins->plugin as $plugin) 
+		{
+			$attributes = $plugin->attributes();
+			// 'folder' for install. No idea why this works.
+			$plg = $source . DS . $attributes['folder'].DS.$attributes['plugin'];
+			$result = $installer->install($plg);
+			
+			if($result)
+				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+			else
+				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+			?>
+			<p><?php echo JText::_("WEEVER_INSTALLING_PLUGIN"); ?><?php echo $attributes['folder']."/".$attributes['plugin'].": <b>".$message."</b>"; ?></p>
+			<?php	
 
- 				}
+			$this->enableExtension($attributes['plugin'], 'plugin');
+			echo " <p><i>".JText::_("WEEVER_ENABLED_PLUGIN").$attributes['plugin']."</i></p>";
+		}
+		
+		foreach($manifest->templates->template as $template) 
+		{
+			$attributes = $template->attributes();
+			$tmpl = $source . DS . 'templates'. DS . $attributes['template'];
+			$result = $installer->install($tmpl);
+			
+			if($result)
+				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+			else
+				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+			?>
+			<p><?php echo JText::_("WEEVER_INSTALLING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
+			<?php	
+
+		}
+		
+		
+		$query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
+		$db = &JFactory::getDBO();
+		
+		$db->setQuery($query);
+		$key = @$db->loadObject();
+		
+		// check if there are server-side app updates to be made
+		if($key)
+		{
+			$response = file_get_contents(conf::SITE_PATH.'index.php?app=ajax&m=upgrade&site_key='.$key);	
+			echo $response;
+		}
+		
  		
  		
    }
