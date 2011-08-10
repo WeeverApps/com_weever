@@ -344,7 +344,7 @@ class WeeverModelList extends JModel
 		foreach((object)$this->pages as $k=>$v)
 		{
 			$link = "index.php?option=com_k2&view=itemlist&layout=category&task=category&id=".$v->id;
-			$this->dropdown .= "<option value='".$link."&format=rthrees'>".$v->name."</option>";
+			$this->dropdown .= "<option value='".$link."&template=weever_cartographer'>".$v->name."</option>";
 		}
 		
 		$this->dropdown .= "</select>
@@ -398,7 +398,7 @@ class WeeverModelList extends JModel
 		foreach((object)$this->pages as $k=>$v)
 		{
 			$link = "index.php?option=com_content&view=category&id=".$v->id;
-			$this->dropdown .= "<option value='".$link."&format=rthrees'>".$v->name."</option>";
+			$this->dropdown .= "<option value='".$link."&template=weever_cartographer'>".$v->name."</option>";
 		}
 		
 		$this->dropdown .= "</select>
@@ -430,7 +430,7 @@ class WeeverModelList extends JModel
 		foreach((object)$this->blogs as $k=>$v)
 		{
 			
-			$this->dropdown .= "<option value='".$v->link."&format=rthrees&Itemid=".$v->id."'>".$v->name."</option>";
+			$this->dropdown .= "<option value='".$v->link."&template=weever_cartographer&Itemid=".$v->id."'>".$v->name."</option>";
 		
 		}
 		
@@ -487,7 +487,7 @@ class WeeverModelList extends JModel
 		{
 			
 			$link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id;
-			$this->dropdown .= "<option value='".$link."&format=rthrees'>".$v->name."</option>";
+			$this->dropdown .= "<option value='".$link."&template=weever_cartographer'>".$v->name."</option>";
 		
 		}
 		
@@ -544,7 +544,7 @@ class WeeverModelList extends JModel
 		{
 			
 			$link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id;
-			$this->dropdown .= "<option value='".$link."&format=rthrees'>".$v->name."</option>";
+			$this->dropdown .= "<option value='".$link."&template=weever_cartographer'>".$v->name."</option>";
 		
 		}
 		
