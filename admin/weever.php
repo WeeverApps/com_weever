@@ -41,6 +41,7 @@ final class comWeeverConst
 
 	const VERSION		= "0.9.2";
 	const RELEASE_TYPE	= "dev";
+	const RELEASE_NAME	= "Allan Park"
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const CMS_VERSION	= "1.5";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";
