@@ -3,8 +3,8 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.1
+*	Author: 	Robert Gerald Porter (rob@weeverapps.com)
+*	Version: 	0.9.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -186,6 +186,20 @@ if(!function_exists("stream_get_contents"))
 
 if(ini_get('allow_url_fopen') != 1)
 	echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_URL_FOPEN")."</div>";
+	
+
+$query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
+$db = &JFactory::getDBO();
+
+$db->setQuery($query);
+$key = @$db->loadObject();
+
+// check if there are server-side app updates to be made
+if($key)
+{
+	$response = file_get_contents(conf::SITE_PATH.'index.php?app=ajax&m=upgrade&site_key='.$key);	
+	echo $response;
+}
 
 ?>
 <p><?php echo JText::_("WEEVER_INSTALL_WELCOME"); ?></p>
