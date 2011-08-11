@@ -33,7 +33,6 @@
  	 <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">COM_WEEVER_MENU</menu>
 	 <files folder="admin">
 		<filename>weever.php</filename>
-		<filename>config.xml</filename>
 		<filename>index.html</filename>
 		<folder>assets</folder>
 		<folder>helpers</folder>
@@ -67,12 +66,11 @@
  
  <plugins>
  <plugin folder="plugins/system" plugin="mobileesp" name="System - MobileESP for Joomla" group="system" />
- <plugin folder="plugins/system" plugin="cartographer" name="Cartographer for Joomla Content" group="system" />
  </plugins>
  
  
  <templates>
- <template folder="templates" template="weever_cartographerdetails" name="Weever R3S Details JSON Feed Template" />
+ <template folder="templates" template="weever_cartographer" name="Weever Cartographer R3S JSON Feed Template" />
 </templates>
 
 <updateservers>

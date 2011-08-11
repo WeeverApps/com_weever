@@ -195,12 +195,14 @@ $db->setQuery($query);
 $key = @$db->loadObject();
 
 // check if there are server-side app updates to be made
-if($key)
+if($key->setting)
 {
-	$response = file_get_contents(conf::SITE_PATH.'index.php?app=ajax&m=upgrade&site_key='.$key);	
+	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&site_key='.$key->setting);	
 	echo $response;
-}
 
+}
+else 
+{
 ?>
 <p><?php echo JText::_("WEEVER_INSTALL_WELCOME"); ?></p>
 
@@ -238,4 +240,6 @@ if($key)
 	 
 </form>
 
+<?php 
+} 
 
