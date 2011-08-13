@@ -40,6 +40,13 @@ class WeeverViewTheme extends JView
 		
 			$row->load($i);
 			
+			if($i == 1 && $row->setting == "")
+			{
+				$conf =& JFactory::getConfig();
+				$row->setting = substr($conf->getValue('config.sitename'), 0, 10);  
+			}
+			
+			
 			if($i == 2 && $row->setting == "")
 			{
 				$conf =& JFactory::getConfig();

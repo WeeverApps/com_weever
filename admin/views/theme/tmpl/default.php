@@ -85,6 +85,12 @@ if(!$this->site_key)
 	<td><input type="text" name="titlebar_title" maxlength="35" style="width:250px;" value="<?php echo htmlentities($this->titlebar_title, ENT_QUOTES, "UTF-8"); ?>" /></td>	
 	</tr>
 	
+	
+	<tr><td class="key hasTip" title="<?php echo JText::_("WEEVER_WEB_APP_NAME_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_WEB_APP_NAME'); ?></td>
+	<td><input type="text" name="title" maxlength="10" style="width:90px;" value="<?php echo htmlentities($this->title, ENT_QUOTES, "UTF-8"); ?>" /></td>
+	</tr>
+	
+	
 	</table>
 	
 	</fieldset>

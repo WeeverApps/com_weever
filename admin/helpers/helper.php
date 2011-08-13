@@ -84,6 +84,10 @@ class comWeeverHelper
 		$row->setting = JRequest::getVar($row->option);		
 		$row->store();
 		
+		$row->load(1);
+		$row->setting = JRequest::getVar($row->option);		
+		$row->store();
+		
 		$row->load(100);
 		$themeObj = json_decode($row->setting);
 		
@@ -228,10 +232,10 @@ class comWeeverHelper
 		}
 		
 			 
-		for($i = 1; $i <= 8; $i++)
+		for($i = 1; $i <= 10; $i++)
 		{
 		
-			if($i == 2)
+			if($i == 2 || $i == 1 || $i == 6)
 				continue;
 		
 			$row->load($i);
@@ -245,6 +249,29 @@ class comWeeverHelper
 		$response = comWeeverHelper::pushConfigToCloud();
 		
 		return $msg;
+	
+	}
+	
+	public static function toggleAppStatus()
+	{
+
+		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		
+		$row->load(6);
+		
+		if($row->setting)
+			$row->setting = 0;
+		else 
+			$row->setting = 1;
+			
+		$response = comWeeverHelper::pushAppStatusToCloud($row->setting);
+		
+		if($response == "App Offline" || $response == "App Online")
+			$row->store();
+		else 
+			$response = "Server Error: ".$response;
+			
+		return $response;
 	
 	}
 	
@@ -907,6 +934,25 @@ class comWeeverHelper
 	
 	}
 	
+	
+	public static function pushAppStatusToCloud($status)
+	{
+	
+		$postdata = http_build_query(
+			array( 	
+				'app_enabled' => $status,
+				'site_key' => JRequest::getVar('site_key'),
+				'app' => 'ajax',
+				'cms' => 'joomla',
+				'm' => "app_status",
+				'version' => comWeeverConst::VERSION,
+				'generator' => comWeeverConst::NAME
+				)
+			);
+		
+		return comWeeverHelper::sendToWeeverServer($postdata);
+	
+	}
 	
 
 	public static function pushSettingsToCloud()

@@ -496,7 +496,6 @@ class WeeverModelList extends JModel
 	
 	}
 	
-	
 	public function getBlogJCategoryDB()
 	{
 	

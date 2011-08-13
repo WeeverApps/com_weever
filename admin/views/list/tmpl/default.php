@@ -48,6 +48,7 @@ $this->loadTemplate($row->component.'base64images');
 
 jimport('joomla.filter.output');
 
+
 $child_html = "";
 $k = 0; // for alternating shaded rows
 $iii = 0; // for making checkboxes line up right

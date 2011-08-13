@@ -54,7 +54,7 @@ final class comWeeverConst
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://stage.weeverapp.com/";
+	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
 
 }
 
@@ -268,6 +268,16 @@ class WeeverController extends JController
 		
 		echo $response;
 		
+		jexit();
+	
+	}
+	
+	public function ajaxToggleAppStatus()
+	{
+	
+		$response = comWeeverHelper::toggleAppStatus();
+		
+		echo $response;
 		
 		jexit();
 	

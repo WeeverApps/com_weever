@@ -299,6 +299,30 @@ class com_WeeverInstallerScript
 		$db->setQuery($query);
 		$key = @$db->loadObject();
 		
+		$query = " SELECT `setting` FROM #__weever_config WHERE `option`='google_analytics' ";
+		
+		$db = &JFactory::getDBO();
+		
+		$db->setQuery($query);
+		$code = @$db->loadObject();
+		
+		if(!isset($code->setting))
+		{
+		
+			$query = " INSERT IGNORE INTO `#__weever_config` VALUES(9, 'google_analytics', ''); ";
+			$db = &JFactory::getDBO();
+			$db->setQuery($query);
+			@$db->loadObject();
+			
+		
+			$query = " INSERT IGNORE INTO `#__weever_config` VALUES(10, 'domain', ''); ";
+			$db = &JFactory::getDBO();
+			$db->setQuery($query);	
+			@$db->loadObject();
+		
+		}
+		
+		
 		// check if there are server-side app updates to be made
 		if($key)
 		{
