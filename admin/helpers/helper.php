@@ -922,6 +922,8 @@ class comWeeverHelper
 				'ecosystem' => JRequest::getVar('ecosystem'),
 				'app_enabled' => JRequest::getVar('app_enabled'),
 				'site_key' => JRequest::getVar('site_key'),
+				'domain' => JRequest::getVar('domain'),
+				'google_analytics' => JRequest::getVar('google_analytics'),
 				'app' => 'ajax',
 				'cms' => 'joomla',
 				'm' => "edit_config",
