@@ -62,6 +62,9 @@ label.wx-check-label {
 }
 
 /* end of hacks */
+.wx-app-hide-status {
+	display: none;
+}
 
 #wx-app-status-button {
 	z-index: 500; 

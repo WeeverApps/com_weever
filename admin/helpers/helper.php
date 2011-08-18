@@ -238,7 +238,7 @@ class comWeeverHelper
 			if($i == 2 || $i == 1 || $i == 6)
 				continue;
 		
-			$row->load($i);
+			$row->load($i); 
 
 			$row->setting = JRequest::getVar($row->option);
 			

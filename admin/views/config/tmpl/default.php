@@ -27,12 +27,27 @@ JHTML::_('behavior.mootools');
 JHTML::_('behavior.tooltip');
 jimport('joomla.html.pane');
 
-$pane = &JPane::getInstance('tabs');
+$document = &JFactory::getDocument();
 
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
+$document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
+
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
+	$document->addStyleSheet($cssFile, 'text/css', null, array());
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
+	$document->addStyleSheet($cssFile, 'text/css', null, array());
+	
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/config.js' );
+
+$pane = &JPane::getInstance('tabs');
 
 $plugin_html_enabled = "";
 $plugin_html_disabled = "";
-
 
 if(!$this->site_key)
 {
@@ -41,9 +56,18 @@ if(!$this->site_key)
 
 }
 
+$onlineSpan = "";
+$offlineSpan = "";
+
+if($this->appEnabled)
+	$offlineSpan = 'class="wx-app-hide-status"';
+else 
+	$onlineSpan = 'class="wx-app-hide-status"';
+
 ?>
 
-<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online"><?php echo JText::_('WEEVER_ONLINE'); ?></span>/<span id="wx-app-status-offline"><?php echo JText::_('WEEVER_OFFLINE'); ?></span></div>
+
+<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>>Online</span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>>Offline</span></div>
 
 <form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	
@@ -99,7 +123,7 @@ if(!$this->site_key)
 	
 	<tr>
 	<td class="key hasTip" title="<?php echo JText::_("WEEVER_GOOGLE_ANALYTICS_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_GOOGLE_ANALYTICS_UA_CODE'); ?></td>
-	<td><input type="textbox" name="google_analytics" id="wx-google-analytics-input" placeholder="UA-XXXXXX-XX" /></td>	
+	<td><input type="textbox" name="google_analytics" value="<?php echo $this->google_analytics; ?>" id="wx-google-analytics-input" placeholder="UA-XXXXXX-XX" /></td>	
 	</tr>
 	
 	<tr>
@@ -124,7 +148,7 @@ if(!$this->site_key)
 	
 	<tr>
 	<td class="key hasTip" title="<?php echo JText::_("WEEVER_DOMAIN_MAPPING_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_DOMAIN_MAPPING'); ?></td>
-	<td><input type="textbox" name="domain" id="wx-domain-map-input" placeholder="app.yourdomain.com" /> </td>	
+	<td><input type="textbox" name="domain"  value="<?php echo $this->domain; ?>" id="wx-domain-map-input" placeholder="app.yourdomain.com" /> </td>	
 	</tr>
 
 	

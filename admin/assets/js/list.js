@@ -96,6 +96,70 @@ jQuery(document).ready(function(){
 
 	//
 	
+	jQuery("#wx-app-status-button").click(function(e) {
+	
+		var siteKey = jQuery("input#wx-site-key").val();
+	
+		if( jQuery("#wx-app-status-online").hasClass("wx-app-hide-status") ) {
+			
+			
+			jQuery.ajax({
+			   type: "POST",
+			   url: "index.php",
+				   data: "option=com_weever&task=ajaxToggleAppStatus&app_enabled=1&site_key="+siteKey,
+			   success: function(msg){
+			   
+			     jQuery('#wx-modal-loading-text').html(msg);
+			     
+			     if(msg == "App Online")
+			     {
+			     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_ONLINE'));
+			     	jQuery("#wx-app-status-online").removeClass("wx-app-hide-status");
+			     	jQuery("#wx-app-status-offline").addClass("wx-app-hide-status");
+			     }
+			     else
+			     {
+			     	jQuery('#wx-modal-secondary-text').html('');
+			     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+			     }
+	
+			   }
+			 });
+			
+			
+		}
+		else {
+	
+			jQuery.ajax({
+			   type: "POST",
+			   url: "index.php",
+			   data: "option=com_weever&task=ajaxToggleAppStatus&app_enabled=0&site_key="+siteKey,
+			   success: function(msg){
+			   
+			     jQuery('#wx-modal-loading-text').html(msg);
+			     
+			     if(msg == "App Offline")
+			     {
+			     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_OFFLINE'));
+			     	jQuery("#wx-app-status-online").addClass("wx-app-hide-status");
+			     	jQuery("#wx-app-status-offline").removeClass("wx-app-hide-status");
+			     }
+			     else
+			     {
+			     	jQuery('#wx-modal-secondary-text').html('');
+			     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+			     }
+	
+			   }
+			 });
+	
+	
+		}
+	
+	});
+	
+	
+	
 	jQuery("li.wx-nav-tabs").bind("mouseover", function(){
 	
 		

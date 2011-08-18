@@ -35,8 +35,11 @@ class WeeverViewConfig extends JView
 		$component = JComponentHelper::getComponent( 'com_weever' );
 
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		
+		$row->load(6);
+		$this->assign('appEnabled', $row->setting);
 
-		for($i = 1; $i <= 8; $i++)
+		for($i = 1; $i <= 10; $i++)
 		{
 		
 			$row->load($i);

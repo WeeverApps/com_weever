@@ -53,10 +53,17 @@ $child_html = "";
 $k = 0; // for alternating shaded rows
 $iii = 0; // for making checkboxes line up right
 $tabsUnpublished = 0;
+$onlineSpan = "";
+$offlineSpan = "";
+
+if($this->appEnabled)
+	$offlineSpan = 'class="wx-app-hide-status"';
+else 
+	$onlineSpan = 'class="wx-app-hide-status"';
 
 ?>
 
-<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /> Take App <span id="wx-app-status-online">Online</span>/<span id="wx-app-status-offline">Offline</span></div>
+<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>>Online</span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>>Offline</span></div>
 
 <div id="listTabs">
 <ul id="listTabsSortable" style="padding-right: 50%">

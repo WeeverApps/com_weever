@@ -34,6 +34,8 @@ class WeeverViewTheme extends JView
 		$component = JComponentHelper::getComponent( 'com_weever' );
 
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		$row->load(6);
+		$this->assign('appEnabled', $row->setting);
 
 		for($i = 1; $i <= 6; $i++)
 		{
@@ -65,9 +67,6 @@ class WeeverViewTheme extends JView
 
 		$editor  =& JFactory::getEditor();
 		$this->assignRef('editor', $editor);
-		//$this->assign('site_key', $params->get('site_key', null));
-	
-
 		
 		JSubMenuHelper::addEntry(JText::_('WEEVER_TAB_ITEMS'), 'index.php?option=com_weever', false);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', true);

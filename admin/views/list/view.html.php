@@ -95,6 +95,10 @@ class WeeverViewList extends JView
        $this->assignRef( 'lists', $lists );
        
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		
+		$row->load(6);
+
+		$this->assign('appEnabled', $row->setting);
 
 		$row->load(100);
 		$theme = json_decode($row->setting);

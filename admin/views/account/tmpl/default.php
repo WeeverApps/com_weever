@@ -25,6 +25,23 @@ $option = JRequest::getCmd('option');
 JHTML::_('behavior.mootools');
 jimport('joomla.html.pane');
 
+$document = &JFactory::getDocument();
+
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
+$document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
+
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
+	$document->addStyleSheet($cssFile, 'text/css', null, array());
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
+	$document->addStyleSheet($cssFile, 'text/css', null, array());
+	
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/account.js' );
+
 $pane = &JPane::getInstance('tabs');
 
 
@@ -48,9 +65,18 @@ if(!$this->site_key)
 
 }
 
+$onlineSpan = "";
+$offlineSpan = "";
+
+if($this->appEnabled)
+	$offlineSpan = 'class="wx-app-hide-status"';
+else 
+	$onlineSpan = 'class="wx-app-hide-status"';
+
 ?>
 
-<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /> Take App <span id="wx-app-status-online">Online</span>/<span id="wx-app-status-offline">Offline</span></div>
+
+<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>>Online</span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>>Offline</span></div>
 
 <form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	
