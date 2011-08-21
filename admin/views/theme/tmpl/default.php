@@ -62,14 +62,26 @@ $onlineSpan = "";
 $offlineSpan = "";
 
 if($this->appEnabled)
+{
 	$offlineSpan = 'class="wx-app-hide-status"';
+	$offlineStatusClass = "";
+}
 else 
+{
 	$onlineSpan = 'class="wx-app-hide-status"';
+	$offlineStatusClass = "class=\"wx-app-status-button-offline\"";
+}
 
 ?>
 
 
-<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>>Online</span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>>Offline</span></div>
+<div id="wx-app-status-button" <?php echo $offlineStatusClass; ?>><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>><?php echo JText::_('WEEVER_ONLINE'); ?></span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>><?php echo JText::_('WEEVER_OFFLINE'); ?></span></div>
+
+<div id='wx-modal-loading'>
+    <div id='wx-modal-loading-text'></div>
+    <div id='wx-modal-secondary-text'></div>
+    <div id='wx-modal-error-text'></div>
+</div>
 
 <form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	
@@ -268,7 +280,7 @@ else
 	<?php echo $pane->endPane(); ?>
 
 	<input type="hidden" name="option" value="<?php echo $option; ?>" />
-	<input type="hidden" name="site_key" value="<?php echo $this->site_key; ?>" />
+	<input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $this->site_key; ?>" />
 	<input type="hidden" name="view" value="theme" />
 	<input type="hidden" name="task" value="" />
 	<?php echo JHTML::_('form.token'); ?>

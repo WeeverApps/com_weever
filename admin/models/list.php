@@ -78,51 +78,7 @@ class WeeverModelList extends JModel
             return $orderby;
 	}
 	
-	
-	public function getJsStrings()
-	{
-	
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
 		
-		if(substr($joomla,0,3) == '1.5')
-		{
-			
-			jsJText::script('WEEVER_JS_ENTER_NEW_APP_ICON_NAME');
-			jsJText::script('WEEVER_JS_APP_UPDATED');
-			jsJText::script('WEEVER_JS_PLEASE_WAIT');
-			jsJText::script('WEEVER_JS_SAVING_CHANGES');
-			jsJText::script('WEEVER_JS_SERVER_ERROR');
-			jsJText::script('WEEVER_JS_ENTER_NEW_APP_ITEM');
-			jsJText::script('WEEVER_JS_ARE_YOU_SURE_YOU_WANT_TO');
-			jsJText::script('WEEVER_JS_QUESTION_MARK');
-			jsJText::script('WEEVER_JS_CHANGING_NAV_ICONS');
-			jsJText::script('WEEVER_JS_CHANGING_NAV_ICONS_INSTRUCTIONS');
-			jsJText::script('WEEVER_JS_CHANGING_NAV_PASTE_CODE');
-			
-			jsJText::load();
-		
-		}
-		else
-		{
-		
-			JText::script('WEEVER_JS_ENTER_NEW_APP_ICON_NAME');
-			JText::script('WEEVER_JS_APP_UPDATED');
-			JText::script('WEEVER_JS_PLEASE_WAIT');
-			JText::script('WEEVER_JS_SAVING_CHANGES');
-			JText::script('WEEVER_JS_SERVER_ERROR');
-			JText::script('WEEVER_JS_ENTER_NEW_APP_ITEM');
-			JText::script('WEEVER_JS_ARE_YOU_SURE_YOU_WANT_TO');
-			JText::script('WEEVER_JS_QUESTION_MARK');
-			JText::script('WEEVER_JS_CHANGING_NAV_ICONS');
-			JText::script('WEEVER_JS_CHANGING_NAV_ICONS_INSTRUCTIONS');
-			JText::script('WEEVER_JS_CHANGING_NAV_PASTE_CODE');
-		
-		}
-
-	
-	}
-	
 	public function getCountSubtabs()
 	{
 	

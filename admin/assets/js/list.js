@@ -116,6 +116,7 @@ jQuery(document).ready(function(){
 			     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_ONLINE'));
 			     	jQuery("#wx-app-status-online").removeClass("wx-app-hide-status");
 			     	jQuery("#wx-app-status-offline").addClass("wx-app-hide-status");
+			     	jQuery("#wx-app-status-button").removeClass("wx-app-status-button-offline");
 			     }
 			     else
 			     {
@@ -143,6 +144,7 @@ jQuery(document).ready(function(){
 			     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_OFFLINE'));
 			     	jQuery("#wx-app-status-online").addClass("wx-app-hide-status");
 			     	jQuery("#wx-app-status-offline").removeClass("wx-app-hide-status");
+			     	jQuery("#wx-app-status-button").addClass("wx-app-status-button-offline");
 			     }
 			     else
 			     {

@@ -67,13 +67,18 @@ label.wx-check-label {
 }
 
 #wx-app-status-button {
-	z-index: 500; 
+	z-index: 50; 
 	position: absolute; 
 	right: 230px; 
 	top:113px;
 	color:#000;
 	display: block;
 	text-align: center;
+	cursor: pointer;
+} 
+
+.wx-app-status-button-offline {
+	opacity: 0.6;
 }
 
 #wx-app-status-img {
@@ -83,6 +88,10 @@ label.wx-check-label {
 	padding-top: 0px;
 	padding-bottom: 4px;
 	margin-right:2px;
+	border-radius: 6px;
+	border: 1px solid #aaa;
+	padding: 0px;
+	margin-bottom: 3px;
 }
 
 #wx-app-status-online {
@@ -91,6 +100,7 @@ label.wx-check-label {
 
 #wx-app-status-offline {
 	color:#966;
+	font-weight: bold;
 }
 
 .icon-48-weever_toolbar_title   { background-image: url(../icons/icon-48-weever_toolbar_title.png); }

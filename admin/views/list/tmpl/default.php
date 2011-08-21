@@ -57,13 +57,19 @@ $onlineSpan = "";
 $offlineSpan = "";
 
 if($this->appEnabled)
+{
 	$offlineSpan = 'class="wx-app-hide-status"';
+	$offlineStatusClass = "";
+}
 else 
+{
 	$onlineSpan = 'class="wx-app-hide-status"';
+	$offlineStatusClass = "class=\"wx-app-status-button-offline\"";
+}
 
 ?>
 
-<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>>Online</span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>>Offline</span></div>
+<div id="wx-app-status-button" <?php echo $offlineStatusClass; ?>><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>><?php echo JText::_('WEEVER_ONLINE'); ?></span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>><?php echo JText::_('WEEVER_OFFLINE'); ?></span></div>
 
 <div id="listTabs">
 <ul id="listTabsSortable" style="padding-right: 50%">

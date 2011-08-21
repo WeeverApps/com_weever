@@ -21,8 +21,24 @@
 
 jQuery(document).ready(function(){ 
 
-	//
+
+	jQuery('#wx-modal-loading')
+	    .hide()  
+	    .ajaxStart(function() {
+	    	jQuery('#wx-modal-error-text').html('');
+	        jQuery(this).fadeIn(200);
+	        jQuery('#wx-modal-loading-text').html(Joomla.JText._('WEEVER_JS_SAVING_CHANGES'));
+	        jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_PLEASE_WAIT'));
+	    })
+	    .ajaxStop(function() {
+	    	var jObj = jQuery(this);
+	    	setTimeout( function() {
+	    			jObj.fadeOut(750);
+	    		}, 600 );
+	    });
 	
+
+	//
 	jQuery("#wx-app-status-button").click(function(e) {
 	
 		var siteKey = jQuery("input#wx-site-key").val();
@@ -43,6 +59,7 @@ jQuery(document).ready(function(){
 			     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_ONLINE'));
 			     	jQuery("#wx-app-status-online").removeClass("wx-app-hide-status");
 			     	jQuery("#wx-app-status-offline").addClass("wx-app-hide-status");
+			     	jQuery("#wx-app-status-button").removeClass("wx-app-status-button-offline");
 			     }
 			     else
 			     {
@@ -70,6 +87,7 @@ jQuery(document).ready(function(){
 			     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_OFFLINE'));
 			     	jQuery("#wx-app-status-online").addClass("wx-app-hide-status");
 			     	jQuery("#wx-app-status-offline").removeClass("wx-app-hide-status");
+			     	jQuery("#wx-app-status-button").addClass("wx-app-status-button-offline");
 			     }
 			     else
 			     {
@@ -84,6 +102,7 @@ jQuery(document).ready(function(){
 		}
 	
 	});
+
 
 
 

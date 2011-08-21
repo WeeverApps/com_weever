@@ -68,6 +68,8 @@ class WeeverViewTheme extends JView
 		$editor  =& JFactory::getEditor();
 		$this->assignRef('editor', $editor);
 		
+		comWeeverHelper::getJsStrings();
+		
 		JSubMenuHelper::addEntry(JText::_('WEEVER_TAB_ITEMS'), 'index.php?option=com_weever', false);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', true);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_CONFIGURATION'), 'index.php?option=com_weever&view=config&task=config', false);

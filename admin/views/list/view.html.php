@@ -104,7 +104,7 @@ class WeeverViewList extends JView
 		$theme = json_decode($row->setting);
 		$this->assignRef('theme',$theme);
 		
-		$this->get('jsStrings');			
+		comWeeverHelper::getJsStrings();			
 		
 		JSubMenuHelper::addEntry(JText::_('WEEVER_TAB_ITEMS'), 'index.php?option=com_weever', true);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', false);
