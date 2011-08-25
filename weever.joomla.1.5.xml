@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="component" version="1.5.0" method="upgrade">
  <name>Weever</name>
- <creationDate>2011-08-05</creationDate>
+ <creationDate>2011-08-24</creationDate>
  <author>Robert Gerald Porter</author>
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>
@@ -14,6 +14,7 @@
  <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">Weever Mobile App</menu>
  <files folder="admin">
 	  <filename>weever.php</filename>
+	  <filename>controller.php</filename>
 	  <folder>helpers</folder>
 	  <filename>index.html</filename>
 	  <folder>assets</folder>

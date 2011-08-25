@@ -39,7 +39,7 @@ final class comWeeverConst
 {
 
 	const VERSION		= "0.9.2";
-	const RELEASE_TYPE	= "dev";
+	const RELEASE_TYPE	= "";
 	const RELEASE_NAME	= "Allan Park";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";
@@ -47,12 +47,12 @@ final class comWeeverConst
 	const COPYRIGHT_URL = "http://www.weeverapps.com/";
 	const LICENSE		= "GPL v3.0";
 	const LICENSE_URL	= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE	= "August ?, 2011";
+	const RELEASE_DATE	= "August 25, 2011";
 	const REVISION		= "53";
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
+	const LIVE_STAGE	= "http://stage.weeverapp.com/";
 
 }
 
@@ -137,8 +137,9 @@ $controller->redirect();
 $row->load(6);
 $status = $row->setting;
 
-if($status == 0 && !$staging)
-	JError::raiseNotice(100, JText::_('WEEVER_NOTICE_APP_OFFLINE'));
+// now has the button
+/*if($status == 0 && !$staging)
+	JError::raiseNotice(100, JText::_('WEEVER_NOTICE_APP_OFFLINE'));*/
 
 $row->load(3); $key = $row->setting;
 $row->load(4); $keySiteDomain = $row->setting;
@@ -200,7 +201,7 @@ QR Link: '.JText::_('WEEVER_QR_DIRECT_ADDRESS').'<a href="'.$weeverServer.'app/'
 		
 }
 
-echo '<div style="text-align:center;clear:both; margin-top:24px;">'.comWeeverConst::NAME.' version '.comWeeverConst::VERSION.' '.comWeeverConst::RELEASE_TYPE.' <br />'.
+echo '<div style="text-align:center;clear:both; margin-top:24px;">'.comWeeverConst::NAME.' v'.comWeeverConst::VERSION.' '.comWeeverConst::RELEASE_TYPE.' <br />'.
 	comWeeverConst::COPYRIGHT_YEAR.' <a target="_blank" href="'.comWeeverConst::COPYRIGHT_URL.'">'.comWeeverConst::COPYRIGHT.'</a><br />
 	Released '.comWeeverConst::RELEASE_DATE.' under <a target="_blank" href="'.comWeeverConst::LICENSE_URL.'">'.comWeeverConst::LICENSE.'</a>. 
 	<a target="_blank" href="http://weeverapps.zendesk.com/home">Contact Support</a></div>';

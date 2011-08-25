@@ -1271,7 +1271,7 @@ class comWeeverHelper
 			JRequest::setVar('component', 'twitter');
 		}
 			
-		if($service == "twittequery")
+		if($service == "twitterquery")
 		{
 			$service = "twitter";
 			JRequest::setVar('component', 'twitter');
@@ -1389,7 +1389,7 @@ class comWeeverHelper
 	public static function _buildVimeoFeedURL()
 	{
 	
-		$url = "http://vimeo.com/api/v2/channel/".comWeeverHelper::_parseVimeoChannelURL(JRequest::getVar('component_behaviour'))."/videos.json";
+		$url = "http://vimeo.com/api/v2/".comWeeverHelper::_parseVimeoChannelURL(JRequest::getVar('component_behaviour'))."/videos.json";
 		return $url;
 	
 	}
@@ -1397,15 +1397,33 @@ class comWeeverHelper
 	public static function _parseVimeoChannelURL($url)
 	{
 	
-		$channel = str_replace('http://www.vimeo.com/channels/','',$url);
-		$channel = str_replace('http://vimeo.com/channels/','',$channel);
+		if(!strstr($url, "channels/"))
+		{
+			$channel = str_replace('http://www.vimeo.com/','',$url);
+			$channel = str_replace('http://vimeo.com/','',$channel);
+			
+			$channel = str_replace('www.vimeo.com/','',$channel);
+			$channel = str_replace('vimeo.com/','',$channel);	
+			
+			$channel = str_replace('/','',$channel);
+			$channel = preg_replace('/\?.*/', '', $channel);	
+		}
+		else 
+		{
 		
-		$channel = str_replace('www.vimeo.com/channels/','',$channel);
-		$channel = str_replace('vimeo.com/channels/','',$channel);
+			$channel = str_replace('http://www.vimeo.com/channels/','',$url);
+			$channel = str_replace('http://vimeo.com/channels/','',$channel);
+			
+			$channel = str_replace('www.vimeo.com/channels/','',$channel);
+			$channel = str_replace('vimeo.com/channels/','',$channel);
+			
+			$channel = str_replace('/','',$channel);
+			
+			$channel = preg_replace('/\?.*/', '', $channel);
+			
+			$channel = "channel/".$channel; 
 		
-		$channel = str_replace('/','',$channel);
-		
-		$channel = preg_replace('/\?.*/', '', $channel);
+		}
 		
 		return $channel;
 	

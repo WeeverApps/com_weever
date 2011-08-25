@@ -23,132 +23,120 @@ defined('_JEXEC') or die;
 
 jimport('joomla.installer.installer');
 
+$detailsTemplate = null; $cartographerId = null; $cartographerK2Id = null; $mobileespId = null;
+
 $lang = &JFactory::getLanguage();
 $lang->load("com_weever");
 
 $db = & JFactory::getDBO();
+
+
+// remove legacy plugins
+// 0.9.2+
+$query = "SELECT `id` FROM `#__plugins` WHERE element=".$db->Quote('cartographer')." AND folder=".$db->Quote('system');
+$db->setQuery($query);
+$check = $db->loadResultArray();
+$plugins = $db->loadResultArray();
+
+if(count($plugins))
+{
+	foreach($plugins as $plugin)
+		$cartographerId = $plugin;
+}
+
+$query = "SELECT `id` FROM `#__plugins` WHERE element=".$db->Quote('cartographerk2')." AND folder=".$db->Quote('system');
+$db->setQuery($query);
+$check = $db->loadResultArray();
+$plugins = $db->loadResultArray();
+
+if(count($plugins))
+{
+	foreach($plugins as $plugin)
+		$cartographerK2Id = $plugin;
+}
+
+if(count($check) > 0)
+{	
+
+	$installer = new JInstaller;
+	$result = $installer->uninstall('plugin', $cartographerId, 0);
+	
+	if($result)
+		$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
+	else
+		$message = "<span style='color:red'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
+		
+	echo "<p>".JText::_("WEEVER_UNINSTALLING_PLUGIN")."system/cartographer: <b>".$message."</b></p>";
+	
+	$result = $installer->uninstall('plugin',$cartographerK2Id, 0);
+	
+	if($result)
+		$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
+	else
+		$message = "<span style='color:red'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
+		
+	echo "<p>".JText::_("WEEVER_UNINSTALLING_PLUGIN")."system/cartographer_k2: <b>".$message."</b></p>";
+	
+	$result = $installer->uninstall('template','weever_cartographerdetails', 0);
+	
+	if($result)
+		$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
+	else
+		$message = "<span style='color:red'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
+		
+	echo "<p>".JText::_("WEEVER_UNINSTALLING_TEMPLATE")."templates/weever_cartographerdetails: <b>".$message."</b></p>";
+	
+	$detailsTemplate = 1;
+	
+}
+
+// end legacy removals
+
 
 $query = "SELECT `id` FROM `#__plugins` WHERE element=".$db->Quote('mobileesp')." AND folder=".$db->Quote('system');
 $db->setQuery($query);
 $check = $db->loadResultArray();
 
 if(count($check) > 0)
+{	
+
+	$pluginInstallText = JText::_("WEEVER_UPDATING_PLUGIN");
+	$templateInstallText = JText::_("WEEVER_UPDATING_TEMPLATE");
+	
+}
+else 
 {
 
-	$status = new JObject();
-	$status->plugins = array();
-	$status->templates = array();
-	
-	$plugins = &$this->manifest->getElementByPath('plugins');
-	if (is_a($plugins, 'JSimpleXMLElement') && count($plugins->children())) 
-	{
-	
-		foreach ($plugins->children() as $plugin) 
-		{
-			$pname = $plugin->attributes('plugin');
-			$pgroup = $plugin->attributes('group');
-			$query = "SELECT `id` FROM `#__plugins` WHERE element=".$db->Quote($pname)." AND folder=".$db->Quote($pgroup);
-			$db->setQuery($query);
-			$plugins = $db->loadResultArray();
-			if(count($plugins)) 
-			{
-				foreach($plugins as $plugin) 
-				{
-					$installer = new JInstaller;
-					$result = $installer->uninstall('plugin',$plugin, 0);
-				}
-			}
-			
-			$status->plugins[] = array('name'=>$pname,'group'=>$pgroup, 'result'=>$result);
-			
-			if($result)
-				$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
-			else
-				$message = "<span style='color:red'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
-			?>
-			<p><?php echo JText::_("WEEVER_UNINSTALLING_PLUGIN"); ?><?php echo $pgroup."/".$pname.": <b>".$message."</b>"; ?></p>
-			<?php
-			
-	
-		}
-	}
-	
-	$templates = &$this->manifest->getElementByPath('templates');
-	if (is_a($templates, 'JSimpleXMLElement') && count($templates->children())) 
-	{
-	
-		foreach ($templates->children() as $template) 
-		{
-			$tname = $template->attributes('template');
-			$installer = new JInstaller;
-			$result = $installer->uninstall('template',$tname, 0);
-			$status->templates[] = array('name'=>$tname, 'result'=>$result);
-			
-			if($result)
-				$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
-			else
-				$message = "<span style='color:red'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
-			?>
-			<p><?php echo JText::_("WEEVER_UNINSTALLING_TEMPLATE"); ?><?php echo $tname.": <b>".$message."</b>"; ?></p>
-			<?php
-	
-		}
-	}
+	$pluginInstallText = JText::_("WEEVER_INSTALLING_PLUGIN");
+	$templateInstallText = JText::_("WEEVER_INSTALLING_TEMPLATE");
 
-//
 }
 
-$status = new JObject();
-$status->plugins = array();
-$status->templates = array();
+
+$installer = new JInstaller;
 $src = $this->parent->getPath('source');
+$path = $src.DS.'plugins'.DS.'system'.DS.'mobileesp';
+$result = $installer->install($path);
 
-$plugins = &$this->manifest->getElementByPath('plugins');
-if (is_a($plugins, 'JSimpleXMLElement') && count($plugins->children())) {
+if($result)
+	$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+else
+	$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+	
+echo "<p>".$pluginInstallText."system/mobileesp: <b>".$message."</b></p>";
 
-	foreach ($plugins->children() as $plugin) {
-		$pname = $plugin->attributes('plugin');
-		$pgroup = $plugin->attributes('group');
-		$path = $src.DS.'plugins'.DS.$pgroup.DS.$pname;
-		$installer = new JInstaller;
-		$result = $installer->install($path);
-		$status->plugins[] = array('name'=>$pname,'group'=>$pgroup, 'result'=>$result);
-		if($result)
-			$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
-		else
-			$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
-		?>
-		<p><?php echo JText::_("WEEVER_INSTALLING_PLUGIN"); ?><?php echo $pgroup."/".$pname.": <b>".$message."</b>"; ?></p>
-		<?php
-		
-		// enable installed plugins
-		$query = "UPDATE #__plugins SET published=1 WHERE element=".$db->Quote($pname)." AND folder=".$db->Quote($pgroup);
-		$db->setQuery($query);
-		$db->query();
-		echo "<p><i>".JText::_("WEEVER_ENABLED_PLUGIN").$pname."</i></p>";
 
-	}
-}
+$path = $src.DS.'templates';
+$result = $installer->install($path);
 
-$templates = &$this->manifest->getElementByPath('templates');
-if (is_a($templates, 'JSimpleXMLElement') && count($templates->children())) {
+if($result)
+	$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+else
+	$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+	
+echo "<p>".$templateInstallText."templates/weever_cartographer: <b>".$message."</b></p>";
 
-	foreach ($templates->children() as $template) {
-		$tname = $template->attributes('template');
-		$path = $src.DS.'templates';
-		$installer = new JInstaller;
-		$result = $installer->install($path);
-		$status->templates[] = array('name'=>$tname, 'result'=>$result);
-		if($result)
-			$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
-		else
-			$message = "<span style='color:red'>FAILED</span>";
-		?>
-		<p><?php echo JText::_("WEEVER_INSTALLING_TEMPLATE"); ?><?php echo $tname.": <b>".$message."</b>"; ?></p>
-		<?php
 
-	}
-}
 
 if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_live.png"))
 	copy(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_live.png");

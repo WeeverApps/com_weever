@@ -405,7 +405,7 @@ class WeeverModelList extends JModel
 	
 		if(substr($joomla,0,3) == '1.6' || substr($joomla,0,3) == '1.7' || substr($joomla,0,3) == '1.8' || substr($joomla,0,3) == '1.9')
 		{
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_k2&view=itemlist%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=frontpage%') AND published = '1' AND access < '2'";  
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_k2&view=itemlist%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=featured%') AND published = '1' AND access < '2'";  
 		} 
 		else 
 		{

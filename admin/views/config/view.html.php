@@ -86,18 +86,6 @@ class WeeverViewConfig extends JView
 				
 					break;
 					
-				case "app_enabled":			
-				
-					$this->assign('plugin_html_enabled', '');
-					$this->assign('plugin_html_disabled', '');
-				
-					if($row->setting == "1")
-						$this->assign('plugin_html_enabled', 'checked="checked"');
-					else
-						$this->assign('plugin_html_disabled', 'checked="checked"');
-				
-					break;
-					
 				default:
 				
 					$this->assign($row->option,$row->setting);

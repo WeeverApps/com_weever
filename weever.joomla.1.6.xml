@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="1.6.0" method="upgrade">
  <name>COM_WEEVER</name>
- <creationDate>2011-08-05</creationDate>
+ <creationDate>2011-08-24</creationDate>
  <author>Robert Gerald Porter</author>
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>
@@ -22,24 +22,19 @@
      <file charset="utf8" driver="mysql">uninstall.sql</file>
    </sql>
   </uninstall>
-  <update>
-  		<schemas>
-  			<schemapath type="mysql">sql/updates/mysql</schemapath>
-  		</schemas>
-  </update>
  
  
  <administration>
  	 <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">COM_WEEVER_MENU</menu>
 	 <files folder="admin">
 		<filename>weever.php</filename>
+		<filename>controller.php</filename>
 		<filename>index.html</filename>
 		<folder>assets</folder>
 		<folder>helpers</folder>
 		<folder>models</folder>
 		<folder>tables</folder>
 		<folder>views</folder>
-		<folder>sql</folder>
 		<filename>install.sql</filename>
 		<filename>uninstall.sql</filename>
 	  </files>

@@ -126,14 +126,6 @@ else
 
 	<table class="admintable">
 	
-	
-	<tr>
-	<td class="key hasTip" title="<?php echo JText::_("WEEVER_MOBILE_REDIRECT_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_MOBILE_REDIRECT_ENABLED'); ?></td>
-	<td>
-	<label for='appEnabledOn' class='radiobtn'><?php echo JText::_('WEEVER_ONLINE'); ?></label><input type='radio' name='app_enabled' value='1' class='inputbox' id='appEnabledOn' <?php echo $this->plugin_html_enabled; ?> /> 
-	<label for='appEnabledOff' class='radiobtn'><?php echo JText::_('WEEVER_OFFLINE'); ?></label><input type='radio' name='app_enabled' value='0' class='inputbox' id='appEnabledOff' <?php echo $this->plugin_html_disabled; ?> /> 
-	</td></tr>
-	
 	<tr>
 	<td class="key hasTip" title="<?php echo JText::_("WEEVER_GOOGLE_ANALYTICS_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_GOOGLE_ANALYTICS_UA_CODE'); ?></td>
 	<td><input type="textbox" name="google_analytics" value="<?php echo $this->google_analytics; ?>" id="wx-google-analytics-input" placeholder="UA-XXXXXX-XX" /></td>	
@@ -303,6 +295,7 @@ else
 	<?php echo $pane->endPane(); ?>
 
 	<input type="hidden" name="option" value="<?php echo $option; ?>" />
+	<input type="hidden" name="app_enabled" value="<?php echo $this->app_enabled; ?>" />
 	<input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $this->site_key; ?>" />
 	<input type="hidden" name="view" value="config" />
 	<input type="hidden" name="task" value="" />

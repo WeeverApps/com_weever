@@ -47,7 +47,7 @@ class com_WeeverInstallerScript
 			$result = $installer->install($plg);
 			
 			if($result)
-				$message = "<span style='color:green'>".JText::_("COM_WEEVER_SUCCESS")."</span>";
+				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
 			else
 				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
 			?>
@@ -65,11 +65,11 @@ class com_WeeverInstallerScript
 			$result = $installer->install($tmpl);
 			
 			if($result)
-				$message = "<span style='color:green'>".JText::_("COM_WEEVER_SUCCESS")."</span>";
+				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
 			else
 				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
 			?>
-			<p>><?php echo JText::_("WEEVER_INSTALLING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
+			<p><?php echo JText::_("WEEVER_INSTALLING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
 			<?php	
 		
 		}
@@ -239,21 +239,53 @@ class com_WeeverInstallerScript
  		
  		$uninstaller = new JInstaller();
  		
- 		foreach($manifest->plugins->plugin as $plugin) 
- 		{
- 			$attributes = $plugin->attributes();
- 			// 'group' for uninstall. 
- 			$id = $this->getExtensionId('plugin', $attributes['plugin'], $attributes['group']);
- 			$uninstaller->uninstall('plugin',$id,0);   			
- 		}
  		
- 		foreach($manifest->templates->template as $template) 
- 		{
- 			$attributes = $template->attributes();
- 			$id = $this->getExtensionId('template', $attributes['template']);
- 			$uninstaller->uninstall('template',$id);
- 		}
  		
+ 		// remove legacy plugins
+ 		// 0.9.2+
+ 		
+ 		$id = $this->getExtensionId('plugin', 'cartographer', 'system');
+ 		
+ 		if($id)
+ 			$result = $uninstaller->uninstall('plugin',$id,0);   	
+ 			
+ 		if($result)
+ 			$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
+ 		else
+ 			$message = "<span style='color:grey'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
+ 			
+ 		echo "<p>".JText::_("WEEVER_UNINSTALLING_PLUGIN")."system/cartographer: <b>".$message."</b></p>";
+ 		
+ 		
+ 			
+ 		$id = $this->getExtensionId('plugin', 'cartographerk2', 'system');
+ 		
+ 		if($id)
+ 			$result = $uninstaller->uninstall('plugin',$id,0);  
+ 			
+ 		if($result)
+ 			$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
+ 		else
+ 			$message = "<span style='color:grey'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
+ 			
+ 		echo "<p>".JText::_("WEEVER_UNINSTALLING_PLUGIN")."system/cartographer_k2: <b>".$message."</b></p>";
+ 		
+ 		
+ 			
+ 		$id = $this->getExtensionId('template', 'weever_cartographerdetails');
+ 		
+ 		if($id)
+ 			$result = $uninstaller->uninstall('template',$id,0);  
+ 			
+ 		if($result)
+ 			$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
+ 		else
+ 			$message = "<span style='color:grey'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
+ 			
+ 		echo "<p>".JText::_("WEEVER_UNINSTALLING_TEMPLATE")."templates/weever_cartographerdetails: <b>".$message."</b></p>";
+ 		
+ 		// end legacy removals
+		
  				
 		$installer = new JInstaller();
 		
@@ -269,7 +301,7 @@ class com_WeeverInstallerScript
 			else
 				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
 			?>
-			<p><?php echo JText::_("WEEVER_INSTALLING_PLUGIN"); ?><?php echo $attributes['folder']."/".$attributes['plugin'].": <b>".$message."</b>"; ?></p>
+			<p><?php echo JText::_("WEEVER_UPDATING_PLUGIN"); ?><?php echo $attributes['folder']."/".$attributes['plugin'].": <b>".$message."</b>"; ?></p>
 			<?php	
 
 			$this->enableExtension($attributes['plugin'], 'plugin');
@@ -287,7 +319,7 @@ class com_WeeverInstallerScript
 			else
 				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
 			?>
-			<p><?php echo JText::_("WEEVER_INSTALLING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
+			<p><?php echo JText::_("WEEVER_UPDATING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
 			<?php	
 
 		}
@@ -324,9 +356,9 @@ class com_WeeverInstallerScript
 		
 		
 		// check if there are server-side app updates to be made
-		if($key)
+		if($key->setting)
 		{
-			$response = file_get_contents(conf::SITE_PATH.'index.php?app=ajax&m=upgrade&site_key='.$key);	
+			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&site_key='.$key->setting);	
 			echo $response;
 		}
 		
