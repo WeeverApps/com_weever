@@ -58,6 +58,52 @@ class comWeeverHelper
 	}
 	
 
+	public static function getJsStrings()
+	{
+	
+		$version = new JVersion;
+		$joomla = $version->getShortVersion();
+		
+		if(substr($joomla,0,3) == '1.5')
+		{
+			
+			jsJText::script('WEEVER_JS_ENTER_NEW_APP_ICON_NAME');
+			jsJText::script('WEEVER_JS_APP_UPDATED');
+			jsJText::script('WEEVER_JS_PLEASE_WAIT');
+			jsJText::script('WEEVER_JS_SAVING_CHANGES');
+			jsJText::script('WEEVER_JS_SERVER_ERROR');
+			jsJText::script('WEEVER_JS_ENTER_NEW_APP_ITEM');
+			jsJText::script('WEEVER_JS_ARE_YOU_SURE_YOU_WANT_TO');
+			jsJText::script('WEEVER_JS_QUESTION_MARK');
+			jsJText::script('WEEVER_JS_CHANGING_NAV_ICONS');
+			jsJText::script('WEEVER_JS_CHANGING_NAV_ICONS_INSTRUCTIONS');
+			jsJText::script('WEEVER_JS_CHANGING_NAV_PASTE_CODE');
+			
+			jsJText::load();
+		
+		}
+		else
+		{
+		
+			JText::script('WEEVER_JS_ENTER_NEW_APP_ICON_NAME');
+			JText::script('WEEVER_JS_APP_UPDATED');
+			JText::script('WEEVER_JS_PLEASE_WAIT');
+			JText::script('WEEVER_JS_SAVING_CHANGES');
+			JText::script('WEEVER_JS_SERVER_ERROR');
+			JText::script('WEEVER_JS_ENTER_NEW_APP_ITEM');
+			JText::script('WEEVER_JS_ARE_YOU_SURE_YOU_WANT_TO');
+			JText::script('WEEVER_JS_QUESTION_MARK');
+			JText::script('WEEVER_JS_CHANGING_NAV_ICONS');
+			JText::script('WEEVER_JS_CHANGING_NAV_ICONS_INSTRUCTIONS');
+			JText::script('WEEVER_JS_CHANGING_NAV_PASTE_CODE');
+		
+		}
+
+	
+	}
+		
+	
+
 	public static function saveTheme()
 	{
 	
@@ -81,6 +127,10 @@ class comWeeverHelper
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		
 		$row->load(2);
+		$row->setting = JRequest::getVar($row->option);		
+		$row->store();
+		
+		$row->load(1);
 		$row->setting = JRequest::getVar($row->option);		
 		$row->store();
 		
@@ -228,13 +278,13 @@ class comWeeverHelper
 		}
 		
 			 
-		for($i = 1; $i <= 8; $i++)
+		for($i = 1; $i <= 10; $i++)
 		{
 		
-			if($i == 2)
+			if($i == 2 || $i == 1 || $i == 6)
 				continue;
 		
-			$row->load($i);
+			$row->load($i); 
 
 			$row->setting = JRequest::getVar($row->option);
 			
@@ -245,6 +295,29 @@ class comWeeverHelper
 		$response = comWeeverHelper::pushConfigToCloud();
 		
 		return $msg;
+	
+	}
+	
+	public static function toggleAppStatus()
+	{
+
+		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		
+		$row->load(6);
+		
+		if($row->setting)
+			$row->setting = 0;
+		else 
+			$row->setting = 1;
+			
+		$response = comWeeverHelper::pushAppStatusToCloud($row->setting);
+		
+		if($response == "App Offline" || $response == "App Online")
+			$row->store();
+		else 
+			$response = "Server Error: ".$response;
+			
+		return $response;
 	
 	}
 	
@@ -895,6 +968,8 @@ class comWeeverHelper
 				'ecosystem' => JRequest::getVar('ecosystem'),
 				'app_enabled' => JRequest::getVar('app_enabled'),
 				'site_key' => JRequest::getVar('site_key'),
+				'domain' => JRequest::getVar('domain'),
+				'google_analytics' => JRequest::getVar('google_analytics'),
 				'app' => 'ajax',
 				'cms' => 'joomla',
 				'm' => "edit_config",
@@ -907,6 +982,25 @@ class comWeeverHelper
 	
 	}
 	
+	
+	public static function pushAppStatusToCloud($status)
+	{
+	
+		$postdata = http_build_query(
+			array( 	
+				'app_enabled' => $status,
+				'site_key' => JRequest::getVar('site_key'),
+				'app' => 'ajax',
+				'cms' => 'joomla',
+				'm' => "app_status",
+				'version' => comWeeverConst::VERSION,
+				'generator' => comWeeverConst::NAME
+				)
+			);
+		
+		return comWeeverHelper::sendToWeeverServer($postdata);
+	
+	}
 	
 
 	public static function pushSettingsToCloud()
@@ -1177,7 +1271,7 @@ class comWeeverHelper
 			JRequest::setVar('component', 'twitter');
 		}
 			
-		if($service == "twittequery")
+		if($service == "twitterquery")
 		{
 			$service = "twitter";
 			JRequest::setVar('component', 'twitter');
@@ -1295,7 +1389,7 @@ class comWeeverHelper
 	public static function _buildVimeoFeedURL()
 	{
 	
-		$url = "http://vimeo.com/api/v2/channel/".comWeeverHelper::_parseVimeoChannelURL(JRequest::getVar('component_behaviour'))."/videos.json";
+		$url = "http://vimeo.com/api/v2/".comWeeverHelper::_parseVimeoChannelURL(JRequest::getVar('component_behaviour'))."/videos.json";
 		return $url;
 	
 	}
@@ -1303,15 +1397,33 @@ class comWeeverHelper
 	public static function _parseVimeoChannelURL($url)
 	{
 	
-		$channel = str_replace('http://www.vimeo.com/channels/','',$url);
-		$channel = str_replace('http://vimeo.com/channels/','',$channel);
+		if(!strstr($url, "channels/"))
+		{
+			$channel = str_replace('http://www.vimeo.com/','',$url);
+			$channel = str_replace('http://vimeo.com/','',$channel);
+			
+			$channel = str_replace('www.vimeo.com/','',$channel);
+			$channel = str_replace('vimeo.com/','',$channel);	
+			
+			$channel = str_replace('/','',$channel);
+			$channel = preg_replace('/\?.*/', '', $channel);	
+		}
+		else 
+		{
 		
-		$channel = str_replace('www.vimeo.com/channels/','',$channel);
-		$channel = str_replace('vimeo.com/channels/','',$channel);
+			$channel = str_replace('http://www.vimeo.com/channels/','',$url);
+			$channel = str_replace('http://vimeo.com/channels/','',$channel);
+			
+			$channel = str_replace('www.vimeo.com/channels/','',$channel);
+			$channel = str_replace('vimeo.com/channels/','',$channel);
+			
+			$channel = str_replace('/','',$channel);
+			
+			$channel = preg_replace('/\?.*/', '', $channel);
+			
+			$channel = "channel/".$channel; 
 		
-		$channel = str_replace('/','',$channel);
-		
-		$channel = preg_replace('/\?.*/', '', $channel);
+		}
 		
 		return $channel;
 	
