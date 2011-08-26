@@ -95,12 +95,16 @@ class WeeverViewList extends JView
        $this->assignRef( 'lists', $lists );
        
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		
+		$row->load(6);
+
+		$this->assign('appEnabled', $row->setting);
 
 		$row->load(100);
 		$theme = json_decode($row->setting);
 		$this->assignRef('theme',$theme);
 		
-		$this->get('jsStrings');			
+		comWeeverHelper::getJsStrings();			
 		
 		JSubMenuHelper::addEntry(JText::_('WEEVER_TAB_ITEMS'), 'index.php?option=com_weever', true);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', false);

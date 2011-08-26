@@ -27,12 +27,27 @@ JHTML::_('behavior.mootools');
 JHTML::_('behavior.tooltip');
 jimport('joomla.html.pane');
 
-$pane = &JPane::getInstance('tabs');
+$document = &JFactory::getDocument();
 
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
+$document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
+
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
+	$document->addStyleSheet($cssFile, 'text/css', null, array());
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
+	$document->addStyleSheet($cssFile, 'text/css', null, array());
+	
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/config.js' );
+
+$pane = &JPane::getInstance('tabs');
 
 $plugin_html_enabled = "";
 $plugin_html_disabled = "";
-
 
 if(!$this->site_key)
 {
@@ -41,9 +56,31 @@ if(!$this->site_key)
 
 }
 
+$onlineSpan = "";
+$offlineSpan = "";
+
+if($this->appEnabled)
+{
+	$offlineSpan = 'class="wx-app-hide-status"';
+	$offlineStatusClass = "";
+}
+else 
+{
+	$onlineSpan = 'class="wx-app-hide-status"';
+	$offlineStatusClass = "class=\"wx-app-status-button-offline\"";
+}
+
 ?>
 
-<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /> Take App <span id="wx-app-status-online">Online</span>/<span id="wx-app-status-offline">Offline</span></div>
+
+<div id="wx-app-status-button" <?php echo $offlineStatusClass; ?>><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>><?php echo JText::_('WEEVER_ONLINE'); ?></span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>><?php echo JText::_('WEEVER_OFFLINE'); ?></span></div>
+
+<div id='wx-modal-loading'>
+    <div id='wx-modal-loading-text'></div>
+    <div id='wx-modal-secondary-text'></div>
+    <div id='wx-modal-error-text'></div>
+</div>
+
 
 <form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	
@@ -52,34 +89,6 @@ if(!$this->site_key)
 	<?php echo $pane->startPane('theme'); ?>
 	<?php echo $pane->startPanel(JText::_("WEEVER_BASIC_SETTINGS"), 'basic-settings'); ?>
 	<div>
-	
-	<fieldset class='adminForm'>
-	<legend><?php echo JText::_('WEEVER_REQUIRED_SETTINGS'); ?></legend>
-
-	<table class="admintable">
-	
-	
-	<tr>
-	<td class="key hasTip" title="<?php echo JText::_("WEEVER_MOBILE_REDIRECT_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_MOBILE_REDIRECT_ENABLED'); ?></td>
-	<td>
-	<label for='appEnabledOn' class='radiobtn'><?php echo JText::_('WEEVER_ONLINE'); ?></label><input type='radio' name='app_enabled' value='1' class='inputbox' id='appEnabledOn' <?php echo $this->plugin_html_enabled; ?> /> 
-	<label for='appEnabledOff' class='radiobtn'><?php echo JText::_('WEEVER_OFFLINE'); ?></label><input type='radio' name='app_enabled' value='0' class='inputbox' id='appEnabledOff' <?php echo $this->plugin_html_disabled; ?> /> 
-	</td></tr>
-	
-	<tr><td class="key hasTip" title="<?php echo JText::_("WEEVER_WEB_APP_NAME_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_WEB_APP_NAME'); ?></td>
-	<td><input type="text" name="title" maxlength="10" style="width:90px;" value="<?php echo htmlentities($this->title, ENT_QUOTES, "UTF-8"); ?>" /></td>
-	</tr>
-	
-	<tr>
-	<td class="key hasTip" title="<?php echo JText::_("WEEVER_ECOSYSTEM_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_ECOSYSTEM'); ?></td>
-	<td><input type="checkbox" name="ecosystem" value="1" <?php echo ($this->ecosystem == 1 ? "checked='checked'":""); ?>" /> <label for="checkEcosystem"><?php echo JText::_('WEEVER_ECOSYSTEM_ENABLE'); ?></label></td>	
-	</tr>
-
-
-	</table>
-	
-	</fieldset>
-
 	
 	
 	
@@ -108,6 +117,51 @@ if(!$this->site_key)
 		</table>
 		
 		</fieldset>
+	
+	
+	
+	
+	<fieldset class='adminForm'>
+	<legend><?php echo JText::_('WEEVER_CONFIG_ADDITIONAL_SERVICES'); ?></legend>
+
+	<table class="admintable">
+	
+	<tr>
+	<td class="key hasTip" title="<?php echo JText::_("WEEVER_GOOGLE_ANALYTICS_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_GOOGLE_ANALYTICS_UA_CODE'); ?></td>
+	<td><input type="textbox" name="google_analytics" value="<?php echo $this->google_analytics; ?>" id="wx-google-analytics-input" placeholder="UA-XXXXXX-XX" /></td>	
+	</tr>
+	
+	<tr>
+	<td class="key hasTip" title="<?php echo JText::_("WEEVER_ECOSYSTEM_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_ECOSYSTEM'); ?></td>
+	<td><input type="checkbox" name="ecosystem" value="1" <?php echo ($this->ecosystem == 1 ? "checked='checked'":""); ?>" /> <label for="checkEcosystem"><?php echo JText::_('WEEVER_ECOSYSTEM_ENABLE'); ?></label></td>	
+	</tr>
+	
+
+
+	</table>
+	
+	</fieldset>
+
+
+	
+	<fieldset class='adminForm'>
+	<legend><?php echo JText::_('WEEVER_CONFIG_PRO_FEATURES'); ?></legend>
+
+	<p><?php echo JText::_("WEEVER_DOMAIN_MAPPING_INSTRUCTIONS"); ?></p>
+
+	<table class="admintable">
+	
+	<tr>
+	<td class="key hasTip" title="<?php echo JText::_("WEEVER_DOMAIN_MAPPING_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_DOMAIN_MAPPING'); ?></td>
+	<td><input type="textbox" name="domain"  value="<?php echo $this->domain; ?>" id="wx-domain-map-input" placeholder="app.yourdomain.com" /> </td>	
+	</tr>
+
+	
+	</table>
+	
+	</fieldset>
+
+
 	
 		</div>
 		
@@ -241,7 +295,8 @@ if(!$this->site_key)
 	<?php echo $pane->endPane(); ?>
 
 	<input type="hidden" name="option" value="<?php echo $option; ?>" />
-	<input type="hidden" name="site_key" value="<?php echo $this->site_key; ?>" />
+	<input type="hidden" name="app_enabled" value="<?php echo $this->app_enabled; ?>" />
+	<input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $this->site_key; ?>" />
 	<input type="hidden" name="view" value="config" />
 	<input type="hidden" name="task" value="" />
 	<?php echo JHTML::_('form.token'); ?>

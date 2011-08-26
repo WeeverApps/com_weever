@@ -31,6 +31,23 @@ JHTML::_('behavior.modal', 'a.popup');
 JHTML::_('behavior.tooltip');
 jimport('joomla.html.pane');
 
+$document = &JFactory::getDocument();
+
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
+$document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
+
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
+	$document->addStyleSheet($cssFile, 'text/css', null, array());
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
+	$document->addStyleSheet($cssFile, 'text/css', null, array());
+	
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/theme.js' );
+
 $pane = &JPane::getInstance('tabs');
 
 
@@ -41,10 +58,30 @@ if(!$this->site_key)
 
 }
 
+$onlineSpan = "";
+$offlineSpan = "";
+
+if($this->appEnabled)
+{
+	$offlineSpan = 'class="wx-app-hide-status"';
+	$offlineStatusClass = "";
+}
+else 
+{
+	$onlineSpan = 'class="wx-app-hide-status"';
+	$offlineStatusClass = "class=\"wx-app-status-button-offline\"";
+}
 
 ?>
 
-<div id="wx-app-status-button"><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /> Take App <span id="wx-app-status-online">Online</span>/<span id="wx-app-status-offline">Offline</span></div>
+
+<div id="wx-app-status-button" <?php echo $offlineStatusClass; ?>><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>><?php echo JText::_('WEEVER_ONLINE'); ?></span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>><?php echo JText::_('WEEVER_OFFLINE'); ?></span></div>
+
+<div id='wx-modal-loading'>
+    <div id='wx-modal-loading-text'></div>
+    <div id='wx-modal-secondary-text'></div>
+    <div id='wx-modal-error-text'></div>
+</div>
 
 <form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	
@@ -84,6 +121,12 @@ if(!$this->site_key)
 	<td class="key hasTip" title="<?php echo JText::_("WEEVER_TITLEBAR_TITLE_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_TITLEBAR_TITLE'); ?></td>
 	<td><input type="text" name="titlebar_title" maxlength="35" style="width:250px;" value="<?php echo htmlentities($this->titlebar_title, ENT_QUOTES, "UTF-8"); ?>" /></td>	
 	</tr>
+	
+	
+	<tr><td class="key hasTip" title="<?php echo JText::_("WEEVER_WEB_APP_NAME_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_WEB_APP_NAME'); ?></td>
+	<td><input type="text" name="title" maxlength="10" style="width:90px;" value="<?php echo htmlentities($this->title, ENT_QUOTES, "UTF-8"); ?>" /></td>
+	</tr>
+	
 	
 	</table>
 	
@@ -237,7 +280,7 @@ if(!$this->site_key)
 	<?php echo $pane->endPane(); ?>
 
 	<input type="hidden" name="option" value="<?php echo $option; ?>" />
-	<input type="hidden" name="site_key" value="<?php echo $this->site_key; ?>" />
+	<input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $this->site_key; ?>" />
 	<input type="hidden" name="view" value="theme" />
 	<input type="hidden" name="task" value="" />
 	<?php echo JHTML::_('form.token'); ?>

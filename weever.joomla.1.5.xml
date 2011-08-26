@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="component" version="1.5.0" method="upgrade">
- <name>COM_WEEVER</name>
- <creationDate>2011-08-05</creationDate>
+ <name>Weever</name>
+ <creationDate>2011-08-24</creationDate>
  <author>Robert Gerald Porter</author>
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>
@@ -9,12 +9,12 @@
  <license>GPLv3</license>
  <version>0.9.2.0</version>
  <releaseType>Beta Test</releaseType>
- <description>COM_WEEVER_DESCRIPTION</description>
+ <description>Weever turns your Joomla site into a true web app!</description>
  <administration>
- <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">COM_WEEVER_MENU</menu>
+ <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">Weever Mobile App</menu>
  <files folder="admin">
 	  <filename>weever.php</filename>
-	  <filename>config.xml</filename>
+	  <filename>controller.php</filename>
 	  <folder>helpers</folder>
 	  <filename>index.html</filename>
 	  <folder>assets</folder>
@@ -56,12 +56,10 @@
   
  <plugins>
  	<plugin plugin="mobileesp" group="system" />
- 	<plugin plugin="cartographer" group="system" />
- 	<plugin plugin="cartographerk2" group="system" />
  </plugins>
  
  <templates>
- 	<template template="weever_cartographerdetails" />
+ 	<template template="weever_cartographer" />
  </templates>
  
  <installfile>install.weever.joomla.1.5.php</installfile>

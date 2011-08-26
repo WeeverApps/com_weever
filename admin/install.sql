@@ -35,4 +35,6 @@ INSERT IGNORE INTO `#__weever_config` VALUES(5, 'devices', 'DetectTierWeeverSmar
 INSERT IGNORE INTO `#__weever_config` VALUES(6, 'app_enabled', '0');
 INSERT IGNORE INTO `#__weever_config` VALUES(7, 'staging_mode', '0');
 INSERT IGNORE INTO `#__weever_config` VALUES(8, 'ecosystem', '0');
+INSERT IGNORE INTO `#__weever_config` VALUES(9, 'google_analytics', '');
+INSERT IGNORE INTO `#__weever_config` VALUES(10, 'domain', '');
 INSERT IGNORE INTO `#__weever_config` VALUES(100, 'theme_params', '{"aLink":null,"spanLogo":"","contentButton":"","border":"","fontType":"","blogIcon":"","pagesIcon":"","contactIcon":"","socialIcon":"","videoIcon":"","photoIcon":"","mapIcon":null,"titlebarHtml":null,"template":"sencha"}');
