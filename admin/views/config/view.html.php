@@ -35,8 +35,11 @@ class WeeverViewConfig extends JView
 		$component = JComponentHelper::getComponent( 'com_weever' );
 
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		
+		$row->load(6);
+		$this->assign('appEnabled', $row->setting);
 
-		for($i = 1; $i <= 8; $i++)
+		for($i = 1; $i <= 10; $i++)
 		{
 		
 			$row->load($i);
@@ -83,18 +86,6 @@ class WeeverViewConfig extends JView
 				
 					break;
 					
-				case "app_enabled":			
-				
-					$this->assign('plugin_html_enabled', '');
-					$this->assign('plugin_html_disabled', '');
-				
-					if($row->setting == "1")
-						$this->assign('plugin_html_enabled', 'checked="checked"');
-					else
-						$this->assign('plugin_html_disabled', 'checked="checked"');
-				
-					break;
-					
 				default:
 				
 					$this->assign($row->option,$row->setting);
@@ -105,6 +96,8 @@ class WeeverViewConfig extends JView
 			
 		
 		}
+		
+		comWeeverHelper::getJsStrings();
 		
 		JSubMenuHelper::addEntry(JText::_('WEEVER_TAB_ITEMS'), 'index.php?option=com_weever', false);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', false);

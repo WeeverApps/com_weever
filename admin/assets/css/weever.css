@@ -62,33 +62,55 @@ label.wx-check-label {
 }
 
 /* end of hacks */
-
-#wx-app-status-button {
-	z-index: 500; 
-	position: absolute; 
-	right: 230px; 
-	top:113px;
-	color:#000;
-	display: block;
-	text-align: center;
+.wx-app-hide-status {
+	display: none;
 }
 
-#wx-app-status-img {
-	vertical-align:-0.5em;
-	height:27px;
-	padding: 2px;
-	padding-top: 0px;
-	padding-bottom: 4px;
-	margin-right:2px;
+
+.wx-app-status-button-offline {
+	opacity: 0.4;
+}
+
+
+#wx-app-status-button {
+    color: #000000;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    right: 198px;
+    text-align: right;
+    top: 110px;
+    z-index: 50;
 }
 
 #wx-app-status-online {
-	color:#696;
+	position: absolute;
+	top: 20px;
+	left:  -50px;
+	text-align: right;
+    color: #669966;
 }
 
 #wx-app-status-offline {
-	color:#966;
+	position: absolute;
+	top: 20px;
+	left:  -50px;
+    color: #996666;
+    text-align: right;
+    font-weight: bold;
 }
+
+#wx-app-status-img {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    display: block;
+    float: right;
+    height: 44px;
+    margin: 0 8px 0 16px;
+    padding: 0;
+}
+
+
 
 .icon-48-weever_toolbar_title   { background-image: url(../icons/icon-48-weever_toolbar_title.png); }
 .icon-48-weever_toolbar_title_staging   { background-image: url(../icons/icon-48-weever_toolbar_title_staging.png); }
