@@ -1285,48 +1285,51 @@ class comWeeverHelper
 
 	}
 	
+	public static function _buildCalendarFeedURL()
+	{
+		
+		// server side
+	
+	}
+	
+	public static function _buildFormFeedURL()
+	{
+		
+		JRequest::setVar('var', JRequest::getVar("api_key"));
+	
+	}
+	
 	public static function _buildTwitterUserFeedURL()
 	{
 		
-		return "http://api.twitter.com/1/statuses/user_timeline.json";
-	
+		//moved
 	}
 	
 	public static function _buildIdenticaUserFeedURL()
 	{
 		
-		return "http://identi.ca/api/statuses/user_timeline.json";
+		//moved
 	
 	}
 	
 	public static function _buildTwitterFeedURL()
 	{
 	
-		return "http://search.twitter.com/search.json";
+		//moved
 	
 	}
 	
 	public static function _buildIdenticaFeedURL()
 	{
 	
-		return "http://identi.ca/api/search.json";
+		//moved
 	
 	}
 	
 	public static function _buildFacebookFeedURL()
 	{
 	
-		$idCode = JRequest::getVar('component_behaviour');
-		
-		if(strstr($idCode, "facebook.com"))
-		{
-			$pos = strrpos($idCode, "/");
-			$idCode = substr($idCode, $pos+1);
-		}
-		
-		$url = "http://graph.facebook.com/".$idCode."/feed";
-		
-		return $url;
+		// server side now
 	}
 	
 	public static function _buildPhotoFeedURL() 
@@ -1347,20 +1350,17 @@ class comWeeverHelper
 		// doing this server-side;	
 	}
 	
+	public static function _buildGoogleFeedURL()
+	{
+	
+		// nuttin
+	
+	}
+	
 	public static function _buildFoursquareFeedURL()
 	{
 	
-		$idCode = JRequest::getVar('component_behaviour');
-		
-		if(strstr($idCode, "foursquare.com"))
-		{
-			$pos = strrpos($idCode, "/");
-			$idCode = substr($idCode, $pos+1);
-		}		
-	
-		$url = "https://api.foursquare.com/v2/venues/".$idCode."/photos";
-		
-		return $url;
+		// moved
 		
 	}
 	
@@ -1381,80 +1381,17 @@ class comWeeverHelper
 	public static function _buildYoutubeFeedURL()
 	{
 	
-		$url = "http://gdata.youtube.com/feeds/api/users/".comWeeverHelper::_parseYoutubeChannelURL(JRequest::getVar('component_behaviour'))."/uploads?&v=2&max-results=50&alt=jsonc";
-		return $url;
+		// moved
 	
 	}
 	
 	public static function _buildVimeoFeedURL()
 	{
 	
-		$url = "http://vimeo.com/api/v2/".comWeeverHelper::_parseVimeoChannelURL(JRequest::getVar('component_behaviour'))."/videos.json";
-		return $url;
-	
-	}
-	
-	public static function _parseVimeoChannelURL($url)
-	{
-	
-		if(!strstr($url, "channels/"))
-		{
-			$channel = str_replace('http://www.vimeo.com/','',$url);
-			$channel = str_replace('http://vimeo.com/','',$channel);
-			
-			$channel = str_replace('www.vimeo.com/','',$channel);
-			$channel = str_replace('vimeo.com/','',$channel);	
-			
-			$channel = str_replace('/','',$channel);
-			$channel = preg_replace('/\?.*/', '', $channel);	
-		}
-		else 
-		{
-		
-			$channel = str_replace('http://www.vimeo.com/channels/','',$url);
-			$channel = str_replace('http://vimeo.com/channels/','',$channel);
-			
-			$channel = str_replace('www.vimeo.com/channels/','',$channel);
-			$channel = str_replace('vimeo.com/channels/','',$channel);
-			
-			$channel = str_replace('/','',$channel);
-			
-			$channel = preg_replace('/\?.*/', '', $channel);
-			
-			$channel = "channel/".$channel; 
-		
-		}
-		
-		return $channel;
+		// moved
 	
 	}
 
-	public static function _parseYoutubeChannelURL($url)
-	{
-	
-		$channel = str_replace('http://www.youtube.com/user/','',$url);
-		$channel = str_replace('http://youtube.com/user/','',$channel);
-		$channel = str_replace('http://www.youtube.com/','',$channel);
-		$channel = str_replace('http://youtube.com/','',$channel);
-		
-		$channel = str_replace('https://www.youtube.com/user/','',$channel);
-		$channel = str_replace('https://youtube.com/user/','',$channel);
-		$channel = str_replace('https://www.youtube.com/','',$channel);
-		$channel = str_replace('https://youtube.com/','',$channel);
-		
-		$channel = str_replace('www.youtube.com/user/','',$channel);
-		$channel = str_replace('youtube.com/user/','',$channel);
-		$channel = str_replace('www.youtube.com/','',$channel);
-		$channel = str_replace('youtube.com/','',$channel);
-		
-		$channel = str_replace('/','',$channel);
-		
-		$channel = preg_replace('/\?.*/', '', $channel);
-		
-		
-		return $channel;
-	
-	}
 
 }
 

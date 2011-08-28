@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	0.9.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -54,6 +54,8 @@ class WeeverViewList extends JView
 		$videoRows =& $this->get('videodata');
 		$photoRows =& $this->get('photodata');
 		$socialRows =& $this->get('socialdata');
+		$formRows =& $this->get('formdata');
+		$calendarRows =& $this->get('calendardata');
 		
 		$this->assignRef('tabRows', $tabRows);
 		$this->assignRef('blogRows', $blogRows);
@@ -64,6 +66,8 @@ class WeeverViewList extends JView
 		$this->assignRef('videoRows', $videoRows);
 		$this->assignRef('photoRows', $photoRows);
 		$this->assignRef('socialRows', $socialRows);
+		$this->assignRef('formRows', $formRows);
+		$this->assignRef('calendarRows', $calendarRows);
 		
 		$blogMenuDropdown =& $this->get('blogmenudropdown');
 		$this->assignRef('blogMenuDropdown',$blogMenuDropdown);

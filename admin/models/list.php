@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	0.9.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -199,6 +199,28 @@ class WeeverModelList extends JModel
 	
 	}
 	
+
+	public function getFormData()
+	{
+
+		$query = "SELECT * FROM #__weever_tabs WHERE type = 'form'".$this->_buildContentOrderBy();
+		$this->data = $this->_getList($query);		
+
+		return $this->data;
+	
+	}
+		
+
+	public function getCalendarData()
+	{
+
+		$query = "SELECT * FROM #__weever_tabs WHERE type = 'calendar'".$this->_buildContentOrderBy();
+		$this->data = $this->_getList($query);		
+
+		return $this->data;
+	
+	}
+				
 	
 	public function getJContactDropdown()
 	{

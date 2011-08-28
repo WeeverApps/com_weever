@@ -28,6 +28,7 @@ defined('_JEXEC') or die;
 		<select id='wx-select-photo' class='wx-component-select' name='noname'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_PHOTO_FEED_PARENTHESES'); ?></option>
 			<option value='flickr'><?php echo JText::_('WEEVER_FLICKR_FEED'); ?></option>
+			<option value='google'><?php echo JText::_('WEEVER_GOOGLE_PICASA_FEED'); ?></option>
 			<option value='foursquare'><?php echo JText::_('WEEVER_FOURSQUARE_VENUE_FEED'); ?></option>
 		</select>
 	</div>
@@ -45,6 +46,7 @@ defined('_JEXEC') or die;
 		<input type='text' value='' id='wx-photo-url' class='wx-input wx-photo-input' name='url' />
 		<label for='wx-photo-url' id='wx-foursquare-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FOURSQUARE_URL'); ?></label>
 		<label for='wx-photo-url' id='wx-flickr-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FLICKR_URL'); ?></label>
+		<label for='wx-photo-url' id='wx-google-picasa-email' class='wx-photo-label'><?php echo JText::_('WEEVER_GOOGLE_PICASA_EMAIL'); ?></label>
 	</div>
 	
 	<div class='wx-add-title wx-photo-reveal wx-reveal'>
