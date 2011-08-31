@@ -269,8 +269,8 @@ class comWeeverHelper
 		{
 			if(JRequest::getVar('DetectTierWeeverSmartphones',0))
 				$devices .= "DetectTierWeeverSmartphones";
-			if(JRequest::getVar('DetectTierTablet',0))
-				$devices .= ",DetectTierTablet";		
+			if(JRequest::getVar('DetectTierWeeverTablets',0))
+				$devices .= ",DetectTierWeeverTablets";		
 				
 			$devices = ltrim($devices,",");
 				
