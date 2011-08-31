@@ -27,8 +27,8 @@ defined('_JEXEC') or die;
 	<div class='wx-add-item-calendar wx-add-item-dropdown'>
 		<select id='wx-select-calendar' class='wx-component-select' name='noname'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_CALENDAR_PARENTHESES'); ?></option>
-			<option value='google'>Add upcoming events from a Google Calendar</option>
-			<option value='facebook'>Add upcoming events from a Facebook Profile</option>
+			<option value='google.calendar'>Add upcoming events from a Google Calendar</option>
+			<option value='facebook.events'>Add upcoming events from a Facebook Profile</option>
 		</select>
                 <label for="wx-select-calendar" class="key hasTip" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"
                  title="<?php echo JText::_('WEEVER_ADD_CALENDAR_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_ADD_CALENDAR_HELP_LABEL'); ?></label>

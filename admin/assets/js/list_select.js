@@ -90,7 +90,7 @@ jQuery(document).ready(function(){
 		jQuery('.wx-submit').attr('disabled', 'disabled');
 		jQuery('.wx-calendar-reveal').show();
 		
-		if(jQuery(this).val() == "google") 
+		if(jQuery(this).val() == "google.calendar") 
 		{
 			jQuery('label#wx-google-calendar-email-label').show();
 			jQuery('label#wx-facebook-calendar-url-label').hide();
@@ -101,7 +101,7 @@ jQuery(document).ready(function(){
 			jQuery('input#wx-calendar-title').val('Google Calendar');
 		}
 		
-		if(jQuery(this).val() == "facebook") 
+		if(jQuery(this).val() == "facebook.events") 
 		{
 			jQuery('label#wx-facebook-calendar-url-label').show();
 			jQuery('label#wx-google-calendar-email-label').hide();
@@ -167,7 +167,7 @@ jQuery(document).ready(function(){
 			jQuery('input#wx-photo-title').val('Foursquare');
 		}
 		
-		if(jQuery(this).val() == "google") 
+		if(jQuery(this).val() == "google.picasa") 
 		{
 			jQuery('label#wx-google-picasa-email').show();
 			jQuery('input#wx-photo-url').val('');

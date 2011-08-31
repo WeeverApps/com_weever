@@ -235,7 +235,7 @@ jQuery(document).ready(function(){
 	  	var component = jQuery("select#wx-select-calendar").val();
 	  	var componentBehaviour = null;
 	  	
-	  	if(component == "google") {
+	  	if(component == "google.calendar") {
 	  		componentBehaviour = tabEmail;
 	  	} else {
 	  		componentBehaviour = tabUrl;
@@ -278,7 +278,7 @@ jQuery(document).ready(function(){
 	  	jQuery.ajax({
 	  	   type: "POST",
 	  	   url: "index.php",
-	  	   data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=form&weever_action=add&published=1&component="+component+"&component_behaviour="+encodeURIComponent(tabUrl)+"&site_key="+siteKey+"&api_key="+APIKey,
+	  	   data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=form&weever_action=add&published=1&component="+component+"&component_behaviour="+encodeURIComponent(tabUrl)+"&site_key="+siteKey+"&var="+APIKey,
 	  	   success: function(msg){
 	  	     jQuery('#wx-modal-loading-text').html(msg);
 	  	     

@@ -1175,6 +1175,7 @@ class comWeeverHelper
 		return true;
 	
 	}
+	
 	public static function _buildPageFeedURL() 
 	{
 	
@@ -1191,6 +1192,7 @@ class comWeeverHelper
 		return true;
 		
 	}
+	
 	public static function _buildComponentFeedURL() 
 	{
 	
@@ -1199,9 +1201,7 @@ class comWeeverHelper
 		return true;
 		
 	}
-	
-	public static function _buildMapFeedURL() {}
-	public static function _buildTabFeedURL() {}
+
 
 	public static function _buildContactFeedURL() 
 	{
@@ -1252,145 +1252,7 @@ class comWeeverHelper
 	
 	}
 	
-	
-	public static function _buildSocialFeedURL() 
-	{
-	
-		$service = JRequest::getVar('component');
-		
-		// replace with sanitization script later
-		if($service == "identi.ca")
-			$service = "identica";
-			
-		if($service == "identi.causer")
-			$service = "identicauser";
-			
-		if($service == "twitterhashtag")
-		{
-			$service = "twitter";
-			JRequest::setVar('component', 'twitter');
-		}
-			
-		if($service == "twitterquery")
-		{
-			$service = "twitter";
-			JRequest::setVar('component', 'twitter');
-		}
-			
-		$service_method = "_build".$service."FeedURL";
-		
-		$url = comWeeverHelper::$service_method();
-		
-		return $url;
 
-	}
-	
-	public static function _buildCalendarFeedURL()
-	{
-		
-		// server side
-	
-	}
-	
-	public static function _buildFormFeedURL()
-	{
-		
-		JRequest::setVar('var', JRequest::getVar("api_key"));
-	
-	}
-	
-	public static function _buildTwitterUserFeedURL()
-	{
-		
-		//moved
-	}
-	
-	public static function _buildIdenticaUserFeedURL()
-	{
-		
-		//moved
-	
-	}
-	
-	public static function _buildTwitterFeedURL()
-	{
-	
-		//moved
-	
-	}
-	
-	public static function _buildIdenticaFeedURL()
-	{
-	
-		//moved
-	
-	}
-	
-	public static function _buildFacebookFeedURL()
-	{
-	
-		// server side now
-	}
-	
-	public static function _buildPhotoFeedURL() 
-	{
-	
-		$service = JRequest::getVar('component');
-			
-		$service_method = "_build".$service."FeedURL";
-		
-		$url = comWeeverHelper::$service_method();
-		
-		return $url;
-	
-	}
-	
-	public static function _buildFlickrFeedURL()
-	{
-		// doing this server-side;	
-	}
-	
-	public static function _buildGoogleFeedURL()
-	{
-	
-		// nuttin
-	
-	}
-	
-	public static function _buildFoursquareFeedURL()
-	{
-	
-		// moved
-		
-	}
-	
-	
-	public static function _buildVideoFeedURL() 
-	{
-	
-		$service = JRequest::getVar('component');
-			
-		$service_method = "_build".$service."FeedURL";
-		
-		$url = comWeeverHelper::$service_method();
-		
-		return $url;
-	
-	}
-	
-	public static function _buildYoutubeFeedURL()
-	{
-	
-		// moved
-	
-	}
-	
-	public static function _buildVimeoFeedURL()
-	{
-	
-		// moved
-	
-	}
 
 
 }
