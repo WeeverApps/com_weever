@@ -358,7 +358,7 @@ class com_WeeverInstallerScript
 		// check if there are server-side app updates to be made
 		if($key->setting)
 		{
-			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&site_key='.$key->setting);	
+			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&version=0.9.3&cms=joomla&m=upgrade&site_key='.$key->setting);	
 			echo $response;
 		}
 		

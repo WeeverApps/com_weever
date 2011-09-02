@@ -232,6 +232,7 @@ jQuery(document).ready(function(){
 	  	var tabUrl = jQuery('#wx-facebook-calendar-url').val();
 	  	var tabName = jQuery('input#wx-calendar-title').val();
 	  	var siteKey = jQuery("input#wx-site-key").val();
+	  	var timezone = jQuery("#wx-select-facebook-timezone-time").val();
 	  	var component = jQuery("select#wx-select-calendar").val();
 	  	var componentBehaviour = null;
 	  	
@@ -244,7 +245,7 @@ jQuery(document).ready(function(){
 	  	jQuery.ajax({
 	  	   type: "POST",
 	  	   url: "index.php",
-	  	   data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=calendar&weever_action=add&published=1&component="+component+"&component_behaviour="+encodeURIComponent(componentBehaviour)+"&site_key="+siteKey,
+	  	   data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=calendar&weever_action=add&published=1&component="+component+"&component_behaviour="+encodeURIComponent(componentBehaviour)+"&site_key="+siteKey+"&var="+timezone,
 	  	   success: function(msg){
 	  	     jQuery('#wx-modal-loading-text').html(msg);
 	  	     
