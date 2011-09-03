@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="1.6.0" method="upgrade">
  <name>COM_WEEVER</name>
- <creationDate>2011-08-28</creationDate>
+ <creationDate>2011-09-02</creationDate>
  <author>Robert Gerald Porter</author>
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>
@@ -10,7 +10,7 @@
  <version>0.9.3.0</version>
  <description>COM_WEEVER_DESCRIPTION</description>
  
- <scriptfile>install.weever.1.7.php</scriptfile>
+ <scriptfile>install.weever.joomla.1.7.php</scriptfile>
  
   <install>
    <sql>

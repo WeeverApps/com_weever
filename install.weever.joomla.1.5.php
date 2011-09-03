@@ -210,8 +210,14 @@ if(!isset($code->setting))
 if($key->setting)
 {
 	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&version=0.9.3&cms=joomla&site_key='.$key->setting);	
+	?>
+	<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
+	<?php 
 	echo $response;
-
+	echo JHTML::_('form.token');
+	?>		 
+	</form>
+	<?php
 }
 else 
 {
