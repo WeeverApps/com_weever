@@ -269,8 +269,8 @@ class comWeeverHelper
 		{
 			if(JRequest::getVar('DetectTierWeeverSmartphones',0))
 				$devices .= "DetectTierWeeverSmartphones";
-			if(JRequest::getVar('DetectTierTablet',0))
-				$devices .= ",DetectTierTablet";		
+			if(JRequest::getVar('DetectTierWeeverTablets',0))
+				$devices .= ",DetectTierWeeverTablets";		
 				
 			$devices = ltrim($devices,",");
 				
@@ -1175,6 +1175,7 @@ class comWeeverHelper
 		return true;
 	
 	}
+	
 	public static function _buildPageFeedURL() 
 	{
 	
@@ -1191,6 +1192,7 @@ class comWeeverHelper
 		return true;
 		
 	}
+	
 	public static function _buildComponentFeedURL() 
 	{
 	
@@ -1199,9 +1201,7 @@ class comWeeverHelper
 		return true;
 		
 	}
-	
-	public static function _buildMapFeedURL() {}
-	public static function _buildTabFeedURL() {}
+
 
 	public static function _buildContactFeedURL() 
 	{
@@ -1252,209 +1252,8 @@ class comWeeverHelper
 	
 	}
 	
-	
-	public static function _buildSocialFeedURL() 
-	{
-	
-		$service = JRequest::getVar('component');
-		
-		// replace with sanitization script later
-		if($service == "identi.ca")
-			$service = "identica";
-			
-		if($service == "identi.causer")
-			$service = "identicauser";
-			
-		if($service == "twitterhashtag")
-		{
-			$service = "twitter";
-			JRequest::setVar('component', 'twitter');
-		}
-			
-		if($service == "twitterquery")
-		{
-			$service = "twitter";
-			JRequest::setVar('component', 'twitter');
-		}
-			
-		$service_method = "_build".$service."FeedURL";
-		
-		$url = comWeeverHelper::$service_method();
-		
-		return $url;
 
-	}
-	
-	public static function _buildTwitterUserFeedURL()
-	{
-		
-		return "http://api.twitter.com/1/statuses/user_timeline.json";
-	
-	}
-	
-	public static function _buildIdenticaUserFeedURL()
-	{
-		
-		return "http://identi.ca/api/statuses/user_timeline.json";
-	
-	}
-	
-	public static function _buildTwitterFeedURL()
-	{
-	
-		return "http://search.twitter.com/search.json";
-	
-	}
-	
-	public static function _buildIdenticaFeedURL()
-	{
-	
-		return "http://identi.ca/api/search.json";
-	
-	}
-	
-	public static function _buildFacebookFeedURL()
-	{
-	
-		$idCode = JRequest::getVar('component_behaviour');
-		
-		if(strstr($idCode, "facebook.com"))
-		{
-			$pos = strrpos($idCode, "/");
-			$idCode = substr($idCode, $pos+1);
-		}
-		
-		$url = "http://graph.facebook.com/".$idCode."/feed";
-		
-		return $url;
-	}
-	
-	public static function _buildPhotoFeedURL() 
-	{
-	
-		$service = JRequest::getVar('component');
-			
-		$service_method = "_build".$service."FeedURL";
-		
-		$url = comWeeverHelper::$service_method();
-		
-		return $url;
-	
-	}
-	
-	public static function _buildFlickrFeedURL()
-	{
-		// doing this server-side;	
-	}
-	
-	public static function _buildFoursquareFeedURL()
-	{
-	
-		$idCode = JRequest::getVar('component_behaviour');
-		
-		if(strstr($idCode, "foursquare.com"))
-		{
-			$pos = strrpos($idCode, "/");
-			$idCode = substr($idCode, $pos+1);
-		}		
-	
-		$url = "https://api.foursquare.com/v2/venues/".$idCode."/photos";
-		
-		return $url;
-		
-	}
-	
-	
-	public static function _buildVideoFeedURL() 
-	{
-	
-		$service = JRequest::getVar('component');
-			
-		$service_method = "_build".$service."FeedURL";
-		
-		$url = comWeeverHelper::$service_method();
-		
-		return $url;
-	
-	}
-	
-	public static function _buildYoutubeFeedURL()
-	{
-	
-		$url = "http://gdata.youtube.com/feeds/api/users/".comWeeverHelper::_parseYoutubeChannelURL(JRequest::getVar('component_behaviour'))."/uploads?&v=2&max-results=50&alt=jsonc";
-		return $url;
-	
-	}
-	
-	public static function _buildVimeoFeedURL()
-	{
-	
-		$url = "http://vimeo.com/api/v2/".comWeeverHelper::_parseVimeoChannelURL(JRequest::getVar('component_behaviour'))."/videos.json";
-		return $url;
-	
-	}
-	
-	public static function _parseVimeoChannelURL($url)
-	{
-	
-		if(!strstr($url, "channels/"))
-		{
-			$channel = str_replace('http://www.vimeo.com/','',$url);
-			$channel = str_replace('http://vimeo.com/','',$channel);
-			
-			$channel = str_replace('www.vimeo.com/','',$channel);
-			$channel = str_replace('vimeo.com/','',$channel);	
-			
-			$channel = str_replace('/','',$channel);
-			$channel = preg_replace('/\?.*/', '', $channel);	
-		}
-		else 
-		{
-		
-			$channel = str_replace('http://www.vimeo.com/channels/','',$url);
-			$channel = str_replace('http://vimeo.com/channels/','',$channel);
-			
-			$channel = str_replace('www.vimeo.com/channels/','',$channel);
-			$channel = str_replace('vimeo.com/channels/','',$channel);
-			
-			$channel = str_replace('/','',$channel);
-			
-			$channel = preg_replace('/\?.*/', '', $channel);
-			
-			$channel = "channel/".$channel; 
-		
-		}
-		
-		return $channel;
-	
-	}
 
-	public static function _parseYoutubeChannelURL($url)
-	{
-	
-		$channel = str_replace('http://www.youtube.com/user/','',$url);
-		$channel = str_replace('http://youtube.com/user/','',$channel);
-		$channel = str_replace('http://www.youtube.com/','',$channel);
-		$channel = str_replace('http://youtube.com/','',$channel);
-		
-		$channel = str_replace('https://www.youtube.com/user/','',$channel);
-		$channel = str_replace('https://youtube.com/user/','',$channel);
-		$channel = str_replace('https://www.youtube.com/','',$channel);
-		$channel = str_replace('https://youtube.com/','',$channel);
-		
-		$channel = str_replace('www.youtube.com/user/','',$channel);
-		$channel = str_replace('youtube.com/user/','',$channel);
-		$channel = str_replace('www.youtube.com/','',$channel);
-		$channel = str_replace('youtube.com/','',$channel);
-		
-		$channel = str_replace('/','',$channel);
-		
-		$channel = preg_replace('/\?.*/', '', $channel);
-		
-		
-		return $channel;
-	
-	}
 
 }
 

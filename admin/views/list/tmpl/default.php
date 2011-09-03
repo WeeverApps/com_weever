@@ -42,7 +42,10 @@ $cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jque
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
 	$document->addStyleSheet($cssFile, 'text/css', null, array());
 	
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_icons.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_submit.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_select.js' );
 
 $this->loadTemplate($row->component.'base64images');
 
