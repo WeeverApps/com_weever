@@ -107,9 +107,9 @@ else
 		
 		<tr><td class="key hasTip" title="<?php echo JText::_('WEEVER_ENABLE_TABLETS_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_CONFIG_ENABLE_TABLETS_AND_IPADS_Q'); ?></td>
 		<td>
-		<select name="DetectTierTablet">
+		<select name="DetectTierWeeverTablets">
 		<option value="0"><?php echo JText::_('NO'); ?></option>
-		<option value="1" <?php echo $this->DetectTierTablet; ?>><?php echo JText::_('YES'); ?></option>
+		<option value="1" <?php echo $this->DetectTierWeeverTablets; ?>><?php echo JText::_('YES'); ?></option>
 		</select>
 		</td>
 		</tr>

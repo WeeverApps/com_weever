@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	0.9.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -54,6 +54,8 @@ class WeeverViewList extends JView
 		$videoRows =& $this->get('videodata');
 		$photoRows =& $this->get('photodata');
 		$socialRows =& $this->get('socialdata');
+		$formRows =& $this->get('formdata');
+		$calendarRows =& $this->get('calendardata');
 		
 		$this->assignRef('tabRows', $tabRows);
 		$this->assignRef('blogRows', $blogRows);
@@ -64,6 +66,8 @@ class WeeverViewList extends JView
 		$this->assignRef('videoRows', $videoRows);
 		$this->assignRef('photoRows', $photoRows);
 		$this->assignRef('socialRows', $socialRows);
+		$this->assignRef('formRows', $formRows);
+		$this->assignRef('calendarRows', $calendarRows);
 		
 		$blogMenuDropdown =& $this->get('blogmenudropdown');
 		$this->assignRef('blogMenuDropdown',$blogMenuDropdown);
@@ -106,6 +110,40 @@ class WeeverViewList extends JView
 		
 		comWeeverHelper::getJsStrings();			
 		
+		/* Time zone stuff for Facebook Events... */
+		
+	    $list = DateTimeZone::listAbbreviations();
+	    $idents = DateTimeZone::listIdentifiers();
+	
+	    $data = $offset = $added = array();
+	    foreach ($list as $abbr => $info) {
+	        foreach ($info as $zone) {
+	            if ( ! empty($zone['timezone_id'])
+	                AND
+	                ! in_array($zone['timezone_id'], $added)
+	                AND 
+	                  in_array($zone['timezone_id'], $idents)) {
+	                $z = new DateTimeZone($zone['timezone_id']);
+	                $c = new DateTime(null, $z);
+	                $zone['time'] = $c->format('H:i a');
+	                $data[] = $zone;
+	                $offset[] = $z->getOffset($c);
+	                $added[] = $zone['timezone_id'];
+	            }
+	        }
+	    }
+	
+	    array_multisort($offset, SORT_ASC, $data);
+	    $options = array();
+	    $times = array();
+	    foreach ($data as $key => $row) {
+	        $options[$row['time']][] = $row['timezone_id'];
+	        $times[$row['time']] = $row['time'];
+	    }
+	    
+	    $this->assignRef('timezone_ids', $options);
+	    $this->assignRef('timezone_times', $times);
+	
 		JSubMenuHelper::addEntry(JText::_('WEEVER_TAB_ITEMS'), 'index.php?option=com_weever', true);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', false);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_CONFIGURATION'), 'index.php?option=com_weever&view=config&task=config', false);
@@ -115,5 +153,25 @@ class WeeverViewList extends JView
 		parent::display($tpl);
 	
 	}
+	
+	// weird results, so not using yet..
+	/*
+	public function formatOffset($offset) 
+	{
+
+        $hours = $offset / 3600;
+        $remainder = $offset % 3600;
+        $sign = $hours > 0 ? '+' : '-';
+        $hour = (int) abs($hours);
+        $minutes = (int) abs($remainder / 60);
+
+        if ($hour == 0 AND $minutes == 0) {
+            $sign = ' ';
+        }
+        return 'GMT' . $sign . str_pad($hour, 2, '0', STR_PAD_LEFT) 
+                .':'. str_pad($minutes,2, '0');
+	
+	}*/
+	
 
 }

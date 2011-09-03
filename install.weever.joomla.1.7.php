@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	0.9.2
+*	Version: 	0.9.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -239,12 +239,10 @@ class com_WeeverInstallerScript
  		
  		$uninstaller = new JInstaller();
  		
- 		
- 		
  		// remove legacy plugins
  		// 0.9.2+
  		
- 		$id = $this->getExtensionId('plugin', 'cartographer', 'system');
+  		$id = $this->getExtensionId('plugin', 'cartographer', 'system');
  		
  		if($id)
  			$result = $uninstaller->uninstall('plugin',$id,0);   	
@@ -358,11 +356,19 @@ class com_WeeverInstallerScript
 		// check if there are server-side app updates to be made
 		if($key->setting)
 		{
-			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&site_key='.$key->setting);	
+
+			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&version=0.9.3&cms=joomla&m=upgrade&site_key='.$key->setting);	
+			?>
+			<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
+			<?php 
 			echo $response;
+			echo JHTML::_('form.token');
+			?>		 
+			</form>
+			<?php
 		}
 		
- 		
+
  		
    }
 
@@ -377,6 +383,7 @@ class com_WeeverInstallerScript
    function postflight($type, $parent) 
    {
 		//echo '<p>' . JText::_('COM_WEEVER_POSTFLIGHT_' . $type . '_TEXT') . '</p>';
+
    }
 
 }

@@ -59,7 +59,7 @@ class WeeverViewConfig extends JView
 					$this->assign('DetectAndroidTablet','');
 					$this->assign('DetectGoogleTV','');
 					$this->assign('DetectAppleTVTwo','');
-					$this->assign('DetectTierTablet','');
+					$this->assign('DetectTierWeeverTablets','');
 					$this->assign('DetectTierWeeverSmartphones','');
 				
 					$devices = explode(",",$row->setting);

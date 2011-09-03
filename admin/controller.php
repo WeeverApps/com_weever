@@ -189,28 +189,34 @@ class WeeverController extends JController
 	public function ajaxSaveNewTab()
 	{
 
+		$rss = null;
 		$tab_id = null;
 		$hash = md5(microtime() . JRequest::getVar('name'));
 		
 		$type = JRequest::getWord('type', 'tab');
 	
-				
-		$type_method = "_build".$type."FeedURL";
-
-		// ### check later
-		if(JRequest::getVar('view' == "contact"))
+		if($type == "contact" || $type == "blog" || $type == "page")
 		{
-			comWeeverHelper::getContactInfo();		
-		}		
 		
-		$rss = comWeeverHelper::$type_method();
-		
-		if($rss === false)
-		{
-			echo "Feed build failed!";
-			jexit();
+			$type_method = "_build".$type."FeedURL";
+	
+			// ### check later
+			if(JRequest::getVar('view' == "contact"))
+			{
+				comWeeverHelper::getContactInfo();		
+			}		
+			
+			$rss = comWeeverHelper::$type_method();
+			
+			if($rss === false)
+			{
+				echo "Feed build failed!";
+				jexit();
+			}
+						
 		}
 		
+
 		JRequest::setVar('rss', $rss, 'post');
 		JRequest::setVar('hash', $hash, 'post');
 		JRequest::setVar('weever_server_response', comWeeverHelper::pushSettingsToCloud(), 'post');
