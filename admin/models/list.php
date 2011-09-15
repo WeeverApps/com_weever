@@ -34,13 +34,17 @@ class WeeverModelList extends JModel
 	public $dropdown 	= null;
 	public $sortOrder	= null;
 	public $components 	= null;
+	public $json		= null;
 	public $data		= null;
 	
 	public function __construct()
 	{
         
         parent::__construct();
- 
+        
+        
+        $this->json = comWeeverHelper::getJsonTabSync();
+         
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         
@@ -102,126 +106,13 @@ class WeeverModelList extends JModel
 	
 	}
 		
-	
-	
-	public function getTabData()
+	public function getAppData()
 	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'tab'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
-	
-	
-	public function getBlogData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'blog'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
-
-	
-	public function getPageData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'page'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
-	
-	public function getComponentData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'component'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
-	
-	public function getListingComponentData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'listingcomponent'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
-	
-	public function getContactData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'contact'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
-
-	
-	public function getPhotoData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'photo'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
-
-	
-	public function getVideoData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'video'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
-
-	
-	public function getSocialData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'social'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
-	
-
-	public function getFormData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'form'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
-	
-	}
 		
-
-	public function getCalendarData()
-	{
-
-		$query = "SELECT * FROM #__weever_tabs WHERE type = 'calendar'".$this->_buildContentOrderBy();
-		$this->data = $this->_getList($query);		
-
-		return $this->data;
+		return $this->json;
 	
 	}
-				
-	
+
 	public function getJContactDropdown()
 	{
 		

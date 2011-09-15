@@ -44,18 +44,18 @@ class WeeverViewList extends JView
 			JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
 		
 		}		
+
+		$appData = $this->get('appdata');
+		$tabRows = array();
 		
-		$tabRows =& $this->get('tabdata');
-		$blogRows =& $this->get('blogdata');
-		$pageRows =& $this->get('pagedata');
-		$componentRows =& $this->get('componentdata');
-		$listingComponentRows =& $this->get('listingcomponentdata');
-		$contactRows =& $this->get('contactdata');
-		$videoRows =& $this->get('videodata');
-		$photoRows =& $this->get('photodata');
-		$socialRows =& $this->get('socialdata');
-		$formRows =& $this->get('formdata');
-		$calendarRows =& $this->get('calendardata');
+		
+		foreach((array)$appData->tabs as $k=>$v)
+		{
+			
+			$componentRow = $v->type . "Rows";
+			${$componentRow}[] = $v;
+		
+		}
 		
 		$this->assignRef('tabRows', $tabRows);
 		$this->assignRef('blogRows', $blogRows);
