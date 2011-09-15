@@ -774,6 +774,7 @@ class comWeeverHelper
 				'generator' => comWeeverConst::NAME
 				)
 			);
+			
 		
 		$json = comWeeverHelper::sendToWeeverServer($postdata);
 

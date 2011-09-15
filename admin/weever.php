@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	0.9.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -38,8 +38,8 @@ if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
 final class comWeeverConst
 {
 
-	const VERSION		= "0.9.3";
-	const RELEASE_TYPE	= "";
+	const VERSION		= "0.9.4";
+	const RELEASE_TYPE	= "dev";
 	const RELEASE_NAME	= "Allan Park";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";
@@ -51,7 +51,7 @@ final class comWeeverConst
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://stage.weeverapp.com/";
+	const LIVE_STAGE	= "http://blowfish.weeverapp.com/";
 
 }
 

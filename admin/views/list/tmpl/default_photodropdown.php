@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9
+*	Version: 	0.9.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -27,9 +27,11 @@ defined('_JEXEC') or die;
 	<div class='wx-add-item-photo wx-add-item-dropdown'>
 		<select id='wx-select-photo' class='wx-component-select' name='noname'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_PHOTO_FEED_PARENTHESES'); ?></option>
-			<option value='flickr'><?php echo JText::_('WEEVER_FLICKR_FEED'); ?></option>
-			<!--option value='google.picasa'><?php echo JText::_('WEEVER_GOOGLE_PICASA_FEED'); ?></option-->
 			<option value='foursquare'><?php echo JText::_('WEEVER_FOURSQUARE_VENUE_FEED'); ?></option>
+			<option value='flickr'><?php echo JText::_('WEEVER_FLICKR_FEED'); ?></option>
+			<option value='flickr.photosets'><?php echo JText::_('WEEVER_FLICKR_PHOTOSETS'); ?></option>
+			<option value='google.picasa'><?php echo JText::_('WEEVER_GOOGLE_PICASA_ACCOUNT'); ?></option>
+			<option value='facebook.photos'><?php echo JText::_('WEEVER_FACEBOOK_PHOTOS'); ?></option>
 		</select>
 	</div>
 	
@@ -47,6 +49,7 @@ defined('_JEXEC') or die;
 		<label for='wx-photo-url' id='wx-foursquare-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FOURSQUARE_URL'); ?></label>
 		<label for='wx-photo-url' id='wx-flickr-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FLICKR_URL'); ?></label>
 		<label for='wx-photo-url' id='wx-google-picasa-email' class='wx-photo-label'><?php echo JText::_('WEEVER_GOOGLE_PICASA_EMAIL'); ?></label>
+		<label for='wx-photo-url' id='wx-facebook-photos-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FACEBOOK_PROFILE_URL'); ?></label>
 	</div>
 	
 	<div class='wx-add-title wx-photo-reveal wx-reveal'>
