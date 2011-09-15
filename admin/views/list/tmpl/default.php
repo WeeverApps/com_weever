@@ -79,6 +79,8 @@ else
 
 <?php 
 
+
+
 for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 {
 	$row = &$this->tabRows[$i];
@@ -132,6 +134,8 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 {
 	
 	$row = &$this->tabRows[$i];
+	
+	$row->id = $row->cloud_tab_id;
 
 	$link = JFilterOutput::ampReplace('index.php?option=' . $option . '&task=edit&layout=tab&cid[]='.$row->id);
 	
@@ -221,8 +225,9 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	{
 	
 		$iii++; $sub++;
-		$row = &$componentRows[$ii];			
-	
+		$row = &$componentRows[$ii];	
+		
+		$row->id = $row->cloud_tab_id;		
 		
 		?>
 		
