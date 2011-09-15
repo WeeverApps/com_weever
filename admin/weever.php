@@ -51,7 +51,7 @@ final class comWeeverConst
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
+	const LIVE_STAGE	= "http://blowfish.weeverapp.com/";
 
 }
 
