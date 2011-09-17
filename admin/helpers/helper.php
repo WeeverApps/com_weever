@@ -278,15 +278,18 @@ class comWeeverHelper
 		}
 		
 			 
-		for($i = 1; $i <= 10; $i++)
+		for($i = 1; $i <= 12; $i++)
 		{
 		
 			if($i == 2 || $i == 1 || $i == 6)
 				continue;
 		
 			$row->load($i); 
-
-			$row->setting = JRequest::getVar($row->option);
+			
+			if($i == 11 || $i == 12)
+				$row->setting = JRequest::getVar($row->option,"", "post","string",JREQUEST_ALLOWHTML);
+			else 
+				$row->setting = JRequest::getVar($row->option);
 			
 			$row->store();
 		
@@ -970,6 +973,8 @@ class comWeeverHelper
 				'app_enabled' => JRequest::getVar('app_enabled'),
 				'site_key' => JRequest::getVar('site_key'),
 				'domain' => JRequest::getVar('domain'),
+				'about_app' => JRequest::getVar('about_app',"", "post","string",JREQUEST_ALLOWHTML),
+				'loadspinner' => JRequest::getVar('loadspinner',"", "post","string",JREQUEST_ALLOWHTML),
 				'google_analytics' => JRequest::getVar('google_analytics'),
 				'app' => 'ajax',
 				'cms' => 'joomla',

@@ -376,7 +376,7 @@ jQuery(document).ready(function(){
 				
 				jQuery.ajax({
 				   type: "POST",
-				   url: "index.php",
+				   url: "http://weeverapp.com/index.php",
 				   data: "option=com_weever&task=ajaxSaveTabName&name="+encodeURIComponent(tabName)+"&id="+tabId+'&site_key='+siteKey,
 				   success: function(msg){
 				     jQuery('#wx-modal-loading-text').html(msg);

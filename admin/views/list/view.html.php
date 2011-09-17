@@ -48,7 +48,6 @@ class WeeverViewList extends JView
 		$appData = $this->get('appdata');
 		$tabRows = array();
 		
-		
 		foreach((array)$appData->tabs as $k=>$v)
 		{
 			

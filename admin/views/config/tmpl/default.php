@@ -158,12 +158,12 @@ else
 	
 	<tr>
 	<td class="key hasTip" title="<?php echo JText::_("WEEVER_LOADING_SPINNER_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_LOADING_SPINNER_TEXT'); ?></td>
-	<td><textarea type="textbox" name="loadspinner" id="wx-load-spinner" placeholder="<?php echo JText::_("WEEVER_LOADING_SPINNER_PLACEHOLDER"); ?>"><?php echo $this->loadspinner; ?></textarea> </td>	
+	<td><textarea type="textbox" name="loadspinner" id="wx-load-spinner" placeholder="<?php echo JText::_("WEEVER_LOADING_SPINNER_PLACEHOLDER"); ?>"><?php echo htmlspecialchars($this->loadspinner); ?></textarea> </td>	
 	</tr>
 	
 	<tr>
 	<td class="key hasTip" title="<?php echo JText::_("WEEVER_ABOUT_APP_HTML_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_ABOUT_APP_HTML'); ?></td>
-	<td><textarea type="textbox" name="loadspinner" id="wx-load-spinner"><?php echo $this->about_app; ?></textarea></td>	
+	<td><textarea type="textbox" name="about_app" id="wx-about-app"><?php echo htmlspecialchars($this->about_app); ?></textarea></td>	
 	</tr>
 	
 
