@@ -198,7 +198,15 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	<div id="<?php echo $row->component . 'Tab' ?>">
 	
-	<?php echo $this->loadTemplate($row->component.'dropdown'); ?>
+	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video") : ?>
+		
+		<?php echo $this->loadTemplate($row->component.'dropdown'); ?>
+	
+	<?php else : ?>
+		
+		<?php echo "<p class='wx-warning'>".JText::_('WEEVER_UNSUPPORTED_FEATURE')."</p>"; ?>
+		
+	<?php endif; ?>
 
 	<input type="hidden" name="boxchecked<?php echo $row->component; ?>" id="boxchecked<?php echo $row->component; ?>" value="0" />
 	<table class='adminlist'>

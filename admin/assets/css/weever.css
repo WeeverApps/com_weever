@@ -71,6 +71,13 @@ label.wx-check-label {
 	opacity: 0.4;
 }
 
+.wx-warning {
+	
+	font-size:  1.25em;
+	color: #aa4444;
+	
+}
+
 
 #wx-app-status-button {
     color: #000000;
