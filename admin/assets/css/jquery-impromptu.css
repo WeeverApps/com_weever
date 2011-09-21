@@ -1,0 +1,139 @@
+/*	
+*	Weever Apps Administrator Component for Joomla
+*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*
+*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
+*	Version: 	0.9
+*   License: 	GPL v3.0
+*
+*   This extension is free software: you can redistribute it and/or modify
+*   it under the terms of the GNU General Public License as published by
+*   the Free Software Foundation, either version 3 of the License, or
+*   (at your option) any later version.
+*
+*   This extension is distributed in the hope that it will be useful,
+*   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*   GNU General Public License for more details <http://www.gnu.org/licenses/>.
+*
+*/
+
+.wx-imp-h3  {
+    font-size: 1.375em;
+    margin: 0 0.5em 0.5em 0;
+    padding: 0;
+}
+
+/*
+------------------------------
+	Impromptu's
+------------------------------
+*/
+.jqifade{
+	position: absolute; 
+	background-color: #aaaaaa; 
+}
+div.jqi{ 
+	width: 400px;
+	position: absolute; 
+	background-color: #ffffff; 
+	font-size: 1em; 
+	text-align: left; 
+	border: solid 1px #eeeeee;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	padding: 7px;
+}
+div.jqi h4 {
+	font-size: 1.5em;
+}
+div.jqi input {
+    font-size: 1.5em;
+    padding-left: 4px;
+    width: 100%;
+}
+div.jqi .jqicontainer{ 
+}
+div.jqi .jqiclose{ 
+	position: absolute;
+	top: 4px; right: -2px; 
+	width: 18px; 
+	cursor: default; 
+	color: #bbbbbb; 
+	font-weight: bold; 
+}
+div.jqi .jqimessage {
+    color: #444444;
+    padding: 12px;
+}
+
+div.jqi .jqibuttons{ 
+	text-align: right; 
+	padding: 5px 0 5px 0; 
+	border: solid 1px #eeeeee; 
+	background-color: #f4f4f4;
+}
+div.jqi button{ 
+	padding: 3px 10px; 
+	margin: 0 10px; 
+	background-color: #999999; 
+	border: solid 1px #f4f4f4; 
+	color: #ffffff; 
+	font-weight: bold; 
+	font-size: 12px; 
+}
+div.jqi button:hover{ 
+	background-color: #cccccc;
+}
+div.jqi button.jqidefaultbutton{ 
+	background-color: #000000;
+}
+div.jqi button.jqidefaultbutton:hover{ 
+	background-color: #555555;
+}
+.jqiwarning .jqi .jqibuttons{ 
+	background-color: #550000;
+}
+
+/*
+------------------------------
+	impromptu
+------------------------------
+*/
+.impromptuwarning .impromptu{ background-color: #aaaaaa; }
+.impromptufade{
+	position: absolute;
+	background-color: #ffffff;
+}
+div.impromptu{
+    position: absolute;
+	background-color: #cccccc;
+	padding: 10px; 
+	width: 300px;
+	text-align: left;
+}
+div.impromptu .impromptuclose{
+    float: right;
+    margin: -35px -10px 0 0;
+    cursor: pointer;
+    color: #213e80;
+}
+div.impromptu .impromptucontainer{
+	background-color: #213e80;
+	padding: 5px; 
+	color: #ffffff;
+	font-weight: bold;
+}
+div.impromptu .impromptumessage{
+	background-color: #415ea0;
+	padding: 10px;
+}
+div.impromptu .impromptubuttons{
+	text-align: center;
+	padding: 5px 0 0 0;
+}
+div.impromptu button{
+	padding: 3px 10px 3px 10px;
+	margin: 0 10px;
+}
