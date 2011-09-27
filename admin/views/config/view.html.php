@@ -39,7 +39,7 @@ class WeeverViewConfig extends JView
 		$row->load(6);
 		$this->assign('appEnabled', $row->setting);
 
-		for($i = 1; $i <= 10; $i++)
+		for($i = 1; $i <= 11; $i++)
 		{
 		
 			$row->load($i);
@@ -93,6 +93,8 @@ class WeeverViewConfig extends JView
 					break;
 			
 			}
+			
+			
 			
 		
 		}

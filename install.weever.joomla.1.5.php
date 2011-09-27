@@ -182,7 +182,7 @@ $db = &JFactory::getDBO();
 $db->setQuery($query);
 $key = @$db->loadObject();
 
-$query = " SELECT `setting` FROM #__weever_config WHERE `option`='google_analytics' ";
+$query = " SELECT `setting` FROM #__weever_config WHERE `option`='loadspinner' ";
 
 $db = &JFactory::getDBO();
 
@@ -203,13 +203,19 @@ if(!isset($code->setting))
 	$db->setQuery($query);	
 	@$db->loadObject();
 
+	$query = " INSERT IGNORE INTO `#__weever_config` VALUES(11, 'loadspinner', ''); ";
+	$db = &JFactory::getDBO();
+	$db->setQuery($query);
+	@$db->loadObject();
+
+
 }
 
 
 // check if there are server-side app updates to be made
 if($key->setting)
 {
-	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&version=0.9.3&cms=joomla&site_key='.$key->setting);	
+	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&version=1.0&cms=joomla&site_key='.$key->setting);	
 	?>
 	<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	<?php 

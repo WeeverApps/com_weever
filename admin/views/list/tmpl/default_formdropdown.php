@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	0.9.3
+*	Version: 	1.0
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ defined('_JEXEC') or die;
 	<div class='wx-add-item-form wx-add-item-dropdown'>
 		<select id='wx-select-form' class='wx-component-select'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_FORM_PARENTHESES'); ?></option>
-			<option value='wufoo'>Add a Wufoo Form</option>
+			<option value='wufoo'><?php echo JText::_('WEEVER_ADD_WUFOO_FORM'); ?></option>
 		</select>
                 <label for="wx-select-form" class="key hasTip" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"
                  title="<?php echo JText::_('WEEVER_ADD_FORM_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_ADD_FORM_HELP_LABEL'); ?></label>
@@ -44,17 +44,17 @@ defined('_JEXEC') or die;
 	
 	<div class='wx-add-item-value wx-form-reveal wx-reveal'>
 		<input type='text' id='wx-form-url' class='wx-input wx-form-input' name='url' />
-		<label for='wx-form-url'>Wufoo Form URL</label>
+		<label for='wx-form-url'><?php echo JText::_('WEEVER_WUFOO_FORM_URL'); ?></label>
 	</div>
 	
 	<div class='wx-add-item-value wx-form-reveal wx-reveal'>
 		<input type='text' id='wx-form-api-key' class='wx-input wx-form-input' name='api_key' />
-		<label for='wx-form-api-key'>Your Wufoo API Key</label>
+		<label for='wx-form-api-key'><?php echo JText::_('WEEVER_WUFOO_API_KEY'); ?></label>
 	</div>
 	
 	<div class='wx-add-title wx-form-reveal wx-reveal'>
 		<input type='text' value='' id='wx-form-title' class='wx-title wx-input wx-form-input' name='noname' />
-                <label for='wx-form-title' id='wx-newform-title' class='wx-form-label'><?php echo JText::_('WEEVER_FORM_TAB_NAME'); ?></label>
+        <label for='wx-form-title'><?php echo JText::_('WEEVER_FORM_TAB_TITLE'); ?></label>
 	</div>
 	
 	<div class='wx-add-submit'>

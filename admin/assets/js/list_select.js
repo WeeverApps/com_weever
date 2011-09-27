@@ -3,7 +3,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.3
+*	Version: 	1.0
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -17,7 +17,6 @@
 *   GNU General Public License for more details <http://www.gnu.org/licenses/>.
 *
 */
-
 
 jQuery(document).ready(function(){ 
 
@@ -283,6 +282,76 @@ jQuery(document).ready(function(){
 		jQuery('.wx-page-reveal').show();
 		
 	});
+	
+	jQuery('#wx-select-panel').change(function() {
+
+		jQuery('.wx-title').attr('name','noname');
+		jQuery('#wx-panel-title').attr('name','name');
+		jQuery('.wx-cms-feed-select').attr('name','noname');
+		jQuery('.wx-panel-help').hide();
+		jQuery('.wx-dummy').hide();
+		jQuery('.wx-submit').attr('disabled', 'disabled');
+		jQuery("#id_id.wx-aboutapp-input").attr("id", "id_id-aboutapp");
+		jQuery("#id_name.wx-aboutapp-input").attr("id", "id_name-aboutapp");
+		jQuery("#id_id-panel").attr("id", "id_id");
+		jQuery("#id_name-panel").attr("id", "id_name");
+		
+		//jQuery('select.wx-cms-feed-select option[value="0"]').removeAttr('disabled');
+		
+		if(jQuery(this).val() == "k2") 
+		{
+			jQuery('#id_id').attr('name', 'cms_feed');
+			jQuery('#wx-add-panel-k2-item').show();
+			jQuery('#wx-add-panel-content-joomla').hide();
+		}
+		
+		if(jQuery(this).val() == "content") 
+		{
+			jQuery('#wx-add-panel-k2-item').hide();
+			jQuery('#wx-add-panel-content-joomla').show();
+			jQuery('#id_id').attr('name', 'cms_feed');
+		}
+
+		
+		jQuery('.wx-panel-reveal').show();
+		
+	});
+	
+
+	jQuery('#wx-select-aboutapp').change(function() {
+
+		jQuery('.wx-title').attr('name','noname');
+		jQuery('#wx-aboutapp-title').attr('name','name');
+		jQuery('.wx-cms-feed-select').attr('name','noname');
+		jQuery('.wx-aboutapp-help').hide();
+		jQuery('.wx-dummy').hide();
+		jQuery('.wx-submit').attr('disabled', 'disabled');
+		jQuery("#id_id.wx-panel-input").attr("id", "id_id-panel");
+		jQuery("#id_name.wx-panel-input").attr("id", "id_name-panel");
+		jQuery("#id_id-aboutapp").attr("id", "id_id");
+		jQuery("#id_name-aboutapp").attr("id", "id_name");
+		//jQuery('select.wx-cms-feed-select option[value="0"]').removeAttr('disabled');
+		
+		if(jQuery(this).val() == "k2") 
+		{
+			jQuery('#id_id').attr('name', 'cms_feed');
+			jQuery('#wx-add-aboutapp-k2-item').show();
+			jQuery('#wx-add-aboutapp-content-joomla').hide();
+		}
+		
+		if(jQuery(this).val() == "content") 
+		{
+			jQuery('#wx-add-aboutapp-k2-item').hide();
+			jQuery('#wx-add-aboutapp-content-joomla').show();
+			jQuery('#id_id').attr('name', 'cms_feed');
+		}
+		
+		
+		jQuery('.wx-aboutapp-reveal').show();
+		
+	});
+	
+	
 	
 	jQuery('#wx-select-blog').change(function() {
 	
