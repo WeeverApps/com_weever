@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.4
+*	Version: 	1.0
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -35,25 +35,12 @@ if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
 	require_once (JPATH_COMPONENT.DS.'helpers'.DS.'jsjtext15'.'.php');
 }
 
-final class comWeeverConst
-{
+require_once (JPATH_COMPONENT.DS.'helpers'.DS.'config'.'.php');
 
-	const VERSION		= "0.9.4";
-	const RELEASE_TYPE	= "dev";
-	const RELEASE_NAME	= "Allan Park";
-	const NAME			= "Weever Apps Administrator Component for Joomla!";
-	const COPYRIGHT_YEAR= "(c) 2010-2011";
-	const COPYRIGHT		= "Weever Apps Inc.";
-	const COPYRIGHT_URL = "http://www.weeverapps.com/";
-	const LICENSE		= "GPL v3.0";
-	const LICENSE_URL	= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE	= "September 2, 2011";
-	const BUGS_EMAIL 	= "bugs@weever.ca";
-	const SUPPORT_WEB	= "http://www.weeverapps.com/";
-	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://blowfish.weeverapp.com/";
+$row =& JTable::getInstance('WeeverConfig', 'Table');
+$row->load(7); $staging = $row->setting;
 
-}
+comWeeverHelperJS::loadConfJS($staging);
 
 $document =& JFactory::getDocument();
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/weever.css?v='.comWeeverConst::VERSION;
@@ -64,9 +51,7 @@ if((ini_get('allow_url_fopen') != 1) && (!in_array('curl', get_loaded_extensions
 	
 if(!JPluginHelper::isEnabled('system', 'mobileesp'))
 	JError::raiseNotice(100, JText::_('WEEVER_ERROR_PLUGIN_DISABLED'));
-	
-$row =& JTable::getInstance('WeeverConfig', 'Table');
-$row->load(7); $staging = $row->setting;
+
 
 if($staging)
 {
@@ -76,6 +61,8 @@ if($staging)
 }
 else
 	$weeverIcon = "weever_toolbar_title";
+	
+
 
 
 switch(JRequest::getWord('task'))
@@ -200,7 +187,7 @@ QR Link: '.JText::_('WEEVER_QR_DIRECT_ADDRESS').'<a href="'.$weeverServer.'app/'
 		
 }
 
-echo '<div style="text-align:center;clear:both; margin-top:24px;">'.comWeeverConst::NAME.' v'.comWeeverConst::VERSION.' '.comWeeverConst::RELEASE_TYPE.' <br />'.
+echo '<div style="text-align:center;clear:both; margin-top:24px;">'.comWeeverConst::NAME.' v'.comWeeverConst::VERSION.' '.comWeeverConst::RELEASE_TYPE.' "'.comWeeverConst::RELEASE_NAME.'" <br />'.
 	comWeeverConst::COPYRIGHT_YEAR.' <a target="_blank" href="'.comWeeverConst::COPYRIGHT_URL.'">'.comWeeverConst::COPYRIGHT.'</a><br />
 	Released '.comWeeverConst::RELEASE_DATE.' under <a target="_blank" href="'.comWeeverConst::LICENSE_URL.'">'.comWeeverConst::LICENSE.'</a>. 
 	<a target="_blank" href="http://weeverapps.zendesk.com/home">Contact Support</a></div>';
