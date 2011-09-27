@@ -39,18 +39,11 @@ jQuery(document).ready(function(){
 			googleMaps = jQuery("input[name=googlemaps]").val();
 		else
 			googleMaps = 0;
-
-		var logoImage;
 		
-		if(jQuery("input[name=logoimage]").is(":checked"))
-			logoImage = jQuery("input[name=logoimage]").val();
-		else
-			logoImage = 0;
-
 		jQuery.ajax({
 		 type: "POST",
 		 url: "index.php",
-		 data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=contact&emailform="+emailForm+"&googlemaps="+googleMaps+"&logoimage="+logoImage+"&component=contact&component_id="+componentId+"&weever_action=add&published=1&site_key="+siteKey,
+		 data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=contact&emailform="+emailForm+"&googlemaps="+googleMaps+"&component=contact&component_id="+componentId+"&weever_action=add&published=1&site_key="+siteKey,
 		 success: function(msg){
 		   jQuery('#wx-modal-loading-text').html(msg);
 		   
@@ -70,6 +63,91 @@ jQuery(document).ready(function(){
 		
 		e.preventDefault();
 	});
+	
+	jQuery('input#wx-aboutapp-submit').click(function(e) {
+
+	  	var cmsFeed;
+	  	var id = jQuery("#id_id").val();
+	  	var component = jQuery('select#wx-select-aboutapp').val();
+	  	var siteKey = jQuery("input#wx-site-key").val();
+	  	var tabName = jQuery('input#wx-aboutapp-title').val();
+	  	
+	  	if(component == "k2") {
+	  		cmsFeed = "index.php?option=com_k2&view=item&id="+id;
+	  	}
+	  	else {
+	  		cmsFeed = "index.php?opton=com_content&view=article&id="+id;
+	  	}
+	  	
+	  	jQuery.ajax({
+	  	   type: "POST",
+	  	   url: "index.php",
+	  	   data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=aboutapp&component=aboutapp&weever_action=add&published=1&cms_feed="+encodeURIComponent(cmsFeed)+"&site_key="+siteKey,
+	  	   success: function(msg){
+	  	     jQuery('#wx-modal-loading-text').html(msg);
+	  	     
+	  	     if(msg == "Item Added")
+	  	     {
+	  	     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+	  	     	document.location.href = "index.php?option=com_weever#aboutappTab";
+	  	     	document.location.reload(true);
+	  	     }
+	  	     else
+	  	     {
+	  	     	jQuery('#wx-modal-secondary-text').html('');
+	  	     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+	  	     	//document.location.href = "index.php?option=com_weever#photoTab";
+	  	     	//document.location.reload(true);
+	  	     }
+	  	   }
+	  	 });
+	  	 
+	  	 e.preventDefault();
+	});
+
+
+	jQuery('input#wx-panel-submit').click(function(e) {
+
+	  	var cmsFeed;
+	  	var id = jQuery("#id_id").val();
+	  	var component = jQuery('select#wx-select-panel').val();
+	  	var siteKey = jQuery("input#wx-site-key").val();
+	  	var tabName = jQuery('input#wx-panel-title').val();
+	  	
+	  	if(component == "k2") {
+	  		cmsFeed = "index.php?option=com_k2&view=item&id="+id;
+	  	} else {
+	  		cmsFeed = "index.php?opton=com_content&view=article&id="+id;
+	  	}
+	  	
+	  	jQuery.ajax({
+	  	   type: "POST",
+	  	   url: "index.php",
+	  	   data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=panel&component=panel&weever_action=add&published=1&cms_feed="+encodeURIComponent(cmsFeed)+"&site_key="+siteKey,
+	  	   success: function(msg){
+	  	     jQuery('#wx-modal-loading-text').html(msg);
+	  	     
+	  	     if(msg == "Item Added")
+	  	     {
+	  	     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+	  	     	document.location.href = "index.php?option=com_weever#panelTab";
+	  	     	document.location.reload(true);
+	  	     }
+	  	     else
+	  	     {
+	  	     	jQuery('#wx-modal-secondary-text').html('');
+	  	     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+	  	     	//document.location.href = "index.php?option=com_weever#photoTab";
+	  	     	//document.location.reload(true);
+	  	     }
+	  	   }
+	  	 });
+	  	 
+	  	 e.preventDefault();
+	});
+
+	
+	
 	
 	jQuery('input#wx-page-submit').click(function(e) {
   

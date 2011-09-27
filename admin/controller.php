@@ -191,7 +191,6 @@ class WeeverController extends JController
 
 		$rss = null;
 		$tab_id = null;
-		$hash = md5(microtime() . JRequest::getVar('name'));
 		
 		$type = JRequest::getWord('type', 'tab');
 	
@@ -218,7 +217,6 @@ class WeeverController extends JController
 		
 
 		JRequest::setVar('rss', $rss, 'post');
-		JRequest::setVar('hash', $hash, 'post');
 		JRequest::setVar('weever_server_response', comWeeverHelper::pushSettingsToCloud(), 'post');
 		
 		if(JRequest::getVar('weever_server_response') == "Site key missing or invalid.")
@@ -226,23 +224,23 @@ class WeeverController extends JController
 			echo JRequest::getVar('weever_server_response');
 			jexit();
 		}
-		
-		$row =& JTable::getInstance('weever','Table');
-
-		if(!$row->bind(JRequest::get('post')))
-		{
-			JError::raiseError(500, $row->getError());
-		}
-		
-		$row->ordering = $row->ordering + 0.1; // for later reorder to sort well if it is in collision with another.
-		
-		if(!$row->store())
-		{
-			JError::raiseError(500, $row->getError());
-		}
-		
+//		
+//		$row =& JTable::getInstance('weever','Table');
+//
+//		if(!$row->bind(JRequest::get('post')))
+//		{
+//			JError::raiseError(500, $row->getError());
+//		}
+//		
+//		$row->ordering = $row->ordering + 0.1; // for later reorder to sort well if it is in collision with another.
+//		
+//		if(!$row->store())
+//		{
+//			JError::raiseError(500, $row->getError());
+//		}
+//		
 		//comWeeverHelper::reorderTabs($type);
-		comWeeverHelper::pushLocalIdToCloud($row->id, JRequest::getVar('hash'), JRequest::getVar('site_key'));
+//		comWeeverHelper::pushLocalIdToCloud($row->id, JRequest::getVar('hash'), JRequest::getVar('site_key'));
 		
 		echo JRequest::getVar('weever_server_response');
 		

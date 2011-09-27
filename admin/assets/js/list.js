@@ -3,7 +3,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.4
+*	Version: 	1.0
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -616,6 +616,22 @@ jQuery(document).ready(function(){
            jQuery('#wx-video-submit').removeAttr('disabled');
         } else { jQuery('#wx-video-submit').attr('disabled', 'disabled'); }
         
+	});
+	
+	jQuery('input.wx-panel-input').keyup(function(){
+	
+	    if(jQuery('input#id_name').val() != '' && jQuery('input#wx-panel-title').val() != ''){
+	       jQuery('#wx-panel-submit').removeAttr('disabled');
+	    } else { jQuery('#wx-panel-submit').attr('disabled', 'disabled'); }
+	    
+	});
+	
+	jQuery('input.wx-aboutapp-input').keyup(function(){
+	
+	    if(jQuery('input#id_name').val() != '' && jQuery('input#wx-aboutapp-title').val() != ''){
+	       jQuery('#wx-aboutapp-submit').removeAttr('disabled');
+	    } else { jQuery('#wx-aboutapp-submit').attr('disabled', 'disabled'); }
+	    
 	});
 	
 	jQuery('input.wx-social-input').keyup(function(){
