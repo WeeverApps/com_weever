@@ -1,10 +1,11 @@
 <?php
+
 /*	
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.3
+*	Version: 	1.0
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -18,7 +19,6 @@
 *   GNU General Public License for more details <http://www.gnu.org/licenses/>.
 *
 */
-
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
@@ -48,7 +48,6 @@ class WeeverViewList extends JView
 		$appData = $this->get('appdata');
 		$tabRows = array();
 		
-		
 		foreach((array)$appData->tabs as $k=>$v)
 		{
 			
@@ -67,6 +66,8 @@ class WeeverViewList extends JView
 		$this->assignRef('photoRows', $photoRows);
 		$this->assignRef('socialRows', $socialRows);
 		$this->assignRef('formRows', $formRows);
+		$this->assignRef('aboutappRows', $aboutappRows);
+		$this->assignRef('panelRows', $panelRows);
 		$this->assignRef('calendarRows', $calendarRows);
 		
 		$blogMenuDropdown =& $this->get('blogmenudropdown');
@@ -101,8 +102,13 @@ class WeeverViewList extends JView
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		
 		$row->load(6);
-
 		$this->assign('appEnabled', $row->setting);
+		
+		$row->load(11);
+		$this->assign('about_app', $row->setting);
+
+		$row->load(13);
+		$this->assign('about_app_name', $row->setting);
 
 		$row->load(100);
 		$theme = json_decode($row->setting);
