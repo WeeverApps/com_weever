@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	1.0
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -24,6 +24,8 @@ defined('_JEXEC') or die;
 
 $option = JRequest::getCmd('option');
 JHTML::_('behavior.tooltip');
+JHTML::_('behavior.mootools');
+JHTML::_('behavior.modal', 'a.modal');
 
 jimport('joomla.html.pane');
 
@@ -31,6 +33,22 @@ $document = &JFactory::getDocument();
 
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
 $document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
+
+$document->addCustomTag ('<script type="text/javascript">
+
+				function jSelectItem(id, title, object) {
+                        document.getElementById(object + \'_id\').value = id;
+                        document.getElementById(object + \'_name\').value = title;
+                        document.getElementById(\'sbox-window\').close();
+                }
+                
+                function jSelectArticle(id, title, object) {
+                		document.getElementById(object + \'_id\').value = id;
+                		document.getElementById(object + \'_name\').value = title;
+                		document.getElementById(\'sbox-window\').close();
+                }
+                
+                </script>');
 
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
@@ -47,7 +65,7 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_submit.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_select.js' );
 
-$this->loadTemplate($row->component.'base64images');
+$this->loadTemplate('base64images');
 
 jimport('joomla.filter.output');
 
@@ -72,10 +90,17 @@ else
 
 ?>
 
-<div id="wx-app-status-button" <?php echo $offlineStatusClass; ?>><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" /><br /><span id="wx-app-status-online" <?php echo $onlineSpan; ?>><?php echo JText::_('WEEVER_ONLINE'); ?></span><span id="wx-app-status-offline" <?php echo $offlineSpan; ?>><?php echo JText::_('WEEVER_OFFLINE'); ?></span></div>
+<div id="wx-app-status-button" <?php echo $offlineStatusClass; ?>><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" />
+	
+	<span id="wx-app-status-online" <?php echo $onlineSpan; ?>><strong><?php echo JText::_('WEEVER_ONLINE'); ?></strong><br /><span style="color:#666; font-size:0.65em;"><?php echo JText::_('WEEVER_ONLINE_INFO'); ?></span></span>
+	
+	<span id="wx-app-status-offline" <?php echo $offlineSpan; ?>><strong><?php echo JText::_('WEEVER_OFFLINE'); ?></strong><br /><span style="color:#666; font-size:0.65em;"><?php echo JText::_('WEEVER_OFFLINE_INFO'); ?></span></span>
+
+</div>
+
 
 <div id="listTabs">
-<ul id="listTabsSortable" style="padding-right: 50%">
+<ul id="listTabsSortable" style="padding-right: 25%">
 
 <?php 
 
@@ -85,8 +110,10 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 {
 	$row = &$this->tabRows[$i];
 	$componentRowsName = $row->component . 'Rows';
-	$componentRows = $this->{$componentRowsName};
+	$componentRows = @$this->{$componentRowsName}; // no error for experimental tabs
 	$tabActive = 0;
+	
+	$row->id = $row->cloud_tab_id;
 	
 	for($ii=0, $nn=count($componentRows); $ii<$nn; $ii++)
 	{
@@ -108,7 +135,6 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	else
 		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs" ><a href="#'. $row->component . 'Tab" class="wx-tab-sortable"><div class="'.$row->icon.' wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" rel="'.$this->site_key.'" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';	
 	
-
 }
 	
 		
@@ -125,6 +151,8 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
     <div id='wx-modal-error-text'></div>
 </div>
 
+
+
 	<form action='<?php echo JRoute::_( 'index.php' );?>' method='post' name='adminForm' id='adminForm'>
 	
 <?php
@@ -140,7 +168,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	$link = JFilterOutput::ampReplace('index.php?option=' . $option . '&task=edit&layout=tab&cid[]='.$row->id);
 	
 	$componentRowsName = $row->component . 'Rows';
-	$componentRows = $this->{$componentRowsName};
+	$componentRows = @$this->{$componentRowsName};
 	
 	switch($row->component)
 	{
@@ -198,7 +226,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	<div id="<?php echo $row->component . 'Tab' ?>">
 	
-	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video") : ?>
+	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video" || $row->component == "panel" || $row->component == "aboutapp") : ?>
 		
 		<?php echo $this->loadTemplate($row->component.'dropdown'); ?>
 	
@@ -282,6 +310,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	<?php
 
 }
+
 
 ?>
 

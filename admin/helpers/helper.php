@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	1.0
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -278,7 +278,7 @@ class comWeeverHelper
 		}
 		
 			 
-		for($i = 1; $i <= 12; $i++)
+		for($i = 1; $i <= 11; $i++)
 		{
 		
 			if($i == 2 || $i == 1 || $i == 6)
@@ -286,7 +286,7 @@ class comWeeverHelper
 		
 			$row->load($i); 
 			
-			if($i == 11 || $i == 12)
+			if($i == 11)
 				$row->setting = JRequest::getVar($row->option,"", "post","string",JREQUEST_ALLOWHTML);
 			else 
 				$row->setting = JRequest::getVar($row->option);
@@ -458,29 +458,6 @@ class comWeeverHelper
 		
 		$db->setQuery($query);
 		$key = $db->loadObject();
-		
-		comWeeverHelper::emptyTabRecords();
-		
-		foreach((object)$tab_obj->tabs as $k => $v)
-		{
-			
-			# need to rebind each time or only last record gets recorded.
-			$row =& JTable::getInstance('weever','Table');
-			
-			if(!$row->bind($v))
-			{
-				JError::raiseError(500, 'Didn t "bind" too terribly well. ');
-			}
-			
-			if(!$row->store())
-			{
-				JError::raiseError(500, '"Store" didn t go so well. ');
-			}
-			
-			comWeeverHelper::pushLocalIdToCloud($row->id, $row->hash, $key->setting);
-
-		}
-		
 		
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		
@@ -973,7 +950,6 @@ class comWeeverHelper
 				'app_enabled' => JRequest::getVar('app_enabled'),
 				'site_key' => JRequest::getVar('site_key'),
 				'domain' => JRequest::getVar('domain'),
-				'about_app' => JRequest::getVar('about_app',"", "post","string",JREQUEST_ALLOWHTML),
 				'loadspinner' => JRequest::getVar('loadspinner',"", "post","string",JREQUEST_ALLOWHTML),
 				'google_analytics' => JRequest::getVar('google_analytics'),
 				'app' => 'ajax',
@@ -1027,7 +1003,6 @@ class comWeeverHelper
 				'type' => JRequest::getVar('type'),
 				'component_behaviour' => JRequest::getVar('component_behaviour'),
 				'var' => JRequest::getVar('var'),
-				'parent_tab_id' => JRequest::getVar('parent_tab_id'),
 				'site_key' => JRequest::getVar('site_key'),
 				'cms_feed' => JRequest::getVar('cms_feed'),
 				'app' => 'ajax',
@@ -1036,7 +1011,7 @@ class comWeeverHelper
 				'generator' => comWeeverConst::NAME
 				)
 			);
-		
+
 		return comWeeverHelper::sendToWeeverServer($postdata);
 		
 	}
@@ -1051,7 +1026,7 @@ class comWeeverHelper
 				'app' =>'ajax',
 				'm' => 'publish_tab',
 				'site_key' => JRequest::getVar('site_key'),
-				'local_tab_id' => $cid,
+				'cloud_tab_id' => $cid,
 				'version' => comWeeverConst::VERSION,
 				'generator' => comWeeverConst::NAME
 				)
@@ -1067,7 +1042,7 @@ class comWeeverHelper
 	
 		$postdata = http_build_query(
 			array(
-				'local_tab_id' => $id,
+				'cloud_tab_id' => $id,
 				'app' => 'ajax',
 				'm' => 'delete_tab',
 				'site_key' => JRequest::getVar('site_key'),
@@ -1117,28 +1092,6 @@ class comWeeverHelper
 			return TRUE;
 		else
 			return FALSE;
-	
-	}
-	
-
-	public static function emptyTabRecords()
-	{
-	
-		$start = null;
-		$limit = null;
-		$where = null;
-		$order = null;
-	
-		$query = self::buildQuery
-		(
-			"TRUNCATE TABLE #__weever_tabs ",
-			$start, $limit, $where, $order
-		);
-		
-		$db = &JFactory::getDBO();
-		
-		$db->setQuery($query);
-		$db->loadObjectList();
 	
 	}
 

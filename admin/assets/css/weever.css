@@ -3,7 +3,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.3
+*	Version: 	1.0
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -17,7 +17,6 @@
 *   GNU General Public License for more details <http://www.gnu.org/licenses/>.
 *
 */
-
 /* 1.6 hacks */
 
 fieldset{
@@ -63,7 +62,7 @@ label.wx-check-label {
 
 /* end of hacks */
 .wx-app-hide-status {
-	display: none;
+	display: none !important;
 }
 
 
@@ -91,21 +90,28 @@ label.wx-check-label {
 }
 
 #wx-app-status-online {
-	position: absolute;
-	top: 20px;
-	left:  -50px;
-	text-align: right;
-    color: #669966;
+color: #669966;
+display: inline-block;
+max-width: 320px;
+position: relative;
+text-align: right;
+text-transform: uppercase;
+top: 4px;
+font-size: 1.25em;
+} 
+
+#wx-app-status-offline
+{
+color: #996666;
+display: inline-block;
+max-width: 320px;
+position: relative;
+text-align: right;
+text-transform: uppercase;
+top: 4px;
+font-size: 1.25em;
 }
 
-#wx-app-status-offline {
-	position: absolute;
-	top: 20px;
-	left:  -50px;
-    color: #996666;
-    text-align: right;
-    font-weight: bold;
-}
 
 #wx-app-status-img {
     border: 1px solid #ddd;
@@ -216,6 +222,10 @@ div#wx-nav-icon-preview-wrapper img {
 .wx-add-item-value-help { width:220px; }
 
 .wx-reveal, .wx-reveal select, .wx-reveal input { width:220px; }
+
+input#id_name {
+	width: 165px;
+}
 
 .wx-reveal input { padding-left:4px; }
 
