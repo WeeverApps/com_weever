@@ -59,8 +59,8 @@ defined('_JEXEC') or die;
 		<input type="checkbox" name="googlemaps" id="wx-contact-option-google-maps" value="1" /> 
 		<label for="wx-contact-option-google-maps"><?php echo JText::_('WEEVER_CONTACT_SHOW_GOOGLEMAPS'); ?></label>
 		<br/>
-		<input type="checkbox" name="logoimage" id="wx-contact-option-logo-image" value="1" /> 
-		<label for="wx-contact-option-logo-image"><?php echo JText::_('WEEVER_CONTACT_SHOW_LOGO_IMAGE'); ?></label>
+		<input type="checkbox" name="showimage" id="wx-contact-option-show-image" value="1" /> 
+		<label for="wx-contact-option-show-image"><?php echo JText::_('WEEVER_CONTACT_SHOW_IMAGE'); ?></label>
 	</div>
 	
 	<div class='wx-add-submit'>

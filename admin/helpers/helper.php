@@ -1188,33 +1188,26 @@ class comWeeverHelper
 			$json->address = $contact->address;
 			$json->town = $contact->suburb;
 			$json->state = $contact->state;
-			$json->country = $contact->country;
-			$json->googlemaps = JRequest::getVar('googlemaps', 0);	
-			$json->logoimage = JRequest::getVar('logoimage', 0);
-			$json->image = comWeeverHelper::getSiteDomain() . $contact->image;	
-		
-
-			// destringify our options			
-
+			$json->country = $contact->country;			
+			$json->image = $contact->image;
+			
+			$json->showimage = JRequest::getVar('showimage', 0);
+			if($json->showimage == "0")
+				$json->showimage = 0;
+			
+			$json->googlemaps = JRequest::getVar('googlemaps', 0);			
 			if($json->googlemaps == "0")
 				$json->googlemaps = 0;
-
-			if($json->logoimage == "0" || is_null($json->logoimage))
-				$json->logoimage = 0;
 				
-			$json->emailform = JRequest::getVar('emailform', 0);
-			
+			$json->emailform = JRequest::getVar('emailform', 0);			
 			if($json->emailform == "0")
 				$json->emailform = 0;
 			
 			$json = json_encode($json);
 			
-			JRequest::setVar('var', $json);
-			
-		}
-		
-		return null;		
-	
+			JRequest::setVar('var', $json);			
+		}		
+		return null;	
 	}
 	
 
@@ -1225,7 +1218,6 @@ class comWeeverHelper
 
 class contact_json
 {
-
 	public 	$telephone;
 	public 	$email_to;	
 	public 	$name;
@@ -1235,5 +1227,6 @@ class contact_json
 	public 	$country;
 	public  $emailform;
 	public 	$googlemaps;
-
+	public 	$image;
+	public 	$showimage;
 }
