@@ -104,8 +104,6 @@ else
 
 <?php 
 
-
-
 for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 {
 	$row = &$this->tabRows[$i];
@@ -150,6 +148,8 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
     <div id='wx-modal-secondary-text'></div>
     <div id='wx-modal-error-text'></div>
 </div>
+
+
 
 	<form action='<?php echo JRoute::_( 'index.php' );?>' method='post' name='adminForm' id='adminForm'>
 	
@@ -308,6 +308,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	<?php
 
 }
+
 
 ?>
 

@@ -50,7 +50,6 @@ if((ini_get('allow_url_fopen') != 1) && (!in_array('curl', get_loaded_extensions
 	JError::raiseNotice(100, JText::_('WEEVER_NOTICE_ALLOW_URL_FOPEN_OFF'));	
 	
 if(!JPluginHelper::isEnabled('system', 'mobileesp'))
-//try to enable mobileesp, or give a better error. something like: "Required plugin MobileESP is disabled. Please enable it."
 	JError::raiseNotice(100, JText::_('WEEVER_ERROR_PLUGIN_DISABLED'));
 
 
