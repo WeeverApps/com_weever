@@ -542,42 +542,42 @@ class comWeeverHelper
 		foreach((array)$orderArray as $k=>$v)
 		{
 			$v = str_replace("TabID","",$v);	
-			$reorderType[$v] = $k;	
+			$reorder[] = $v;
 		}
 	
-		$db = &JFactory::getDBO();	
-
-	    $query = " 		SELECT 	ordering, id, component ".
-	    		"		FROM	#__weever_tabs ".
-	    		"		WHERE	type = 'tab' ORDER BY ordering ASC ";
+//		$db = &JFactory::getDBO();	
+//
+//	    $query = " 		SELECT 	ordering, id, component ".
+//	    		"		FROM	#__weever_tabs ".
+//	    		"		WHERE	type = 'tab' ORDER BY ordering ASC ";
+//		
+//		$db->setQuery($query);
+//		$orders = $db->loadObjectList();
 		
-		$db->setQuery($query);
-		$orders = $db->loadObjectList();
+//		$kk = 0;
+//		$reorder = array();
+//
+//		foreach((array)$orders as $k=>$v)
+//		{
+//
+//			$reorder[] = $reorderType[$v->component];	
+//		
+//		}
 		
-		$kk = 0;
-		$reorder = array();
-
-		foreach((array)$orders as $k=>$v)
-		{
-
-			$reorder[ $reorderType[$v->component] ] = $v->id;	
-		
-		}
-		
-		foreach((array)$reorder as $k=>$v)
-		{
-
-			$query = "	UPDATE #__weever_tabs ".
-					"	SET ordering = ".$db->Quote($k)." ".
-					"	WHERE	id = ".$db->Quote($v)." ";
-
-
-					
-			$db->setQuery($query);
-			@$db->loadObject();
-		
-		}
-		
+//		foreach((array)$reorder as $k=>$v)
+//		{
+//
+//			$query = "	UPDATE #__weever_tabs ".
+//					"	SET ordering = ".$db->Quote($k)." ".
+//					"	WHERE	id = ".$db->Quote($v)." ";
+//
+//
+//					
+//			$db->setQuery($query);
+//			@$db->loadObject();
+//		
+//		}
+//		
 		$reordering = json_encode($reorder);
 		
 		JRequest::setVar('reordering', $reordering);	
@@ -759,7 +759,10 @@ class comWeeverHelper
 		$json = comWeeverHelper::sendToWeeverServer($postdata);
 
 		if($json == "Site key missing or invalid.")
-			 JError::raiseError(500, JText::_('WEEVER_ERROR_BAD_SITE_KEY'));
+		{
+			 JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
+			 return false;
+		}
 		
 		$j_array = json_decode($json);
 		
