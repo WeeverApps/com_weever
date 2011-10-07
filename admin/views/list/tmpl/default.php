@@ -104,8 +104,6 @@ else
 
 <?php 
 
-
-
 for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 {
 	$row = &$this->tabRows[$i];
