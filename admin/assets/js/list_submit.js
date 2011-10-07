@@ -40,10 +40,17 @@ jQuery(document).ready(function(){
 		else
 			googleMaps = 0;
 		
+		var showImage;
+		
+		if(jQuery("input[name=showimage]").is(":checked"))
+			showImage = jQuery("input[name=showimage]").val();
+		else
+			showImage = 0;
+			
 		jQuery.ajax({
 		 type: "POST",
 		 url: "index.php",
-		 data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=contact&emailform="+emailForm+"&googlemaps="+googleMaps+"&component=contact&component_id="+componentId+"&weever_action=add&published=1&site_key="+siteKey,
+		 data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=contact&emailform="+emailForm+"&googlemaps="+googleMaps+"&showimage="+showImage+"&component=contact&component_id="+componentId+"&weever_action=add&published=1&site_key="+siteKey,
 		 success: function(msg){
 		   jQuery('#wx-modal-loading-text').html(msg);
 		   

@@ -210,7 +210,7 @@ div#wx-nav-icon-preview-wrapper img {
 
  }
  
- #wx-contact-option-email-form, #wx-contact-option-google-maps { width:auto !important; float: left;}
+ #wx-contact-option-email-form, #wx-contact-option-google-maps, #wx-contact-option-show-image{ width:auto !important; float: left;}
  
  .wx-contact-options label {
      display: block;
