@@ -542,42 +542,42 @@ class comWeeverHelper
 		foreach((array)$orderArray as $k=>$v)
 		{
 			$v = str_replace("TabID","",$v);	
-			$reorderType[$v] = $k;	
+			$reorder[] = $v;
 		}
 	
-		$db = &JFactory::getDBO();	
-
-	    $query = " 		SELECT 	ordering, id, component ".
-	    		"		FROM	#__weever_tabs ".
-	    		"		WHERE	type = 'tab' ORDER BY ordering ASC ";
+//		$db = &JFactory::getDBO();	
+//
+//	    $query = " 		SELECT 	ordering, id, component ".
+//	    		"		FROM	#__weever_tabs ".
+//	    		"		WHERE	type = 'tab' ORDER BY ordering ASC ";
+//		
+//		$db->setQuery($query);
+//		$orders = $db->loadObjectList();
 		
-		$db->setQuery($query);
-		$orders = $db->loadObjectList();
+//		$kk = 0;
+//		$reorder = array();
+//
+//		foreach((array)$orders as $k=>$v)
+//		{
+//
+//			$reorder[] = $reorderType[$v->component];	
+//		
+//		}
 		
-		$kk = 0;
-		$reorder = array();
-
-		foreach((array)$orders as $k=>$v)
-		{
-
-			$reorder[ $reorderType[$v->component] ] = $v->id;	
-		
-		}
-		
-		foreach((array)$reorder as $k=>$v)
-		{
-
-			$query = "	UPDATE #__weever_tabs ".
-					"	SET ordering = ".$db->Quote($k)." ".
-					"	WHERE	id = ".$db->Quote($v)." ";
-
-
-					
-			$db->setQuery($query);
-			@$db->loadObject();
-		
-		}
-		
+//		foreach((array)$reorder as $k=>$v)
+//		{
+//
+//			$query = "	UPDATE #__weever_tabs ".
+//					"	SET ordering = ".$db->Quote($k)." ".
+//					"	WHERE	id = ".$db->Quote($v)." ";
+//
+//
+//					
+//			$db->setQuery($query);
+//			@$db->loadObject();
+//		
+//		}
+//		
 		$reordering = json_encode($reorder);
 		
 		JRequest::setVar('reordering', $reordering);	
@@ -759,7 +759,10 @@ class comWeeverHelper
 		$json = comWeeverHelper::sendToWeeverServer($postdata);
 
 		if($json == "Site key missing or invalid.")
-			 JError::raiseError(500, JText::_('WEEVER_ERROR_BAD_SITE_KEY'));
+		{
+			 JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
+			 return false;
+		}
 		
 		$j_array = json_decode($json);
 		
@@ -1188,26 +1191,27 @@ class comWeeverHelper
 			$json->address = $contact->address;
 			$json->town = $contact->suburb;
 			$json->state = $contact->state;
-			$json->country = $contact->country;			
-			$json->image = $contact->image;
+			$json->country = $contact->country;
+			$json->googlemaps = JRequest::getVar('googlemaps', 0);
 			
-			$json->showimage = JRequest::getVar('showimage', 0);
-			if($json->showimage == "0")
-				$json->showimage = 0;
+			// destringify our options
 			
-			$json->googlemaps = JRequest::getVar('googlemaps', 0);			
 			if($json->googlemaps == "0")
 				$json->googlemaps = 0;
 				
-			$json->emailform = JRequest::getVar('emailform', 0);			
+			$json->emailform = JRequest::getVar('emailform', 0);
+			
 			if($json->emailform == "0")
 				$json->emailform = 0;
 			
 			$json = json_encode($json);
 			
-			JRequest::setVar('var', $json);			
-		}		
-		return null;	
+			JRequest::setVar('var', $json);
+			
+		}
+		
+		return null;		
+	
 	}
 	
 
@@ -1218,6 +1222,7 @@ class comWeeverHelper
 
 class contact_json
 {
+
 	public 	$telephone;
 	public 	$email_to;	
 	public 	$name;
@@ -1227,6 +1232,5 @@ class contact_json
 	public 	$country;
 	public  $emailform;
 	public 	$googlemaps;
-	public 	$image;
-	public 	$showimage;
+
 }

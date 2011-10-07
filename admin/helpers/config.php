@@ -29,7 +29,7 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.0";
+	const VERSION		= "1.0.0.1";
 	const RELEASE_TYPE	= "stable";
 	const RELEASE_NAME	= "<a href='http://www.svca.on.ca/ca.php?page=allanpark' target='_blank'>Allan Park</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
@@ -42,7 +42,7 @@ final class comWeeverConst
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://hydrus.weeverapp.com/";
+	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
 
 }
 
