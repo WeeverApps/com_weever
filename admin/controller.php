@@ -163,12 +163,8 @@ class WeeverController extends JController
 	public function ajaxSaveSubtabOrder()
 	{
 		
-		$id = JRequest::getVar("id");
-		$dir = JRequest::getVar("dir");
-		$type = JRequest::getVar("type");
-		
-		$response = comWeeverHelper::sortSubtabs($type, $id, $dir);
-		
+		$response = comWeeverHelper::pushSubtabReorderToCloud();
+
 		echo $response;
 		
 		jexit();

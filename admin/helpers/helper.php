@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -545,39 +545,6 @@ class comWeeverHelper
 			$reorder[] = $v;
 		}
 	
-//		$db = &JFactory::getDBO();	
-//
-//	    $query = " 		SELECT 	ordering, id, component ".
-//	    		"		FROM	#__weever_tabs ".
-//	    		"		WHERE	type = 'tab' ORDER BY ordering ASC ";
-//		
-//		$db->setQuery($query);
-//		$orders = $db->loadObjectList();
-		
-//		$kk = 0;
-//		$reorder = array();
-//
-//		foreach((array)$orders as $k=>$v)
-//		{
-//
-//			$reorder[] = $reorderType[$v->component];	
-//		
-//		}
-		
-//		foreach((array)$reorder as $k=>$v)
-//		{
-//
-//			$query = "	UPDATE #__weever_tabs ".
-//					"	SET ordering = ".$db->Quote($k)." ".
-//					"	WHERE	id = ".$db->Quote($v)." ";
-//
-//
-//					
-//			$db->setQuery($query);
-//			@$db->loadObject();
-//		
-//		}
-//		
 		$reordering = json_encode($reorder);
 		
 		JRequest::setVar('reordering', $reordering);	
@@ -587,139 +554,6 @@ class comWeeverHelper
 		return $response;	
 	
 	}
-
-	
-	public static function sortSubtabs($type, $id, $dir)
-	{
-	
-		$db = &JFactory::getDBO();	
-
-	    $query = " 		SELECT 	ordering, id ".
-	    		"		FROM	#__weever_tabs ".
-	    		"		WHERE	type = ".$db->Quote($type)." ORDER BY ordering ASC ";
-
-
-		
-		$db->setQuery($query);
-		$orders = $db->loadObjectList();
-		$reorder = array();
-		
-		$kk = 0;
-		$nextReorder = null;
-		$lastId = null;
-
-		foreach((array)$orders as $k=>$v)
-		{
-			
-			$kk++;
-			
-			if($nextReorder)
-			{
-			
-				$reorder[$kk - 1] = $v->id;
-				$reorder[$kk] = $nextReorder;
-				
-				$nextReorder = null;
-			
-			}
-			
-			if($v->id == $id && $dir == "up" && $kk != 1)
-			{
-			
-				$reorder[$kk] = $reorder[$kk - 1];
-				$reorder[$kk - 1] = $v->id;
-			
-			}
-			
-			if($v->id == $id && $dir == "down")
-			{
-			
-				$nextReorder = $v->id;
-			
-			}
-
-			if(!$reorder[$kk] && !$nextReorder)
-			{
-				$reorder[$kk] = $v->id;
-			}
-			
-			$lastId = $v->id;
-		
-		}
-		
-		if($nextReorder)
-		{
-			$reorder[$kk] = $v->id;		
-		}
-		
-		$kk = 0;
-		
-		foreach((array)$reorder as $k=>$v)
-		{
-
-			$query = "	UPDATE #__weever_tabs ".
-					"	SET ordering = ".$db->Quote($k)." ".
-					"	WHERE	id = ".$db->Quote($v)." ";
-
-
-					
-			$db->setQuery($query);
-			@$db->loadObject();
-		
-		}
-		
-		$reordering = json_encode($reorder);
-		
-		JRequest::setVar('reordering', $reordering);	
-		
-		$response = comWeeverHelper::pushReorderToCloud();
-		
-		return $response;	
-	
-	}
-	
-	
-	//deprecated?
-	public static function reorderTabs($type)
-	{
-	
-		$db = &JFactory::getDBO();	
-
-	    $query = " 		SELECT 	ordering, id ".
-	    		"		FROM	#__weever_tabs ".
-	    		"		WHERE	type = ".$db->Quote($type)." ORDER BY ordering ASC ";
-
-
-		
-		$db->setQuery($query);
-		$orders = $db->loadObjectList();
-		$reorder = array();
-
-		foreach((array)$orders as $k=>$v)
-		{
-
-			$kk = $k+1;
-			$query = "	UPDATE #__weever_tabs ".
-					"	SET ordering = ".$db->Quote($kk)." ".
-					"	WHERE	id = ".$db->Quote($v->id)." ";
-
-					
-			$db->setQuery($query);
-			$result = $db->loadObject();
-
-			$reorder[$kk] = $v->id;
-		
-		}
-		
-		$reordering = json_encode($reorder);
-		echo $reordering;
-		
-		JRequest::setVar('reordering', $reordering);	
-		
-		comWeeverHelper::pushReorderToCloud();
-				
-	}
-	
 
 
 	public static function getJsonTabSync()
@@ -863,6 +697,26 @@ class comWeeverHelper
 	
 	}
 	
+	public static function pushSubtabReorderToCloud()
+	{
+
+		$postdata = http_build_query(
+			array( 	
+				'id' => JRequest::getVar('id'),
+				'reordering' => 'subtab',
+				'type' => JRequest::getVar('type'),
+				'dir' => JRequest::getVar('dir'),
+				'app' => 'ajax',
+				'site_key' => JRequest::getVar('site_key'),
+				'm' => "update_order",
+				'version' => comWeeverConst::VERSION,
+				'generator' => comWeeverConst::NAME
+				)
+			);
+		
+		return  comWeeverHelper::sendToWeeverServer($postdata);
+
+	}
 	
 
 	public static function pushReorderToCloud()
@@ -875,7 +729,8 @@ class comWeeverHelper
 				'site_key' => JRequest::getVar('site_key'),
 				'm' => "update_order",
 				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
+				'generator' => comWeeverConst::NAME,
+				'cms' => 'joomla'
 				)
 			);
 		
