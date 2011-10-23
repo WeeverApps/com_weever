@@ -3,8 +3,8 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Author: 	Robert Gerald Porter (rob@weeverapps.com)
+*	Version: 	1.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ defined('_JEXEC') or die;
 				
 					<div class="button2-left" style='float:right;'>
 						<div class="blank">
-							<a class="modal" title="Select an item"  href="index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
+							<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_K2_ITEM'); ?>"  href="index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_PANEL_SELECT'); ?></a>
 						</div>
 					</div>
 
@@ -59,7 +59,7 @@ defined('_JEXEC') or die;
 				
 					<div class="button2-left" style='float:right;'>
 						<div class="blank">
-							<a class="modal" title="Select a Joomla article"  href="index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
+							<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_JOOMLA_ARTICLE'); ?>"  href="index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_PANEL_SELECT'); ?></a>
 						</div>
 					</div>
 					
@@ -70,12 +70,7 @@ defined('_JEXEC') or die;
 				<input type="text" id="id_name-panel" placeholder="Select content..." class='wx-input wx-panel-input' disabled="disabled" />
 	
 				<input type="hidden" id="id_id-panel" class="wx-panel-input" name="urlparams[id]" value="0" />
-				<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="Select Article::Select an article to link to directly.">Select Content</label>
-				
-		
-		
-		<?php //echo $this->pageK2CategoryDropdown; 
-		?>
+				<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="<?php echo JText::_('WEEVER_PANEL_SELECT_ARTICLE_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_PANEL_SELECT_CONTENT'); ?></label>
 	
 	</div>
 	
@@ -88,9 +83,7 @@ defined('_JEXEC') or die;
 		<input type='submit' id='wx-panel-submit' class='wx-submit' value='<?php echo JText::_('WEEVER_ADD_PANEL_SUBMIT'); ?>' name='add' disabled='disabled' />
 	</div>
 	
-	
-	
-	
+	<button id='wx-panel-button'><?php echo JText::_('WEEVER_PANEL_ADVANCED_TRANSITIONS'); ?></button>
 
 
 </div>

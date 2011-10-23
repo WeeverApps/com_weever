@@ -190,7 +190,11 @@ class WeeverController extends JController
 		
 		$type = JRequest::getWord('type', 'tab');
 	
-		if($type == "contact" || $type == "blog" || $type == "page")
+		if(  $type == "contact" || 
+				$type == "blog" || 
+				$type == "page" || 
+				( $type == "map" && JRequest::getVar("tag") )  
+			)
 		{
 		
 			$type_method = "_build".$type."FeedURL";
@@ -220,23 +224,7 @@ class WeeverController extends JController
 			echo JRequest::getVar('weever_server_response');
 			jexit();
 		}
-//		
-//		$row =& JTable::getInstance('weever','Table');
-//
-//		if(!$row->bind(JRequest::get('post')))
-//		{
-//			JError::raiseError(500, $row->getError());
-//		}
-//		
-//		$row->ordering = $row->ordering + 0.1; // for later reorder to sort well if it is in collision with another.
-//		
-//		if(!$row->store())
-//		{
-//			JError::raiseError(500, $row->getError());
-//		}
-//		
-		//comWeeverHelper::reorderTabs($type);
-//		comWeeverHelper::pushLocalIdToCloud($row->id, JRequest::getVar('hash'), JRequest::getVar('site_key'));
+
 		
 		echo JRequest::getVar('weever_server_response');
 		

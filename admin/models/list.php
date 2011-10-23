@@ -288,6 +288,7 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	
 		
 	public function parseBlogMenuToSelectList()
 	{
@@ -400,6 +401,18 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	public function getMapK2CategoryDropdown()
+	{
+	
+		$this->dropdown = null;
+	
+		$this->getBlogK2CategoryDB();
+		$this->parseMapK2CategoryToSelectList();
+	
+		return $this->dropdown;
+	
+	}
+	
 		
 	public function parseBlogK2CategoryToSelectList()
 	{
@@ -421,6 +434,26 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	public function parseMapK2CategoryToSelectList()
+	{
+	
+		// pare to view soon
+		$this->dropdown .= " <div id='wx-add-map-k2-category-item'>
+		<select name='unnamed' id='wx-add-map-k2-category-item-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
+	
+		foreach((object)$this->blogs as $k=>$v)
+		{
+			
+			$link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id;
+			$this->dropdown .= "<option value='".$link."&template=weever_cartographer'>".$v->name."</option>";
+		
+		}
+		
+		$this->dropdown .= "</select>
+		</div>";
+	
+	}
+
 	
 	public function getBlogK2CategoryDB()
 	{

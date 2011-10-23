@@ -3,7 +3,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.3
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -19,6 +19,214 @@
 */
 
 jQuery(document).ready(function(){ 
+
+	jQuery('button#wx-panel-button').click(function(e) {
+	
+		e.preventDefault();
+	
+		var panelAnimate = jQuery("input#wx-panel-animate").val(),
+			panelHeaders = jQuery("input#wx-panel-headers").val(),
+			siteKey = jQuery("input#wx-site-key").val();
+		
+		if(panelAnimate == "1") {
+			var selected = 'selected="selected"';
+		} else {
+			var selected = null;	
+		}
+		
+		if(panelHeaders == "true") {
+			var selectedHeader = 'selected="selected"';
+		} else {
+			var selectedHeader = null;	
+		}
+		
+		var txt = 	'<table class="admintable">'+
+					'<h3 class="wx-imp-h3">'+Joomla.JText._('WEEVER_JS_PANEL_TRANSITION_ANIMATIONS')+'</h3>'+
+					'<tr><td class="key hasTip" title="'+Joomla.JText._('WEEVER_JS_PANEL_TRANSITION_TOOLTIP')+
+					'">'+Joomla.JText._('WEEVER_JS_PANEL_TRANSITION_TOGGLE')+'</td>'+
+					'<td><select name="panel_animate"><option value="0">'+
+					Joomla.JText._('WEEVER_CONFIG_DISABLED')+'</option>'+
+					'<option value="1" '+selected+'>'+Joomla.JText._('WEEVER_CONFIG_ENABLED')+'</option></select>'+
+					'</td></tr>'+
+					'<tr><td class="key hasTip" title="'+Joomla.JText._('WEEVER_JS_PANEL_HEADERS_TOOLTIP')+
+					'">'+Joomla.JText._('WEEVER_JS_PANEL_HEADERS')+'</td>'+
+					'<td><select name="panel_headers"><option value="false">'+
+					Joomla.JText._('WEEVER_CONFIG_DISABLED')+'</option>'+
+					'<option value="true" '+selectedHeader+'>'+Joomla.JText._('WEEVER_CONFIG_ENABLED')+
+					'</option></select>'+
+					'</td></tr></table>';
+					
+		var clickedElem = jQuery(this);
+					
+		myCallbackForm = function(v,m,f) {
+		
+			if(v != undefined && v == true)
+			{ 
+			
+				tabName = f["alertName"];
+				
+				jQuery.ajax({
+				   type: "POST",
+				   url: "index.php",
+				   data: "option=com_weever&task=ajaxSaveTabName&name="+encodeURIComponent(tabName)+"&id="+tabId+'&site_key='+siteKey,
+				   success: function(msg){
+				     jQuery('#wx-modal-loading-text').html(msg);
+				     
+				     if(msg == "Tab Changes Saved")
+				     {
+				     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+				     	clickedElem.html(tabName);
+				     }
+				     else
+				     {
+				     	jQuery('#wx-modal-secondary-text').html('');
+				     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+				     }
+
+				   }
+				 });
+			
+			}
+		}	
+		
+		submitCheck = function(v,m,f){
+			
+			an = m.children('#alertName');
+		
+			if(f.alertName == "" && v == true){
+				an.css("border","solid #ff0000 1px");
+				return false;
+			}
+			
+			return true;
+		
+		}		
+		
+		var aniSettings = jQuery.prompt(txt, {
+				callback: myCallbackForm, 
+				submit: submitCheck,
+				overlayspeed: "fast",
+				buttons: {  Cancel: false, Submit: true },
+				focus: 1
+				});
+				
+		jQuery('input#alertName').select();
+		// hit 'enter/return' to save
+		/*jQuery("input#alertName").bind("keypress", function (e) {
+		        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+		            jQuery('button#jqi_state0_buttonSubmit').click();
+		            return false;
+		        } else {
+		            return true;
+		        }
+		    });*/
+	
+	});
+	
+	
+	jQuery('button#wx-map-button').click(function(e) {
+	
+		e.preventDefault();
+	
+		var panelAnimate = jQuery("input#wx-panel-animate").val(),
+			panelHeaders = jQuery("input#wx-panel-headers").val(),
+			siteKey = jQuery("input#wx-site-key").val();
+		
+		if(panelAnimate == "1") {
+			var selected = 'selected="selected"';
+		} else {
+			var selected = null;	
+		}
+		
+		if(panelHeaders == "true") {
+			var selectedHeader = 'selected="selected"';
+		} else {
+			var selectedHeader = null;	
+		}
+		
+		var txt = 	'<table class="admintable">'+
+					'<h3 class="wx-imp-h3">'+Joomla.JText._('WEEVER_JS_PANEL_TRANSITION_ANIMATIONS')+'</h3>'+
+					'<tr><td class="key hasTip" title="'+Joomla.JText._('WEEVER_JS_PANEL_TRANSITION_TOOLTIP')+
+					'">'+Joomla.JText._('WEEVER_JS_PANEL_TRANSITION_TOGGLE')+'</td>'+
+					'<td><select name="panel_animate"><option value="0">'+
+					Joomla.JText._('WEEVER_CONFIG_DISABLED')+'</option>'+
+					'<option value="1" '+selected+'>'+Joomla.JText._('WEEVER_CONFIG_ENABLED')+'</option></select>'+
+					'</td></tr>'+
+					'<tr><td class="key hasTip" title="'+Joomla.JText._('WEEVER_JS_PANEL_HEADERS_TOOLTIP')+
+					'">'+Joomla.JText._('WEEVER_JS_PANEL_HEADERS')+'</td>'+
+					'<td><select name="panel_headers"><option value="false">'+
+					Joomla.JText._('WEEVER_CONFIG_DISABLED')+'</option>'+
+					'<option value="true" '+selectedHeader+'>'+Joomla.JText._('WEEVER_CONFIG_ENABLED')+
+					'</option></select>'+
+					'</td></tr></table>';
+					
+		var clickedElem = jQuery(this);
+					
+		myCallbackForm = function(v,m,f) {
+		
+			if(v != undefined && v == true)
+			{ 
+			
+				tabName = f["alertName"];
+				
+				jQuery.ajax({
+				   type: "POST",
+				   url: "index.php",
+				   data: "option=com_weever&task=ajaxSaveTabName&name="+encodeURIComponent(tabName)+"&id="+tabId+'&site_key='+siteKey,
+				   success: function(msg){
+				     jQuery('#wx-modal-loading-text').html(msg);
+				     
+				     if(msg == "Tab Changes Saved")
+				     {
+				     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+				     	clickedElem.html(tabName);
+				     }
+				     else
+				     {
+				     	jQuery('#wx-modal-secondary-text').html('');
+				     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+				     }
+
+				   }
+				 });
+			
+			}
+		}	
+		
+		submitCheck = function(v,m,f){
+			
+			an = m.children('#alertName');
+		
+			if(f.alertName == "" && v == true){
+				an.css("border","solid #ff0000 1px");
+				return false;
+			}
+			
+			return true;
+		
+		}		
+		
+		var aniSettings = jQuery.prompt(txt, {
+				callback: myCallbackForm, 
+				submit: submitCheck,
+				overlayspeed: "fast",
+				buttons: {  Cancel: false, Submit: true },
+				focus: 1
+				});
+				
+		jQuery('input#alertName').select();
+		// hit 'enter/return' to save
+		/*jQuery("input#alertName").bind("keypress", function (e) {
+		        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+		            jQuery('button#jqi_state0_buttonSubmit').click();
+		            return false;
+		        } else {
+		            return true;
+		        }
+		    });*/
+	
+	});
+	
 
 	jQuery('input#wx-contact-submit').click(function(e) {
 	  
@@ -144,8 +352,6 @@ jQuery(document).ready(function(){
 	  	     {
 	  	     	jQuery('#wx-modal-secondary-text').html('');
 	  	     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
-	  	     	//document.location.href = "index.php?option=com_weever#photoTab";
-	  	     	//document.location.reload(true);
 	  	     }
 	  	   }
 	  	 });
@@ -154,6 +360,62 @@ jQuery(document).ready(function(){
 	});
 
 	
+	jQuery('input#wx-map-submit').click(function(e) {
+
+	  	var siteKey = jQuery("input#wx-site-key").val(),
+	  		component = jQuery('select#wx-select-map').val(),
+	  		id, name, cmsFeed, tag, tagQString = '';
+	  	
+	  	switch(component) {
+	  	
+	  		case "k2":
+	  		
+	  			id = jQuery("#id_id").val()
+	  			name = jQuery("#id_name").val()
+	  			cmsFeed = "index.php?option=com_k2&view=item&id="+id+"&template=weever_cartographer";
+	  			
+	  			break;
+	  		
+	  		case "k2-cat":
+	  		
+	  			name = jQuery("select[name=cms_feed] option:selected").text();
+	  			cmsFeed = jQuery("select[name=cms_feed]").val();
+	  			
+	  			break;
+	  		
+	  		case "k2-tags":
+	  		
+	  			tag	= jQuery('input[name=tag]').val();
+	  			name = "Tag: "+tag;
+	  			tagQString = "&tag="+encodeURIComponent(tag);
+	  			
+	  			break;
+	  	
+	  	}
+
+	  	jQuery.ajax({
+	  	   type: "POST",
+	  	   url: "index.php",
+	  	   data: "option=com_weever&task=ajaxSaveNewTab&name=" + encodeURIComponent(name) + "&type=map&component=map&weever_action=add&published=1&cms_feed=" + encodeURIComponent(cmsFeed)+"&site_key="+siteKey+tagQString,
+	  	   success: function(msg){
+	  	     jQuery('#wx-modal-loading-text').html(msg);
+	  	     
+	  	     if(msg == "Item Added")
+	  	     {
+	  	     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+	  	     	document.location.href = "index.php?option=com_weever#mapTab";
+	  	     	document.location.reload(true);
+	  	     }
+	  	     else
+	  	     {
+	  	     	jQuery('#wx-modal-secondary-text').html('');
+	  	     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+	  	     }
+	  	   }
+	  	 });
+	  	 
+	  	 e.preventDefault();
+	});
 	
 	
 	jQuery('input#wx-page-submit').click(function(e) {

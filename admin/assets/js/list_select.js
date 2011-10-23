@@ -293,6 +293,8 @@ jQuery(document).ready(function(){
 		jQuery('.wx-submit').attr('disabled', 'disabled');
 		jQuery("#id_id.wx-aboutapp-input").attr("id", "id_id-aboutapp");
 		jQuery("#id_name.wx-aboutapp-input").attr("id", "id_name-aboutapp");
+		jQuery("#id_id.wx-map-input").attr("id", "id_id-map");
+		jQuery("#id_name.wx-map-input").attr("id", "id_name-map");
 		jQuery("#id_id-panel").attr("id", "id_id");
 		jQuery("#id_name-panel").attr("id", "id_name");
 		
@@ -316,6 +318,59 @@ jQuery(document).ready(function(){
 		jQuery('.wx-panel-reveal').show();
 		
 	});
+
+
+	jQuery('#wx-select-map').change(function() {
+
+		jQuery('.wx-title').attr('name','noname');
+		jQuery('#wx-map-title').attr('name','name');
+		jQuery('.wx-cms-feed-select').attr('name','noname');
+		jQuery('.wx-panel-help').hide();
+		jQuery('.wx-dummy').hide();
+		jQuery('.wx-submit').attr('disabled', 'disabled');
+		jQuery("#id_id.wx-aboutapp-input").attr("id", "id_id-aboutapp");
+		jQuery("#id_name.wx-aboutapp-input").attr("id", "id_name-aboutapp");
+		jQuery("#id_id.wx-panel-input").attr("id", "id_id-panel");
+		jQuery("#id_name.wx-panel-input").attr("id", "id_name-panel");
+		jQuery("#id_id-map").attr("id", "id_id");
+		jQuery("#id_name-map").attr("id", "id_name");
+		
+		//jQuery('select.wx-cms-feed-select option[value="0"]').removeAttr('disabled');
+		
+		if(jQuery(this).val() == "k2") 
+		{
+			jQuery('#id_id').attr('name', 'cms_feed');
+			jQuery('#wx-add-map-k2-item').show();
+			jQuery('#wx-add-blog-k2-category-item').hide();
+			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-map-k2-tag').hide();
+			jQuery('#wx-add-map-k2-tag-input').attr('name', 'unnamed');
+
+		}
+		
+		if(jQuery(this).val() == "k2-cat") 
+		{
+			jQuery('#wx-add-map-k2-item').hide();
+			jQuery('#wx-add-blog-k2-category-item').show();
+			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'cms_feed');
+			jQuery('#wx-add-map-k2-tag').hide();
+			jQuery('#wx-add-map-k2-tag-input').attr('name', 'unnamed');
+		}
+		
+		if(jQuery(this).val() == "k2-tags") 
+		{
+			jQuery('#wx-add-map-k2-item').hide();
+			jQuery('#wx-add-blog-k2-category-item').hide();
+			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-map-k2-tag').show();
+			jQuery('#wx-add-map-k2-tag-input').attr('name', 'tag');
+		}
+		
+		jQuery('.wx-map-reveal').show();
+		
+	});
+	
+	
 	
 
 	jQuery('#wx-select-aboutapp').change(function() {
@@ -328,6 +383,8 @@ jQuery(document).ready(function(){
 		jQuery('.wx-submit').attr('disabled', 'disabled');
 		jQuery("#id_id.wx-panel-input").attr("id", "id_id-panel");
 		jQuery("#id_name.wx-panel-input").attr("id", "id_name-panel");
+		jQuery("#id_id.wx-map-input").attr("id", "id_id-map");
+		jQuery("#id_name.wx-map-input").attr("id", "id_name-map");
 		jQuery("#id_id-aboutapp").attr("id", "id_id");
 		jQuery("#id_name-aboutapp").attr("id", "id_name");
 		//jQuery('select.wx-cms-feed-select option[value="0"]').removeAttr('disabled');

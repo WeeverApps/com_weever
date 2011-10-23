@@ -69,6 +69,7 @@ class WeeverViewList extends JView
 		$this->assignRef('aboutappRows', $aboutappRows);
 		$this->assignRef('panelRows', $panelRows);
 		$this->assignRef('calendarRows', $calendarRows);
+		$this->assignRef('mapRows', $mapRows);
 		
 		$blogMenuDropdown =& $this->get('blogmenudropdown');
 		$this->assignRef('blogMenuDropdown',$blogMenuDropdown);
@@ -78,6 +79,9 @@ class WeeverViewList extends JView
 		
 		$blogK2CategoryDropdown =& $this->get('blogk2categorydropdown');
 		$this->assignRef('blogK2CategoryDropdown',$blogK2CategoryDropdown);
+		
+		$mapK2CategoryDropdown =& $this->get('mapk2categorydropdown');
+		$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
 
 		$pageMenuDropdown =& $this->get('pagemenudropdown');
 		$this->assignRef('pageMenuDropdown',$pageMenuDropdown);
