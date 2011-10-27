@@ -182,6 +182,17 @@ class WeeverController extends JController
 	
 	}
 	
+	public function ajaxUpdateTabSettings()
+	{
+	
+		$response = comWeeverHelper::updateTabSettings();
+		
+		echo $response;
+		
+		jexit();
+	
+	}
+	
 	public function ajaxSaveNewTab()
 	{
 

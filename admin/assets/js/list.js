@@ -588,8 +588,25 @@ jQuery(document).ready(function(){
            jQuery('#wx-map-submit').removeAttr('disabled');
         } else { jQuery('#wx-map-submit').attr('disabled', 'disabled'); }
         
+        if(jQuery('input#wx-blog-title' == '')) {
+        	var thisText = jQuery("select[name=cms_feed] option:selected").text();
+        	jQuery('input#wx-blog-title').val(thisText)
+        }
+        
+        if(jQuery('input#wx-page-title' == '')) {
+        	var thisText = jQuery("select[name=cms_feed] option:selected").text();
+        	jQuery('input#wx-page-title').val(thisText)
+        }
+        
         jQuery('select.wx-cms-feed-select option[value="0"]').attr('disabled','disabled');
         
+	});
+	
+	jQuery('#wx-add-contact-joomla-select').change(function(){
+		
+		var thisText = jQuery("select#wx-add-contact-joomla-select option:selected").text();
+		jQuery('input#wx-contact-title').val(thisText);
+		
 	});
 	
 	jQuery('select.wx-component-id-select').change(function(){

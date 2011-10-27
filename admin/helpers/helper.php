@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0.1
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -78,6 +78,47 @@ class comWeeverHelper
 			jsJText::script('WEEVER_JS_CHANGING_NAV_ICONS');
 			jsJText::script('WEEVER_JS_CHANGING_NAV_ICONS_INSTRUCTIONS');
 			jsJText::script('WEEVER_JS_CHANGING_NAV_PASTE_CODE');
+			jsJText::script('WEEVER_CONFIG_ENABLED');
+			jsJText::script('WEEVER_CONFIG_DISABLED');
+			jsJText::script('WEEVER_JS_PANEL_TRANSITION_ANIMATIONS');
+			jsJText::script('WEEVER_JS_PANEL_TRANSITION_TOOLTIP');
+			jsJText::script('WEEVER_JS_PANEL_TRANSITION_TOGGLE');
+			jsJText::script('WEEVER_JS_PANEL_HEADERS_TOOLTIP');
+			jsJText::script('WEEVER_JS_PANEL_HEADERS');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TRANSITION_ANIMATIONS');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TRANSITION_TOOLTIP');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TRANSITION_TOGGLE');
+			jsJText::script('WEEVER_JS_ABOUTAPP_HEADERS_TOOLTIP');
+			jsJText::script('WEEVER_JS_ABOUTAPP_HEADERS');
+			jsJText::script('WEEVER_JS_PANEL_TRANSITION_DURATION_TOOLTIP');
+			jsJText::script('WEEVER_JS_PANEL_TRANSITION_DURATION');
+			jsJText::script('WEEVER_JS_PANEL_TRANSITION_DURATION_SHORT');
+			jsJText::script('WEEVER_JS_PANEL_TRANSITION_DURATION_DEFAULT');
+			jsJText::script('WEEVER_JS_PANEL_TRANSITION_DURATION_LONG');
+			jsJText::script('WEEVER_JS_PANEL_TIMEOUT_TOOLTIP');
+			jsJText::script('WEEVER_JS_PANEL_TIMEOUT');
+			jsJText::script('WEEVER_JS_PANEL_TIMEOUT_SHORT');
+			jsJText::script('WEEVER_JS_PANEL_TIMEOUT_DEFAULT');
+			jsJText::script('WEEVER_JS_PANEL_TIMEOUT_LONG');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION_TOOLTIP');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION_SHORT');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION_DEFAULT');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION_LONG');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TIMEOUT_TOOLTIP');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TIMEOUT');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TIMEOUT_SHORT');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TIMEOUT_DEFAULT');
+			jsJText::script('WEEVER_JS_ABOUTAPP_TIMEOUT_LONG');
+			jsJText::script('WEEVER_JS_MAP_SETTINGS');
+			jsJText::script('WEEVER_JS_MAP_START_LATITUDE_TOOLTIP');
+			jsJText::script('WEEVER_JS_MAP_START_LATITUDE');
+			jsJText::script('WEEVER_JS_MAP_START_LONGITUDE_TOOLTIP');
+			jsJText::script('WEEVER_JS_MAP_START_LONGITUDE');
+			jsJText::script('WEEVER_JS_MAP_START_ZOOM_TOOLTIP');
+			jsJText::script('WEEVER_JS_MAP_START_ZOOM');
+			jsJText::script('WEEVER_JS_MAP_DEFAULT_MARKER_TOOLTIP');
+			jsJText::script('WEEVER_JS_MAP_DEFAULT_MARKER');
 			
 			jsJText::load();
 		
@@ -96,6 +137,38 @@ class comWeeverHelper
 			JText::script('WEEVER_JS_CHANGING_NAV_ICONS');
 			JText::script('WEEVER_JS_CHANGING_NAV_ICONS_INSTRUCTIONS');
 			JText::script('WEEVER_JS_CHANGING_NAV_PASTE_CODE');
+			JText::script('WEEVER_CONFIG_ENABLED');
+			JText::script('WEEVER_CONFIG_DISABLED');
+			JText::script('WEEVER_JS_PANEL_TRANSITION_ANIMATIONS');
+			JText::script('WEEVER_JS_PANEL_TRANSITION_TOOLTIP');
+			JText::script('WEEVER_JS_PANEL_TRANSITION_TOGGLE');
+			JText::script('WEEVER_JS_PANEL_HEADERS_TOOLTIP');
+			JText::script('WEEVER_JS_PANEL_HEADERS');
+			JText::script('WEEVER_JS_ABOUTAPP_TRANSITION_ANIMATIONS');
+			JText::script('WEEVER_JS_ABOUTAPP_TRANSITION_TOOLTIP');
+			JText::script('WEEVER_JS_ABOUTAPP_TRANSITION_TOGGLE');
+			JText::script('WEEVER_JS_ABOUTAPP_HEADERS_TOOLTIP');
+			JText::script('WEEVER_JS_ABOUTAPP_HEADERS');
+			JText::script('WEEVER_JS_PANEL_TRANSITION_DURATION_TOOLTIP');
+			JText::script('WEEVER_JS_PANEL_TRANSITION_DURATION');
+			JText::script('WEEVER_JS_PANEL_TRANSITION_DURATION_SHORT');
+			JText::script('WEEVER_JS_PANEL_TRANSITION_DURATION_DEFAULT');
+			JText::script('WEEVER_JS_PANEL_TRANSITION_DURATION_LONG');
+			JText::script('WEEVER_JS_PANEL_TIMEOUT_TOOLTIP');
+			JText::script('WEEVER_JS_PANEL_TIMEOUT');
+			JText::script('WEEVER_JS_PANEL_TIMEOUT_SHORT');
+			JText::script('WEEVER_JS_PANEL_TIMEOUT_DEFAULT');
+			JText::script('WEEVER_JS_PANEL_TIMEOUT_LONG');
+			JText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION_TOOLTIP');
+			JText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION');
+			JText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION_SHORT');
+			JText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION_DEFAULT');
+			JText::script('WEEVER_JS_ABOUTAPP_TRANSITION_DURATION_LONG');
+			JText::script('WEEVER_JS_ABOUTAPP_TIMEOUT_TOOLTIP');
+			JText::script('WEEVER_JS_ABOUTAPP_TIMEOUT');
+			JText::script('WEEVER_JS_ABOUTAPP_TIMEOUT_SHORT');
+			JText::script('WEEVER_JS_ABOUTAPP_TIMEOUT_DEFAULT');
+			JText::script('WEEVER_JS_ABOUTAPP_TIMEOUT_LONG');
 		
 		}
 
@@ -168,6 +241,57 @@ class comWeeverHelper
 
 		return $msg;					
 		
+	}
+	
+	
+	public static function updateTabSettings()
+	{
+	
+		$type = JRequest::getVar("type");
+		
+		switch($type)
+		{
+		
+			case "map":
+			
+				$var = new map_settings;
+				$var->start = new map_start;
+				
+				$submittedVars = explode(",",JRequest::getVar("var"));
+				
+				$var->start->latitude = $submittedVars[0];
+				$var->start->longitude = $submittedVars[1];
+				$var->start->zoom = $submittedVars[2];
+				$var->marker = $submittedVars[3];
+				
+				$var_json = json_encode($var);
+			
+				break;
+				
+			case "panel": 
+			case "aboutapp":
+			
+				$var = new panel_settings;
+				$var->animation = new animation;
+				
+				$submittedVars = explode(",",JRequest::getVar("var"));
+				
+				
+				$var->animation->type = $submittedVars[0];
+				$var->animation->duration = $submittedVars[1];
+				$var->animation->timeout = $submittedVars[2];
+				$var->content_header = $submittedVars[3];
+			
+				$var_json = json_encode($var);
+			
+				break;
+		
+		}
+		
+		$response = comWeeverHelper::pushTabSettingsToCloud($var_json);
+	
+		return $response;
+	
 	}
 	
 	public static function saveThemeJson($json)
@@ -351,24 +475,10 @@ class comWeeverHelper
 	            {
 	            	return JError::raiseWarning(500,JText::_('WEEVER_ERROR_ICON_DIMENSIONS'));
 	            }
-	            
-	            if($var == 'icon_live')
-	            {
-	            	  comWeeverHelper::makeLowResPng($file['tmp_name'], 72, 72, 'icon');
-	            }
 	
 				if($var == 'phone_load_live' && (($width != 640 || $height != 920) && ($width != 920 || $height != 640)))
 				{
 					return JError::raiseWarning(500,JText::_('WEEVER_ERROR_PHONE_DIMENSIONS'));
-				}
-				
-				if($var == 'phone_load_live')
-				{
-					if($width == 640)
-						comWeeverHelper::makeLowResPng($file['tmp_name'], 320, 460, 'phone_load');
-					else
-						comWeeverHelper::makeLowResPng($file['tmp_name'], 460, 320, 'phone_load');
-						
 				}
 				
 				if($var == 'tablet_load_live' && ($width != 1536 || $height != 2008))
@@ -376,19 +486,9 @@ class comWeeverHelper
 					return JError::raiseWarning(500, JText::_('WEEVER_ERROR_TABLET_DIMENSIONS'));
 				}
 				
-				if($var == 'tablet_load_live')
-				{					  
-					  comWeeverHelper::makeLowResPng($file['tmp_name'], 768, 1004, 'tablet_load');		  	
-				}
-				
 				if($var == 'tablet_lansdscape_load_live' && ($width != 1496|| $height != 2048))
 				{
 					return JError::raiseWarning(500, JText::_('WEEVER_ERROR_LANDSCAPE_TABLET_DIMENSIONS'));
-				}
-				
-				if($var == 'tablet_landscape_load_live')
-				{
-					  comWeeverHelper::makeLowResPng($file['tmp_name'], 748, 1024, 'tablet_landscape_load');	             					  	
 				}
 
 				if($var == 'titlebar_logo_live' && ($width != 600 || $height != 64))
@@ -416,37 +516,6 @@ class comWeeverHelper
         return $msg;
 	}
 
-
-	function makeLowResPng($originalImage,$toWidth,$toHeight,$newFilename)
-	{
-	
-		
-	    list($width, $height) = getimagesize($originalImage);
-	    $xscale=$width/$toWidth;
-	    $yscale=$height/$toHeight;
-	
-	    if ($yscale>$xscale){
-	        $new_width = round($width * (1/$yscale));
-	        $new_height = round($height * (1/$yscale));
-	    }
-	    else {
-	        $new_width = round($width * (1/$xscale));
-	        $new_height = round($height * (1/$xscale));
-	    }
-	   
-	    $imageTmp     = imagecreatefrompng($originalImage);
-
-	    imagejpeg($imageTmp, JPATH_SITE . DS .  'media' . DS . 'com_weever' . DS. $newFilename.'_live.jpg', 95);
-
-	    $imageResized = imagecreatetruecolor($new_width, $new_height);
-	    imagecopyresampled($imageResized, $imageTmp, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-	
-		imagepng($imageResized, JPATH_SITE . DS .  'media' . DS . 'com_weever' . DS. $newFilename.'_low.png');
-		imagejpeg($imageResized, JPATH_SITE . DS .  'media' . DS . 'com_weever' . DS. $newFilename.'_low.jpg');
-		
-	    return $imageResized;
-	  
-	} 
 
 	public static function tabSync($stage=null)
 	{
@@ -737,6 +806,29 @@ class comWeeverHelper
 		return  comWeeverHelper::sendToWeeverServer($postdata);
 
 	}
+	
+
+	public static function pushTabSettingsToCloud($var)
+	{
+	
+		$postdata = http_build_query(
+			array( 	
+				'var' => $var,
+				'site_key' => JRequest::getVar('site_key'),
+				'id' => JRequest::getVar('id'),
+				'type' => JRequest::getVar('type'),
+				'app' => 'ajax',
+				'm' => "update_tab_settings",
+				'version' => comWeeverConst::VERSION,
+				'generator' => comWeeverConst::NAME
+				)
+			);
+		
+		return comWeeverHelper::sendToWeeverServer($postdata);
+
+	}
+	
+	
 	
 	public static function pushTabNameToCloud()
 	{
@@ -1103,4 +1195,37 @@ class contact_json
 	public  $emailform;
 	public 	$googlemaps;
 
+}
+
+class map_settings
+{
+
+	public $start;
+	public $marker;
+
+}
+
+class map_start
+{
+
+	public $latitude;
+	public $longitude;
+	public $zoom;
+
+}
+
+class panel_settings
+{
+
+	public $animation;
+	public $content_header;
+
+}
+
+class animation
+{
+
+	public $type;
+	public $duration;
+	
 }

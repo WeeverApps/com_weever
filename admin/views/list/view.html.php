@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ class WeeverViewList extends JView
 
 		$appData = $this->get('appdata');
 		$tabRows = array();
-		
+
 		foreach((array)$appData->tabs as $k=>$v)
 		{
 			
@@ -163,25 +163,6 @@ class WeeverViewList extends JView
 		parent::display($tpl);
 	
 	}
-	
-	// weird results, so not using yet..
-	/*
-	public function formatOffset($offset) 
-	{
-
-        $hours = $offset / 3600;
-        $remainder = $offset % 3600;
-        $sign = $hours > 0 ? '+' : '-';
-        $hour = (int) abs($hours);
-        $minutes = (int) abs($remainder / 60);
-
-        if ($hour == 0 AND $minutes == 0) {
-            $sign = ' ';
-        }
-        return 'GMT' . $sign . str_pad($hour, 2, '0', STR_PAD_LEFT) 
-                .':'. str_pad($minutes,2, '0');
-	
-	}*/
 	
 
 }

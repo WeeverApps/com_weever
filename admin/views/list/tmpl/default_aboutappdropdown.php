@@ -86,7 +86,7 @@ defined('_JEXEC') or die;
 		<input type='submit' id='wx-aboutapp-submit' class='wx-submit' value='<?php echo JText::_('WEEVER_ADD_ABOUTAPP_SUBMIT'); ?>' name='add' disabled='disabled' />
 	</div>
 	
-	
+	<button id='wx-aboutapp-button'><?php echo JText::_('WEEVER_ABOUTAPP_ADVANCED_TRANSITIONS'); ?></button>
 	
 	
 

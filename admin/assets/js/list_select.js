@@ -341,8 +341,8 @@ jQuery(document).ready(function(){
 		{
 			jQuery('#id_id').attr('name', 'cms_feed');
 			jQuery('#wx-add-map-k2-item').show();
-			jQuery('#wx-add-blog-k2-category-item').hide();
-			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-map-k2-category-item').hide();
+			jQuery('#wx-add-map-k2-category-item-select').attr('name', 'unnamed');
 			jQuery('#wx-add-map-k2-tag').hide();
 			jQuery('#wx-add-map-k2-tag-input').attr('name', 'unnamed');
 
@@ -351,8 +351,8 @@ jQuery(document).ready(function(){
 		if(jQuery(this).val() == "k2-cat") 
 		{
 			jQuery('#wx-add-map-k2-item').hide();
-			jQuery('#wx-add-blog-k2-category-item').show();
-			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'cms_feed');
+			jQuery('#wx-add-map-k2-category-item').show();
+			jQuery('#wx-add-map-k2-category-item-select').attr('name', 'cms_feed');
 			jQuery('#wx-add-map-k2-tag').hide();
 			jQuery('#wx-add-map-k2-tag-input').attr('name', 'unnamed');
 		}
@@ -360,8 +360,8 @@ jQuery(document).ready(function(){
 		if(jQuery(this).val() == "k2-tags") 
 		{
 			jQuery('#wx-add-map-k2-item').hide();
-			jQuery('#wx-add-blog-k2-category-item').hide();
-			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-map-k2-category-item').hide();
+			jQuery('#wx-add-map-k2-category-item-select').attr('name', 'unnamed');
 			jQuery('#wx-add-map-k2-tag').show();
 			jQuery('#wx-add-map-k2-tag-input').attr('name', 'tag');
 		}

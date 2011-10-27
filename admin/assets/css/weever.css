@@ -410,7 +410,7 @@ img.wx-nav-icon-img {
 	padding-bottom: 5px;
 }
 
-#wx-panel-button {
+#wx-panel-button #wx-aboutapp-button {
 	margin-left: 3em;
 	float: right;
 }

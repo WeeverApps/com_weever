@@ -227,6 +227,38 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video" || $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map") : ?>
 		
 		<?php echo $this->loadTemplate($row->component.'dropdown'); ?>
+		
+		<?php if($row->component == "panel") : ?>
+		
+			<?php $options = json_decode($row->var); ?>
+		
+			<input type="hidden" id="wx-panel-headers" value="<?php echo $options->content_header; ?>" />
+			<input type="hidden" id="wx-panel-animate" value="<?php echo $options->animation->type; ?>" />
+			<input type="hidden" id="wx-panel-animate-duration" value="<?php echo $options->animation->duration; ?>" />
+			<input type="hidden" id="wx-panel-timeout" value="<?php echo $options->animation->timeout; ?>" />
+			<input type="hidden" id="wx-panel-tab-id" value="<?php echo $row->id; ?>" />
+		
+		<?php elseif($row->component == "aboutapp") : ?>
+		
+			<?php $options = json_decode($row->var); ?>
+		
+			<input type="hidden" id="wx-aboutapp-headers" value="<?php echo $options->content_header; ?>" />
+			<input type="hidden" id="wx-aboutapp-animate" value="<?php echo $options->animation->type; ?>" />
+			<input type="hidden" id="wx-aboutapp-animate-duration" value="<?php echo $options->animation->duration; ?>" />
+			<input type="hidden" id="wx-aboutapp-timeout" value="<?php echo $options->animation->timeout; ?>" />
+			<input type="hidden" id="wx-aboutapp-tab-id" value="<?php echo $row->id; ?>" />
+			
+		<?php elseif($row->component == "map") : ?>
+		
+			<?php $options = json_decode($row->var); ?>
+		
+			<input type="hidden" id="wx-map-start-latitude" value="<?php echo $options->start->latitude; ?>" />
+			<input type="hidden" id="wx-map-start-longitude" value="<?php echo $options->start->longitude; ?>" />
+			<input type="hidden" id="wx-map-start-zoom" value="<?php echo $options->start->zoom; ?>" />
+			<input type="hidden" id="wx-map-marker" value="<?php echo $options->marker; ?>" />
+			<input type="hidden" id="wx-map-tab-id" value="<?php echo $row->id; ?>" />
+		
+		<?php endif; ?>
 	
 	<?php else : ?>
 		

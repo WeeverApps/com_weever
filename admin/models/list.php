@@ -149,7 +149,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-contact-joomla'>
-		<select name='component_id' id='wx-add-contact-joomla-select' class='wx-component-id-select' onchange='populateComponentID(this.form)'><option value='0'>".JText::_('WEEVER_CHOOSE_CONTACT_PARENTHESES')."</option>";
+		<select name='component_id' id='wx-add-contact-joomla-select' class='wx-component-id-select'><option value='0'>".JText::_('WEEVER_CHOOSE_CONTACT_PARENTHESES')."</option>";
 		$hidden_array = "";
 		$hidden = "";
 	
@@ -208,7 +208,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-page-category-k2'>
-		<select name='unnamed' id='wx-add-page-category-k2-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option value='0'>".JText::_('WEEVER_CHOOSE_PAGE_K2CATEGORY_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-page-category-k2-select' class='wx-cms-feed-select'><option value='0'>".JText::_('WEEVER_CHOOSE_PAGE_K2CATEGORY_PARENTHESES')."</option>";
 	
 		foreach((object)$this->pages as $k=>$v)
 		{
@@ -262,7 +262,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-page-category-joomla'>
-		<select name='unnamed' id='wx-add-page-category-joomla-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option value='0'>".JText::_('WEEVER_CHOOSE_PAGE_JCATEGORY_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-page-category-joomla-select' class='wx-cms-feed-select'><option value='0'>".JText::_('WEEVER_CHOOSE_PAGE_JCATEGORY_PARENTHESES')."</option>";
 	
 		foreach((object)$this->pages as $k=>$v)
 		{
@@ -295,7 +295,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-blog-menu-item'>
-		<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option>".JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES')."</option>";
 	
 		foreach((object)$this->blogs as $k=>$v)
 		{
@@ -351,7 +351,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-blog-jcategory-item'>
-		<select name='unnamed' id='wx-add-blog-jcategory-item-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option>".JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-blog-jcategory-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES')."</option>";
 	
 		foreach((object)$this->blogs as $k=>$v)
 		{
@@ -419,7 +419,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-blog-k2-category-item'>
-		<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
 	
 		foreach((object)$this->blogs as $k=>$v)
 		{
@@ -439,7 +439,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-map-k2-category-item'>
-		<select name='unnamed' id='wx-add-map-k2-category-item-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-map-k2-category-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
 	
 		foreach((object)$this->blogs as $k=>$v)
 		{
@@ -494,7 +494,7 @@ class WeeverModelList extends JModel
 	
 
 		$this->dropdown .= " <div id='wx-add-page-menu-item'>
-		<select id='wx-add-page-menu-item-select' class='wx-cms-feed-select' name='noname' onchange='populateCMS(this.form)'><option value='0'>".JText::_('WEEVER_CHOOSE_CONTENT_ITEM_PARENTHESES')."</option>";
+		<select id='wx-add-page-menu-item-select' class='wx-cms-feed-select' name='noname'><option value='0'>".JText::_('WEEVER_CHOOSE_CONTENT_ITEM_PARENTHESES')."</option>";
 	
 		foreach((object)$this->pages as $k=>$v)
 		{

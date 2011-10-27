@@ -66,7 +66,7 @@ class WeeverViewTheme extends JView
 		$this->assignRef('theme',$theme);
 		
 		$json = comWeeverHelper::getJsonTabSync();
-		
+
 		$this->assignRef('launchscreen',$json->config->launchscreen);
 
 		$editor  =& JFactory::getEditor();
