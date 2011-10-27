@@ -376,7 +376,9 @@ jQuery(document).ready(function(){
 					'<tr><td class="key hasTip" title="'+Joomla.JText._('WEEVER_JS_MAP_DEFAULT_MARKER_TOOLTIP')+
 					'">'+Joomla.JText._('WEEVER_JS_MAP_DEFAULT_MARKER')+'</td>'+
 					'<td><img src="'+marker+'" /><br /><input type="text" name="wx-input-map-marker" value="'+marker+'" />'+
-					'</td></tr></table>';
+					'</td></tr></table><div>NOTE: If markers must be PNG image sprites that are 128 pixels by 74 pixels. '+
+					'The image on the left is the normal state, the one on the right is the selected state; each is 64x74 pixels '+
+					'placed beside each other in the same transparent PNG image file.</div>';
 					
 		var clickedElem = jQuery(this);
 					

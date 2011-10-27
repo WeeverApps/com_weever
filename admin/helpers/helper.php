@@ -225,10 +225,18 @@ class comWeeverHelper
 			}
 		
 		}
+		
+		$launch = new launch_screen;
+		$launch->animation = JRequest::getVar("animation");
+		$launch->duration = JRequest::getVar("duration");
+		$launch->timeout = JRequest::getVar("timeout");
+		$launch->install_prompt = JRequest::getVar("install_prompt");
+		
+		$jsonLaunch = json_encode($launch);
 
 		$jsonTheme = json_encode($themeObj);
 
-		$response = comWeeverHelper::pushThemeToCloud($jsonTheme);
+		$response = comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);
 
 		$db = &JFactory::getDBO();		
 		
@@ -237,9 +245,7 @@ class comWeeverHelper
 				"		WHERE	`option` = ".$db->Quote("theme_params")." ";
 		
 		$db->setQuery($query);
-		$result = $db->loadObject();
-
-		return $msg;					
+		$result = $db->loadObject();				
 		
 	}
 	
@@ -673,6 +679,56 @@ class comWeeverHelper
 	
 	}
 	
+	
+	public static function getJsonThemeSync()
+	{
+	
+		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		$row->load(7);
+		$staging = $row->setting;
+		
+		if($staging)
+		{
+			$weeverServer = comWeeverConst::LIVE_STAGE;
+			$stageUrl = comWeeverHelper::getSiteDomain();
+		}
+		else
+		{
+			$weeverServer = comWeeverConst::LIVE_SERVER;
+			$stageUrl = '';
+		}
+			
+		$url = $weeverServer;
+		$row->load(3);
+		$key = $row->setting;
+		
+		$postdata = http_build_query(
+			array( 	
+				'stage' => $stageUrl,
+				'app' => 'json',
+				'site_key' => $key,
+				'm' => "theme_sync",
+				'version' => comWeeverConst::VERSION,
+				'generator' => comWeeverConst::NAME,
+				'cms' => 'joomla'
+				)
+			);
+			
+		
+		$json = comWeeverHelper::sendToWeeverServer($postdata);
+
+		if($json == "Site key missing or invalid.")
+		{
+			 JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
+			 return false;
+		}
+		
+		$j_array = json_decode($json);
+		
+		return $j_array->results;	
+	
+	}
+
 
 	
 
@@ -868,12 +924,13 @@ class comWeeverHelper
 		return comWeeverHelper::sendToWeeverServer($postdata);
 	}
 	
-	public static function pushThemeToCloud($jsonTheme)
+	public static function pushThemeToCloud($jsonTheme, $jsonLaunch)
 	{
 	
 		$postdata = http_build_query(
 			array( 	
 				'theme' => $jsonTheme,
+				'launch' => $jsonLaunch,
 				'site_key' => JRequest::getVar('site_key'),
 				'app' => 'ajax',
 				'titlebar_title' => JRequest::getVar('titlebar_title'),
@@ -1228,4 +1285,14 @@ class animation
 	public $type;
 	public $duration;
 	
+}
+
+class launch_screen
+{
+
+	public $animation;
+	public $duration;
+	public $install_prompt;
+	public $timeout;
+
 }

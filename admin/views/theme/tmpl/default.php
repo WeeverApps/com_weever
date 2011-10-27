@@ -51,13 +51,6 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/theme.j
 $pane = &JPane::getInstance('tabs');
 
 
-if(!$this->site_key)
-{
-
-	JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
-
-}
-
 $onlineSpan = "";
 $offlineSpan = "";
 
@@ -116,7 +109,7 @@ else
 	<td class="key hasTip" title="<?php echo JText::_('WEEVER_TITLEBAR_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_TITLEBAR_SOURCE'); ?></td>
 	<td>
 	<select name="titlebarSource" class="wx-220-select">
-	<option value="text" <?php echo ($this->theme->titlebarSource == 'text' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LOGO_TEXT'); ?> ("<?php echo strip_tags($this->titlebar_title); ?>")</option>
+	<option value="text" <?php echo ($this->theme->titlebarSource == 'text' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LOGO_TEXT'); ?> ("<?php echo strip_tags($this->theme->titlebar_title); ?>")</option>
 	<option value="image" <?php echo ($this->theme->titlebarSource == 'image' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LOGO_IMAGE'); ?></option>
 	<option value="html" <?php echo ($this->theme->titlebarSource == 'html' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_CUSTOM_HTML'); ?></option>
 	</select>
@@ -125,12 +118,12 @@ else
 	
 	<tr>
 	<td class="key hasTip" title="<?php echo JText::_("WEEVER_TITLEBAR_TITLE_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_TITLEBAR_TITLE'); ?></td>
-	<td><input type="text" name="titlebar_title" maxlength="35" style="width:250px;" value="<?php echo htmlentities($this->titlebar_title, ENT_QUOTES, "UTF-8"); ?>" /></td>	
+	<td><input type="text" name="titlebar_title" maxlength="35" style="width:250px;" value="<?php echo htmlentities($this->theme->titlebar_title, ENT_QUOTES, "UTF-8"); ?>" /></td>	
 	</tr>
 	
 	
 	<tr><td class="key hasTip" title="<?php echo JText::_("WEEVER_WEB_APP_NAME_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_WEB_APP_NAME'); ?></td>
-	<td><input type="text" name="title" maxlength="10" style="width:90px;" value="<?php echo htmlentities($this->title, ENT_QUOTES, "UTF-8"); ?>" /></td>
+	<td><input type="text" name="title" maxlength="10" style="width:90px;" value="<?php echo htmlentities($this->theme->title, ENT_QUOTES, "UTF-8"); ?>" /></td>
 	</tr>
 	
 	
@@ -234,13 +227,13 @@ else
 		<td class="key hasTip" title="<?php echo JText::_('WEEVER_LAUNCH_ANIMATION_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_LAUNCH_ANIMATION'); ?></td>
 		<td>
 		<select name="animation" class="wx-220-select">
-		<option value="fade" <?php echo ($this->launchscreen->animation == 'fade' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_FADE'); ?></option>
-		<option value="pop" <?php echo ($this->launchscreen->animation == 'pop' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_POP'); ?></option>
-		<option value="slide-left" <?php echo ($this->launchscreen->animation == 'slide-left' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_SLIDE_RIGHT'); ?></option>
-		<option value="slide-right" <?php echo ($this->launchscreen->animation == 'slide-right' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_SLIDE_LEFT'); ?></option>
-		<option value="slide-up" <?php echo ($this->launchscreen->animation == 'slide-up' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_SLIDE_DOWN'); ?></option>
-		<option value="slide-down" <?php echo ($this->launchscreen->animation == 'slide-down' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_SLIDE_UP'); ?></option>
-		<option value="none" <?php echo ($this->launchscreen->animation == 'none' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_NONE'); ?></option>
+		<option value="fade" <?php echo ($this->theme->animation->type == 'fade' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_FADE'); ?></option>
+		<option value="pop" <?php echo ($this->theme->animation->type == 'pop' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_POP'); ?></option>
+		<option value="slide-left" <?php echo ($this->theme->animation->type == 'slide-left' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_SLIDE_RIGHT'); ?></option>
+		<option value="slide-right" <?php echo ($this->theme->animation->type == 'slide-right' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_SLIDE_LEFT'); ?></option>
+		<option value="slide-up" <?php echo ($this->theme->animation->type == 'slide-up' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_SLIDE_DOWN'); ?></option>
+		<option value="slide-down" <?php echo ($this->theme->animation->type == 'slide-down' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_SLIDE_UP'); ?></option>
+		<option value="none" <?php echo ($this->theme->animation->type == 'none' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_NONE'); ?></option>
 		</select>
 		</td>
 		</tr>
@@ -250,9 +243,9 @@ else
 		<td>
 		<select name="timeout" class="wx-220-select">
 		<option value="1"><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_TIMEOUT_NONE'); ?></option>
-		<option value="325" <?php echo ($this->launchscreen->timeout == 325 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_TIMEOUT_SHORTER'); ?></option>
-		<option value="650" <?php echo ($this->launchscreen->timeout == 650 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_TIMEOUT_NORMAL'); ?></option>
-		<option value="995" <?php echo ($this->launchscreen->timeout == 995 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_TIMEOUT_LONGER'); ?></option>
+		<option value="325" <?php echo ($this->theme->animation->timeout == 325 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_TIMEOUT_SHORTER'); ?></option>
+		<option value="650" <?php echo ($this->theme->animation->timeout == 650 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_TIMEOUT_NORMAL'); ?></option>
+		<option value="995" <?php echo ($this->theme->animation->timeout == 995 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_TIMEOUT_LONGER'); ?></option>
 		</select>
 		</td>
 		</tr>
@@ -263,9 +256,9 @@ else
 		<td>
 		<select name="duration" class="wx-220-select">
 		<option value="350"><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_DURATION_VERY_SHORT'); ?></option>
-		<option value="850" <?php echo ($this->launchscreen->duration == 850 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_DURATION_SHORTER'); ?></option>
-		<option value="1350" <?php echo ($this->launchscreen->duration == 1350 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_DURATION_NORMAL'); ?></option>
-		<option value="1650" <?php echo ($this->launchscreen->duration == 1650 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_DURATION_LONGER'); ?></option>
+		<option value="850" <?php echo ($this->theme->animation->duration == 850 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_DURATION_SHORTER'); ?></option>
+		<option value="1350" <?php echo ($this->theme->animation->duration == 1350 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_DURATION_NORMAL'); ?></option>
+		<option value="1650" <?php echo ($this->theme->animation->duration == 1650 ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LAUNCH_ANIMATION_DURATION_LONGER'); ?></option>
 		</select>
 		</td>
 		</tr>		
@@ -274,7 +267,7 @@ else
 		<td>
 		<select name="install_prompt">
 		<option value="0"><?php echo JText::_('NO'); ?></option>
-		<option value="1" <?php echo ($this->launchscreen->install_prompt ? "selected='selected'":""); ?>><?php echo JText::_('YES'); ?></option>
+		<option value="1" <?php echo ($this->theme->animation->install_prompt ? "selected='selected'":""); ?>><?php echo JText::_('YES'); ?></option>
 		</select>
 		</td>
 		</tr>
@@ -296,7 +289,7 @@ else
 	
 		<fieldset><legend><?php echo JText::_('WEEVER_CSS_TEMPLATE_OVERRIDES'); ?></legend>
 		
-		<div><input type="checkbox" class="wx-check" value="1" id="wx-template-overrides" name="useCssOverride" <?php echo ($this->theme->useCssOverride == '1' ? "checked='checked'":""); ?> /><label for="wx-template-overrides" class="wx-check-label"><?php echo JText::_('WEEVER_USE_CSS_TEMPLATE_OVERRIDES'); ?></label></div>
+		<div><input type="checkbox" class="wx-check" value="1" id="wx-template-overrides" name="useCssOverride" <?php echo ($this->theme->css->useCssOverride == '1' ? "checked='checked'":""); ?> /><label for="wx-template-overrides" class="wx-check-label"><?php echo JText::_('WEEVER_USE_CSS_TEMPLATE_OVERRIDES'); ?></label></div>
 		<p><?php echo JText::_('WEEVER_USE_CSS_TEMPLATE_OVERRIDES_DESCRIPTION'); ?></p>
 		<table class="admintable">
 			
@@ -304,25 +297,25 @@ else
 		
 		<tr><td class="key">&lt;a&gt; <?php echo JText::_('WEEVER_CSS_A_LINKS'); ?></td>
 		<td>
-		<textarea name="aLink"><?php echo $this->theme->aLink; ?></textarea>
+		<textarea name="aLink"><?php echo $this->theme->css->aLink; ?></textarea>
 		</td>
 		</tr>
 		
 		<tr><td class="key"><?php echo JText::_('WEEVER_CSS_TITLEBAR_SPAN'); ?> &lt;span&gt;</td>
 		<td>
-		<textarea name="spanLogo"><?php echo $this->theme->spanLogo; ?></textarea>
+		<textarea name="spanLogo"><?php echo $this->theme->css->spanLogo; ?></textarea>
 		</td>
 		</tr>
 		
 		<tr><td class="key"><?php echo JText::_('WEEVER_CSS_BUTTONS'); ?></td>
 		<td>
-		<textarea name="contentButton"><?php echo $this->theme->contentButton; ?></textarea>
+		<textarea name="contentButton"><?php echo $this->theme->css->contentButton; ?></textarea>
 		</td>
 		</tr>
 		
 		<tr><td class="key"><?php echo JText::_('WEEVER_CSS_BORDERS'); ?></td>
 		<td>
-		<textarea name="border"><?php echo $this->theme->border; ?></textarea>
+		<textarea name="border"><?php echo $this->theme->css->border; ?></textarea>
 		</td>
 		</tr>		
 	

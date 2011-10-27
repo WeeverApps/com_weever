@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -32,6 +32,8 @@ defined('_JEXEC') or die;
 			<!--option value='page-cat'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_ARTICLES_AS_LIST'); ?></option>
 			<option value='page-cat-k2'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_K2_ITEMS_AS_LIST'); ?></option-->
 		</select>
+		<label for="wx-select-aboutpp" class="key hasTip" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"
+		 title="<?php echo JText::_('WEEVER_ADD_ABOUTAPP_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_ADD_ABOUTAPP_HELP_LABEL'); ?></label>
 	</div>
 		
 	<div class='wx-dummy wx-aboutapp-dummy'>

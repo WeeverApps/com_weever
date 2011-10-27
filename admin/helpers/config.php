@@ -30,7 +30,7 @@ final class comWeeverConst
 {
 
 	const VERSION		= "1.1";
-	const RELEASE_TYPE	= "dev";
+	const RELEASE_TYPE	= "QA";
 	const RELEASE_NAME	= "<a href='http://public.greysauble.on.ca/ca_lands/brucecaves.html' target='_blank'>Bruce's Caves</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";
@@ -38,11 +38,11 @@ final class comWeeverConst
 	const COPYRIGHT_URL = "http://www.weeverapps.com/";
 	const LICENSE		= "GPL v3.0";
 	const LICENSE_URL	= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE	= "unreleased";
+	const RELEASE_DATE	= "October 27, 2011";
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
+	const LIVE_STAGE	= "http://stage.weeverapp.com/";
 
 }
 

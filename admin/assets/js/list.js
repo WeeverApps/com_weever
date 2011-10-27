@@ -590,12 +590,14 @@ jQuery(document).ready(function(){
         
         if(jQuery('input#wx-blog-title' == '')) {
         	var thisText = jQuery("select[name=cms_feed] option:selected").text();
-        	jQuery('input#wx-blog-title').val(thisText)
+        	jQuery('input#wx-blog-title').val(thisText);
+        	jQuery('#wx-blog-submit').removeAttr('disabled');
         }
         
         if(jQuery('input#wx-page-title' == '')) {
         	var thisText = jQuery("select[name=cms_feed] option:selected").text();
-        	jQuery('input#wx-page-title').val(thisText)
+        	jQuery('input#wx-page-title').val(thisText);
+        	jQuery('#wx-page-submit').removeAttr('disabled');
         }
         
         jQuery('select.wx-cms-feed-select option[value="0"]').attr('disabled','disabled');
@@ -606,6 +608,7 @@ jQuery(document).ready(function(){
 		
 		var thisText = jQuery("select#wx-add-contact-joomla-select option:selected").text();
 		jQuery('input#wx-contact-title').val(thisText);
+		jQuery('#wx-contact-submit').removeAttr('disabled');
 		
 	});
 	

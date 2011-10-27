@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="1.6.0" method="upgrade">
  <name>COM_WEEVER</name>
- <creationDate>2011-10-22</creationDate>
+ <creationDate>2011-10-27</creationDate>
  <author>Robert Gerald Porter</author>
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>
@@ -53,9 +53,6 @@
 	<filename>tablet_landscape_load_.png</filename>
 	<filename>icon_.png</filename>
 	<filename>titlebar_logo_.png</filename>
-	<filename>phone_load_low_.png</filename>
-	<filename>tablet_load_low_.png</filename>
-	<filename>tablet_landscape_load_low_.png</filename>
  </media>
  
  
