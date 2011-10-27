@@ -34,18 +34,31 @@ $document = &JFactory::getDocument();
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
 $document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
 
+$version = new JVersion;
+$joomla = $version->getShortVersion();
+
+if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
+{
+	$js_close = "document.getElementById(\'sbox-window\').close();";
+}
+else 
+{
+	$js_close = "window.parent.SqueezeBox.close();";
+}
+
 $document->addCustomTag ('<script type="text/javascript">
 
 				function jSelectItem(id, title, object) {
                         document.getElementById(object + \'_id\').value = id;
                         document.getElementById(object + \'_name\').value = title;
-                        document.getElementById(\'sbox-window\').close();
+                       '.$js_close.'
                 }
                 
                 function jSelectArticle(id, title, object) {
                 		document.getElementById(object + \'_id\').value = id;
                 		document.getElementById(object + \'_name\').value = title;
-                		document.getElementById(\'sbox-window\').close();
+                		'.$js_close.'
+                		
                 }
                 
                 </script>');
