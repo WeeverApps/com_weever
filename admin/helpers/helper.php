@@ -244,9 +244,6 @@ class comWeeverHelper
 		$jsonLaunch = json_encode($launch);
 
 		$jsonTheme = json_encode($themeObj);
-		
-		print_r($themeObj);
-		die();
 
 		$response = comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);
 
