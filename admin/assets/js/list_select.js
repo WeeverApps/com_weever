@@ -3,7 +3,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@ jQuery(document).ready(function(){
 			jQuery('label#wx-twitter-user').show();
 			jQuery('input#wx-social-value').val('@');
 			jQuery('input#wx-social-title').val('Twitter');
+			jQuery('input#wx-social-value').attr('placeholder', '');
 		}
 		
 		if(jQuery(this).val() == "twitterhashtag") 
@@ -46,6 +47,7 @@ jQuery(document).ready(function(){
 			jQuery('label#wx-twitter-hashtag').show();
 			jQuery('input#wx-social-value').val('#');
 			jQuery('input#wx-social-title').val('Twitter');
+			jQuery('input#wx-social-value').attr('placeholder', '');
 		}
 		
 		if(jQuery(this).val() == "twitterquery") 
@@ -54,6 +56,7 @@ jQuery(document).ready(function(){
 			jQuery('label#wx-twitter-query').show();
 			jQuery('input#wx-social-value').val('');
 			jQuery('input#wx-social-title').val('Twitter');
+			jQuery('input#wx-social-value').attr('placeholder', '');
 		}
 		
 		if(jQuery(this).val() == "identi.ca") 
@@ -61,6 +64,7 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-social-identica-query-help').show();
 			jQuery('label#wx-identica-query').show();
 			jQuery('input#wx-social-value').val('');
+			jQuery('input#wx-social-value').attr('placeholder', '');
 			jQuery('input#wx-social-title').val('Identi.ca');
 		}
 		
