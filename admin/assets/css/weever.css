@@ -221,7 +221,7 @@ div#wx-nav-icon-preview-wrapper img {
 
 .wx-add-item-value-help { width:220px; }
 
-.wx-reveal, .wx-reveal select, .wx-reveal input { width:220px; }
+.wx-reveal, .wx-reveal select, .wx-reveal input { width:245px; }
 
 input#id_name {
 	width: 165px;

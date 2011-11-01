@@ -30,7 +30,7 @@ final class comWeeverConst
 {
 
 	const VERSION		= "1.1";
-	const RELEASE_TYPE	= "QA";
+	const RELEASE_TYPE	= "QA-2";
 	const RELEASE_NAME	= "<a href='http://public.greysauble.on.ca/ca_lands/brucecaves.html' target='_blank'>Bruce's Caves</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";

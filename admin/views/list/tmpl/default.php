@@ -39,7 +39,7 @@ $joomla = $version->getShortVersion();
 
 if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
 {
-	$js_close = "document.getElementById(\'sbox-window\').close();";
+	$js_close = "document.getElementById('sbox-window').close();";
 }
 else 
 {

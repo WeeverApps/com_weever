@@ -48,7 +48,7 @@ defined('_JEXEC') or die;
 	
 		<div id='wx-add-aboutapp-k2-item'>
 		
-			<div class="button2-left" style='float:right;'>
+			<div class="button2-left">
 				<div class="blank">
 					<a class="modal" title="Select an item"  href="index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
 				</div>
@@ -60,7 +60,7 @@ defined('_JEXEC') or die;
 		
 		<div id='wx-add-aboutapp-content-joomla'>
 		
-			<div class="button2-left" style='float:right;'>
+			<div class="button2-left">
 				<div class="blank">
 					<a class="modal" title="Select a Joomla article"  href="index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
 				</div>
@@ -68,7 +68,7 @@ defined('_JEXEC') or die;
 
 		</div>
 		
-		<input type="text" id="id_name-aboutapp" placeholder="Select content..." class='wx-input wx-aboutapp-input' disabled="disabled" />
+		<input type="text" id="id_name-aboutapp" placeholder="Select content..." class='wx-input wx-aboutapp-input wx-aboutapp-content-name' disabled="disabled" />
 		
 		<input type="hidden" id="id_id-aboutapp" class="wx-aboutapp-input" name="urlparams[id]" value="0" />
 		<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="Select Item::Select an item to link to directly.">Select Content</label>

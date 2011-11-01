@@ -1,4 +1,5 @@
 <?php
+
 /*	
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
@@ -21,27 +22,35 @@
 
 
 defined('_JEXEC') or die;
-jimport('joomla.application.component.helper');
 
-class comWeeverThemeStylesObj
+jimport('joomla.application.component.model');
+
+class WeeverModelAccount extends JModel
 {
-	
-	public 		$aLink;
-	public 		$spanLogo;
-	public 		$contentButton;
-	public 		$border;	
-	public 		$fontType;
-	public 		$blogIcon;
-	public 		$pagesIcon;
-	public 		$contactIcon;
-	public 		$socialIcon;
-	public 		$videoIcon;
-	public 		$photoIcon;
-	public 		$mapIcon;
-	public 		$titlebarHtml;
-	public 		$titlebarSource		= "text";
-	public 		$template			= "sencha";
-	public 		$useCssOverride;
-	public 		$useCustomIcons;
 
+	public 	$json = null;
+
+	public function __construct()
+	{
+       
+       parent::__construct();
+       
+       $this->json = comWeeverHelper::getJsonAccountSync();
+       
+       $query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
+       $db = &JFactory::getDBO();
+       
+       $db->setQuery($query);
+       $key = $db->loadObject();
+       $this->setState('site_key', $key->setting);
+       
+	}
+	
+	public function getAppData()
+	{
+		
+		return $this->json;
+	
+	}
+	
 }

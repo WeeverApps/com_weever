@@ -244,6 +244,9 @@ class comWeeverHelper
 		$jsonLaunch = json_encode($launch);
 
 		$jsonTheme = json_encode($themeObj);
+		
+		print_r($themeObj);
+		die();
 
 		$response = comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);
 
@@ -738,6 +741,57 @@ class comWeeverHelper
 	
 	}
 
+
+
+	public static function getJsonAccountSync()
+	{
+	
+		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		$row->load(7);
+		$staging = $row->setting;
+		
+		if($staging)
+		{
+			$weeverServer = comWeeverConst::LIVE_STAGE;
+			$stageUrl = comWeeverHelper::getSiteDomain();
+		}
+		else
+		{
+			$weeverServer = comWeeverConst::LIVE_SERVER;
+			$stageUrl = '';
+		}
+			
+		$url = $weeverServer;
+		$row->load(3);
+		$key = $row->setting;
+		
+		$postdata = http_build_query(
+			array( 	
+				'stage' => $stageUrl,
+				'app' => 'json',
+				'site_key' => $key,
+				'm' => "account_sync",
+				'version' => comWeeverConst::VERSION,
+				'generator' => comWeeverConst::NAME,
+				'cms' => 'joomla'
+				)
+			);
+			
+		
+		$json = comWeeverHelper::sendToWeeverServer($postdata);
+
+		if($json == "Site key missing or invalid.")
+		{
+			 JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
+			 return false;
+		}
+		
+		$j_array = json_decode($json);
+		
+		return $j_array->results;	
+	
+	}
+	
 
 	
 
