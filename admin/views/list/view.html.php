@@ -114,7 +114,7 @@ class WeeverViewList extends JView
 		$row->load(13);
 		$this->assign('about_app_name', $row->setting);
 
-		$theme = json_decode($this->get('themedata');
+		$theme = $this->get('themedata');
 		$this->assignRef('theme',$theme);
 		
 		comWeeverHelper::getJsStrings();			
