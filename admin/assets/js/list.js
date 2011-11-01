@@ -289,6 +289,7 @@ jQuery(document).ready(function(){
 		var txt = 	'<h3 class="wx-imp-h3">'+Joomla.JText._('WEEVER_JS_ENTER_NEW_APP_ICON_NAME')+'</h3>'+
 					'<input type="text" id="alertName" name="alertName" value="'+htmlName+'" />';
 		var clickedElem = jQuery(this);
+		
 					
 		myCallbackForm = function(v,m,f) {
 		
@@ -374,9 +375,10 @@ jQuery(document).ready(function(){
 			
 				tabName = f["alertName"];
 				
+				
 				jQuery.ajax({
 				   type: "POST",
-				   url: "http://weeverapp.com/index.php",
+				   url: "index.php",
 				   data: "option=com_weever&task=ajaxSaveTabName&name="+encodeURIComponent(tabName)+"&id="+tabId+'&site_key='+siteKey,
 				   success: function(msg){
 				     jQuery('#wx-modal-loading-text').html(msg);

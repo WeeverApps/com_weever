@@ -57,8 +57,6 @@ class WeeverController extends JController
 	public function ajaxSaveTabName()
 	{
 	
-
-		
 		$result = comWeeverHelper::pushTabNameToCloud();
 		
 		if($result == "Tab Changes Saved")
