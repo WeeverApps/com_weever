@@ -216,24 +216,18 @@ class comWeeverHelper
 		$row->setting = JRequest::getVar($row->option);		
 		$row->store();
 		
-		$row->load(100);
-		$themeObj = json_decode($row->setting);
+		$themeObj = new comWeeverThemeStylesObj;
 		
-		if(!$themeObj)
-			$themeObj = new comWeeverThemeStylesObj;
+		$themeObj->titlebarHtml = JRequest::getVar("titlebarHtml", "", "post","string",JREQUEST_ALLOWHTML);
+		$themeObj->aLink = JRequest::getVar("aLink");
+		$themeObj->spanLogo = JRequest::getVar("spanLogo");
+		$themeObj->contentButton = JRequest::getVar("contentButton");
+		$themeObj->border = JRequest::getVar("border");
+		$themeObj->fontType = JRequest::getVar("fontType");
+		$themeObj->titlebarSource = JRequest::getVar("titlebarSource");
+		$themeObj->template = JRequest::getVar("template");
+		$themeObj->useCssOverride = JRequest::getVar("useCssOverride");
 
-		foreach($themeObj as $k=>$v)
-		{
-		
-			if($k == "titlebarHtml")
-				$themeObj->$k = JRequest::getVar($k, "", "post","string",JREQUEST_ALLOWHTML);
-			else
-			{
-				if(!strstr($k, "Icon"))
-					$themeObj->$k = JRequest::getVar($k);
-			}
-		
-		}
 		
 		$launch = new launch_screen;
 		$launch->animation = JRequest::getVar("animation");
@@ -246,15 +240,15 @@ class comWeeverHelper
 		$jsonTheme = json_encode($themeObj);
 
 		$response = comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);
-
-		$db = &JFactory::getDBO();		
+		
+		/*$db = &JFactory::getDBO();		
 		
 		$query = "		UPDATE	#__weever_config".
 				"		SET		setting = ".$db->Quote($jsonTheme)." ".
 				"		WHERE	`option` = ".$db->Quote("theme_params")." ";
 		
 		$db->setQuery($query);
-		$result = $db->loadObject();				
+		$result = $db->loadObject();	*/			
 		
 	}
 	
