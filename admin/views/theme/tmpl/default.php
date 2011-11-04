@@ -295,29 +295,12 @@ else
 			
 
 		
-		<tr><td class="key">&lt;a&gt; <?php echo JText::_('WEEVER_CSS_A_LINKS'); ?></td>
+		<tr><td class="key"><?php echo JText::_('WEEVER_CSS_OVERRIDES'); ?></td>
 		<td>
-		<textarea name="aLink"><?php echo $this->theme->css->aLink; ?></textarea>
+		<textarea name="css"><?php echo $this->theme->css->css; ?></textarea>
 		</td>
 		</tr>
-		
-		<tr><td class="key"><?php echo JText::_('WEEVER_CSS_TITLEBAR_SPAN'); ?> &lt;span&gt;</td>
-		<td>
-		<textarea name="spanLogo"><?php echo $this->theme->css->spanLogo; ?></textarea>
-		</td>
-		</tr>
-		
-		<tr><td class="key"><?php echo JText::_('WEEVER_CSS_BUTTONS'); ?></td>
-		<td>
-		<textarea name="contentButton"><?php echo $this->theme->css->contentButton; ?></textarea>
-		</td>
-		</tr>
-		
-		<tr><td class="key"><?php echo JText::_('WEEVER_CSS_BORDERS'); ?></td>
-		<td>
-		<textarea name="border"><?php echo $this->theme->css->border; ?></textarea>
-		</td>
-		</tr>		
+	
 	
 		</table>
 		

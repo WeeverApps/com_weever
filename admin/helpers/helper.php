@@ -219,16 +219,11 @@ class comWeeverHelper
 		$themeObj = new comWeeverThemeStylesObj;
 		
 		$themeObj->titlebarHtml = JRequest::getVar("titlebarHtml", "", "post","string",JREQUEST_ALLOWHTML);
-		$themeObj->aLink = JRequest::getVar("aLink");
-		$themeObj->spanLogo = JRequest::getVar("spanLogo");
-		$themeObj->contentButton = JRequest::getVar("contentButton");
-		$themeObj->border = JRequest::getVar("border");
-		$themeObj->fontType = JRequest::getVar("fontType");
+		$themeObj->css = JRequest::getVar("css");
 		$themeObj->titlebarSource = JRequest::getVar("titlebarSource");
 		$themeObj->template = JRequest::getVar("template");
 		$themeObj->useCssOverride = JRequest::getVar("useCssOverride");
 
-		
 		$launch = new launch_screen;
 		$launch->animation = JRequest::getVar("animation");
 		$launch->duration = JRequest::getVar("duration");
@@ -817,20 +812,20 @@ class comWeeverHelper
 	public static function sendToWeeverServer($postdata)
 	{
 
-		if(ini_get('allow_url_fopen') != 1) 
-		{
 		
-			if  (in_array('curl', get_loaded_extensions()))
-			{
-				$context = $postdata;
-				$response = comWeeverHelper::sendToWeeverServerCurl($context);
-			}
+		if  (in_array('curl', get_loaded_extensions()))
+		{
+			$context = $postdata;
+			$response = comWeeverHelper::sendToWeeverServerCurl($context);
 		}
-		else
+		elseif(ini_get('allow_url_fopen') == 1)
 		{
 			$context = comWeeverHelper::buildPostDataContext($postdata);
 			$response = comWeeverHelper::sendToWeeverServerFOpen($context);
-
+		}
+		else 
+		{
+			$response = JText::_('WEEVER_ERROR_NO_CURL_OR_FOPEN');
 		}
 
 		return $response;
