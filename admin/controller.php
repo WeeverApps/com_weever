@@ -59,21 +59,6 @@ class WeeverController extends JController
 	
 		$result = comWeeverHelper::pushTabNameToCloud();
 		
-		if($result == "Tab Changes Saved")
-		{
-			
-			$row =& JTable::getInstance('weever','Table');
-			
-			$row->load(JRequest::getVar("id"));
-			$row->name = JRequest::getVar("name");
-			
-			if(!$row->store())
-			{
-				JError::raiseError(500, $row->getError());
-			}
-		
-		}
-		
 		echo $result;
 		jexit();
 	
@@ -82,9 +67,7 @@ class WeeverController extends JController
 	
 	public function ajaxSubtabDelete()
 	{
-	
-		$row =& JTable::getInstance('Weever', 'Table');
-			
+
 		$id = JRequest::getVar('id');
 		$result = comWeeverHelper::pushDeleteToCloud($id);
 		
@@ -92,10 +75,9 @@ class WeeverController extends JController
 		{
 			JError::raiseError(500, JText::_('WEEVER_SERVER_ERROR').$result);	
 		}
-		
-		$row->delete($id);
-		
+
 		echo $result;
+		
 		jexit();				
 		
 	
@@ -105,8 +87,7 @@ class WeeverController extends JController
 	public function ajaxTabPublish()
 	{
 	
-		$row =& JTable::getInstance('Weever', 'Table');
-		
+
 		$status = JRequest::getVar('status');
 		
 		if($status == 1)		
@@ -121,10 +102,6 @@ class WeeverController extends JController
 		{
 			JError::raiseError(500, JText::_('WEEVER_SERVER_ERROR').$result);	
 		}
-		
-		$row->load($id);
-		$row->published = $publish;
-		$row->store();
 		
 		echo $result;
 		jexit();		

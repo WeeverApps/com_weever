@@ -794,16 +794,24 @@ class comWeeverHelper
 			
 		$url = $weeverServer."index.php";
 		
-		$ch = curl_init();
+		$ch = curl_init($url);
 		
-		curl_setopt($ch,CURLOPT_URL,$url);
-		curl_setopt($ch,CURLOPT_POST,1);
+		curl_setopt($ch,CURLOPT_POST,true);
 		curl_setopt($ch,CURLOPT_POSTFIELDS,$context);
-		curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
-		$result = curl_exec($ch);
+		$response = curl_exec($ch);
+		$error = curl_error($ch);
 
 		curl_close($ch);
+        
+        if ($error != "")
+        {
+            $result = $error;
+            return $result;
+        }
+       
+        $result = $response;
 		
 		return $result;
 
@@ -813,7 +821,7 @@ class comWeeverHelper
 	{
 
 		
-		if  (in_array('curl', get_loaded_extensions()))
+		if(in_array('curl', get_loaded_extensions()))
 		{
 			$context = $postdata;
 			$response = comWeeverHelper::sendToWeeverServerCurl($context);
@@ -1085,7 +1093,8 @@ class comWeeverHelper
 				'site_key' => JRequest::getVar('site_key'),
 				'cloud_tab_id' => $cid,
 				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
+				'generator' => comWeeverConst::NAME,
+				'cms' => 'joomla'
 				)
 			);
 			
@@ -1104,26 +1113,8 @@ class comWeeverHelper
 				'm' => 'delete_tab',
 				'site_key' => JRequest::getVar('site_key'),
 				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
-		
-		return comWeeverHelper::sendToWeeverServer($postdata);
-	
-	}
-		
-	public static function pushLocalIdToCloud($id, $hash, $site_key)
-	{
-	
-		$postdata = http_build_query(
-			array(
-				'local_tab_id' => $id,
-				'hash' => $hash,
-				'app' => 'ajax',
-				'm' => 'tab_local_id',
-				'site_key' => $site_key,
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
+				'generator' => comWeeverConst::NAME,
+				'cms' => 'joomla'
 				)
 			);
 		

@@ -290,7 +290,6 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	<th class='title'><?php echo JHTML::_('grid.sort', JText::_('NAME'), 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 	<th width='8%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('PUBLISHED'), 'published', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 	<th width='8%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('ORDER'), 'ordering', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-	<th width='5%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('ID'), 'id', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 	<th width='8%' nowrap='nowrap'><?php echo JText::_('WEEVER_CAP_D_DELETE'); ?></th>
 	</tr>
 	</thead>
@@ -325,9 +324,6 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 			<a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-down" rel="<?php echo $row->type; ?>"><img src="components/com_weever/assets/icons/downarrow.png" width="16" height="16" border="0" alt="Move Down"></a>
 			<a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-up" rel="<?php echo $row->type; ?>"><img src="components/com_weever/assets/icons/uparrow.png" width="16" height="16" border="0" alt="Move Up"></a>
 			(<?php echo floor($row->ordering); ?>)
-		</td>
-		<td align='center'>
-			<?php echo $row->id; ?>
 		</td>
 		<td align='center'><a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-delete" rel="<?php echo $row->type; ?>" alt=" <?php echo JText::_('WEEVER_DELETE'); ?> &quot;<?php echo htmlentities($row->name); ?>&quot;"><img src="components/com_weever/assets/icons/wx-delete-mark.png" /></a></td>
 		
