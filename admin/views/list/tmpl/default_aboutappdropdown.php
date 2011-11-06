@@ -29,8 +29,8 @@ defined('_JEXEC') or die;
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_ABOUTAPP_PARENTHESES'); ?></option>
 			<option value='content'><?php echo JText::_('WEEVER_ADD_ARTICLE'); ?></option>
 			<option value='k2'><?php echo JText::_('WEEVER_ADD_K2_ITEM'); ?></option>
-			<!--option value='page-cat'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_ARTICLES_AS_LIST'); ?></option>
-			<option value='page-cat-k2'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_K2_ITEMS_AS_LIST'); ?></option-->
+			<option value='' disabled='disabled'>----------------</option>
+			<option value='settings'><?php echo JText::_('WEEVER_ABOUTAPP_ADVANCED_TRANSITIONS'); ?></option>
 		</select>
 		<label for="wx-select-aboutpp" class="key hasTip" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"
 		 title="<?php echo JText::_('WEEVER_ADD_ABOUTAPP_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_ADD_ABOUTAPP_HELP_LABEL'); ?></label>
@@ -86,11 +86,7 @@ defined('_JEXEC') or die;
 	
 	<div class='wx-add-submit'>
 		<input type='submit' id='wx-aboutapp-submit' class='wx-submit' value='<?php echo JText::_('WEEVER_ADD_ABOUTAPP_SUBMIT'); ?>' name='add' disabled='disabled' />
-	</div>
-	
-	<button id='wx-aboutapp-button'><?php echo JText::_('WEEVER_ABOUTAPP_ADVANCED_TRANSITIONS'); ?></button>
-	
-	
+	</div>	
 
 
 </div>

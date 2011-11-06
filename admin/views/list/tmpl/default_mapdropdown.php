@@ -29,6 +29,8 @@ defined('_JEXEC') or die;
 			<option value='k2-cat'><?php echo JText::_('WEEVER_ADD_MAP_FROM_K2_CATEGORY'); ?></option>
 			<option value='k2-tags'><?php echo JText::_('WEEVER_ADD_MAP_FROM_K2_TAGS'); ?></option>
 			<option value='k2'><?php echo JText::_('WEEVER_ADD_MAP_K2_ITEM'); ?></option>
+			<option value='' disabled='disabled'>----------------</option>
+			<option value='settings'><?php echo JText::_('WEEVER_MAP_SETTINGS'); ?></option>
 		</select>
 		<label for="wx-select-map" class="key hasTip" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"
 		 title="<?php echo JText::_('WEEVER_ADD_MAP_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_ADD_MAP_HELP_LABEL'); ?></label>
@@ -70,8 +72,6 @@ defined('_JEXEC') or die;
 	<div class='wx-add-submit'>
 		<input type='submit' id='wx-map-submit' class='wx-submit' value='<?php echo JText::_('WEEVER_ADD_MAP_SUBMIT'); ?>' name='add' disabled='disabled' />
 	</div>
-	
-	<button id='wx-map-button'><?php echo JText::_('WEEVER_MAP_SETTINGS'); ?></button>
 	
 	
 

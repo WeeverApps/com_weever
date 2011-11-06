@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.0.1
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,8 +29,8 @@ defined('_JEXEC') or die;
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_PANEL_PARENTHESES'); ?></option>
 			<option value='content'><?php echo JText::_('WEEVER_ADD_ARTICLE'); ?></option>
 			<option value='k2'><?php echo JText::_('WEEVER_ADD_K2_ITEM'); ?></option>
-			<!--option value='page-cat'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_ARTICLES_AS_LIST'); ?></option>
-			<option value='page-cat-k2'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_K2_ITEMS_AS_LIST'); ?></option-->
+			<option value='' disabled='disabled'>----------------</option>
+			<option value='settings'><?php echo JText::_('WEEVER_PANEL_ADVANCED_TRANSITIONS'); ?></option>
 		</select>
 	</div>
 		
@@ -82,8 +82,5 @@ defined('_JEXEC') or die;
 	<div class='wx-add-submit'>
 		<input type='submit' id='wx-panel-submit' class='wx-submit' value='<?php echo JText::_('WEEVER_ADD_PANEL_SUBMIT'); ?>' name='add' disabled='disabled' />
 	</div>
-	
-	<button id='wx-panel-button'><?php echo JText::_('WEEVER_PANEL_ADVANCED_TRANSITIONS'); ?></button>
-
 
 </div>
