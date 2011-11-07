@@ -61,6 +61,13 @@ $document->addCustomTag ('<script type="text/javascript">
                 		
                 }
                 
+                function jSelectArticleNew(id, title, catid, object) {
+                		document.getElementById(\'id_id\').value = id;
+                		document.getElementById(\'id_name\').value = title;
+                		'.$js_close.'
+                		
+                }
+                
                 </script>');
 
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );

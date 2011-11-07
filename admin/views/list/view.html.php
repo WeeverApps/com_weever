@@ -152,6 +152,20 @@ class WeeverViewList extends JView
 	    
 	    $this->assignRef('timezone_ids', $options);
 	    $this->assignRef('timezone_times', $times);
+	    
+	    $version = new JVersion;
+	    $joomla = $version->getShortVersion();
+	    
+	    if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
+	    {
+	    	$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id';
+	    	$this->assignRef('jArticleLink', $link);
+	    }
+	    else 
+	    {
+	    	$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;layout=modal&amp;function=jSelectArticleNew';
+	    	$this->assignRef('jArticleLink', $link);	    
+	    }
 	
 		JSubMenuHelper::addEntry(JText::_('WEEVER_TAB_ITEMS'), 'index.php?option=com_weever', true);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', false);

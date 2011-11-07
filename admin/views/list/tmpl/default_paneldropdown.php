@@ -59,7 +59,7 @@ defined('_JEXEC') or die;
 				
 					<div class="button2-left">
 						<div class="blank">
-							<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_JOOMLA_ARTICLE'); ?>"  href="index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_PANEL_SELECT'); ?></a>
+							<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_JOOMLA_ARTICLE'); ?>" href="<?php echo $this->jArticleLink; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_PANEL_SELECT'); ?></a>
 						</div>
 					</div>
 					
