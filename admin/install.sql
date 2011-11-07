@@ -1,10 +1,10 @@
+
 CREATE TABLE IF NOT EXISTS `#__weever_config` (
   `id` int(11) NOT NULL auto_increment,
   `option` varchar(55) NOT NULL,
   `setting` text NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
-
 
 INSERT IGNORE INTO `#__weever_config` VALUES(1, 'title', 'AppName');
 INSERT IGNORE INTO `#__weever_config` VALUES(2, 'titlebar_title', 'Your Weever Web App Title');
