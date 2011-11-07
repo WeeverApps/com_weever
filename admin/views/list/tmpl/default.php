@@ -65,7 +65,7 @@ $document->addCustomTag ('<script type="text/javascript">
                 		document.getElementById(\'id_id\').value = id;
                 		document.getElementById(\'id_name\').value = title;
                 		'.$js_close.'
-                		
+                                        
                 }
                 
                 </script>');
@@ -120,7 +120,7 @@ else
 
 
 <div id="listTabs">
-<ul id="listTabsSortable" style="padding-right: 25%">
+<ul id="listTabsSortable" style="padding-right: 15%">
 
 <?php 
 
