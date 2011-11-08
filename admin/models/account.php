@@ -1,10 +1,11 @@
 <?php
+
 /*	
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -19,33 +20,37 @@
 *
 */
 
+
 defined('_JEXEC') or die;
 
-class TableWeever extends JTable
+jimport('joomla.application.component.model');
+
+class WeeverModelAccount extends JModel
 {
 
-	public $id 						= 0;
-	public $name					= null;
-	public $component 				= null;
-	public $component_behaviour 	= null;
-	public $component_id			= 0;
-	public $icon					= null;
-	public $published				= 0;
-	public $parent_tab_id			= 0;
-	public $cloud_tab_id			= 0;
-	public $hash					= null;
-	public $ordering				= 0;
-	public $default					= 0;
-	public $type					= null;
-	public $cms_feed				= null;
-	public $var 					= null;
-	
-	public function __construct(&$db)
+	public 	$json = null;
+
+	public function __construct()
 	{
-	
-		parent::__construct('#__weever_tabs', 'id', $db);
-			
+       
+       parent::__construct();
+       
+       $this->json = comWeeverHelper::getJsonAccountSync();
+       
+       $query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
+       $db = &JFactory::getDBO();
+       
+       $db->setQuery($query);
+       $key = $db->loadObject();
+       $this->setState('site_key', $key->setting);
+       
 	}
-
-
+	
+	public function getAppData()
+	{
+		
+		return $this->json;
+	
+	}
+	
 }

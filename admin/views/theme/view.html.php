@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -36,37 +36,22 @@ class WeeverViewTheme extends JView
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		$row->load(6);
 		$this->assign('appEnabled', $row->setting);
-
-		for($i = 1; $i <= 6; $i++)
+		
+		/* Call the state object */
+		$state =& $this->get( 'state' );
+		
+		if(!$state->get('site_key'))
 		{
 		
-			$row->load($i);
-			
-			if($i == 1 && $row->setting == "")
-			{
-				$conf =& JFactory::getConfig();
-				$row->setting = substr($conf->getValue('config.sitename'), 0, 10);  
-			}
-			
-			
-			if($i == 2 && $row->setting == "")
-			{
-				$conf =& JFactory::getConfig();
-				$row->setting = $conf->getValue('config.sitename');  
-			}
-			
-			
-			$this->assign($row->option,$row->setting);
+			JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
 		
-		}
+		}		
 		
-
-		$row->load(100);
-		$theme = json_decode($row->setting);
-		$this->assignRef('theme',$theme);
-
-		$editor  =& JFactory::getEditor();
-		$this->assignRef('editor', $editor);
+		$this->assign('site_key', $state->get('site_key'));
+		
+		$appData = $this->get('appdata');
+		
+		$this->assignRef('theme',$appData);
 		
 		comWeeverHelper::getJsStrings();
 		
@@ -74,8 +59,7 @@ class WeeverViewTheme extends JView
 		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', true);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_CONFIGURATION'), 'index.php?option=com_weever&view=config&task=config', false);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_ACCOUNT'), 'index.php?option=com_weever&view=account&task=account', false);
-		
-				
+			
 		
 		parent::display($tpl);
 	
