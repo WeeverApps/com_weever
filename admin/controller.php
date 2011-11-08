@@ -297,8 +297,8 @@ class WeeverController extends JController
 		
 		if(JRequest::getVar('view') == "theme")
 		{
-			comWeeverHelper::saveTheme();			
-			$this->setRedirect('index.php?option=com_weever&view=theme&task=theme',JText::_('WEEVER_THEME_SAVED'));
+			$msg = comWeeverHelper::saveTheme();			
+			$this->setRedirect('index.php?option=com_weever&view=theme&task=theme',JText::_('WEEVER_THEME_SAVED').$msg);
 			return;
 		}
 		

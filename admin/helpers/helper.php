@@ -234,16 +234,7 @@ class comWeeverHelper
 
 		$jsonTheme = json_encode($themeObj);
 
-		$response = comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);
-		
-		/*$db = &JFactory::getDBO();		
-		
-		$query = "		UPDATE	#__weever_config".
-				"		SET		setting = ".$db->Quote($jsonTheme)." ".
-				"		WHERE	`option` = ".$db->Quote("theme_params")." ";
-		
-		$db->setQuery($query);
-		$result = $db->loadObject();	*/			
+		$response = comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);		
 		
 	}
 	
@@ -455,6 +446,8 @@ class comWeeverHelper
 	public static function fileUpload($var, $max, $filename, $msg = null)
 	{
 		
+		$msg = null;
+		
 		jimport('joomla.filesystem.file');
 
         $file = JRequest::getVar($var, null, 'files', 'array'); 
@@ -490,7 +483,7 @@ class comWeeverHelper
 					return JError::raiseWarning(500, JText::_('WEEVER_ERROR_TABLET_DIMENSIONS'));
 				}
 				
-				if($var == 'tablet_lansdscape_load_live' && ($width != 1496|| $height != 2048))
+				if($var == 'tablet_landscape_load_live' && ($width != 1496|| $height != 2048))
 				{
 					return JError::raiseWarning(500, JText::_('WEEVER_ERROR_LANDSCAPE_TABLET_DIMENSIONS'));
 				}
@@ -508,6 +501,8 @@ class comWeeverHelper
 	            {
 	                return JError::raiseWarning(500, JText::_('WEEVER_ERROR_IN_UPLOAD'));
 	            }
+	            
+	            
             } 
             else if ($file['type'])
             {
@@ -519,7 +514,7 @@ class comWeeverHelper
         
         return $msg;
 	}
-
+	
 
 	public static function tabSync($stage=null)
 	{
@@ -779,7 +774,6 @@ class comWeeverHelper
 	}
 	
 
-	
 
 	public static function sendToWeeverServerCurl($context)
 	{
