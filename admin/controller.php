@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -57,24 +57,7 @@ class WeeverController extends JController
 	public function ajaxSaveTabName()
 	{
 	
-
-		
 		$result = comWeeverHelper::pushTabNameToCloud();
-		
-		if($result == "Tab Changes Saved")
-		{
-			
-			$row =& JTable::getInstance('weever','Table');
-			
-			$row->load(JRequest::getVar("id"));
-			$row->name = JRequest::getVar("name");
-			
-			if(!$row->store())
-			{
-				JError::raiseError(500, $row->getError());
-			}
-		
-		}
 		
 		echo $result;
 		jexit();
@@ -84,9 +67,7 @@ class WeeverController extends JController
 	
 	public function ajaxSubtabDelete()
 	{
-	
-		$row =& JTable::getInstance('Weever', 'Table');
-			
+
 		$id = JRequest::getVar('id');
 		$result = comWeeverHelper::pushDeleteToCloud($id);
 		
@@ -94,10 +75,9 @@ class WeeverController extends JController
 		{
 			JError::raiseError(500, JText::_('WEEVER_SERVER_ERROR').$result);	
 		}
-		
-		$row->delete($id);
-		
+
 		echo $result;
+		
 		jexit();				
 		
 	
@@ -107,8 +87,7 @@ class WeeverController extends JController
 	public function ajaxTabPublish()
 	{
 	
-		$row =& JTable::getInstance('Weever', 'Table');
-		
+
 		$status = JRequest::getVar('status');
 		
 		if($status == 1)		
@@ -123,10 +102,6 @@ class WeeverController extends JController
 		{
 			JError::raiseError(500, JText::_('WEEVER_SERVER_ERROR').$result);	
 		}
-		
-		$row->load($id);
-		$row->published = $publish;
-		$row->store();
 		
 		echo $result;
 		jexit();		
@@ -163,12 +138,8 @@ class WeeverController extends JController
 	public function ajaxSaveSubtabOrder()
 	{
 		
-		$id = JRequest::getVar("id");
-		$dir = JRequest::getVar("dir");
-		$type = JRequest::getVar("type");
-		
-		$response = comWeeverHelper::sortSubtabs($type, $id, $dir);
-		
+		$response = comWeeverHelper::pushSubtabReorderToCloud();
+
 		echo $response;
 		
 		jexit();
@@ -186,6 +157,17 @@ class WeeverController extends JController
 	
 	}
 	
+	public function ajaxUpdateTabSettings()
+	{
+	
+		$response = comWeeverHelper::updateTabSettings();
+		
+		echo $response;
+		
+		jexit();
+	
+	}
+	
 	public function ajaxSaveNewTab()
 	{
 
@@ -194,7 +176,11 @@ class WeeverController extends JController
 		
 		$type = JRequest::getWord('type', 'tab');
 	
-		if($type == "contact" || $type == "blog" || $type == "page")
+		if(  $type == "contact" || 
+				$type == "blog" || 
+				$type == "page" || 
+				( $type == "map" && JRequest::getVar("tag") )  
+			)
 		{
 		
 			$type_method = "_build".$type."FeedURL";
@@ -224,23 +210,7 @@ class WeeverController extends JController
 			echo JRequest::getVar('weever_server_response');
 			jexit();
 		}
-//		
-//		$row =& JTable::getInstance('weever','Table');
-//
-//		if(!$row->bind(JRequest::get('post')))
-//		{
-//			JError::raiseError(500, $row->getError());
-//		}
-//		
-//		$row->ordering = $row->ordering + 0.1; // for later reorder to sort well if it is in collision with another.
-//		
-//		if(!$row->store())
-//		{
-//			JError::raiseError(500, $row->getError());
-//		}
-//		
-		//comWeeverHelper::reorderTabs($type);
-//		comWeeverHelper::pushLocalIdToCloud($row->id, JRequest::getVar('hash'), JRequest::getVar('site_key'));
+
 		
 		echo JRequest::getVar('weever_server_response');
 		
@@ -327,8 +297,8 @@ class WeeverController extends JController
 		
 		if(JRequest::getVar('view') == "theme")
 		{
-			comWeeverHelper::saveTheme();
-			$this->setRedirect('index.php?option=com_weever&view=theme&task=theme',JText::_('WEEVER_THEME_SAVED'));
+			$msg = comWeeverHelper::saveTheme();			
+			$this->setRedirect('index.php?option=com_weever&view=theme&task=theme',JText::_('WEEVER_THEME_SAVED').$msg);
 			return;
 		}
 		

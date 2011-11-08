@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -45,19 +45,8 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/account
 
 $pane = &JPane::getInstance('tabs');
 
-
-if(!$this->primary_domain)
-{
-	$siteDomain = JURI::base();
-	$siteDomain = str_replace("http://www.","",$siteDomain);
-	$siteDomain = str_replace("http://","",$siteDomain);
-	$siteDomain = str_replace("/administrator/","",$siteDomain);
-	$this->primary_domain = $siteDomain;
-}
-
 $plugin_html_enabled = "";
 $plugin_html_disabled = "";
-
 
 if(!$this->site_key)
 {
@@ -101,7 +90,7 @@ else
 <form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	
 
-	<?php echo $pane->startPane('theme'); ?>
+	<?php echo $pane->startPane('account'); ?>
 	<?php echo $pane->startPanel(JText::_('WEEVER_ACCOUNT_INFORMATION'), 'basic-settings'); ?>
 	
 	<div>
@@ -118,7 +107,15 @@ else
 	</tr>
 	
 	<tr><td class="key"><?php echo JText::_('WEEVER_PRIMARY_DOMAIN'); ?></td>
-	<td><?php echo JText::_("WEEVER_THIS_KEY_IS_LINKED_TO_THE_DOMAIN"); ?><b><?php echo $this->primary_domain; ?></b>.</td>
+	<td><?php echo JText::_("WEEVER_THIS_KEY_IS_LINKED_TO_THE_DOMAIN"); ?><b><?php echo $this->account->site; ?></b>.</td>
+	</tr>
+	
+	<tr><td class="key"><?php echo JText::_('WEEVER_ACCOUNT_TIER'); ?></td>
+	<td><b><?php echo $this->account->tier; ?></b></td>
+	</tr>
+	
+	<tr><td class="key"><?php echo JText::_('WEEVER_ACCOUNT_EXPIRY'); ?></td>
+	<td><?php echo $this->account->expiry; ?>.</td>
 	</tr>
 	
 	</table>
@@ -138,23 +135,24 @@ else
 
 	
 	
-	<?php if($this->staging_mode) : ?>
+	<?php if($this->stagingMode) : ?>
 	
 
-	
-	<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
-	<td>
-	<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF'); ?></button><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF_NOTE'); ?></td>
-	</tr>
+		
+		<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
+		<td>
+		<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF'); ?></button><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF_NOTE'); ?></td>
+		</tr>
 	
 	
 	<?php else : ?>
 	
-	
-	<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
-	<td>
-	<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON'); ?></button><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON_NOTE'); ?></td>
-	</tr>
+		
+		<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
+		<td>
+		<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON'); ?></button><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON_NOTE'); ?></td>
+		</tr>
+		
 	<?php endif; ?>
 	
 	<?php endif; ?>

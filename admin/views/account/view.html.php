@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -35,18 +35,25 @@ class WeeverViewAccount extends JView
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		$row->load(6);
 		$this->assign('appEnabled', $row->setting);
+		$row->load(7);
+		$staging = $row->setting;
+		$this->assign('stagingMode', $row->setting);
 
-		for($i = 1; $i <= 8; $i++)
+		/* Call the state object */
+		$state =& $this->get( 'state' );
+		
+		if(!$state->get('site_key'))
 		{
 		
-			$row->load($i);
-			
-			$this->assign($row->option,$row->setting);
+			JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
 		
-		}
-
-		$editor  =& JFactory::getEditor();
-		$this->assignRef('editor', $editor);
+		}		
+		
+		$this->assign('site_key', $state->get('site_key'));
+		
+		$appData = $this->get('appdata');
+		
+		$this->assignRef('account',$appData);
 
 		comWeeverHelper::getJsStrings();
 

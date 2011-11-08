@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.0.0.1
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -89,17 +89,7 @@ class com_WeeverInstallerScript
 			
 		if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png"))
 			copy(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png");
-		
-		if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_low.png"))
-			copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_low_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_low.png");
 			
-		if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_low.png"))
-			copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_low_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_low.png");
-			
-		if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_low.png"))
-			copy(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_low_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_low.png");
-			
-		
 		if(!function_exists("stream_context_create"))
 			echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_STREAM_CONTEXT_CREATE")."</div>";
 			
@@ -362,7 +352,7 @@ class com_WeeverInstallerScript
 		if($key->setting)
 		{
 
-			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&version=1.0&cms=joomla&m=upgrade&site_key='.$key->setting);	
+			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&version=1.1&cms=joomla&m=upgrade&site_key='.$key->setting);	
 			?>
 			<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 			<?php 
