@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@ class WeeverModelList extends JModel
 	public $sortOrder	= null;
 	public $components 	= null;
 	public $json		= null;
+	public $jsonTheme 	= null;
 	public $data		= null;
 	
 	public function __construct()
@@ -43,8 +44,8 @@ class WeeverModelList extends JModel
         
         parent::__construct();
         
-        
         $this->json = comWeeverHelper::getJsonTabSync();
+        $this->jsonTheme = comWeeverHelper::getJsonThemeSync();
          
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
@@ -112,6 +113,14 @@ class WeeverModelList extends JModel
 		return $this->json;
 	
 	}
+	
+	public function getThemeData()
+	{
+		
+		return $this->jsonTheme;
+	
+	}
+	
 
 	public function getJContactDropdown()
 	{
@@ -149,7 +158,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-contact-joomla'>
-		<select name='component_id' id='wx-add-contact-joomla-select' class='wx-component-id-select' onchange='populateComponentID(this.form)'><option value='0'>".JText::_('WEEVER_CHOOSE_CONTACT_PARENTHESES')."</option>";
+		<select name='component_id' id='wx-add-contact-joomla-select' class='wx-component-id-select'><option value='0'>".JText::_('WEEVER_CHOOSE_CONTACT_PARENTHESES')."</option>";
 		$hidden_array = "";
 		$hidden = "";
 	
@@ -208,7 +217,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-page-category-k2'>
-		<select name='unnamed' id='wx-add-page-category-k2-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option value='0'>".JText::_('WEEVER_CHOOSE_PAGE_K2CATEGORY_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-page-category-k2-select' class='wx-cms-feed-select'><option value='0'>".JText::_('WEEVER_CHOOSE_PAGE_K2CATEGORY_PARENTHESES')."</option>";
 	
 		foreach((object)$this->pages as $k=>$v)
 		{
@@ -262,7 +271,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-page-category-joomla'>
-		<select name='unnamed' id='wx-add-page-category-joomla-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option value='0'>".JText::_('WEEVER_CHOOSE_PAGE_JCATEGORY_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-page-category-joomla-select' class='wx-cms-feed-select'><option value='0'>".JText::_('WEEVER_CHOOSE_PAGE_JCATEGORY_PARENTHESES')."</option>";
 	
 		foreach((object)$this->pages as $k=>$v)
 		{
@@ -288,13 +297,14 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	
 		
 	public function parseBlogMenuToSelectList()
 	{
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-blog-menu-item'>
-		<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option>".JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES')."</option>";
 	
 		foreach((object)$this->blogs as $k=>$v)
 		{
@@ -350,7 +360,7 @@ class WeeverModelList extends JModel
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-blog-jcategory-item'>
-		<select name='unnamed' id='wx-add-blog-jcategory-item-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option>".JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-blog-jcategory-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES')."</option>";
 	
 		foreach((object)$this->blogs as $k=>$v)
 		{
@@ -400,13 +410,25 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	public function getMapK2CategoryDropdown()
+	{
+	
+		$this->dropdown = null;
+	
+		$this->getBlogK2CategoryDB();
+		$this->parseMapK2CategoryToSelectList();
+	
+		return $this->dropdown;
+	
+	}
+	
 		
 	public function parseBlogK2CategoryToSelectList()
 	{
 	
 		// pare to view soon
 		$this->dropdown .= " <div id='wx-add-blog-k2-category-item'>
-		<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select' onchange='populateCMS(this.form)'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
+		<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
 	
 		foreach((object)$this->blogs as $k=>$v)
 		{
@@ -421,6 +443,26 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	public function parseMapK2CategoryToSelectList()
+	{
+	
+		// pare to view soon
+		$this->dropdown .= " <div id='wx-add-map-k2-category-item'>
+		<select name='unnamed' id='wx-add-map-k2-category-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
+	
+		foreach((object)$this->blogs as $k=>$v)
+		{
+			
+			$link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id;
+			$this->dropdown .= "<option value='".$link."&template=weever_cartographer'>".$v->name."</option>";
+		
+		}
+		
+		$this->dropdown .= "</select>
+		</div>";
+	
+	}
+
 	
 	public function getBlogK2CategoryDB()
 	{
@@ -461,7 +503,7 @@ class WeeverModelList extends JModel
 	
 
 		$this->dropdown .= " <div id='wx-add-page-menu-item'>
-		<select id='wx-add-page-menu-item-select' class='wx-cms-feed-select' name='noname' onchange='populateCMS(this.form)'><option value='0'>".JText::_('WEEVER_CHOOSE_CONTENT_ITEM_PARENTHESES')."</option>";
+		<select id='wx-add-page-menu-item-select' class='wx-cms-feed-select' name='noname'><option value='0'>".JText::_('WEEVER_CHOOSE_CONTENT_ITEM_PARENTHESES')."</option>";
 	
 		foreach((object)$this->pages as $k=>$v)
 		{

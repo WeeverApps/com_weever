@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -34,18 +34,38 @@ $document = &JFactory::getDocument();
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
 $document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
 
+$version = new JVersion;
+$joomla = $version->getShortVersion();
+
+if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
+{
+	$js_close = "document.getElementById('sbox-window').close();";
+}
+else 
+{
+	$js_close = "window.parent.SqueezeBox.close();";
+}
+
 $document->addCustomTag ('<script type="text/javascript">
 
 				function jSelectItem(id, title, object) {
                         document.getElementById(object + \'_id\').value = id;
                         document.getElementById(object + \'_name\').value = title;
-                        document.getElementById(\'sbox-window\').close();
+                       '.$js_close.'
                 }
                 
                 function jSelectArticle(id, title, object) {
                 		document.getElementById(object + \'_id\').value = id;
                 		document.getElementById(object + \'_name\').value = title;
-                		document.getElementById(\'sbox-window\').close();
+                		'.$js_close.'
+                		
+                }
+                
+                function jSelectArticleNew(id, title, catid, object) {
+                		document.getElementById(\'id_id\').value = id;
+                		document.getElementById(\'id_name\').value = title;
+                		'.$js_close.'
+                                        
                 }
                 
                 </script>');
@@ -100,7 +120,7 @@ else
 
 
 <div id="listTabs">
-<ul id="listTabsSortable" style="padding-right: 25%">
+<ul id="listTabsSortable" style="padding-right: 15%">
 
 <?php 
 
@@ -224,9 +244,41 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	<div id="<?php echo $row->component . 'Tab' ?>">
 	
-	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video" || $row->component == "panel" || $row->component == "aboutapp") : ?>
+	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video" || $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map") : ?>
 		
 		<?php echo $this->loadTemplate($row->component.'dropdown'); ?>
+		
+		<?php if($row->component == "panel") : ?>
+		
+			<?php $options = json_decode($row->var); ?>
+		
+			<input type="hidden" id="wx-panel-headers" value="<?php echo $options->content_header; ?>" />
+			<input type="hidden" id="wx-panel-animate" value="<?php echo $options->animation->type; ?>" />
+			<input type="hidden" id="wx-panel-animate-duration" value="<?php echo $options->animation->duration; ?>" />
+			<input type="hidden" id="wx-panel-timeout" value="<?php echo $options->animation->timeout; ?>" />
+			<input type="hidden" id="wx-panel-tab-id" value="<?php echo $row->id; ?>" />
+		
+		<?php elseif($row->component == "aboutapp") : ?>
+		
+			<?php $options = json_decode($row->var); ?>
+		
+			<input type="hidden" id="wx-aboutapp-headers" value="<?php echo $options->content_header; ?>" />
+			<input type="hidden" id="wx-aboutapp-animate" value="<?php echo $options->animation->type; ?>" />
+			<input type="hidden" id="wx-aboutapp-animate-duration" value="<?php echo $options->animation->duration; ?>" />
+			<input type="hidden" id="wx-aboutapp-timeout" value="<?php echo $options->animation->timeout; ?>" />
+			<input type="hidden" id="wx-aboutapp-tab-id" value="<?php echo $row->id; ?>" />
+			
+		<?php elseif($row->component == "map") : ?>
+		
+			<?php $options = json_decode($row->var); ?>
+		
+			<input type="hidden" id="wx-map-start-latitude" value="<?php echo $options->start->latitude; ?>" />
+			<input type="hidden" id="wx-map-start-longitude" value="<?php echo $options->start->longitude; ?>" />
+			<input type="hidden" id="wx-map-start-zoom" value="<?php echo $options->start->zoom; ?>" />
+			<input type="hidden" id="wx-map-marker" value="<?php echo $options->marker; ?>" />
+			<input type="hidden" id="wx-map-tab-id" value="<?php echo $row->id; ?>" />
+		
+		<?php endif; ?>
 	
 	<?php else : ?>
 		
@@ -245,7 +297,6 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	<th class='title'><?php echo JHTML::_('grid.sort', JText::_('NAME'), 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 	<th width='8%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('PUBLISHED'), 'published', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 	<th width='8%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('ORDER'), 'ordering', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-	<th width='5%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('ID'), 'id', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 	<th width='8%' nowrap='nowrap'><?php echo JText::_('WEEVER_CAP_D_DELETE'); ?></th>
 	</tr>
 	</thead>
@@ -280,9 +331,6 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 			<a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-down" rel="<?php echo $row->type; ?>"><img src="components/com_weever/assets/icons/downarrow.png" width="16" height="16" border="0" alt="Move Down"></a>
 			<a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-up" rel="<?php echo $row->type; ?>"><img src="components/com_weever/assets/icons/uparrow.png" width="16" height="16" border="0" alt="Move Up"></a>
 			(<?php echo floor($row->ordering); ?>)
-		</td>
-		<td align='center'>
-			<?php echo $row->id; ?>
 		</td>
 		<td align='center'><a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-delete" rel="<?php echo $row->type; ?>" alt=" <?php echo JText::_('WEEVER_DELETE'); ?> &quot;<?php echo htmlentities($row->name); ?>&quot;"><img src="components/com_weever/assets/icons/wx-delete-mark.png" /></a></td>
 		

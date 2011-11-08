@@ -3,7 +3,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -18,16 +18,6 @@
 *
 */
 
-
-function populateCMS(f)
-{
-	f.name.value=f.cms_feed[f.cms_feed.	selectedIndex].text;
-}
-
-function populateComponentID(f)
-{
-	f.name.value=f.component_id[f.component_id.selectedIndex].text;
-}
 
 function strpos (haystack, needle, offset) {
     var i = (haystack + '').indexOf(needle, (offset || 0));

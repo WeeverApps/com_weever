@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.0
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,9 +29,11 @@ defined('_JEXEC') or die;
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_ABOUTAPP_PARENTHESES'); ?></option>
 			<option value='content'><?php echo JText::_('WEEVER_ADD_ARTICLE'); ?></option>
 			<option value='k2'><?php echo JText::_('WEEVER_ADD_K2_ITEM'); ?></option>
-			<!--option value='page-cat'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_ARTICLES_AS_LIST'); ?></option>
-			<option value='page-cat-k2'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_K2_ITEMS_AS_LIST'); ?></option-->
+			<option value='' disabled='disabled'>----------------</option>
+			<option value='settings'><?php echo JText::_('WEEVER_ABOUTAPP_ADVANCED_TRANSITIONS'); ?></option>
 		</select>
+		<label for="wx-select-aboutpp" class="key hasTip" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"
+		 title="<?php echo JText::_('WEEVER_ADD_ABOUTAPP_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_ADD_ABOUTAPP_HELP_LABEL'); ?></label>
 	</div>
 		
 	<div class='wx-dummy wx-aboutapp-dummy'>
@@ -46,7 +48,7 @@ defined('_JEXEC') or die;
 	
 		<div id='wx-add-aboutapp-k2-item'>
 		
-			<div class="button2-left" style='float:right;'>
+			<div class="button2-left">
 				<div class="blank">
 					<a class="modal" title="Select an item"  href="index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
 				</div>
@@ -58,15 +60,15 @@ defined('_JEXEC') or die;
 		
 		<div id='wx-add-aboutapp-content-joomla'>
 		
-			<div class="button2-left" style='float:right;'>
+			<div class="button2-left">
 				<div class="blank">
-					<a class="modal" title="Select a Joomla article"  href="index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
+					<a class="modal" title="Select a Joomla article"  href="<?php echo $this->jArticleLink; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
 				</div>
 			</div>
 
 		</div>
 		
-		<input type="text" id="id_name-aboutapp" placeholder="Select content..." class='wx-input wx-aboutapp-input' disabled="disabled" />
+		<input type="text" id="id_name-aboutapp" placeholder="Select content..." class='wx-input wx-aboutapp-input wx-aboutapp-content-name' disabled="disabled" />
 		
 		<input type="hidden" id="id_id-aboutapp" class="wx-aboutapp-input" name="urlparams[id]" value="0" />
 		<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="Select Item::Select an item to link to directly.">Select Content</label>
@@ -84,11 +86,7 @@ defined('_JEXEC') or die;
 	
 	<div class='wx-add-submit'>
 		<input type='submit' id='wx-aboutapp-submit' class='wx-submit' value='<?php echo JText::_('WEEVER_ADD_ABOUTAPP_SUBMIT'); ?>' name='add' disabled='disabled' />
-	</div>
-	
-	
-	
-	
+	</div>	
 
 
 </div>

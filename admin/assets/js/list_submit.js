@@ -3,7 +3,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.3
+*	Version: 	1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 */
 
 jQuery(document).ready(function(){ 
+	
 
 	jQuery('input#wx-contact-submit').click(function(e) {
 	  
@@ -144,8 +145,6 @@ jQuery(document).ready(function(){
 	  	     {
 	  	     	jQuery('#wx-modal-secondary-text').html('');
 	  	     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
-	  	     	//document.location.href = "index.php?option=com_weever#photoTab";
-	  	     	//document.location.reload(true);
 	  	     }
 	  	   }
 	  	 });
@@ -154,6 +153,62 @@ jQuery(document).ready(function(){
 	});
 
 	
+	jQuery('input#wx-map-submit').click(function(e) {
+
+	  	var siteKey = jQuery("input#wx-site-key").val(),
+	  		component = jQuery('select#wx-select-map').val(),
+	  		id, name, cmsFeed, tag, tagQString = '';
+	  	
+	  	switch(component) {
+	  	
+	  		case "k2":
+	  		
+	  			id = jQuery("#id_id").val()
+	  			name = jQuery("#id_name").val()
+	  			cmsFeed = "index.php?option=com_k2&view=item&id="+id+"&template=weever_cartographer";
+	  			
+	  			break;
+	  		
+	  		case "k2-cat":
+	  		
+	  			name = jQuery("select[name=cms_feed] option:selected").text();
+	  			cmsFeed = jQuery("select[name=cms_feed]").val();
+	  			
+	  			break;
+	  		
+	  		case "k2-tags":
+	  		
+	  			tag	= jQuery('input[name=tag]').val();
+	  			name = "Tag: "+tag;
+	  			tagQString = "&tag="+encodeURIComponent(tag);
+	  			
+	  			break;
+	  	
+	  	}
+
+	  	jQuery.ajax({
+	  	   type: "POST",
+	  	   url: "index.php",
+	  	   data: "option=com_weever&task=ajaxSaveNewTab&name=" + encodeURIComponent(name) + "&type=map&component=map&weever_action=add&published=1&cms_feed=" + encodeURIComponent(cmsFeed)+"&site_key="+siteKey+tagQString,
+	  	   success: function(msg){
+	  	     jQuery('#wx-modal-loading-text').html(msg);
+	  	     
+	  	     if(msg == "Item Added")
+	  	     {
+	  	     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+	  	     	document.location.href = "index.php?option=com_weever#mapTab";
+	  	     	document.location.reload(true);
+	  	     }
+	  	     else
+	  	     {
+	  	     	jQuery('#wx-modal-secondary-text').html('');
+	  	     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+	  	     }
+	  	   }
+	  	 });
+	  	 
+	  	 e.preventDefault();
+	});
 	
 	
 	jQuery('input#wx-page-submit').click(function(e) {
