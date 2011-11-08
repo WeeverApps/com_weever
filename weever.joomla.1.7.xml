@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="1.6.0" method="upgrade">
  <name>COM_WEEVER</name>
- <creationDate>2011-11-01</creationDate>
+ <creationDate>2011-11-07</creationDate>
  <author>Robert Gerald Porter</author>
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>
  <copyright>(c) 2010-2011 Weever Apps Inc.</copyright>
  <license>GPLv3</license>
- <version>1.1</version>
+ <version>1.1.0</version>
  <description>COM_WEEVER_DESCRIPTION</description>
  
  <scriptfile>install.weever.joomla.1.7.php</scriptfile>
@@ -66,7 +66,7 @@
 </templates>
 
 <updateservers>
-	<server type="extension" priority="1" name="Weever Apps Website">http://weeverapps.com/download_files/extension.xml</server>
+	<server type="extension" priority="2" name="Weever Apps Updates">http://weeverapps.com/download_files/com_weever.xml</server>
 </updateservers>
  
 </extension>
