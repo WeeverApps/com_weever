@@ -397,7 +397,7 @@ class comWeeverHelper
 		}
 		
 			 
-		for($i = 1; $i <= 11; $i++)
+		for($i = 1; $i <= 12; $i++)
 		{
 		
 			if($i == 2 || $i == 1 || $i == 6)
