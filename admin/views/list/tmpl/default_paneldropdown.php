@@ -25,7 +25,7 @@ defined('_JEXEC') or die;
 if( comWeeverHelper::componentExists("com_k2") )
 {
 
-	$k2Options = "<option value='k2'><?php echo JText::_('WEEVER_ADD_K2_ITEM'); ?></option>";
+	$k2Options = "<option value='k2'>".JText::_('WEEVER_ADD_K2_ITEM')."</option>";
 
 }
 else 

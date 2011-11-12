@@ -24,8 +24,8 @@ defined('_JEXEC') or die;
 if( comWeeverHelper::componentExists("com_k2") )
 {
 
-	$k2Options = "<option value='k2-cat'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_K2_CATEGORY'); ?></option>
-	<option value='k2-tags'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_K2_TAGS'); ?></option>";
+	$k2Options = "<option value='k2-cat'>".JText::_('WEEVER_ADD_BLOG_FROM_K2_CATEGORY')."</option>
+	<option value='k2-tags'>".JText::_('WEEVER_ADD_BLOG_FROM_K2_TAGS')."</option>";
 
 }
 else 
