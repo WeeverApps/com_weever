@@ -7,7 +7,7 @@
  <authorUrl>http://www.weeverapps.com/</authorUrl>
  <copyright>(c) 2010-2011 Weever Apps Inc.</copyright>
  <license>GPLv3</license>
- <version>1.1.0</version>
+ <version>1.1.0.1</version>
  <description>COM_WEEVER_DESCRIPTION</description>
  
  <scriptfile>install.weever.joomla.1.7.php</scriptfile>

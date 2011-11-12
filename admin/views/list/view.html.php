@@ -71,26 +71,40 @@ class WeeverViewList extends JView
 		$this->assignRef('calendarRows', $calendarRows);
 		$this->assignRef('mapRows', $mapRows);
 		
+		if( comWeeverHelper::componentExists("com_k2") )
+		{
+		
+			$blogK2CategoryDropdown =& $this->get('blogk2categorydropdown');
+			$this->assignRef('blogK2CategoryDropdown',$blogK2CategoryDropdown);
+			
+			$mapK2CategoryDropdown =& $this->get('mapk2categorydropdown');
+			$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
+			
+			$pageK2CategoryDropdown =& $this->get('pagek2categorydropdown');
+			$this->assignRef('pageK2CategoryDropdown',$pageK2CategoryDropdown);
+			
+		}
+		else 
+		{
+		
+			$blogK2CategoryDropdown = ""; $mapK2CategoryDropdown=""; $pageK2CategoryDropdown="";
+			$this->assignRef('blogK2CategoryDropdown',$blogK2CategoryDropdown);
+			$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
+			$this->assignRef('pageK2CategoryDropdown',$pageK2CategoryDropdown);
+		
+		}
+		
 		$blogMenuDropdown =& $this->get('blogmenudropdown');
 		$this->assignRef('blogMenuDropdown',$blogMenuDropdown);
 		
 		$blogJCategoryDropdown =& $this->get('blogjcategorydropdown');
 		$this->assignRef('blogJCategoryDropdown',$blogJCategoryDropdown);
-		
-		$blogK2CategoryDropdown =& $this->get('blogk2categorydropdown');
-		$this->assignRef('blogK2CategoryDropdown',$blogK2CategoryDropdown);
-		
-		$mapK2CategoryDropdown =& $this->get('mapk2categorydropdown');
-		$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
 
 		$pageMenuDropdown =& $this->get('pagemenudropdown');
 		$this->assignRef('pageMenuDropdown',$pageMenuDropdown);
 		
 		$pageJCategoryDropdown =& $this->get('pagejcategorydropdown');
 		$this->assignRef('pageJCategoryDropdown',$pageJCategoryDropdown);
-		
-		$pageK2CategoryDropdown =& $this->get('pagek2categorydropdown');
-		$this->assignRef('pageK2CategoryDropdown',$pageK2CategoryDropdown);
 		
 		$jContactDropdown =& $this->get('jcontactdropdown');
 		$this->assignRef('jContactDropdown',$jContactDropdown);
