@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	1.1.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -21,6 +21,20 @@
 
 defined('_JEXEC') or die;
 
+if( comWeeverHelper::componentExists("com_k2") )
+{
+
+	$k2Options = "<option value='k2-cat'>".JText::_('WEEVER_ADD_BLOG_FROM_K2_CATEGORY')."</option>
+	<option value='k2-tags'>".JText::_('WEEVER_ADD_BLOG_FROM_K2_TAGS')."</option>";
+
+}
+else 
+{
+
+	$k2Options = "<option value='' disabled='disabled'>K2 not installed, options unavailable</option>";
+
+}
+
 ?>
 <div class="wx-add-ui">
 	<div class='wx-add-item-blog wx-add-item-dropdown'>
@@ -28,8 +42,7 @@ defined('_JEXEC') or die;
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_BLOG_PARENTHESES'); ?></option>
 			<option value='menu'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_MENU'); ?></option>
 			<option value='content-cat'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_JCATEGORY'); ?></option>
-			<option value='k2-cat'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_K2_CATEGORY'); ?></option>
-			<option value='k2-tags'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_K2_TAGS'); ?></option>
+			<?php echo $k2Options; ?>
 		</select>
 	</div>
 	

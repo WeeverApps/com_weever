@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.1
+*	Version: 	1.1.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -22,13 +22,26 @@
 
 defined('_JEXEC') or die;
 
+if( comWeeverHelper::componentExists("com_k2") )
+{
+
+	$k2Options = "<option value='k2'>".JText::_('WEEVER_ADD_K2_ITEM')."</option>";
+
+}
+else 
+{
+
+	$k2Options = "<option value='' disabled='disabled'>K2 not installed, option unavailable</option>";
+
+}
+
 ?>
 <div class="wx-add-ui">
 	<div class='wx-add-item-panel wx-add-item-dropdown'>
 		<select id='wx-select-panel'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_PANEL_PARENTHESES'); ?></option>
 			<option value='content'><?php echo JText::_('WEEVER_ADD_ARTICLE'); ?></option>
-			<option value='k2'><?php echo JText::_('WEEVER_ADD_K2_ITEM'); ?></option>
+			<?php echo $k2Options; ?>
 			<option value='' disabled='disabled'>----------------</option>
 			<option value='settings'><?php echo JText::_('WEEVER_PANEL_ADVANCED_TRANSITIONS'); ?></option>
 		</select>

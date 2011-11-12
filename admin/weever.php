@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.1.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -73,26 +73,10 @@ switch(JRequest::getWord('task'))
 		
 		
 		JToolBarHelper::title( '&nbsp;', $weeverIcon);
-		JToolBarHelper::save();
+		JToolBarHelper::apply();
 
 		
 		break;
-
-	case 'edit':
-	case 'add':
-		
-
-		JToolBarHelper::title('&nbsp;', $weeverIcon);
-		if(JRequest::getWord('layout',''))
-		{
-			
-			JToolBarHelper::save();
-			JToolBarHelper::apply();
-			JToolBarHelper::cancel();
-		}
-
-		break;
-		
 
 	default:
 		
