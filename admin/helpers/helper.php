@@ -43,9 +43,7 @@ class comWeeverHelper
 	public static function componentExists($component)
 	{
 		
-		$comp = JFolder::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.$component);
-		
-		return $comp;
+		return JFolder::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.$component);
 		
 	}
 	
