@@ -41,7 +41,7 @@ else
 	<div class='wx-add-item-map wx-add-item-dropdown'>
 		<select id='wx-select-map'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_MAP_PARENTHESES'); ?></option>
-			<?php echo $this->k2Options; ?>
+			<?php echo $k2Options; ?>
 			<option value='' disabled='disabled'>----------------</option>
 			<option value='settings'><?php echo JText::_('WEEVER_MAP_SETTINGS'); ?></option>
 		</select>

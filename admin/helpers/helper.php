@@ -42,14 +42,11 @@ class comWeeverHelper
 	
 	public static function componentExists($component)
 	{
-		if(JComponentHelper::isEnabled($component, true))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		
+		$comp = JFolder::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.$component);
+		
+		return $comp;
+		
 	}
 	
 
