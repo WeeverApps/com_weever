@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.1.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -19,12 +19,12 @@
 *
 */
 
-
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.helper');
-require_once (JPATH_COMPONENT.DS.'helpers'.DS.'theme'.'.php');
 jimport('joomla.plugin.helper');
+
+require_once (JPATH_COMPONENT.DS.'helpers'.DS.'theme'.'.php');
 
 class comWeeverHelper
 {
@@ -38,12 +38,23 @@ class comWeeverHelper
 		return $joomla;
 	
 	}
-
+	
+	
+	public static function componentExists($component)
+	{
+		
+		$comp = JFolder::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.$component);
+		
+		return $comp;
+		
+	}
+	
 
 	public static function isJson($string)
 	{
 		return !empty($string) && is_string($string) && preg_match('/^("(\\.|[^"\\\n\r])*?"|[,:{}\[\]0-9.\-+Eaeflnr-u \n\r\t])+?$/',$string);
 	}
+
 
 	public static function getSiteDomain()
 	{
