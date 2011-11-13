@@ -71,21 +71,14 @@ switch(JRequest::getWord('task'))
 	case 'theme':
 	case 'account':
 		
-		
 		JToolBarHelper::title( '&nbsp;', $weeverIcon);
 		JToolBarHelper::apply();
-
 		
 		break;
 
 	default:
-		
 
 		JToolBarHelper::title( '&nbsp;', $weeverIcon);
-		JToolBarHelper::publishList();
-		JToolBarHelper::unpublishList();
-		JToolBarHelper::deleteList(JText::_('WEEVER_DELETE_TAB_CONFIRM'));
-
 		
 		break;
 		
