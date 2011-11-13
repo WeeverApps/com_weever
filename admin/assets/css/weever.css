@@ -414,3 +414,38 @@ img.wx-nav-icon-img {
 	margin-left: 3em;
 	float: right;
 }
+
+.wx-button-option {
+	float: left;
+	padding: 0.375em;
+	margin: 0.25em;
+	border: 1px solid transparent;
+	margin-left: 0.5em;
+}
+
+.wx-button-option:hover {
+	border: 1px solid #d8d8d8;
+	background-color: #e9e9e9;
+}
+
+.wx-button-option img.wx-button-option-icon {
+	vertical-align: middle;
+	padding-right: 0.5em;
+}
+
+#wx-with-selected {
+	border: none;
+	padding: 0;
+	margin: 0;
+	background-color: transparent;
+}
+
+.group_move_placeholder {
+  display: table-row;
+}
+
+.wx-sort-icon {
+	padding-left: 1em;
+	padding-right: 1em;
+	vertical-align: bottom;
+}

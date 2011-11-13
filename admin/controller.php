@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -227,34 +227,13 @@ class WeeverController extends JController
 		$option = JRequest::getCmd('option');
 		
 		$cid = JRequest::getVar('cid', array(0));
-		$row =& JTable::getInstance('Weever', 'Table');
 		
 		$result = comWeeverHelper::pushDeleteToCloud($cid);
 	
 		if($result == "Site key missing or invalid.")
 		{
 			JError::raiseError(500, JText::_('WEEVER_SERVER_ERROR').$result);	
-		}
-		
-		foreach((array)$cid as $id)
-		{
-			$id = (int) $id;
-			
-			if(!comWeeverHelper::checkIfTab($id))
-			{
-			
-				if(!$row->delete($id))
-				{
-					JError::raiseError(500, $row->getError());
-				}
-		
-			}
-			else
-			{
-				JError::raiseNotice(100, JText::_('WEEVER_NOTICE_TABS_DELETED'));		
-			}
-		}
-		
+		}		
 		
 		if($result)
 			$this->setRedirect('index.php?option='.$option.'&view=list', JText::_('WEEVER_SERVER_RESPONSE').$result);	
@@ -418,8 +397,6 @@ class WeeverController extends JController
 			$cid[] = JRequest::getVar('id', array());
 		}
 		
-		$row =& JTable::getInstance('Weever', 'Table');
-		
 		$publish = 1;
 		
 		if($this->getTask() == 'unpublish')
@@ -432,12 +409,7 @@ class WeeverController extends JController
 			JError::raiseError(500, JText::_('WEEVER_SERVER_ERROR').$result);	
 		}
 		
-		if(!$row->publish($cid, $publish))
-		{
-			JError::raiseError(500, $row->getError());		
-		}
-
-		
+	
 		if($result)
 		{
 			$this->setRedirect('index.php?option='.$option, JText::_('WEEVER_SERVER_RESPONSE').$result);	
