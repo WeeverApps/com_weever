@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -287,24 +287,61 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	<?php endif; ?>
 
 	<input type="hidden" name="boxchecked<?php echo $row->component; ?>" id="boxchecked<?php echo $row->component; ?>" value="0" />
-	<table class='adminlist'>
-	<thead>
-	<tr>
-	<th width='20'>
-		<input type='checkbox' name='toggle<?php echo $row->component; ?>' id='toggle<?php echo $row->component; ?>' value='' onclick='checkAllTab(<?php echo count($componentRows); ?>, "cb", document.getElementById("boxchecked<?php echo $row->component; ?>"), document.getElementById("toggle<?php echo $row->component; ?>"), <?php echo $iii; ?> + 1);' />
-	</th>
 	
-	<th class='title'><?php echo JHTML::_('grid.sort', JText::_('NAME'), 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-	<th width='8%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('PUBLISHED'), 'published', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-	<th width='8%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('ORDER'), 'ordering', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-	<th width='8%' nowrap='nowrap'><?php echo JText::_('WEEVER_CAP_D_DELETE'); ?></th>
-	</tr>
+	<table class='adminlist' id='wx-adminlist-<?php echo $row->component; ?>'>
+	
+	<thead>
+		<tr>
+			<th width='20'>
+				<input type='checkbox' name='toggle<?php echo $row->component; ?>' id='toggle<?php echo $row->component; ?>' value='' onclick='checkAllTab(<?php echo count($componentRows); ?>, "cb", document.getElementById("boxchecked<?php echo $row->component; ?>"), document.getElementById("toggle<?php echo $row->component; ?>"), <?php echo $iii; ?> + 1);' />
+			</th>
+			
+			<th class='title'><?php echo JHTML::_('grid.sort', JText::_('NAME'), 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
+			<th width='9%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('PUBLISHED'), 'published', $this->lists['order_Dir'], $this->lists['order']); ?></th>
+			<th width='9%' nowrap='nowrap'><?php echo JText::_('WEEVER_CAP_D_DELETE'); ?></th>
+		</tr>
 	</thead>
 	
+	<tfoot>
+		<tr>
+			<td colspan='5'>
+				<div class="wx-list-actions">
+	
+					<div id="wx-with-selected" class="wx-button-option">
+						<img src="components/com_weever/assets/icons/arrow_leftup.png" />
+						With selected: &nbsp;
+					</div>
+					
+					<div class="wx-button-option" id='wx-toolbar-publish'>
+						<a href="#" onclick="javascript:if(document.getElementById('boxchecked<?php echo $row->component; ?>')==0){alert('Please make a selection from the list to publish');}else{  submitbutton('publish')}" class="toolbar">
+						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/tick.png" id="wx-publish-selected" title="Publish" /><?php echo JText::_('PUBLISH'); ?></a>
+					</div>
+					
+					<div class="wx-button-option" id='wx-toolbar-unpublish'>
+						<a href="#" onclick="javascript:if(document.getElementById('boxchecked<?php echo $row->component; ?>')==0){alert('Please make a selection from the list to unpublish');}else{  submitbutton('unpublish')}" class="toolbar">
+						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/publish_x.png" id="wx-unpublish-selected" title="Unpublish" /><?php echo JText::_('UNPUBLISH'); ?>
+						</a>
+					</div>
+					
+					<div  class="wx-button-option" id="wx-toolbar-delete">
+						<a href="#" onclick="javascript:if(document.getElementById('boxchecked<?php echo $row->component; ?>')==0){alert('Please make a selection from the list to delete');}else{if(confirm('Are you sure you want to delete these tabs? (Note that navigation tabs selected will not be deleted.)')){submitbutton('remove');}}" class="toolbar">
+							<img class="wx-button-option-icon" src="components/com_weever/assets/icons/wx-delete-mark.png" id="wx-delete-selected" title="Delete" /><?php echo JText::_('DELETE'); ?>
+						</a>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</tfoot>
+
 	<?php
 
 	$k = 1 - $k;
 	$sub = 0;
+	?>
+	
+	<tbody class="wx-table-sort" id='wx-table-<?php echo $row->component; ?>'>
+	
+	<?php
 	
 	for($ii=0, $nn=count($componentRows); $ii<$nn; $ii++)
 	{
@@ -316,25 +353,23 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		
 		?>
 		
-		<tr class='<?php echo "row$k"; ?>'>
-		<td>
-			<?php echo JHTML::_('grid.id', $iii, $row->id); ?>
-		</td>
+		<tr id='<?php echo $row->id; ?>' class='<?php echo "row$k"; ?>'>
 		
-		<td>
-			<a href='#' title="ID #<?php echo $row->id; ?>" class="wx-subtab-link"><?php echo $row->name; ?></a>
-		</td>
-		<td align='center'>
-			 <a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-publish"<?php echo ($row->published ? 'rel="1"><img src="components/com_weever/assets/icons/tick.png" border="0" alt="Published">' : 'rel="0"><img src="components/com_weever/assets/icons/publish_x.png" border="0" alt="Unpublished">'); ?></a>
-		</td>
-		<td align="center">
-			<a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-down" rel="<?php echo $row->type; ?>"><img src="components/com_weever/assets/icons/downarrow.png" width="16" height="16" border="0" alt="Move Down"></a>
-			<a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-up" rel="<?php echo $row->type; ?>"><img src="components/com_weever/assets/icons/uparrow.png" width="16" height="16" border="0" alt="Move Up"></a>
-			(<?php echo floor($row->ordering); ?>)
-		</td>
-		<td align='center'><a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-delete" rel="<?php echo $row->type; ?>" alt=" <?php echo JText::_('WEEVER_DELETE'); ?> &quot;<?php echo htmlentities($row->name); ?>&quot;"><img src="components/com_weever/assets/icons/wx-delete-mark.png" /></a></td>
-		
+			<td>
+				<?php echo JHTML::_('grid.id', $iii, $row->id); ?>
+			</td>
+			
+			<td>
+				<img class="wx-sort-icon" title="Drag to sort the order of items" src="components/com_weever/assets/icons/sort.png" /> <a href='#' title="ID #<?php echo $row->id; ?>" class="wx-subtab-link"><?php echo $row->name; ?></a>
+			</td>
+			<td align='center'>
+				 <a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-publish"<?php echo ($row->published ? 'rel="1"><img src="components/com_weever/assets/icons/tick.png" border="0" alt="Published">' : 'rel="0"><img src="components/com_weever/assets/icons/publish_x.png" border="0" alt="Unpublished">'); ?></a>
+			</td>
+			<td align='center'><a href="#" title="ID #<?php echo $row->id; ?>" class="wx-subtab-delete" rel="<?php echo $row->type; ?>" alt=" <?php echo JText::_('WEEVER_DELETE'); ?> &quot;<?php echo htmlentities($row->name); ?>&quot;"><img src="components/com_weever/assets/icons/wx-delete-mark.png" /></a></td>
+			
 		</tr>
+		
+		
 		
 		<?php
 		$k = 1 - $k;
@@ -344,11 +379,13 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	if(!count($componentRows))
 	{
 	
-		echo "<tr><td colspan='6'>".JText::_('WEEVER_NO_ITEMS_IN_TAB')."</td></tr>";
+		echo "<tr><td colspan='5'>".JText::_('WEEVER_NO_ITEMS_IN_TAB')."</td></tr>";
 	
 	}
 	
 	?>
+	
+	</tbody>
 	
 	</table>
 	</div>
