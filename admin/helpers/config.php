@@ -29,9 +29,9 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.2-QA1";
-	const RELEASE_TYPE	= "dev";
-	const RELEASE_NAME	= "<a href='http://www.conservationhamilton.ca/area-information/conservation-areas/area-information/christie-lake' target='_blank'>Christie Lake</a>";
+	const VERSION		= "1.2";
+	const RELEASE_TYPE	= "stable";
+	const RELEASE_NAME	= "<a href='http://www.conservationhamilton.ca/area-information/conservation-areas/area-information/dundas-valley' target='_blank'>Dundas Valley</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";
 	const COPYRIGHT		= "Weever Apps Inc.";
