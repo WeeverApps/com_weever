@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1.2
+*	Version: 	1.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,8 +29,8 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.1.2";
-	const RELEASE_TYPE	= "stable";
+	const VERSION		= "1.2-QA1";
+	const RELEASE_TYPE	= "dev";
 	const RELEASE_NAME	= "<a href='http://www.conservationhamilton.ca/area-information/conservation-areas/area-information/christie-lake' target='_blank'>Christie Lake</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";
@@ -42,7 +42,7 @@ final class comWeeverConst
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
+	const LIVE_STAGE	= "http://stage.weeverapp.com/";
 
 }
 
