@@ -155,11 +155,11 @@ else
 			
 		<?php endif; ?>
 		
-		<tr><td class="key"><?php echo JText::_('WEEVER_DELETE_STAGING_APP'); ?></td>
+		<!--tr><td class="key"><?php echo JText::_('WEEVER_DELETE_STAGING_APP'); ?></td>
 		<td>
 		<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=stagingdelete'"><?php echo JText::_('WEEVER_STAGING_DELETE_BUTTON'); ?></button>
 			<p><?php echo JText::_('WEEVER_STAGING_DELETE_NOTE'); ?></p></td>
-		</tr>
+		</tr-->
 	
 	<?php endif; ?>
 
