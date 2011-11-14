@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.1.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -124,36 +124,42 @@ else
 	</div>
 	<?php if($this->site_key) : ?>
 	
-	<?php echo $pane->endPanel(); ?>
-	<?php echo $pane->startPanel(JText::_("WEEVER_STAGING_MODE_P_ADVANCED_P"), 'advanced-settings'); ?>
-	
-	<div>
-	
-	<fieldset class="adminForm">
-	<legend><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></legend>
-	<table class="admintable">
-
-	
-	
-	<?php if($this->stagingMode) : ?>
-	
-
+		<?php echo $pane->endPanel(); ?>
+		<?php echo $pane->startPanel(JText::_("WEEVER_STAGING_MODE_P_ADVANCED_P"), 'advanced-settings'); ?>
 		
-		<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
+		<div>
+		
+		<fieldset class="adminForm">
+		<legend><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></legend>
+		<table class="admintable">
+	
+		
+		
+		<?php if($this->stagingMode) : ?>
+		
+	
+			
+			<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
+			<td>
+			<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF'); ?></button><p><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF_NOTE'); ?></p></td>
+			</tr>
+		
+		
+		<?php else : ?>
+		
+			
+			<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
+			<td>
+			<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON'); ?></button><p><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON_NOTE'); ?></p></td>
+			</tr>
+			
+		<?php endif; ?>
+		
+		<tr><td class="key"><?php echo JText::_('WEEVER_DELETE_STAGING_APP'); ?></td>
 		<td>
-		<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF'); ?></button><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF_NOTE'); ?></td>
+		<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=stagingdelete'"><?php echo JText::_('WEEVER_STAGING_DELETE_BUTTON'); ?></button>
+			<p><?php echo JText::_('WEEVER_STAGING_DELETE_NOTE'); ?></p></td>
 		</tr>
-	
-	
-	<?php else : ?>
-	
-		
-		<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
-		<td>
-		<button type="button" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON'); ?></button><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON_NOTE'); ?></td>
-		</tr>
-		
-	<?php endif; ?>
 	
 	<?php endif; ?>
 

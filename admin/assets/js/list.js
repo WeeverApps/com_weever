@@ -633,6 +633,12 @@ jQuery(document).ready(function(){
         	jQuery('#wx-blog-submit').removeAttr('disabled');
         }
         
+        if(jQuery('input#wx-directory-title' == '')) {
+        	var thisText = jQuery("select[name=cms_feed] option:selected").text();
+        	jQuery('input#wx-directory-title').val(thisText);
+        	jQuery('#wx-directory-submit').removeAttr('disabled');
+        }
+        
         if(jQuery('input#wx-page-title' == '')) {
         	var thisText = jQuery("select[name=cms_feed] option:selected").text();
         	jQuery('input#wx-page-title').val(thisText);

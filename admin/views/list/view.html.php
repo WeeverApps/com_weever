@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.1.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -58,6 +58,7 @@ class WeeverViewList extends JView
 		
 		$this->assignRef('tabRows', $tabRows);
 		$this->assignRef('blogRows', $blogRows);
+		$this->assignRef('directoryRows', $directoryRows);
 		$this->assignRef('pageRows', $pageRows);
 		$this->assignRef('componentRows', $componentRows);
 		$this->assignRef('listingComponentRows', $listingComponentRows);
@@ -75,27 +76,29 @@ class WeeverViewList extends JView
 		{
 		
 			$blogK2CategoryDropdown =& $this->get('blogk2categorydropdown');
-			$this->assignRef('blogK2CategoryDropdown',$blogK2CategoryDropdown);
-			
 			$mapK2CategoryDropdown =& $this->get('mapk2categorydropdown');
-			$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
-			
+			$directoryK2CategoryDropdown =& $this->get('directoryk2categorydropdown');
 			$pageK2CategoryDropdown =& $this->get('pagek2categorydropdown');
-			$this->assignRef('pageK2CategoryDropdown',$pageK2CategoryDropdown);
 			
 		}
 		else 
 		{
 		
 			$blogK2CategoryDropdown = ""; $mapK2CategoryDropdown=""; $pageK2CategoryDropdown="";
-			$this->assignRef('blogK2CategoryDropdown',$blogK2CategoryDropdown);
-			$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
-			$this->assignRef('pageK2CategoryDropdown',$pageK2CategoryDropdown);
+			$directoryK2CategoryDropdown = "";
 		
 		}
 		
+		$this->assignRef('directoryK2CategoryDropdown',$directoryK2CategoryDropdown);
+		$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
+		$this->assignRef('blogK2CategoryDropdown',$blogK2CategoryDropdown);
+		$this->assignRef('pageK2CategoryDropdown',$pageK2CategoryDropdown);
+		
 		$blogMenuDropdown =& $this->get('blogmenudropdown');
 		$this->assignRef('blogMenuDropdown',$blogMenuDropdown);
+		
+		$directoryJCategoryDropdown =& $this->get('directoryjcategorydropdown');
+		$this->assignRef('directoryJCategoryDropdown',$directoryJCategoryDropdown);
 		
 		$blogJCategoryDropdown =& $this->get('blogjcategorydropdown');
 		$this->assignRef('blogJCategoryDropdown',$blogJCategoryDropdown);

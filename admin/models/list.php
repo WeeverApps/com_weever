@@ -354,6 +354,38 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	public function getDirectoryJCategoryDropdown()
+	{
+	
+		$this->dropdown = null;
+	
+		$this->getBlogJCategoryDB();
+		$this->parseDirectoryJCategoryToSelectList();
+	
+		return $this->dropdown;
+	
+	}
+	
+	public function parseDirectoryJCategoryToSelectList()
+	{
+	
+		// pare to view soon
+		$this->dropdown .= " <div id='wx-add-directory-jcategory-item'>
+		<select name='unnamed' id='wx-add-directory-jcategory-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_DIRECTORY_JCATEGORY_PARENTHESES')."</option>";
+	
+		foreach((object)$this->blogs as $k=>$v)
+		{
+			
+			$link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id;
+			$this->dropdown .= "<option value='".$link."&template=weever_cartographer'>".$v->name."</option>";
+		
+		}
+		
+		$this->dropdown .= "</select>
+		</div>";
+	
+	}
+	
 		
 	public function parseBlogJCategoryToSelectList()
 	{
@@ -422,6 +454,19 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	public function getDirectoryK2CategoryDropdown()
+	{
+	
+		$this->dropdown = null;
+	
+		$this->getBlogK2CategoryDB();
+		$this->parseDirectoryK2CategoryToSelectList();
+	
+		return $this->dropdown;
+	
+	}
+	
+	
 		
 	public function parseBlogK2CategoryToSelectList()
 	{
@@ -443,6 +488,26 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	public function parseDirectoryK2CategoryToSelectList()
+	{
+	
+		// pare to view soon
+		$this->dropdown .= " <div id='wx-add-directory-k2-category-item'>
+		<select name='unnamed' id='wx-add-directory-k2-category-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
+	
+		foreach((object)$this->blogs as $k=>$v)
+		{
+			
+			$link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id;
+			$this->dropdown .= "<option value='".$link."&template=weever_cartographer'>".$v->name."</option>";
+		
+		}
+		
+		$this->dropdown .= "</select>
+		</div>";
+	
+	}
+
 	public function parseMapK2CategoryToSelectList()
 	{
 	
