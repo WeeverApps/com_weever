@@ -758,5 +758,15 @@ jQuery(document).ready(function(){
 			jQuery('#wx-map-submit').removeAttr('disabled');
 	});
 	
+	jQuery('input#wx-add-directory-k2-tag-input').keyup(function(){
+		
+		var thisVal = jQuery('input#wx-add-directory-k2-tag-input').val();
+		jQuery('input#wx-directory-title').val(thisVal);
+		
+		if(thisVal != "")
+			jQuery('#wx-directory-submit').removeAttr('disabled');
+	});
+	
+	
 
 });

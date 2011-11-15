@@ -43,8 +43,9 @@ else
 			<option value='content-cat'><?php echo JText::_('WEEVER_ADD_DIR_FROM_JCATEGORY'); ?></option>
 			<?php echo $k2Options; ?>
 		</select>
+		<label for="wx-select-directory" class="key" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"><?php echo JText::_('WEEVER_ADD_DIR_HELP_LABEL'); ?></label>
 	</div>
-	<label for="wx-select-directory" class="key" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"><?php echo JText::_('WEEVER_ADD_DIR_HELP_LABEL'); ?></label>
+	
 	
 	<div class='wx-dummy wx-directory-dummy'>
 		<select disabled='disabled'><option><?php echo JText::_('WEEVER_OPTIONS'); ?></option></select>
