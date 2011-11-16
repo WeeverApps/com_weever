@@ -1269,6 +1269,8 @@ class comWeeverHelper
 			$json->state = $contact->state;
 			$json->country = $contact->country;
 			$json->googlemaps = JRequest::getVar('googlemaps', 0);
+			$json->image = $contact->image;
+			$json->misc = $contact->misc;
 			
 			// destringify our options
 			
@@ -1308,6 +1310,8 @@ class contact_json
 	public 	$country;
 	public  $emailform;
 	public 	$googlemaps;
+	public	$image;
+	public 	$misc;
 
 }
 
