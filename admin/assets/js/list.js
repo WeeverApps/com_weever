@@ -633,6 +633,12 @@ jQuery(document).ready(function(){
         	jQuery('#wx-blog-submit').removeAttr('disabled');
         }
         
+        if(jQuery('input#wx-directory-title' == '')) {
+        	var thisText = jQuery("select[name=cms_feed] option:selected").text();
+        	jQuery('input#wx-directory-title').val(thisText);
+        	jQuery('#wx-directory-submit').removeAttr('disabled');
+        }
+        
         if(jQuery('input#wx-page-title' == '')) {
         	var thisText = jQuery("select[name=cms_feed] option:selected").text();
         	jQuery('input#wx-page-title').val(thisText);
@@ -751,6 +757,16 @@ jQuery(document).ready(function(){
 		if(thisVal != "")
 			jQuery('#wx-map-submit').removeAttr('disabled');
 	});
+	
+	jQuery('input#wx-add-directory-k2-tag-input').keyup(function(){
+		
+		var thisVal = jQuery('input#wx-add-directory-k2-tag-input').val();
+		jQuery('input#wx-directory-title').val(thisVal);
+		
+		if(thisVal != "")
+			jQuery('#wx-directory-submit').removeAttr('disabled');
+	});
+	
 	
 
 });
