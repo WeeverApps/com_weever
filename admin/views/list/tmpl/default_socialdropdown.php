@@ -23,7 +23,7 @@
 defined('_JEXEC') or die;
 
 ?>
-<div class="wx-add-ui">
+<div class="wx-add-ui formspacer">
 	<div class='wx-add-item-social wx-add-item-dropdown'>
 		<select id='wx-select-social' name='noname' class='wx-component-select'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_SOCIAL_NETWORK_PARENTHESES'); ?></option>

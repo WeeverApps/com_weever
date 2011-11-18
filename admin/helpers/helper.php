@@ -681,7 +681,7 @@ class comWeeverHelper
 	}
 	
 	
-	public static function getJsonThemeSync()
+	public static function getJsonThemeSync($all = null)
 	{
 	
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
@@ -726,7 +726,10 @@ class comWeeverHelper
 		
 		$j_array = json_decode($json);
 		
-		return $j_array->results;	
+		if($all)
+			return $j_array;
+		else 
+			return $j_array->results;	
 	
 	}
 
