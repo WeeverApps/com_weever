@@ -1069,7 +1069,7 @@ class comWeeverHelper
 				'rss' => JRequest::getVar('rss'),
 				'type' => JRequest::getVar('type'),
 				'component_behaviour' => JRequest::getVar('component_behaviour'),
-				'var' => JRequest::getVar('var'),
+				'var' => JRequest::getVar('var',"", "post","string",JREQUEST_ALLOWRAW),
 				'site_key' => JRequest::getVar('site_key'),
 				'cms_feed' => JRequest::getVar('cms_feed'),
 				'app' => 'ajax',
