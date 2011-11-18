@@ -834,6 +834,52 @@ jQuery(document).ready(function(){
 	
 	
 	
+
+	jQuery('#wx-select-directory').change(function() {
+	
+		jQuery('.wx-title').attr('name','noname');
+		jQuery('#wx-directory-title').attr('name','name');
+		jQuery('.wx-cms-feed-select').attr('name','noname');
+		jQuery('.wx-directory-help').hide();
+		jQuery('.wx-dummy').hide();
+		jQuery('.wx-submit').attr('disabled', 'disabled');
+	
+		
+		if(jQuery(this).val() == "content-cat") 
+		{
+			jQuery('#wx-add-directory-jcategory-item').show();
+			jQuery('#wx-add-directory-jcategory-item-select').attr('name', 'cms_feed');
+			jQuery('#wx-add-directory-k2-category-item').hide();
+			jQuery('#wx-add-directory-k2-category-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-directory-k2-tag').hide();
+			jQuery('#wx-add-directory-k2-tag-input').attr('name', 'unnamed');
+		}
+		
+		if(jQuery(this).val() == "k2-cat") 
+		{
+			jQuery('#wx-add-directory-jcategory-item').hide();
+			jQuery('#wx-add-directory-jcategory-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-directory-k2-category-item').show();
+			jQuery('#wx-add-directory-k2-category-item-select').attr('name', 'cms_feed');
+			jQuery('#wx-add-directory-k2-tag').hide();
+			jQuery('#wx-add-directory-k2-tag-input').attr('name', 'unnamed');
+		}
+		
+		if(jQuery(this).val() == "k2-tags") 
+		{
+			jQuery('#wx-add-directory-jcategory-item').hide();
+			jQuery('#wx-add-directory-jcategory-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-directory-k2-category-item').hide();
+			jQuery('#wx-add-directory-k2-category-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-directory-k2-tag').show();
+			jQuery('#wx-add-directory-k2-tag-input').attr('name', 'tag');
+		}
+			
+		jQuery('.wx-directory-reveal').show();
+		
+	});
+	
+	
 	jQuery('#wx-select-blog').change(function() {
 	
 		jQuery('.wx-title').attr('name','noname');

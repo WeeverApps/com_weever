@@ -177,7 +177,7 @@ class WeeverController extends JController
 		$type = JRequest::getWord('type', 'tab');
 	
 		if(  $type == "contact" || 
-				$type == "blog" || 
+				$type == "blog" || $type == "directory" ||
 				$type == "page" || 
 				( $type == "map" && JRequest::getVar("tag") )  
 			)
