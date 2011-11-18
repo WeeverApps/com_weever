@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.2.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify

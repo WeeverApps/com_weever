@@ -33,6 +33,10 @@ class WeeverViewConfig extends JView
 	
 		$layout = JRequest::getWord('layout');
 		$component = JComponentHelper::getComponent( 'com_weever' );
+		
+		$appData = $this->get('appdata');
+		
+		$this->assignRef('tier', $appData->config->tier);
 
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		

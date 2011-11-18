@@ -25,29 +25,32 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-class WeeverModelTheme extends JModel
+class WeeverModelConfig extends JModel
 {
 
-	public 	$json = null;
-	public  $account;
-
+	public $json		= null;
+	public $jsonTheme 	= null;
+	public $data		= null;
+	
 	public function __construct()
 	{
-       
-       parent::__construct();
-       
-       $this->json = comWeeverHelper::getJsonThemeSync(true);
-       
-       $this->account = $this->json->account;
-       $this->json = $this->json->results;
-       
-       $query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
-       $db = &JFactory::getDBO();
-       
-       $db->setQuery($query);
-       $key = $db->loadObject();
-       $this->setState('site_key', $key->setting);
-       
+        
+        parent::__construct();
+        
+        $this->json = comWeeverHelper::getJsonTabSync();
+        $this->jsonTheme = comWeeverHelper::getJsonThemeSync();
+         
+        $mainframe = JFactory::getApplication();
+        $option = JRequest::getCmd('option');
+        
+        $query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
+        $db = &JFactory::getDBO();
+        
+        $db->setQuery($query);
+        $key = $db->loadObject();
+
+        $this->setState('site_key', $key->setting);
+        
 	}
 	
 	public function getAppData()
@@ -57,12 +60,11 @@ class WeeverModelTheme extends JModel
 	
 	}
 	
-	
-	public function getAccountData()
+	public function getThemeData()
 	{
 		
-		return $this->account;
+		return $this->jsonTheme;
 	
 	}
-	
+
 }
