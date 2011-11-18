@@ -40,11 +40,7 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
 
-$cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
-	$document->addStyleSheet($cssFile, 'text/css', null, array());
 
-$cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
-	$document->addStyleSheet($cssFile, 'text/css', null, array());
 	
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/theme.js' );
 
@@ -67,14 +63,43 @@ else
 
 ?>
 
-<div id="wx-app-status-button" <?php echo $offlineStatusClass; ?>><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" />
-	
-	<span id="wx-app-status-online" <?php echo $onlineSpan; ?>><strong><?php echo JText::_('WEEVER_ONLINE'); ?></strong><br /><span style="color:#666; font-size:0.65em;"><?php echo JText::_('WEEVER_ONLINE_INFO'); ?></span></span>
-	
-	<span id="wx-app-status-offline" <?php echo $offlineSpan; ?>><strong><?php echo JText::_('WEEVER_OFFLINE'); ?></strong><br /><span style="color:#666; font-size:0.65em;"><?php echo JText::_('WEEVER_OFFLINE_INFO'); ?></span></span>
+<?php if($this->account->tier_number == 1) : ?>
+	<div style="position:absolute; right:64px; top:136px; margin:0 1em;">
+	<span style="float: right; font-size: 10px;">• Mobile GPS Maps!<br>• Rebrand &amp; Resell<br>• Custom Domains</span>
+	<span style="float:right; line-height: 1.25em; font-size: 1em; text-align: right; margin:1px 1.5em 0 0;">Weever Apps Pro &amp; Premium<br><a id="headerbutton" href="http://weeverapps.com/pricing">Learn more</a></span></div>
 
+<?php elseif($this->account->tier_number == 2.1) : ?>
+	<span style="font-size: 1.5em; position: absolute; right: 64px; line-height: 1.25em; min-width: 348px; text-align: left; margin: 0pt; top: 136px;"><a href="http://weeverapps.com/pricing" style="float: left; margin: 0pt 1em;" id="headerbutton">Sign Up</a>Enjoying Your Free Trial?<br><span style="font-size: 0.5em; margin: 0pt;">We add powerful new features each month.</span></span>
+	
+<?php endif; ?>
+
+
+<span id="wx-admin-topbar-left" class="wx-admin-topbar">
+			<a href="http://weeverapps.com/pricing">Plans &amp; Pricing</a> &nbsp; | &nbsp; <a href="http://twitter.com/weeverapps">Follow us on Twitter</a> &nbsp; | &nbsp; <a href="http://eepurl.com/fP-oD">Newsletter</a>
+
+</span>
+    
+
+<div id="wx-admin-topbar-right" class="wx-admin-topbar">
+
+<span class="wx-app-status-button-offline" id="wx-app-status-button">
+    
+  <span class="wx-app-hide-status" id="wx-app-status-online">
+	<span id="wx-status-current">Status &mdash; App is</span>
+    <span id="wx-status-boldonline"><strong>online</strong></span>
+    <span id="wx-status-current">for mobile visitors &mdash;</span>
+	<span id="wx-status-takeoffline"><a href="http://localhost/2011_11_Wordpress/wp-admin/admin.php?page=weever-list&amp;weever-app-enabled=0">Take App Offline</a></span>
+  </span>
+    
+  <span id="wx-app-status-offline">
+    <span id="wx-status-current">Status &mdash; App is</span>
+    <span id="wx-status-boldoffline"><strong>offline</strong></span>
+    <span id="wx-status-current">for mobile visitors &mdash;</span>
+	<span id="wx-status-turnonline"><a href="http://localhost/2011_11_Wordpress/wp-admin/admin.php?page=weever-list&amp;weever-app-enabled=1">Turn App Online</a></span>
+  </span>
+
+</span>
 </div>
-
 
 <div id='wx-modal-loading'>
     <div id='wx-modal-loading-text'></div>
@@ -134,7 +159,7 @@ else
 
 	
 	<div>
-		<fieldset>
+		<fieldset class='adminForm'>
 		<legend><?php echo JText::_('WEEVER_IMAGE_SETTINGS'); ?></legend>
 		<br/>
 		<div class="wx-theme-screen">
@@ -218,7 +243,7 @@ else
 	
 	<div>
 	
-		<fieldset>
+		<fieldset class='adminForm'>
 		<legend><?php echo JText::_('WEEVER_LAUNCHSCREEN_SETTINGS'); ?></legend>
 		
 		<table class="admintable">
@@ -287,9 +312,9 @@ else
 <div>
 				
 	
-		<fieldset><legend><?php echo JText::_('WEEVER_CSS_TEMPLATE_OVERRIDES'); ?></legend>
+		<fieldset class='adminForm'><legend><?php echo JText::_('WEEVER_CSS_TEMPLATE_OVERRIDES'); ?></legend>
 		
-		<div><input type="checkbox" class="wx-check" value="1" id="wx-template-overrides" name="useCssOverride" <?php echo ($this->theme->css->useCssOverride == '1' ? "checked='checked'":""); ?> /><label for="wx-template-overrides" class="wx-check-label"><?php echo JText::_('WEEVER_USE_CSS_TEMPLATE_OVERRIDES'); ?></label></div>
+		<div style="margin-left:1em;"><input type="checkbox" class="wx-check" value="1" id="wx-template-overrides" name="useCssOverride" <?php echo ($this->theme->css->useCssOverride == '1' ? "checked='checked'":""); ?> /><label for="wx-template-overrides" class="wx-check-label"><?php echo JText::_('WEEVER_USE_CSS_TEMPLATE_OVERRIDES'); ?></label></div>
 		<p><?php echo JText::_('WEEVER_USE_CSS_TEMPLATE_OVERRIDES_DESCRIPTION'); ?></p>
 		<table class="admintable">
 			
@@ -308,7 +333,7 @@ else
 	
 		
 		
-	<fieldset>
+	<fieldset class='adminForm'>
 	<legend><?php echo JText::_('WEEVER_TITLEBAR_CUSTOM_HTML'); ?></legend>
 	
 	<p><?php echo JText::_('WEEVER_TITLEBAR_CUSTOM_HTML_DESCRIPTION'); ?></p>
