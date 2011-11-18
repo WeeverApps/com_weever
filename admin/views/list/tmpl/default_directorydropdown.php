@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2
+*	Version: 	1.2.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ else
 }
 
 ?>
-<div class="wx-add-ui">
+<div class="wx-add-ui formspacer">
 	<div class='wx-add-item-directory wx-add-item-dropdown'>
 		<select id='wx-select-directory'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_DIR_PARENTHESES'); ?></option>
@@ -45,7 +45,6 @@ else
 		</select>
 		<label for="wx-select-directory" class="key" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"><?php echo JText::_('WEEVER_ADD_DIR_HELP_LABEL'); ?></label>
 	</div>
-	
 	
 	<div class='wx-dummy wx-directory-dummy'>
 		<select disabled='disabled'><option><?php echo JText::_('WEEVER_OPTIONS'); ?></option></select>

@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1.2
+*	Version: 	1.2.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -47,6 +47,8 @@ class WeeverViewList extends JView
 
 		$appData = $this->get('appdata');
 		$tabRows = array();
+		
+		$this->assignRef('tier', $appData->config->tier);
 
 		foreach((array)$appData->tabs as $k=>$v)
 		{
@@ -79,19 +81,19 @@ class WeeverViewList extends JView
 			$mapK2CategoryDropdown =& $this->get('mapk2categorydropdown');
 			$directoryK2CategoryDropdown =& $this->get('directoryk2categorydropdown');
 			$pageK2CategoryDropdown =& $this->get('pagek2categorydropdown');
-			
+	
 		}
 		else 
 		{
 		
-			$blogK2CategoryDropdown = ""; $mapK2CategoryDropdown=""; $pageK2CategoryDropdown="";
-			$directoryK2CategoryDropdown = "";
+			$blogK2CategoryDropdown = ""; $mapK2CategoryDropdown=""; 
+			$pageK2CategoryDropdown=""; $directoryK2CategoryDropdown = "";
 		
 		}
 		
-		$this->assignRef('directoryK2CategoryDropdown',$directoryK2CategoryDropdown);
-		$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
 		$this->assignRef('blogK2CategoryDropdown',$blogK2CategoryDropdown);
+		$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
+		$this->assignRef('directoryK2CategoryDropdown',$directoryK2CategoryDropdown);
 		$this->assignRef('pageK2CategoryDropdown',$pageK2CategoryDropdown);
 		
 		$blogMenuDropdown =& $this->get('blogmenudropdown');
