@@ -244,7 +244,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	<div id="<?php echo $row->component . 'Tab' ?>">
 	
-	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video" || $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map") : ?>
+	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video" || $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map" || $row->component == "directory") : ?>
 		
 		<?php echo $this->loadTemplate($row->component.'dropdown'); ?>
 		
@@ -296,9 +296,9 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 				<input type='checkbox' name='toggle<?php echo $row->component; ?>' id='toggle<?php echo $row->component; ?>' value='' onclick='checkAllTab(<?php echo count($componentRows); ?>, "cb", document.getElementById("boxchecked<?php echo $row->component; ?>"), document.getElementById("toggle<?php echo $row->component; ?>"), <?php echo $iii; ?> + 1);' />
 			</th>
 			
-			<th class='title'><?php echo JHTML::_('grid.sort', JText::_('NAME'), 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-			<th width='9%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('PUBLISHED'), 'published', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-			<th width='9%' nowrap='nowrap'><?php echo JText::_('WEEVER_CAP_D_DELETE'); ?></th>
+			<th class='title'><?php echo JHTML::_('grid.sort', JText::_('WEEVER_NAME'), 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
+			<th width='9%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('WEEVER_PUBLISHED'), 'published', $this->lists['order_Dir'], $this->lists['order']); ?></th>
+			<th width='9%' nowrap='nowrap'><?php echo JText::_('WEEVER_DELETE_TH'); ?></th>
 		</tr>
 	</thead>
 	
@@ -314,18 +314,18 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 					
 					<div class="wx-button-option" id='wx-toolbar-publish'>
 						<a href="#" onclick="javascript:if(document.getElementById('boxchecked<?php echo $row->component; ?>')==0){alert('Please make a selection from the list to publish');}else{  submitbutton('publish')}" class="toolbar">
-						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/tick.png" id="wx-publish-selected" title="Publish" /><?php echo JText::_('PUBLISH'); ?></a>
+						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/tick.png" id="wx-publish-selected" title="Publish" /><?php echo JText::_('WEEVER_PUBLISH'); ?></a>
 					</div>
 					
 					<div class="wx-button-option" id='wx-toolbar-unpublish'>
 						<a href="#" onclick="javascript:if(document.getElementById('boxchecked<?php echo $row->component; ?>')==0){alert('Please make a selection from the list to unpublish');}else{  submitbutton('unpublish')}" class="toolbar">
-						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/publish_x.png" id="wx-unpublish-selected" title="Unpublish" /><?php echo JText::_('UNPUBLISH'); ?>
+						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/publish_x.png" id="wx-unpublish-selected" title="Unpublish" /><?php echo JText::_('WEEVER_UNPUBLISH'); ?>
 						</a>
 					</div>
 					
 					<div  class="wx-button-option" id="wx-toolbar-delete">
 						<a href="#" onclick="javascript:if(document.getElementById('boxchecked<?php echo $row->component; ?>')==0){alert('Please make a selection from the list to delete');}else{if(confirm('Are you sure you want to delete these tabs? (Note that navigation tabs selected will not be deleted.)')){submitbutton('remove');}}" class="toolbar">
-							<img class="wx-button-option-icon" src="components/com_weever/assets/icons/wx-delete-mark.png" id="wx-delete-selected" title="Delete" /><?php echo JText::_('DELETE'); ?>
+							<img class="wx-button-option-icon" src="components/com_weever/assets/icons/wx-delete-mark.png" id="wx-delete-selected" title="Delete" /><?php echo JText::_('WEEVER_DELETE_TH'); ?>
 						</a>
 					</div>
 				</div>

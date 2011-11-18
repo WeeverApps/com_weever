@@ -474,43 +474,42 @@ class comWeeverHelper
             $iterations = 0;
 
 
-            if ($file['type'] && $file['type'] == "image/png") 
+            if ($file['type'] && ($file['type'] == "image/png" || $file['type'] == "image/jpeg" ) ) 
             { 
+     			
+     			if (JFile::upload($src, $dest)) 
+     			{
+     			    $msg = JText::_('WEEVER_FILE_SAVE_AS').' '.$dest;
+     			} 
+     			else 
+     			{
+     			    return JError::raiseWarning(500, JText::_('WEEVER_ERROR_IN_UPLOAD'));
+     			}
      			
 	            if($var == 'icon_live' && ($width != 144 || $height != 144))
 	            {
-	            	return JError::raiseWarning(500,JText::_('WEEVER_ERROR_ICON_DIMENSIONS'));
+	            	return JError::raiseNotice(100,JText::_('WEEVER_ERROR_ICON_DIMENSIONS'));
 	            }
 	
 				if($var == 'phone_load_live' && (($width != 640 || $height != 920) && ($width != 920 || $height != 640)))
 				{
-					return JError::raiseWarning(500,JText::_('WEEVER_ERROR_PHONE_DIMENSIONS'));
+					return JError::raiseNotice(100,JText::_('WEEVER_ERROR_PHONE_DIMENSIONS'));
 				}
 				
 				if($var == 'tablet_load_live' && ($width != 1536 || $height != 2008))
 				{
-					return JError::raiseWarning(500, JText::_('WEEVER_ERROR_TABLET_DIMENSIONS'));
+					return JError::raiseNotice(100, JText::_('WEEVER_ERROR_TABLET_DIMENSIONS'));
 				}
 				
 				if($var == 'tablet_landscape_load_live' && ($width != 1496|| $height != 2048))
 				{
-					return JError::raiseWarning(500, JText::_('WEEVER_ERROR_LANDSCAPE_TABLET_DIMENSIONS'));
+					return JError::raiseNotice(100, JText::_('WEEVER_ERROR_LANDSCAPE_TABLET_DIMENSIONS'));
 				}
 
 				if($var == 'titlebar_logo_live' && ($width != 600 || $height != 64))
 				{
-					return JError::raiseWarning(500, JText::_('WEEVER_ERROR_TITLEBAR_DIMENSIONS'));
-				}
-
-	            if (JFile::upload($src, $dest)) 
-	            {
-	                $msg = JText::_('WEEVER_FILE_SAVE_AS').' '.$dest;
-	            } 
-	            else 
-	            {
-	                return JError::raiseWarning(500, JText::_('WEEVER_ERROR_IN_UPLOAD'));
-	            }
-	            
+					return JError::raiseNotice(100, JText::_('WEEVER_ERROR_TITLEBAR_DIMENSIONS'));
+				}	            
 	            
             } 
             else if ($file['type'])
@@ -1070,7 +1069,7 @@ class comWeeverHelper
 				'rss' => JRequest::getVar('rss'),
 				'type' => JRequest::getVar('type'),
 				'component_behaviour' => JRequest::getVar('component_behaviour'),
-				'var' => JRequest::getVar('var'),
+				'var' => JRequest::getVar('var',"", "post","string",JREQUEST_ALLOWRAW),
 				'site_key' => JRequest::getVar('site_key'),
 				'cms_feed' => JRequest::getVar('cms_feed'),
 				'app' => 'ajax',
@@ -1186,6 +1185,21 @@ class comWeeverHelper
 	}
 	
 	
+	public static function _buildDirectoryFeedURL() 
+	{
+	
+		$tag = JRequest::getVar('tag');
+	
+		if($tag != "undefined")
+		{
+			JRequest::setVar('cms_feed', 'index.php?option=com_k2&view=itemlist&task=tag&layout=blog&tag='.urlencode($tag).'&template=weever_cartographer');
+		}
+			
+		return true;
+	
+	}
+	
+	
 	public static function _buildBlogFeedURL() 
 	{
 	
@@ -1255,6 +1269,8 @@ class comWeeverHelper
 			$json->state = $contact->state;
 			$json->country = $contact->country;
 			$json->googlemaps = JRequest::getVar('googlemaps', 0);
+			$json->image = $contact->image;
+			$json->misc = $contact->misc;
 			
 			// destringify our options
 			
@@ -1294,6 +1310,8 @@ class contact_json
 	public 	$country;
 	public  $emailform;
 	public 	$googlemaps;
+	public	$image;
+	public 	$misc;
 
 }
 

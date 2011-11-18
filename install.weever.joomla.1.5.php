@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.1.0.1
+*	Version: 	1.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -212,7 +212,7 @@ if(!isset($code->setting))
 // check if there are server-side app updates to be made
 if($key->setting)
 {
-	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&version=1.1&cms=joomla&site_key='.$key->setting);	
+	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&version=1.2&cms=joomla&site_key='.$key->setting);	
 	?>
 	<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	<?php 
