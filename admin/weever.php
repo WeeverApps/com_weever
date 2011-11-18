@@ -43,6 +43,15 @@ $row->load(7); $staging = $row->setting;
 comWeeverHelperJS::loadConfJS($staging);
 
 $document =& JFactory::getDocument();
+
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
+    $document->addStyleSheet($cssFile, 'text/css', null, array());
+
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
+    $document->addStyleSheet($cssFile, 'text/css', null, array()); 
+
+
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/weever.css?v='.comWeeverConst::VERSION;
 $document->addStyleSheet($cssFile, 'text/css', null, array());
 
@@ -130,41 +139,48 @@ if($key)
 	}
 
 	echo '
-	<div>
-        <div style="background:#fffff0;" class="wx-qr-app">
+	
+      
+    
+    
+    <fieldset class="adminForm" style="margin:1.5em;">
+    <legend>'.JText::_('WEEVER_QR_TEST_CODE').'</legend>
+
         <img src="http://'.$siteDomain.'/media/com_weever/qr_app_'.$modetype.'.png"  class="wx-qr-imgprev" />
-
-        <div class="wx-qr-textbox">
-
-        <span class="wx-qr-app-text">'.JText::_('WEEVER_QR_TEST_CODE').'</span>
-
         <p>'.JText::_('WEEVER_QR_SCAN_PRIVATE').'<br/>
-QR Link: '.JText::_('WEEVER_QR_DIRECT_ADDRESS').'<a href="'.$weeverServer.'app/'.$keySiteDomain.'">'.$weeverServer.'app/'.$keySiteDomain.'</a></p>
-
-<p>'.JText::_('WEEVER_QR_ADDITIONAL_TEST').'</p>
-
-
-</div></div>';
+        QR Link: '.JText::_('WEEVER_QR_DIRECT_ADDRESS').'<a href="'.$weeverServer.'app/'.$keySiteDomain.'">'.$weeverServer.'app/'.$keySiteDomain.'</a></p>
+        <p>'.JText::_('WEEVER_QR_ADDITIONAL_TEST').'</p>
+    
+	</fieldset>
+   
+	';
 	
 	if(!$staging)
-		echo '<div style="background: #ECF4E6;" class="wx-qr-app">
+		echo '<fieldset class="adminForm" style="margin:1.5em;">
+        			<legend style="background:#ECF4E6;">'.JText::_('WEEVER_QR_PUBLIC_CODE').'</legend>
 
                 <img src="http://'.$siteDomain.'/media/com_weever/qr_site_'.$modetype.'.png"  class= "wx-qr-imgprev"  />
 
-                <div class="wx-qr-textbox">
+        
 
-            <span class="wx-qr-app-text">'.JText::_('WEEVER_QR_PUBLIC_CODE').'</span>
+        
 
               <p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE').' <a href="'.$siteDomain.'">http://'.$siteDomain.'</a></p>
-<p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE_SUGGEST').'</p></div></div>';
+<p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE_SUGGEST').'</p>
+             </fieldset>';
 	else
-		echo '<div style="background:#ECF4E6;" class="wx-qr-app">'.JText::_('WEEVER_QR_STAGING_UNAVAILABLE').'</div>';
+		echo '<fieldset class="adminForm"  style="margin:1.5em;">
+        			<legend style="background:#ECF4E6;">'.JText::_('WEEVER_QR_PUBLIC_CODE').'</legend>
+<p>'.JText::_('WEEVER_QR_STAGING_UNAVAILABLE').'</p>
+    </fieldset>
+	
+	';
 	
 	echo '<div style="clear:both;"></div></div>';
 		
 }
 
 echo '<div style="text-align:center;clear:both; margin-top:24px;">'.comWeeverConst::NAME.' v'.comWeeverConst::VERSION.' '.comWeeverConst::RELEASE_TYPE.' "'.comWeeverConst::RELEASE_NAME.'" <br />'.
-	comWeeverConst::COPYRIGHT_YEAR.' <a target="_blank" href="'.comWeeverConst::COPYRIGHT_URL.'">'.comWeeverConst::COPYRIGHT.'</a><br />
+	comWeeverConst::COPYRIGHT_YEAR.' <a target="_blank" href="'.comWeeverConst::COPYRIGHT_URL.'">'.comWeeverConst::COPYRIGHT.'</a> 
 	Released '.comWeeverConst::RELEASE_DATE.' under <a target="_blank" href="'.comWeeverConst::LICENSE_URL.'">'.comWeeverConst::LICENSE.'</a>. 
-	<a target="_blank" href="http://weeverapps.zendesk.com/home">Contact Support</a></div>';
+	<a target="_blank" href="http://weeverapps.zendesk.com">Contact Support</a></div>';

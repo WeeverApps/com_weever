@@ -74,11 +74,7 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
 
-$cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
-	$document->addStyleSheet($cssFile, 'text/css', null, array());
 
-$cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
-	$document->addStyleSheet($cssFile, 'text/css', null, array());
 	
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_icons.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js' );
@@ -110,12 +106,41 @@ else
 
 ?>
 
-<div id="wx-app-status-button" <?php echo $offlineStatusClass; ?>><img id="wx-app-status-img" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" />
-	
-	<span id="wx-app-status-online" <?php echo $onlineSpan; ?>><strong><?php echo JText::_('WEEVER_ONLINE'); ?></strong><br /><span style="color:#666; font-size:0.65em;"><?php echo JText::_('WEEVER_ONLINE_INFO'); ?></span></span>
-	
-	<span id="wx-app-status-offline" <?php echo $offlineSpan; ?>><strong><?php echo JText::_('WEEVER_OFFLINE'); ?></strong><br /><span style="color:#666; font-size:0.65em;"><?php echo JText::_('WEEVER_OFFLINE_INFO'); ?></span></span>
+<!-- THIS INFO IS FOR BASIC CUSTOMERS -->
+<div style="position:absolute; right:64px; top:136px; margin:0 1em;">
+<span style="float: right; font-size: 10px;">• Mobile GPS Maps!<br>• Rebrand &amp; Resell<br>• Custom Domains</span>
+<span style="float:right; line-height: 1.25em; font-size: 1em; text-align: right; margin:1px 1.5em 0 0;">Weever Apps Pro &amp; Premium<br><a id="headerbutton" href="http://weeverapps.com/pricing">Learn more</a></span></div>
 
+
+<!-- THIS INFO IS FOR TRIAL CUSTOMERS -->
+<span style="font-size: 1.5em; position: absolute; right: 64px; line-height: 1.25em; min-width: 348px; text-align: left; margin: 0pt; top: 136px;"><a href="http://weeverapps.com/pricing" style="float: left; margin: 0pt 1em;" id="headerbutton">Sign Up</a>Enjoying Your Free Trial?<br><span style="font-size: 0.5em; margin: 0pt;">We add powerful new features each month.</span></span>
+
+
+<span id="wx-admin-topbar-left" class="wx-admin-topbar">
+			<a href="http://weeverapps.com/pricing">Plans &amp; Pricing</a> &nbsp; | &nbsp; <a href="http://twitter.com/weeverapps">Follow us on Twitter</a> &nbsp; | &nbsp; <a href="http://eepurl.com/fP-oD">Newsletter</a>
+
+</span>
+    
+
+<div id="wx-admin-topbar-right" class="wx-admin-topbar">
+
+<span class="wx-app-status-button-offline" id="wx-app-status-button">
+    
+  <span class="wx-app-hide-status" id="wx-app-status-online">
+	<span id="wx-status-current">Status &mdash; App is</span>
+    <span id="wx-status-boldonline"><strong>online</strong></span>
+    <span id="wx-status-current">for mobile visitors &mdash;</span>
+	<span id="wx-status-takeoffline"><a href="http://localhost/2011_11_Wordpress/wp-admin/admin.php?page=weever-list&amp;weever-app-enabled=0">Take App Offline</a></span>
+  </span>
+    
+  <span id="wx-app-status-offline">
+    <span id="wx-status-current">Status &mdash; App is</span>
+    <span id="wx-status-boldoffline"><strong>offline</strong></span>
+    <span id="wx-status-current">for mobile visitors &mdash;</span>
+	<span id="wx-status-turnonline"><a href="http://localhost/2011_11_Wordpress/wp-admin/admin.php?page=weever-list&amp;weever-app-enabled=1">Turn App Online</a></span>
+  </span>
+
+</span>
 </div>
 
 
@@ -244,7 +269,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	<div id="<?php echo $row->component . 'Tab' ?>">
 	
-	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video" || $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map") : ?>
+	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video" || $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map" || $row->component == "directory") : ?>
 		
 		<?php echo $this->loadTemplate($row->component.'dropdown'); ?>
 		
@@ -296,9 +321,9 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 				<input type='checkbox' name='toggle<?php echo $row->component; ?>' id='toggle<?php echo $row->component; ?>' value='' onclick='checkAllTab(<?php echo count($componentRows); ?>, "cb", document.getElementById("boxchecked<?php echo $row->component; ?>"), document.getElementById("toggle<?php echo $row->component; ?>"), <?php echo $iii; ?> + 1);' />
 			</th>
 			
-			<th class='title'><?php echo JHTML::_('grid.sort', JText::_('NAME'), 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-			<th width='9%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('PUBLISHED'), 'published', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-			<th width='9%' nowrap='nowrap'><?php echo JText::_('WEEVER_CAP_D_DELETE'); ?></th>
+			<th class='title'><?php echo JHTML::_('grid.sort', JText::_('WEEVER_NAME'), 'name', $this->lists['order_Dir'], $this->lists['order']); ?> &nbsp; (<a target="_blank" href="http://weeverapps.com/mobile-app-layout" style="color:#1C94C4;">?</a>)</th>
+			<th width='9%' nowrap='nowrap'><?php echo JHTML::_('grid.sort', JText::_('WEEVER_PUBLISHED'), 'published', $this->lists['order_Dir'], $this->lists['order']); ?></th>
+			<th width='9%' nowrap='nowrap'><?php echo JText::_('WEEVER_DELETE_TH'); ?></th>
 		</tr>
 	</thead>
 	
@@ -307,25 +332,25 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 			<td colspan='5'>
 				<div class="wx-list-actions">
 	
-					<div id="wx-with-selected" class="wx-button-option">
-						<img src="components/com_weever/assets/icons/arrow_leftup.png" />
-						With selected: &nbsp;
+					<div class="wx-button-option" style="margin:0; padding:0;">
+						<img  style="margin:0;" src="components/com_weever/assets/icons/arrow_leftup.png" />
+						<span style="float:right; margin-top:.75em;">with selected:</span>
 					</div>
 					
 					<div class="wx-button-option" id='wx-toolbar-publish'>
 						<a href="#" onclick="javascript:if(document.getElementById('boxchecked<?php echo $row->component; ?>')==0){alert('Please make a selection from the list to publish');}else{  submitbutton('publish')}" class="toolbar">
-						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/tick.png" id="wx-publish-selected" title="Publish" /><?php echo JText::_('PUBLISH'); ?></a>
+						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/tick.png" id="wx-publish-selected" title="Publish" /><?php echo JText::_('WEEVER_PUBLISH'); ?></a>
 					</div>
 					
 					<div class="wx-button-option" id='wx-toolbar-unpublish'>
 						<a href="#" onclick="javascript:if(document.getElementById('boxchecked<?php echo $row->component; ?>')==0){alert('Please make a selection from the list to unpublish');}else{  submitbutton('unpublish')}" class="toolbar">
-						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/publish_x.png" id="wx-unpublish-selected" title="Unpublish" /><?php echo JText::_('UNPUBLISH'); ?>
+						<img class="wx-button-option-icon" src="components/com_weever/assets/icons/publish_x.png" id="wx-unpublish-selected" title="Unpublish" /><?php echo JText::_('WEEVER_UNPUBLISH'); ?>
 						</a>
 					</div>
 					
 					<div  class="wx-button-option" id="wx-toolbar-delete">
 						<a href="#" onclick="javascript:if(document.getElementById('boxchecked<?php echo $row->component; ?>')==0){alert('Please make a selection from the list to delete');}else{if(confirm('Are you sure you want to delete these tabs? (Note that navigation tabs selected will not be deleted.)')){submitbutton('remove');}}" class="toolbar">
-							<img class="wx-button-option-icon" src="components/com_weever/assets/icons/wx-delete-mark.png" id="wx-delete-selected" title="Delete" /><?php echo JText::_('DELETE'); ?>
+							<img class="wx-button-option-icon" src="components/com_weever/assets/icons/wx-delete-mark.png" id="wx-delete-selected" title="Delete" /><?php echo JText::_('WEEVER_DELETE_TH'); ?>
 						</a>
 					</div>
 				</div>

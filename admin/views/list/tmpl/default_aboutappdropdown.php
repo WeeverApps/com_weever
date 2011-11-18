@@ -37,7 +37,7 @@ else
 
 
 ?>
-<div class="wx-add-ui">
+<div class="wx-add-ui formspacer">
 	<div class='wx-add-item-aboutapp wx-add-item-dropdown'>
 		<select id='wx-select-aboutapp'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_ABOUTAPP_PARENTHESES'); ?></option>
