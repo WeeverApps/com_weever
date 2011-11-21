@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.2.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -82,24 +82,25 @@ else
 
 <div id="wx-admin-topbar-right" class="wx-admin-topbar">
 
-<span class="wx-app-status-button-offline" id="wx-app-status-button">
+<span <?php echo $offlineStatusClass; ?> id="wx-app-status-button">
     
-  <span class="wx-app-hide-status" id="wx-app-status-online">
+  <span <?php echo $onlineSpan; ?> id="wx-app-status-online">
 	<span id="wx-status-current">Status &mdash; App is</span>
     <span id="wx-status-boldonline"><strong>online</strong></span>
     <span id="wx-status-current">for mobile visitors &mdash;</span>
-	<span id="wx-status-takeoffline"><a href="http://localhost/2011_11_Wordpress/wp-admin/admin.php?page=weever-list&amp;weever-app-enabled=0">Take App Offline</a></span>
+	<span id="wx-status-takeoffline">Take App Offline</span>
   </span>
     
-  <span id="wx-app-status-offline">
+  <span <?php echo $offlineSpan; ?> id="wx-app-status-offline">
     <span id="wx-status-current">Status &mdash; App is</span>
     <span id="wx-status-boldoffline"><strong>offline</strong></span>
     <span id="wx-status-current">for mobile visitors &mdash;</span>
-	<span id="wx-status-turnonline"><a href="http://localhost/2011_11_Wordpress/wp-admin/admin.php?page=weever-list&amp;weever-app-enabled=1">Turn App Online</a></span>
+	<span id="wx-status-turnonline">Turn App Online</span>
   </span>
 
 </span>
 </div>
+
 
 <div id='wx-modal-loading'>
     <div id='wx-modal-loading-text'></div>
@@ -107,17 +108,19 @@ else
     <div id='wx-modal-error-text'></div>
 </div>
 
-<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
+<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>	
 	
 	<?php echo $pane->startPane('theme'); ?>
 	<?php echo $pane->startPanel(JText::_('WEEVER_BASIC_SETTINGS'), 'basic-settings'); ?>
-        <br/>
+        
+    <div class="wx-submitcontainer">
+            <a href="#" onclick="javascript:submitbutton('apply')"><button class="wx-button-submit wx-button-save"><img src="components/com_weever/assets/icons/check.png" style="width:1em;height:1em;padding-right: 0.625em;" /><?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
+    </div>    
         		
-	<div>
 	
 	<fieldset class='adminForm'>
 	<legend><?php echo JText::_('WEEVER_THEME_BASIC_SETTINGS'); ?></legend>
-
+	
 	<table class="admintable">
 
 	
@@ -155,7 +158,6 @@ else
 	</table>
 	
 	</fieldset>
-	</div>
 
 	
 	<div>
@@ -239,7 +241,10 @@ else
 	<?php echo $pane->startPanel(JText::_("WEEVER_ADVANCED_LAUNCHSCREEN_SETTINGS"), 'advanced-launch-settings'); ?>
 	
 	
-	
+	<div class="wx-submitcontainer">
+	        <a href="#" onclick="javascript:submitbutton('apply')"><button class="wx-button-submit wx-button-save"><img src="components/com_weever/assets/icons/check.png" style="width:1em;height:1em;padding-right: 0.625em;" /><?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
+	</div>    
+	    		
 	
 	<div>
 	
@@ -308,6 +313,11 @@ else
 
 	<?php echo $pane->endPanel(); ?>
 	<?php echo $pane->startPanel(JText::_("WEEVER_ADVANCED_THEME_SETTINGS"), 'advanced-settings'); ?>
+	
+	<div class="wx-submitcontainer">
+	        <a href="#" onclick="javascript:submitbutton('apply')"><button class="wx-button-submit wx-button-save"><img src="components/com_weever/assets/icons/check.png" style="width:1em;height:1em;padding-right: 0.625em;" /><?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
+	</div>    
+	    		
 
 <div>
 				
@@ -358,7 +368,6 @@ else
 	<input type="hidden" name="option" value="<?php echo $option; ?>" />
 	<input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $this->site_key; ?>" />
 	<input type="hidden" name="view" value="theme" />
-	<input type="hidden" name="task" value="" />
 	<?php echo JHTML::_('form.token'); ?>
 	 
 </form>

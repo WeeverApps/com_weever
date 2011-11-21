@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.1
+*	Version: 	1.2.1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -62,7 +62,7 @@ if($this->appEnabled)
 else 
 {
 	$onlineSpan = 'class="wx-app-hide-status"';
-	$offlineStatusClass = "cla	ss=\"wx-app-status-button-offline\"";
+	$offlineStatusClass = "class=\"wx-app-status-button-offline\"";
 }
 
 ?>
@@ -86,20 +86,20 @@ else
 
 <div id="wx-admin-topbar-right" class="wx-admin-topbar">
 
-<span class="wx-app-status-button-offline" id="wx-app-status-button">
+<span <?php echo $offlineStatusClass; ?> id="wx-app-status-button">
     
-  <span class="wx-app-hide-status" id="wx-app-status-online">
+  <span <?php echo $onlineSpan; ?> id="wx-app-status-online">
 	<span id="wx-status-current">Status &mdash; App is</span>
     <span id="wx-status-boldonline"><strong>online</strong></span>
     <span id="wx-status-current">for mobile visitors &mdash;</span>
-	<span id="wx-status-takeoffline"><a href="http://localhost/2011_11_Wordpress/wp-admin/admin.php?page=weever-list&amp;weever-app-enabled=0">Take App Offline</a></span>
+	<span id="wx-status-takeoffline">Take App Offline</span>
   </span>
     
-  <span id="wx-app-status-offline">
+  <span <?php echo $offlineSpan; ?> id="wx-app-status-offline">
     <span id="wx-status-current">Status &mdash; App is</span>
     <span id="wx-status-boldoffline"><strong>offline</strong></span>
     <span id="wx-status-current">for mobile visitors &mdash;</span>
-	<span id="wx-status-turnonline"><a href="http://localhost/2011_11_Wordpress/wp-admin/admin.php?page=weever-list&amp;weever-app-enabled=1">Turn App Online</a></span>
+	<span id="wx-status-turnonline">Turn App Online</span>
   </span>
 
 </span>
@@ -128,6 +128,10 @@ else
 
 	<?php echo $pane->startPane('account'); ?>
 	<?php echo $pane->startPanel(JText::_('WEEVER_ACCOUNT_INFORMATION'), 'basic-settings'); ?>
+	
+	<div class="wx-submitcontainer">
+	        <a href="#" onclick="javascript:submitbutton('apply')"><button class="wx-button-submit wx-button-save"><img src="components/com_weever/assets/icons/check.png" style="width:1em;height:1em;padding-right: 0.625em;" /><?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
+	</div>   
 	
 	<div>
 	
@@ -177,7 +181,7 @@ else
 			
 			<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
 			<td>
-			<button type="button" id="wx-button-submit" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF'); ?></button>
+			<button type="button" class="wx-button-submit" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF'); ?></button>
             <p style="clear:both; margin:1.5em 1em 0 0;"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF_NOTE'); ?></p></td>
 			</tr>
 		
@@ -187,7 +191,7 @@ else
 			
 			<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
 			<td>
-			<button type="button"  id="wx-button-submit" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON'); ?></button>
+			<button type="button" class="wx-button-submit" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON'); ?></button>
             <p style="clear:both; margin:1.5em 1em 0 0;"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON_NOTE'); ?></p></td>
 			</tr>
 			

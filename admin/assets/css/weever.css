@@ -925,7 +925,7 @@ border: 1px solid #DDDDDD;
 
 }
 
-#wx-theme-submit, #wx-button-submit {
+#wx-theme-submit, .wx-button-submit {
     float: left;
     margin: 0 0 0.5em .25em;
     background: url("../images/alert-overlay.png") repeat-x scroll 0 0 #0C98C4;
@@ -946,19 +946,18 @@ border: 1px solid #DDDDDD;
 
 }
 
-#content-box #wx-theme-submit, #content-box #wx-button-submit {
-	background: url("../icons/alert-overlay.png") repeat-x scroll 0 0 #0C98C4;
+#content-box #wx-theme-submit, #content-box .wx-button-submit {
+	background: url("../icons/alert-overlay.png") repeat-x scroll 0 0 #faab1a;
 }
 
 #wx-theme-submit:hover { background: #94CF42 url(/wp-content/plugins/weever/static/images/alert-overlay.png) repeat-x; }
 
-#wx-submitcontainer {
-    clear: both;
-    display: block;
-    margin: 1.5em 0 2.5em;
-    padding: 0 0 0 0.5em;
+.wx-submitcontainer {
+	display: inline-block;
+    padding: 0.95em 0 0 1.25em;
+    margin-bottom: -1.5em;
     width: 100%;
-
+    font-size: 1.25em;
 }
 
 p.wx-theme-submithelp {

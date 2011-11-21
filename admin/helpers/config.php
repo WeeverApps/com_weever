@@ -29,7 +29,7 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.2.1";
+	const VERSION		= "1.2.1.1";
 	const RELEASE_TYPE	= "stable";
 	const RELEASE_NAME	= "<a href='http://www.grandriver.ca/index/document.cfm?Sec=27&Sub1=124&Sub2=0' target='_blank'>Elora Gorge</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
