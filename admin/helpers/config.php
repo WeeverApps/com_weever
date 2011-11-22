@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.1
+*	Version: 	1.2.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,16 +29,16 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.2.1.1";
+	const VERSION		= "1.2.3";
 	const RELEASE_TYPE	= "stable";
-	const RELEASE_NAME	= "<a href='http://www.grandriver.ca/index/document.cfm?Sec=27&Sub1=124&Sub2=0' target='_blank'>Elora Gorge</a>";
+	const RELEASE_NAME	= "<a href='http://www.fanshaweconservationarea.ca/' target='_blank'>Fanshawe</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";
 	const COPYRIGHT		= "Weever Apps Inc.";
 	const COPYRIGHT_URL = "http://www.weeverapps.com/";
 	const LICENSE		= "GPL v3.0";
 	const LICENSE_URL	= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE	= "November 18, 2011";
+	const RELEASE_DATE	= "November 22, 2011";
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";

@@ -88,10 +88,6 @@ $controller->redirect();
 $row->load(6);
 $status = $row->setting;
 
-// now has the button
-/*if($status == 0 && !$staging)
-	JError::raiseNotice(100, JText::_('WEEVER_NOTICE_APP_OFFLINE'));*/
-
 $row->load(3); $key = $row->setting;
 $row->load(4); $keySiteDomain = $row->setting;
 
