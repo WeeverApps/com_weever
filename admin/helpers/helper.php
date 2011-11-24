@@ -947,6 +947,27 @@ class comWeeverHelper
 	}
 	
 	
+	public static function pushImageToCloud($url)
+	{
+	
+		$postdata = http_build_query(
+			array( 	
+				'url' => $url,
+				'site_key' => JRequest::getVar('site_key'),
+				'type' => JRequest::getVar('type'),
+				'app' => 'ajax',
+				'm' => "edit_image",
+				'version' => comWeeverConst::VERSION,
+				'generator' => comWeeverConst::NAME
+				)
+			);
+		
+		return comWeeverHelper::sendToWeeverServer($postdata);
+
+	}
+	
+	
+	
 	
 	public static function pushTabNameToCloud()
 	{

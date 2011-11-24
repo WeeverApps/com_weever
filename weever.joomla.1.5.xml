@@ -30,7 +30,7 @@
   </languages>
  </administration>
  
- <media destination="com_weever" folder="images">
+ <media destination="com_weever" folder="media">
  	<filename>index.html</filename>
 	<filename>phone_load_.png</filename>
 	<filename>tablet_load_.png</filename>

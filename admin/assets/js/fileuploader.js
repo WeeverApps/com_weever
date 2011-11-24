@@ -535,7 +535,8 @@ qq.FileUploader = function(o){
             // used in css to hide progress spinner
             success: 'qq-upload-success',
             fail: 'qq-upload-fail'
-        }
+        },
+        callback: null,
     });
     // overwrite options with user supplied    
     qq.extend(this._options, o);       
@@ -545,6 +546,8 @@ qq.FileUploader = function(o){
     this._listElement = this._options.listElement || this._find(this._element, 'list');
     
     this._classes = this._options.classes;
+    
+    this._callback = this._options.callback;
         
     this._button = this._createUploadButton(this._find(this._element, 'button'));        
     
@@ -636,7 +639,8 @@ qq.extend(qq.FileUploader.prototype, {
         qq.remove(this._find(item, 'spinner'));
         
         if (result.success){
-            qq.addClass(item, this._classes.success);    
+            qq.addClass(item, this._classes.success); 
+            this._callback(result.url);   
         } else {
             qq.addClass(item, this._classes.fail);
         }         

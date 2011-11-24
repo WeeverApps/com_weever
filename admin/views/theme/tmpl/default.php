@@ -181,8 +181,8 @@ else
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TABLET_LAUNCHSCREEN'); ?></div>
 		<div class="wx-theme-note"><?php echo JText::_('WEEVER_TABLET_LAUNCHSCREEN_NOTE'); ?><br /><br /><span class="wx-theme-description">This image appears on iPads and Tablets held upright.</span></div>
                 <div id="wx-tablet-upload"></div>
-		<div class="wx-theme-image-container"><a href='../media/com_weever/tablet_load_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 920}}'>
-		<img class="wx-theme-image" src="../media/com_weever/tablet_load_live.png?nocache=<?php echo microtime(); ?>" />
+		<div class="wx-theme-image-container"><a href='<?php echo $this->theme->images->tablet_load; ?>' class='popup' id="wx-theme-tablet-load-link" rel='{handler: "iframe", size:  { y: 512, x: 374}}'>
+		<img class="wx-theme-image" id="wx-theme-tablet-load" src="<?php echo $this->theme->images->tablet_load; ?>" />
 		</a></div>
 		</div>
 		
@@ -196,8 +196,8 @@ else
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TABLET_LANDSCAPE_LAUNCHSCREEN'); ?></div>
 		<div class="wx-theme-note"><?php echo JText::_('WEEVER_TABLET_LANDSCAPE_LAUNCHSCREEN_NOTE'); ?><br /><br /><span class="wx-theme-description">This image appears on iPads and Tablets held sideways.</span></div>
                 <div id="wx-tablet-landscape-upload"></div>
-		<div class="wx-theme-image-container"><a href='../media/com_weever/tablet_landscape_load_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 920}}'>
-		<img class="wx-theme-image" src="../media/com_weever/tablet_landscape_load_live.png?nocache=<?php echo microtime(); ?>" />
+		<div class="wx-theme-image-container"><a href='<?php echo $this->theme->images->tablet_landscape_load; ?>' class='popup' id="wx-theme-tablet-landscape-load-link" rel='{handler: "iframe", size:  { y: 512, x: 374}}'>
+		<img class="wx-theme-image" id="wx-theme-tablet-landscape-load" src="<?php echo $this->theme->images->tablet_landscape_load; ?>" />
 		</a></div>
 		</div>
 		
@@ -211,8 +211,8 @@ else
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_PHONE_LAUNCHSCREEN'); ?></div>
 		<div class="wx-theme-note"><?php echo JText::_('WEEVER_PHONE_LAUNCHSCREEN_NOTE'); ?><br /><br /><span class="wx-theme-description">This image appears on smartphones.</span></div>
                 <div id="wx-phone-upload"></div>
-		<div class="wx-theme-image-container"><a href='../media/com_weever/phone_load_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 640}}'>
-		<img class="wx-theme-image" src="../media/com_weever/phone_load_live.png?nocache=<?php echo microtime(); ?>" />
+		<div class="wx-theme-image-container"><a href='<?php echo $this->theme->images->phone_load; ?>' class='popup' id="wx-theme-phone-load-link" rel='{handler: "iframe", size:  { y: 460, x: 320}}'>
+		<img class="wx-theme-image" id="wx-theme-phone-load" src="<?php echo $this->theme->images->phone_load; ?>" />
 		</a></div>
 		</div>
 		
@@ -226,8 +226,8 @@ else
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_ICON'); ?></div>
 		<div class="wx-theme-note"><?php echo JText::_('WEEVER_ICON_NOTE'); ?><br /><br /><span class="wx-theme-description">This icon is used when a visitor saves your app to their device home screen.</span></div>
                 <div id="wx-icon-upload"></div>
-		<div class="wx-theme-image-container"><a href='../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 144, y: 144}}'>
-		<img class="wx-theme-image" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" />
+		<div class="wx-theme-image-container"><a href='<?php echo $this->theme->images->icon; ?>' class='popup' id="wx-theme-icon-link" rel='{handler: "iframe", size:  { x: 144, y: 144}}'>
+		<img class="wx-theme-image" id="wx-theme-icon" src="<?php echo $this->theme->images->icon; ?>" />
 		</a></div>
 		</div>
 		
@@ -240,8 +240,8 @@ else
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TITLEBAR_LOGO_IMAGE'); ?></div>
 		<div class="wx-theme-note"><?php echo JText::_('WEEVER_TITLEBAR_LOGO_NOTE'); ?><br /><br /><span class="wx-theme-description">Your logo, which will be placed at the top of your app. (Optional)</span></div>
                 <div id="wx-titlebar-upload"></div>
-		<div class="wx-theme-image-container"><a href='../media/com_weever/titlebar_logo_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 600, y: 64}}'>
-		<img class="wx-theme-image" src="../media/com_weever/titlebar_logo_live.png?nocache=<?php echo microtime(); ?>" />
+		<div class="wx-theme-image-container"><a href='<?php echo $this->theme->images->titlebar_logo; ?>' id="wx-theme-titlebar-logo-link" class='popup' rel='{handler: "iframe", size:  { x: 600, y: 64}}'>
+		<img class="wx-theme-image" id="wx-theme-titlebar-logo" src="<?php echo $this->theme->images->titlebar_logo; ?>" />
 		</a></div>
 		</div>
 		
@@ -261,52 +261,92 @@ else
 		        '<ul class="qq-upload-list"></ul>' + 
 		     	'</div>';
 		};
+		
+		function fileUploadTemplate() {
+			return '<li id="wx-upload-info">' +
+		        '<div class="qq-upload-file"></div>' +
+		        '<div class="qq-upload-spinner"></div>' +
+		        '<div class="qq-upload-size"></div>' +
+		        '<button class="qq-upload-cancel"><a href="#"><?php echo JText::_('WEEVER_UPLOAD_CANCEL'); ?></a></button>' +
+		        '<div class="qq-upload-failed-text"><?php echo JText::_('WEEVER_UPLOAD_FAILED'); ?></div>' +
+		    '</li>';
+		}; 
 	  
 	    function createUploader() {            
 	        var tabletUploader = new qq.FileUploader({
 	            element: document.getElementById('wx-tablet-upload'),
-	            action: 'index.php?option=com_weever&task=upload',
+	            action: 'index.php?option=com_weever&task=upload&type=tablet_load&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_NEW'); ?>',
 	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
 	            }),
-	            debug: true
+	            fileTemplate: fileUploadTemplate(),
+	            debug: true,
+	            callback: function(url) {
+	            	jQuery("#wx-theme-tablet-load").attr("src", url);
+	            	jQuery("#wx-theme-tablet-load-link").attr("href", url);
+	            	jQuery("#wx-upload-info").remove();
+	            }
 	        });   
 	        var tabletLandscapeUploader = new qq.FileUploader({
 	            element: document.getElementById('wx-tablet-landscape-upload'),
-	            action: 'index.php?option=com_weever&task=upload',
+	            action: 'index.php?option=com_weever&task=upload&type=tablet_landscape_load&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_NEW'); ?>',
 	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
 	            }),
-	            debug: true
+	            fileTemplate: fileUploadTemplate(),
+	            debug: true,
+	            callback: function(url) {
+	            	jQuery("#wx-theme-tablet-landscape-load").attr("src", url);
+	            	jQuery("#wx-theme-tablet-landscape-load-link").attr("href", url);
+	            	jQuery("#wx-upload-info").remove();
+	            }
 	        }); 
 	        var phoneUploader = new qq.FileUploader({
 	            element: document.getElementById('wx-phone-upload'),
-	            action: 'index.php?option=com_weever&task=upload',
+	            action: 'index.php?option=com_weever&task=upload&type=phone_load&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_NEW'); ?>',
 	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
 	            }),
-	            debug: true
+	            fileTemplate: fileUploadTemplate(),
+	            debug: true,
+	            callback: function(url) {
+	            	jQuery("#wx-theme-phone-load").attr("src", url);
+	            	jQuery("#wx-theme-phone-load-link").attr("href", url);
+	            	jQuery("#wx-upload-info").remove();
+	            }
 	        });         
 	        var iconUploader = new qq.FileUploader({
 	            element: document.getElementById('wx-icon-upload'),
-	            action: 'index.php?option=com_weever&task=upload',
+	            action: 'index.php?option=com_weever&task=upload&type=icon&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_NEW'); ?>',
 	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
 	            }),
-	            debug: true
+	            fileTemplate: fileUploadTemplate(),
+	            debug: true,
+	            callback: function(url) {
+	            	jQuery("#wx-theme-icon").attr("src", url);
+	            	jQuery("#wx-theme-icon-link").attr("href", url);
+	            	jQuery("#wx-upload-info").remove();
+	            }
 	        }); 
 	        var titlebarUploader = new qq.FileUploader({
 	            element: document.getElementById('wx-titlebar-upload'),
-	            action: 'index.php?option=com_weever&task=upload',
+	            action: 'index.php?option=com_weever&task=upload&type=titlebar_logo&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_NEW'); ?>',
 	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
 	            }),
-	            debug: true
+	            fileTemplate: fileUploadTemplate(),
+	            debug: true,
+	            callback: function(url) {
+	            	jQuery("#wx-theme-titlebar-logo").attr("src", url);
+	            	jQuery("#wx-theme-titlebar-logo-link").attr("href", url);
+	            	jQuery("#wx-upload-info").remove();
+	            }
 	        }); 
 	    }
 

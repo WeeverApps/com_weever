@@ -42,13 +42,22 @@ class WeeverController extends JController
 		
 		require_once (JPATH_COMPONENT.DS.'classes'.DS.'fileuploader'.'.php');
 	
-		$allowedExtensions = array("jpg","png","jpeg","gif","svg");
+		$allowedExtensions = array("png","jpg","jpeg","gif","svg");
 
-		$sizeLimit = 1024*1024*3;
+		$sizeLimit = 1024*1024*5;
 		
 		$uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 		
-		$result = $uploader->handleUpload(JPATH_SITE . DS . 'images/weever/');
+		$result = $uploader->handleUpload(JPATH_SITE . DS . 'images' . DS .'com_weever'. DS);
+		
+		if(isset($result['success']))
+		{
+		
+			$result['url'] = 'http://' . comWeeverHelper::getSiteDomain() . DS . 'images' . DS . 'com_weever' . DS . $result['filename'];
+		
+			$result['weever_response'] = comWeeverHelper::pushImageToCloud($result['url']);
+			
+		}	
 
 		echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
 		jexit();

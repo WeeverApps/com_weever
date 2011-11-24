@@ -940,8 +940,7 @@ margin-right:20px;
 }
 
 .qq-upload-button {
-    float: left;
-    margin: 0 0 0.5em .25em;
+    margin: 1em 0 0.25em .25em;
     background: url("../images/alert-overlay.png") repeat-x scroll 0 0 #0C98C4;
     border: 0 none;
     border-radius: 3px 3px 3px 3px;
@@ -963,6 +962,36 @@ margin-right:20px;
 .qq-upload-drop-area {
 	display: none;
 }
+
+.qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel {
+	margin-right: 1em;
+	font-size: 1.25em;
+	color: #0C98C4;
+	font-weight:bold;
+}
+
+.qq-upload-list {margin:0; padding:0; list-style:none;}
+
+.qq-upload-list li { margin:0; padding:0; font-size:0.85em; width: 150px;
+}
+
+.qq-upload-spinner {display:inline-block; background: url("../icons/loading.gif"); width:15px; height:15px; vertical-align:text-bottom;}
+
+.qq-upload-size {font-size:1em; display:block;}
+
+.qq-upload-cancel {
+	font-size:1.25em; 
+	display:block;
+	background-image:  url(../icons/wx-delete-mark.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 10px;
+	width: 160px;
+	text-overflow: ellipsis;
+}
+
+.qq-upload-failed-text {display:none;}
+.qq-upload-fail .qq-upload-failed-text {display:inline; color: red; font-weight: bold;}
 
 
 #wx-theme-submit, .wx-button-submit {
