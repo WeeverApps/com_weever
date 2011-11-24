@@ -75,20 +75,20 @@ class com_WeeverInstallerScript
 		}
 		
 		
-		if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_live.png"))
-			copy(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_live.png");
+		if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."phone_load_live.png"))
+			copy(JPATH_ROOT.DS."images".DS."com_weever".DS."phone_load_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."phone_load_live.png");
 		
-		if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."icon_live.png"))
-			copy(JPATH_ROOT.DS."media".DS."com_weever".DS."icon_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."icon_live.png");
+		if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."icon_live.png"))
+			copy(JPATH_ROOT.DS."images".DS."com_weever".DS."icon_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."icon_live.png");
 			
-		if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_live.png"))
-			copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_live.png");
+		if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_load_live.png"))
+			copy(JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_load_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_load_live.png");
 			
-		if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_live.png"))
-			copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_live.png");
+		if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_landscape_load_live.png"))
+			copy(JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_landscape_load_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_landscape_load_live.png");
 			
-		if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png"))
-			copy(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png");
+		if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."titlebar_logo_live.png"))
+			copy(JPATH_ROOT.DS."images".DS."com_weever".DS."titlebar_logo_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."titlebar_logo_live.png");
 			
 		if(!function_exists("stream_context_create"))
 			echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_STREAM_CONTEXT_CREATE")."</div>";

@@ -76,7 +76,7 @@ else
 
 
 <?php if($this->tier == 1) : ?>
-	<div style="position:absolute; right:64px; top:136px; margin:0 1em;">
+	<div style="position:absolute; right:10px; top:136px; margin:0 1em;">
 	<span style="float: right; font-size: 10px;"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION'); ?></span>
 	<span style="float:right; line-height: 1.25em; font-size: 1em; text-align: right; margin:1px 1.5em 0 0;"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION_LEARN_MORE'); ?></span></div>
 

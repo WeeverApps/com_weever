@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1.1
+*	Version: 	1.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -36,23 +36,25 @@ class WeeverController extends JController
 		jexit();
 	}
 
+	
+	public function upload()
+	{
+		
+		require_once (JPATH_COMPONENT.DS.'classes'.DS.'fileuploader'.'.php');
+	
+		$allowedExtensions = array("jpg","png","jpeg","gif","svg");
 
-	public function add()
-	{
-	
-		JRequest::setVar('view', 'tab');
-		$this->display();
-	
-	}
-	
-	
-	public function edit()
-	{
-	
-		JRequest::setVar('view', 'tab');
-		$this->display();
+		$sizeLimit = 1024*1024*3;
+		
+		$uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+		
+		$result = $uploader->handleUpload(JPATH_SITE . DS . 'images/weever/');
+
+		echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+		jexit();
 	
 	}
+	
 
 	public function ajaxSaveTabName()
 	{

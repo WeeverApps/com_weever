@@ -896,29 +896,41 @@ margin-right:20px;
 }
 
 .wx-theme-screen {
-float:left;
-margin-bottom:2em;
-min-height: 340px;
+	float:left;
+	margin-bottom:2em;
+	min-height: 340px;
+	margin-left: 2em;
 }
 
 
 .wx-theme-caption {
-    margin: 0 2em;
-    min-width: 175px;
-    min-height:3em;
-    font-size: 1.125em;
+    max-width: 160px;
+    font-size: 1em;
     font-weight: bold;
 }
 
+.wx-theme-note {
+	font-size: 0.85em;
+	max-width: 160px;
+	color: #999999;
+	height: 6em;
+}
+
+.wx-theme-description {
+	font-style: italic;
+	color: #333333;
+}
+
+.wx-theme-image-container {
+	text-align:center;
+}
+
 .wx-theme-image {
-
-border: 1px solid #DDDDDD;
-    margin: 2em;
-
-    width: 144px;
+	border: 1px solid #eeeeee;
+    max-width: 160px;
     clear: both;
     display: block;
-
+    margin-top: 2em;
 }
 
 .wx-theme-input, #content-box .wx-theme-input {
@@ -926,6 +938,32 @@ border: 1px solid #DDDDDD;
     width: 144px;
 
 }
+
+.qq-upload-button {
+    float: left;
+    margin: 0 0 0.5em .25em;
+    background: url("../images/alert-overlay.png") repeat-x scroll 0 0 #0C98C4;
+    border: 0 none;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Helvetica Neue,"Arial",Helvetica,Verdana,sans-serif;
+    font-size: 1.125em;
+    width:  150px;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    text-decoration: none !important;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.376);
+
+}
+
+.qq-upload-drop-area {
+	display: none;
+}
+
 
 #wx-theme-submit, .wx-button-submit {
     float: left;
