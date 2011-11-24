@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.2.3
+*	Version: 	1.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -116,6 +116,12 @@ class com_WeeverInstallerScript
 		
 			<table class="admintable">
 			
+			
+				
+				<tr>
+				<td><a href="http://weeverapps.com/free" target="_blank" id="headerbutton"><?php JText::_("WEEVER_GET_A_KEY"); ?></a></td>
+				</tr>
+				
 		
 			
 				<tr>
@@ -352,7 +358,7 @@ class com_WeeverInstallerScript
 		if($key->setting)
 		{
 
-			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&version=1.2.3&cms=joomla&m=upgrade&site_key='.$key->setting);	
+			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&version=1.3&cms=joomla&m=upgrade&site_key='.$key->setting);	
 			?>
 			<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 			<?php 

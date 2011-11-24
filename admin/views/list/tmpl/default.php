@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.3
+*	Version: 	1.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -106,18 +106,18 @@ else
 ?>
 
 <?php if($this->tier == 1) : ?>
-	<div style="position:absolute; right:64px; top:136px; margin:0 1em;">
-	<span style="float: right; font-size: 10px;">• Mobile Maps!<br>• Rebrand &amp; Resell<br>• Custom Domains</span>
-	<span style="float:right; line-height: 1.25em; font-size: 1em; text-align: right; margin:1px 1.5em 0 0;">Weever Apps Pro &amp; Premium<br><a id="headerbutton" href="http://weeverapps.com/pricing">Learn more</a></span></div>
+	<div style="position:absolute; right:10px; top:136px; margin:0 1em;">
+	<span style="float: right; font-size: 10px;"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION'); ?></span>
+	<span style="float:right; line-height: 1.25em; font-size: 1em; text-align: right; margin:1px 1.5em 0 0;"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION_LEARN_MORE'); ?></span></div>
 
 <?php elseif($this->tier == 2.1) : ?>
-	<span style="font-size: 1.5em; position: absolute; right: 64px; line-height: 1.25em; min-width: 348px; text-align: left; margin: 0pt; top: 136px;"><a href="http://weeverapps.com/pricing" style="float: left; margin: 0pt 1em;" id="headerbutton">Sign Up</a>Enjoying the Trial Features?<br><span style="font-size: 0.5em; margin: 0pt;">We add powerful new features each month.</span></span>
+	<span style="font-size: 1.5em; position: absolute; right: 10px; line-height: 1.25em; min-width: 420px; text-align: left; margin: 0pt; top: 136px;"><a href="http://weeverapps.com/pricing" style="float: left; margin: 0pt 1em;" id="headerbutton"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BUTTON'); ?></a><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_CALL'); ?><br><span style="font-size: 0.65em; margin: 0pt;"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BYLINE'); ?></span></span>
 	
 <?php endif; ?>
 	
 
 <span id="wx-admin-topbar-left" class="wx-admin-topbar">
-			<a href="http://weeverapps.com/pricing">Plans &amp; Pricing</a> &nbsp; | &nbsp; <a href="http://twitter.com/weeverapps">Follow us on Twitter</a> &nbsp; | &nbsp; <a href="http://eepurl.com/fP-oD">Newsletter</a>
+			<a href="http://weeverapps.com/pricing"><?php echo JText::_('WEEVER_PLANS_AND_PRICING'); ?></a> &nbsp; | &nbsp; <a href="http://twitter.com/weeverapps"><?php echo JText::_('WEEVER_FOLLOW_TWITTER'); ?></a> &nbsp; | &nbsp; <a href="http://eepurl.com/fP-oD"><?php echo JText::_('WEEVER_NEWSLETTER'); ?></a>
 
 </span>
     
@@ -127,17 +127,17 @@ else
 <span <?php echo $offlineStatusClass; ?> id="wx-app-status-button">
     
   <span <?php echo $onlineSpan; ?> id="wx-app-status-online">
-	<span id="wx-status-current">Status &mdash; App is</span>
-    <span id="wx-status-boldonline"><strong>online</strong></span>
-    <span id="wx-status-current">for mobile visitors &mdash;</span>
-	<span id="wx-status-takeoffline">Take App Offline</span>
+	<span id="wx-status-current"><?php echo JText::_('WEEVER_APP_STATUS'); ?></span>
+    <span id="wx-status-boldonline"><strong><?php echo JText::_('WEEVER_ONLINE'); ?></strong></span>
+    <span id="wx-status-current"><?php echo JText::_('WEEVER_FOR_MOBILE_VISITORS'); ?></span>
+	<span id="wx-status-takeoffline"><?php echo JText::_('WEEVER_TAKE_OFFLINE'); ?></span>
   </span>
     
   <span <?php echo $offlineSpan; ?> id="wx-app-status-offline">
-    <span id="wx-status-current">Status &mdash; App is</span>
-    <span id="wx-status-boldoffline"><strong>offline</strong></span>
-    <span id="wx-status-current">for mobile visitors &mdash;</span>
-	<span id="wx-status-turnonline">Turn App Online</span>
+    <span id="wx-status-current"><?php echo JText::_('WEEVER_APP_STATUS'); ?></span>
+    <span id="wx-status-boldoffline"><strong><?php echo JText::_('WEEVER_OFFLINE'); ?></strong></span>
+    <span id="wx-status-current"><?php echo JText::_('WEEVER_FOR_MOBILE_VISITORS'); ?></span>
+	<span id="wx-status-turnonline"><?php echo JText::_('WEEVER_TURN_APP_ONLINE'); ?></span>
   </span>
 
 </span>

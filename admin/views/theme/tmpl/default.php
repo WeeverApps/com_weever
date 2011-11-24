@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.2
+*	Version: 	1.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -41,6 +41,7 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
 	
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/theme.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/fileuploader.js' );
 
 $joomla = comWeeverHelper::joomlaVersion();
 
@@ -69,18 +70,18 @@ else
 ?>
 
 <?php if($this->account->tier_number == 1) : ?>
-	<div style="position:absolute; right:64px; top:136px; margin:0 1em;">
-	<span style="float: right; font-size: 10px;">• Mobile Maps!<br>• Rebrand &amp; Resell<br>• Custom Domains</span>
-	<span style="float:right; line-height: 1.25em; font-size: 1em; text-align: right; margin:1px 1.5em 0 0;">Weever Apps Pro &amp; Premium<br><a id="headerbutton" href="http://weeverapps.com/pricing">Learn more</a></span></div>
+	<div style="position:absolute; right:10px; top:136px; margin:0 1em;">
+	<span style="float: right; font-size: 10px;"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION'); ?></span>
+	<span style="float:right; line-height: 1.25em; font-size: 1em; text-align: right; margin:1px 1.5em 0 0;"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION_LEARN_MORE'); ?></span></div>
 
 <?php elseif($this->account->tier_number == 2.1) : ?>
-	<span style="font-size: 1.5em; position: absolute; right: 64px; line-height: 1.25em; min-width: 348px; text-align: left; margin: 0pt; top: 136px;"><a href="http://weeverapps.com/pricing" style="float: left; margin: 0pt 1em;" id="headerbutton">Sign Up</a>Enjoying the Trial Features?<br><span style="font-size: 0.5em; margin: 0pt;">We add powerful new features each month.</span></span>
+	<span style="font-size: 1.5em; position: absolute; right: 10px; line-height: 1.25em; min-width: 420px; text-align: left; margin: 0pt; top: 136px;"><a href="http://weeverapps.com/pricing" style="float: left; margin: 0pt 1em;" id="headerbutton"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BUTTON'); ?></a><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_CALL'); ?><br><span style="font-size: 0.75em; margin: 0pt;"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BYLINE'); ?></span></span>
 	
 <?php endif; ?>
-
+	
 
 <span id="wx-admin-topbar-left" class="wx-admin-topbar">
-			<a href="http://weeverapps.com/pricing">Plans &amp; Pricing</a> &nbsp; | &nbsp; <a href="http://twitter.com/weeverapps">Follow us on Twitter</a> &nbsp; | &nbsp; <a href="http://eepurl.com/fP-oD">Newsletter</a>
+			<a href="http://weeverapps.com/pricing"><?php echo JText::_('WEEVER_PLANS_AND_PRICING'); ?></a> &nbsp; | &nbsp; <a href="http://twitter.com/weeverapps"><?php echo JText::_('WEEVER_FOLLOW_TWITTER'); ?></a> &nbsp; | &nbsp; <a href="http://eepurl.com/fP-oD"><?php echo JText::_('WEEVER_NEWSLETTER'); ?></a>
 
 </span>
     
@@ -90,21 +91,23 @@ else
 <span <?php echo $offlineStatusClass; ?> id="wx-app-status-button">
     
   <span <?php echo $onlineSpan; ?> id="wx-app-status-online">
-	<span id="wx-status-current">Status &mdash; App is</span>
-    <span id="wx-status-boldonline"><strong>online</strong></span>
-    <span id="wx-status-current">for mobile visitors &mdash;</span>
-	<span id="wx-status-takeoffline">Take App Offline</span>
+	<span id="wx-status-current"><?php echo JText::_('WEEVER_APP_STATUS'); ?></span>
+    <span id="wx-status-boldonline"><strong><?php echo JText::_('WEEVER_ONLINE'); ?></strong></span>
+    <span id="wx-status-current"><?php echo JText::_('WEEVER_FOR_MOBILE_VISITORS'); ?></span>
+	<span id="wx-status-takeoffline"><?php echo JText::_('WEEVER_TAKE_OFFLINE'); ?></span>
   </span>
     
   <span <?php echo $offlineSpan; ?> id="wx-app-status-offline">
-    <span id="wx-status-current">Status &mdash; App is</span>
-    <span id="wx-status-boldoffline"><strong>offline</strong></span>
-    <span id="wx-status-current">for mobile visitors &mdash;</span>
-	<span id="wx-status-turnonline">Turn App Online</span>
+    <span id="wx-status-current"><?php echo JText::_('WEEVER_APP_STATUS'); ?></span>
+    <span id="wx-status-boldoffline"><strong><?php echo JText::_('WEEVER_OFFLINE'); ?></strong></span>
+    <span id="wx-status-current"><?php echo JText::_('WEEVER_FOR_MOBILE_VISITORS'); ?></span>
+	<span id="wx-status-turnonline"><?php echo JText::_('WEEVER_TURN_APP_ONLINE'); ?></span>
   </span>
 
 </span>
 </div>
+
+
 
 
 <div id='wx-modal-loading'>
@@ -169,15 +172,18 @@ else
 		<fieldset class='adminForm'>
 		<legend><?php echo JText::_('WEEVER_IMAGE_SETTINGS'); ?></legend>
 		<br/>
+		
+		
 		<div class="wx-theme-screen">
 		
 		
 		<div>
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TABLET_LAUNCHSCREEN'); ?></div>
-                <input type="file" class="wx-theme-input" name="tablet_load_live" size="13" />
-		<a href='../media/com_weever/tablet_load_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 920}}'>
+		<div class="wx-theme-note"><?php echo JText::_('WEEVER_TABLET_LAUNCHSCREEN_NOTE'); ?></div>
+                <div id="wx-tablet-upload"></div>
+		<div class="wx-theme-image-container"><a href='../media/com_weever/tablet_load_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 920}}'>
 		<img class="wx-theme-image" src="../media/com_weever/tablet_load_live.png?nocache=<?php echo microtime(); ?>" />
-		</a>
+		</a></div>
 		</div>
 		
 		</div>
@@ -188,10 +194,11 @@ else
 		
 		<div>
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TABLET_LANDSCAPE_LAUNCHSCREEN'); ?></div>
-                <input type="file" class="wx-theme-input" name="tablet_landscape_load_live" size="13" />
-		<a href='../media/com_weever/tablet_landscape_load_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 920}}'>
+		<div class="wx-theme-note"><?php echo JText::_('WEEVER_TABLET_LANDSCAPE_LAUNCHSCREEN_NOTE'); ?></div>
+                <div id="wx-tablet-landscape-upload"></div>
+		<div class="wx-theme-image-container"><a href='../media/com_weever/tablet_landscape_load_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 920}}'>
 		<img class="wx-theme-image" src="../media/com_weever/tablet_landscape_load_live.png?nocache=<?php echo microtime(); ?>" />
-		</a>
+		</a></div>
 		</div>
 		
 		</div>
@@ -202,10 +209,11 @@ else
 		
 		<div>
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_PHONE_LAUNCHSCREEN'); ?></div>
-                <input type="file" class="wx-theme-input" name="phone_load_live" size="13" />
-		<a href='../media/com_weever/phone_load_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 640}}'>
+		<div class="wx-theme-note"><?php echo JText::_('WEEVER_PHONE_LAUNCHSCREEN_NOTE'); ?></div>
+                <div id="wx-phone-upload"></div>
+		<div class="wx-theme-image-container"><a href='../media/com_weever/phone_load_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 640}}'>
 		<img class="wx-theme-image" src="../media/com_weever/phone_load_live.png?nocache=<?php echo microtime(); ?>" />
-		</a>
+		</a></div>
 		</div>
 		
 		</div>
@@ -216,10 +224,11 @@ else
 		
 		<div>
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_ICON'); ?></div>
-                <input type="file" class="wx-theme-input" name="icon_live" size="13" />
-		<a href='../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 144, y: 144}}'>
+		<div class="wx-theme-note"><?php echo JText::_('WEEVER_ICON_NOTE'); ?></div>
+                <div id="wx-icon-upload"></div>
+		<div class="wx-theme-image-container"><a href='../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 144, y: 144}}'>
 		<img class="wx-theme-image" src="../media/com_weever/icon_live.png?nocache=<?php echo microtime(); ?>" />
-		</a>
+		</a></div>
 		</div>
 		
 		</div>
@@ -229,10 +238,11 @@ else
 		
 		<div>
 		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TITLEBAR_LOGO_IMAGE'); ?></div>
-                <input type="file" class="wx-theme-input" name="titlebar_logo_live" size="13" />
-		<a href='../media/com_weever/titlebar_logo_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 600, y: 64}}'>
+		<div class="wx-theme-note"><?php echo JText::_('WEEVER_TITLEBAR_LOGO_NOTE'); ?></div>
+                <div id="wx-titlebar-upload"></div>
+		<div class="wx-theme-image-container"><a href='../media/com_weever/titlebar_logo_live.png?nocache=<?php echo microtime(); ?>' class='popup' rel='{handler: "iframe", size:  { x: 600, y: 64}}'>
 		<img class="wx-theme-image" src="../media/com_weever/titlebar_logo_live.png?nocache=<?php echo microtime(); ?>" />
-		</a>
+		</a></div>
 		</div>
 		
 		</div>
@@ -241,6 +251,67 @@ else
 		
 		</fieldset>
 		</div>
+		
+	<script>      
+	
+		function themeUploadTemplate(text) {
+			return '<div class="qq-uploader">' + 
+		    	'<div class="qq-upload-drop-area"><span>'+text.dropUpload+'</span></div>' +
+		        '<div class="qq-upload-button">'+text.uploadButton+'</div>' +
+		        '<ul class="qq-upload-list"></ul>' + 
+		     	'</div>';
+		};
+	  
+	    function createUploader() {            
+	        var tabletUploader = new qq.FileUploader({
+	            element: document.getElementById('wx-tablet-upload'),
+	            action: 'index.php?option=com_weever&task=tabletImageUpload',
+	            template: themeUploadTemplate({
+	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_TABLET'); ?>',
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            }),
+	            debug: true
+	        });   
+	        var tabletLandscapeUploader = new qq.FileUploader({
+	            element: document.getElementById('wx-tablet-landscape-upload'),
+	            action: 'index.php?option=com_weever&task=tabletLandscapeImageUpload',
+	            template: themeUploadTemplate({
+	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_TABLET_LANDSCAPE'); ?>',
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            }),
+	            debug: true
+	        }); 
+	        var phoneUploader = new qq.FileUploader({
+	            element: document.getElementById('wx-phone-upload'),
+	            action: 'index.php?option=com_weever&task=phoneImageUpload',
+	            template: themeUploadTemplate({
+	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_PHONE'); ?>',
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            }),
+	            debug: true
+	        });         
+	        var iconUploader = new qq.FileUploader({
+	            element: document.getElementById('wx-icon-upload'),
+	            action: 'index.php?option=com_weever&task=iconImageUpload',
+	            template: themeUploadTemplate({
+	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_ICON'); ?>',
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            }),
+	            debug: true
+	        }); 
+	        var titlebarUploader = new qq.FileUploader({
+	            element: document.getElementById('wx-titlebar-upload'),
+	            action: 'index.php?option=com_weever&task=titlebarImageUpload',
+	            template: themeUploadTemplate({
+	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_LOGO'); ?>',
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            }),
+	            debug: true
+	        }); 
+	    }
+
+	    window.onload = createUploader;     
+	</script>  
 	
 	<?php echo $pane->endPanel(); ?>
 	<?php echo $pane->startPanel(JText::_("WEEVER_ADVANCED_LAUNCHSCREEN_SETTINGS"), 'advanced-launch-settings'); ?>

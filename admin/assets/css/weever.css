@@ -403,7 +403,7 @@ div.m { border-radius: none; }
 .wx-admin-topbar {
 	background:#fffff9;
 	text-align: left;
-	font-size: 0.75em;
+	font-size: 0.9125em;
 	text-transform: uppercase;
 	border-bottom:1px solid #dfdfdf;
 	padding: .5em 1em;
@@ -628,7 +628,7 @@ label.wx-check-label {
 #wx-status-current { color:#333; }
 #wx-status-text { color:#333; }
 
-#wx-status-takeoffline, #wx-status-turnonline { color:#21759B; }
+#wx-status-takeoffline, #wx-status-turnonline { color:#21759B; text-decoration:underline; }
 
 .wx-app-hide-status {
 	display: none;
@@ -904,8 +904,10 @@ min-height: 340px;
 
 .wx-theme-caption {
     margin: 0 2em;
-    width: 144px;
+    min-width: 175px;
     min-height:3em;
+    font-size: 1.125em;
+    font-weight: bold;
 }
 
 .wx-theme-image {
@@ -1008,11 +1010,13 @@ img#wx-unpublish-selected {
 }
 
 .wx-qr-imgprev { 
-     border: 1px solid #DFDFDF;
+    border: 1px solid #DFDFDF;
+    width: 128px;
+    padding: 4px;
     float: left;
-	width:120px;
     height: auto;
     margin: 0.75em 1em 1em;
+    background-color: #ffffff;
 }
 
 .wx-qr-app-text {
@@ -1145,16 +1149,17 @@ ul.supportlistarrow li, ul.supportliststar li {
 	line-height: 26px;
     margin: 3px 0 !important;
     padding-left: 3em !important;
+	list-style: none outside none;
 	
 }
 	
 ul.supportlistarrow li {
-        background: url("images/list_arrow.png") no-repeat scroll 0 0 transparent !important;
+        background: url("../icons/list_arrow.png") no-repeat scroll 0 0 transparent !important;
 	
 }
 
 ul.supportliststar li {
-	background: url("images/list_star.png") no-repeat scroll 0 0 transparent !important;
+	background: url("../icons/list_star.png") no-repeat scroll 0 0 transparent !important;
 	
 }
 

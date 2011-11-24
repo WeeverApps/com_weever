@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.2
+*	Version: 	1.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ $joomla = $version->getShortVersion();
 
 JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
 require_once (JPATH_COMPONENT.DS.'helpers'.DS.'helper'.'.php');
+JHTML::_('behavior.modal', 'a.popup');
 
 if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
 {
@@ -50,7 +51,9 @@ $cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jque
 
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
     $document->addStyleSheet($cssFile, 'text/css', null, array()); 
-
+    
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/fileuploader.css';
+    $document->addStyleSheet($cssFile, 'text/css', null, array()); 
 
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/weever.css?v='.comWeeverConst::VERSION;
 $document->addStyleSheet($cssFile, 'text/css', null, array());
@@ -112,18 +115,20 @@ if($key)
 		$weeverServer = comWeeverConst::LIVE_SERVER;
 		$modetype = 'live';
 	}
+	
+	$googleQRUrl = "http://chart.apis.google.com/chart?cht=qr&chs=120x120&choe=UTF-8&chld=H|0&chl=";
+	$googleQRUrlHD = "http://chart.apis.google.com/chart?cht=qr&chs=480x480&choe=UTF-8&chld=H|0&chl=";
+	$privateUrl = $weeverServer.'app/'.$keySiteDomain;
+	$publicUrl = 'http://'.$siteDomain;
+
 
 	echo '
-	
-      
-    
-    
     <fieldset class="adminForm" style="margin:1.5em;">
     <legend>'.JText::_('WEEVER_QR_TEST_CODE').'</legend>
 
-        <img src="http://'.$siteDomain.'/media/com_weever/qr_app_'.$modetype.'.png"  class="wx-qr-imgprev" />
+        <a href="'.$googleQRUrlHD.$privateUrl.'" class="popup" rel=\'{handler: "iframe", size: {x: 480, y: 480} }\'><img src="'.$googleQRUrl.$privateUrl.'"  class="wx-qr-imgprev" /></a>
         <p>'.JText::_('WEEVER_QR_SCAN_PRIVATE').'<br/>
-        QR Link: '.JText::_('WEEVER_QR_DIRECT_ADDRESS').'<a href="'.$weeverServer.'app/'.$keySiteDomain.'">'.$weeverServer.'app/'.$keySiteDomain.'</a></p>
+        QR Link: '.JText::_('WEEVER_QR_DIRECT_ADDRESS').'<a href="'.$privateUrl.'">'.$privateUrl.'</a></p>
         <p>'.JText::_('WEEVER_QR_ADDITIONAL_TEST').'</p>
     
 	</fieldset>
@@ -134,13 +139,9 @@ if($key)
 		echo '<fieldset class="adminForm" style="margin:1.5em;">
         			<legend style="background:#ECF4E6;">'.JText::_('WEEVER_QR_PUBLIC_CODE').'</legend>
 
-                <img src="http://'.$siteDomain.'/media/com_weever/qr_site_'.$modetype.'.png"  class= "wx-qr-imgprev"  />
+                <a href="'.$googleQRUrlHD.$publicUrl.'" class="popup" rel=\'{handler: "iframe", size: {x: 480, y: 480} }\'><img src="'.$googleQRUrl.$publicUrl.'"  class= "wx-qr-imgprev"  /></a>
 
-        
-
-        
-
-              <p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE').' <a href="'.$siteDomain.'">http://'.$siteDomain.'</a></p>
+              <p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE').' <a href="'.$publicUrl.'">'.$publicUrl.'</a></p>
 <p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE_SUGGEST').'</p>
              </fieldset>';
 	else
