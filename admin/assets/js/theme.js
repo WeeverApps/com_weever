@@ -37,6 +37,16 @@ jQuery(document).ready(function(){
 	    		}, 600 );
 	    });
 	
+	
+	jQuery("#wx-theme-select").change(function() {
+
+		var image = jQuery("option:selected", this).attr("rel");
+		
+		jQuery("#wx-theme-screenshot").attr("src", image);	
+		jQuery("#wx-theme-screenshot-link").attr("href", image);
+	
+	
+	});
 
 	//
 	jQuery("#wx-app-status-button").click(function(e) {
