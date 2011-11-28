@@ -758,7 +758,7 @@ div#wx-nav-icon-preview-wrapper img {
 
 .wx-theme-float {
 	float: left;
-	height: 335px;
+	height: 355px;
 }
 
 .wx-theme-float-line-2 {
@@ -786,7 +786,7 @@ div#wx-nav-icon-preview-wrapper img {
 }
 
 .wx-theme-fieldset {
-	height: 265px;
+	height: 280px;
 }
 
 #wx-install-text-container {
@@ -975,11 +975,18 @@ margin-right:20px;
 	display: none;
 	color: #faab1a;
 	font-weight: bold;
+	max-width: 330px;
+	font-size: 0.85em;
+	text-align: center;
 }
 
 #wx-install-text-save-reminder {
 	max-width: 160px;
 	margin-top: 1em;
+}
+
+#wx-theme-help {
+	font-size: 0.925em;
 }
 
 .wx-theme-titlebar-logo-container{
@@ -1048,6 +1055,10 @@ fieldset {
     margin-bottom: 1em;
 }
 
+#wx-theme-caption-titlebar-text {
+	margin-bottom: 0.5em;
+}
+
 .wx-theme-note {
 	font-size: 0.85em;
 	max-width: 160px;
@@ -1063,7 +1074,9 @@ fieldset {
 
 .wx-theme-note-titlebar-2 {
 	height: 2em;
+	max-width: 320px;
 	font-style: italic;
+	margin-top: 0.85em;
 }
 
 

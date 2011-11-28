@@ -253,7 +253,7 @@ else
     					</div>
     					
     					
-    					<div class="wx-theme-caption" style="margin-top:1em;"><input id="wx-enable-titlebar-text" type="checkbox" value="1" name="titlebar_title_enabled" <?php echo ($this->theme->titlebarSource == 'text' ? "checked='checked'":""); ?> /> <?php echo JText::_('WEEVER_TITLEBAR_LOGO_TEXT'); ?></div>
+    					<div class="wx-theme-caption" id="wx-theme-caption-titlebar-text" style="margin-top:1em;"><input id="wx-enable-titlebar-text" type="checkbox" value="1" name="titlebar_title_enabled" <?php echo ($this->theme->titlebarSource == 'text' ? "checked='checked'":""); ?> /> <?php echo JText::_('WEEVER_TITLEBAR_LOGO_TEXT'); ?></div>
     					
     					<div class="wx-theme-note wx-theme-note-titlebar" id="wx-theme-note-titlebar-text"><?php echo JText::_('WEEVER_TITLEBAR_TEXT_DESCRIPTION'); ?></div>
     					
@@ -308,7 +308,7 @@ else
     			</select>
     			</td>
     			</tr>
-    			<tr><td colspan="2"><?php echo JText::_('WEEVER_THEME_HELP'); ?></td></tr>
+    			<tr><td colspan="2" id="wx-theme-help"><?php echo JText::_('WEEVER_THEME_HELP'); ?></td></tr>
     		
     		</table>
     	</fieldset>
