@@ -197,23 +197,6 @@ class comWeeverHelper
 
 	public static function saveTheme()
 	{
-	
-		$max = ini_get('upload_max_filesize');
-
-		if(JRequest::getVar('icon_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('icon_live',$max,'icon_live.png');
-			
-		if(JRequest::getVar('phone_load_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('phone_load_live',$max,'phone_load_live.png');
-			
-		if(JRequest::getVar('tablet_load_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('tablet_load_live',$max, 'tablet_load_live.png');
-			
-		if(JRequest::getVar('tablet_landscape_load_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('tablet_landscape_load_live',$max, 'tablet_landscape_load_live.png');
-				
-		if(JRequest::getVar('titlebar_logo_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('titlebar_logo_live',$max, 'titlebar_logo_live.png');
 			
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		
@@ -229,10 +212,18 @@ class comWeeverHelper
 		
 		$themeObj->titlebarHtml = JRequest::getVar("titlebarHtml", "", "post","string",JREQUEST_ALLOWHTML);
 		$themeObj->css = JRequest::getVar("css");
-		$themeObj->titlebarSource = JRequest::getVar("titlebarSource");
+		$titlebarTextEnabled = JRequest::getVar("titlebar_title_enabled");
 		$themeObj->template = JRequest::getVar("template");
 		$themeObj->useCssOverride = JRequest::getVar("useCssOverride");
 
+		
+		if(trim($themeObj->titlebarHtml))
+			$themeObj->titlebarSource = "html";
+		else if($titlebarTextEnabled == 1)
+			$themeObj->titlebarSource = "text";
+		else
+			$themeObj->titlebarSource = "image";
+			
 		$launch = new launch_screen;
 		$launch->animation = JRequest::getVar("animation");
 		$launch->duration = JRequest::getVar("duration");

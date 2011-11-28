@@ -36,6 +36,8 @@ class WeeverViewTheme extends JView
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		$row->load(6);
 		$this->assign('appEnabled', $row->setting);
+		$row->load(5);
+		$this->assign('devices', $row->setting);
 		
 		/* Call the state object */
 		$state =& $this->get( 'state' );

@@ -67,7 +67,12 @@ else
 	$offlineStatusClass = "class=\"wx-app-status-button-offline\"";
 }
 
-$themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'themes'.DS;
+$themeDir = "http://weeverapp.com/media/themes/";
+
+if( !strstr($this->devices, 'DetectTierWeeverTablets') && !strstr($this->devices, 'DetectIpad') && !strstr($this->devices, 'DetectAndroidTablet') )
+	$noTablet = 1;
+else 
+	$noTablet = null;
 
 ?>
 
@@ -126,166 +131,288 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
     <div class="wx-submitcontainer">
             <a href="#" onclick="javascript:<?php echo $jsJoomla; ?>submitbutton('apply')"><button class="wx-button-submit wx-button-save"><img src="components/com_weever/assets/icons/check.png" style="width:1em;height:1em;padding-right: 0.625em;" /><?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
     </div>    
-    
-    
+
+	
+		<script>
+		
+			var weever = weever || {};
+
+			weever.checkTabletImg = function(src) {
+			
+				var tabletImg = new Image();
+				
+				tabletImg.onload = function() {
+					if(tabletImg.width != 1536 || tabletImg.height != 2008) {
+						jQuery("#wx-image-size-tablet").show();
+					}
+				}
+				
+				tabletImg.src = src || "<?php echo $this->theme->images->tablet_load; ?>";
+
+			}
+			
+			weever.checkTabletLandscapeImg = function(src) {
+			
+				var tabletLandscapeImg = new Image();
+			
+				tabletLandscapeImg.onload = function() {
+					if(tabletLandscapeImg.width != 1496 || tabletLandscapeImg.height != 2048) {
+						jQuery("#wx-image-size-tablet-landscape").show();
+					}
+				}
+				
+				tabletLandscapeImg.src = src || "<?php echo $this->theme->images->tablet_landscape_load; ?>";
+			
+			}
+			
+			weever.checkPhoneImg = function(src) {
+			
+				var phoneImg = new Image();
+			
+				phoneImg.onload = function() {
+					if(phoneImg.width != 640 || phoneImg.height != 920) {
+						jQuery("#wx-image-size-phone").show();
+					}
+				}
+				
+				phoneImg.src = src || "<?php echo $this->theme->images->phone_load; ?>";
+
+			}		
+			
+			
+			weever.checkIconImg = function(src) {
+			
+				var iconImg = new Image();
+			
+				iconImg.onload = function() {
+					if(iconImg.width != 144 || iconImg.height != 144) {
+						jQuery("#wx-image-size-icon").show();
+					}
+				}
+				
+				iconImg.src = src || "<?php echo $this->theme->images->icon; ?>";
+			
+			}	
+			
+			weever.checkTitlebarImg = function(src) {
+			
+				var titlebarImg = new Image();
+			
+				titlebarImg.onload = function() {
+					if(titlebarImg.width != 600 || titlebarImg.height != 64) {
+						jQuery("#wx-image-size-titlebar").show();
+					}
+				}
+				
+				titlebarImg.src = src || "<?php echo $this->theme->images->titlebar_logo; ?>";
+								
+			
+			}
+			
+			
+			weever.checkTabletImg();
+			weever.checkTabletLandscapeImg();
+			weever.checkPhoneImg();
+			weever.checkIconImg();
+			weever.checkTitlebarImg();
+	
+		
+		</script>
     
     <div class=" wx-theme-float">
-    	<fieldset class='adminForm  wx-theme-fieldset'>
+    
+    	<fieldset class='adminForm wx-theme-fieldset'>
+    	
     		<legend><?php echo JText::_('WEEVER_THEME_CHOOSE_THEME'); ?></legend>
     		
-    		<table class="admintable">
+    				
+    				<div class="wx-theme-titlebar-logo-container">
+    				
+    					<div id="wx-theme-titlebar-logo-options">
+    					<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TITLEBAR_LOGO_IMAGE'); ?></div>
+    					
+    					<div class="wx-image-size-warning" id="wx-image-size-titlebar"><?php echo JText::_('WEEVER_IMAGE_SIZE_WARNING'); ?></div>
+    					
+    					<?php if($this->theme->titlebarSource == "html") : ?>
+    					
+    					<div class="wx-notice" id="wx-titlebar-html-notice"><?php echo JText::_('WEEVER_TITLEBAR_HTML_NOTICE'); ?></div>
+    					
+    					<?php endif; ?>
+    					
+    					<div class="wx-theme-image-container wx-theme-image-container-titlebar"><a href='<?php echo $this->theme->images->titlebar_logo; ?>' id="wx-theme-titlebar-logo-link" class='popup' rel='{handler: "iframe", size:  { x: 600, y: 64}}'>
+    					<img class="wx-theme-titlebar-image" id="wx-theme-titlebar-logo" src="<?php echo $this->theme->images->titlebar_logo; ?>" />
+    					</a></div>
+    					
+    					<div id="wx-titlebar-upload"></div>
+    					
+    					
+    					<div class="wx-theme-note wx-theme-note-titlebar"><?php echo JText::_('WEEVER_TITLEBAR_LOGO_DESCRIPTION'); ?></div>
+    			                
+    					
+    					<div class="wx-theme-note wx-theme-note-titlebar-2"><?php echo JText::_('WEEVER_TITLEBAR_TEXT_HELP'); ?></div>
+    					</div>
+    					
+    					
+    					<div class="wx-theme-caption" style="margin-top:1em;"><input id="wx-enable-titlebar-text" type="checkbox" value="1" name="titlebar_title_enabled" <?php echo ($this->theme->titlebarSource == 'text' ? "checked='checked'":""); ?> /> <?php echo JText::_('WEEVER_TITLEBAR_LOGO_TEXT'); ?></div>
+    					
+    					<div class="wx-theme-note wx-theme-note-titlebar" id="wx-theme-note-titlebar-text"><?php echo JText::_('WEEVER_TITLEBAR_TEXT_DESCRIPTION'); ?></div>
+    					
+    					<div class="wx-titlebar-text-container"><input type="text" id="wx-titlebar-text" name="titlebar_title" value="<?php echo htmlentities($this->theme->titlebar_title, ENT_QUOTES, "UTF-8"); ?>" /></div>
+    					
+    					<div id="wx-titlebar-text-save-reminder"><?php echo JText::_('WEEVER_TITLEBAR_TEXT_SAVE_REMINDER'); ?></div>
+    					
+    				</div>
+    				
+    				
+    				<?php if($this->theme->titlebarSource == 'text') : ?>
+    				
+    					<script>
+							
+							jQuery(document).ready(function(){ 
+							
+							
+							jQuery("#wx-theme-titlebar-logo-options").hide();
+							jQuery("#wx-theme-titlebar-logo-preview").hide();
+							jQuery("#wx-theme-note-titlebar-text").show();
+							jQuery(".wx-titlebar-text-container").show();
+							jQuery("#wx-theme-titlebar-text-preview").show();
+							
+							
+							});
+    					
+    					</script>
+    		
+    				<?php endif; ?>
+    		
+    		<table class="admintable" id="wx-app-theme-container">
     	
     			
     			<tr>
     			<td>
-    			<a id="wx-theme-screenshot-link" class="popup" href="<?php echo $themeDir.$this->theme->template.'.png'; ?>" rel='{handler: "iframe", size:  { x: 340, y: 500}}'><img src="<?php echo $themeDir.$this->theme->template.'.png'; ?>" style="height: 215px;" id="wx-theme-screenshot" /></a>
+    			
+    			<div id="wx-theme-titlebar-logo-preview-container"><img id="wx-theme-titlebar-logo-preview" src="<?php echo $this->theme->images->titlebar_logo; ?>" /><div id="wx-theme-titlebar-text-preview"><?php echo $this->theme->titlebar_title; ?></div></div>
+    			
+    			<a id="wx-theme-screenshot-link" class="popup" href="<?php echo $themeDir.$this->theme->template.'.png'; ?>" rel='{handler: "iframe", size:  { x: 340, y: 500}}'><img src="<?php echo $themeDir.$this->theme->template.'.png'; ?>" style="height: 215px;margin-top: -15px;" id="wx-theme-screenshot" /></a>
+    			
     			</td>
     			<td>
     			<select name="template" id="wx-theme-select" size="12">
     			<option disabled="disabled"><?php echo JText::_('WEEVER_AVAILABLE_THEMES'); ?></option>
-    			<option value="sencha" <?php echo ($this->theme->template == 'sencha' ? "selected='selected'":""); ?> rel="<?php echo $themeDir.'sencha.png'; ?>"><?php echo JText::_('WEEVER_LIGHT_TEMPLATE'); ?></option>
-    			<option value="blue_ice" <?php echo ($this->theme->template == 'blue_ice' ? "selected='selected'":""); ?> rel="<?php echo $themeDir.'blue_ice.png'; ?>"><?php echo JText::_('WEEVER_BLUE_ICE_TEMPLATE'); ?></option>
-    			<option value="paper_shell" <?php echo ($this->theme->template == 'paper_shell' ? "selected='selected'":""); ?> rel="<?php echo $themeDir.'paper_shell.png'; ?>"><?php echo JText::_('WEEVER_PAPER_SHELL_TEMPLATE'); ?></option>
+    			
+    			<?php foreach($this->theme->themes as $k=>$v) :?>
+	    		
+	    			<option value="<?php echo $v->identifier; ?>" <?php echo ($this->theme->template == $v->identifier ? "selected='selected'":""); ?> rel="<?php echo $themeDir.$v->identifier.'.png'; ?>"><?php echo $v->name; ?></option>
+	    			
+	    		<?php endforeach; ?>
+	    		
     			</select>
     			</td>
     			</tr>
     			<tr><td colspan="2"><?php echo JText::_('WEEVER_THEME_HELP'); ?></td></tr>
-    			
-    			<!--tr>
-    			<td class="key hasTip" title="<?php echo JText::_('WEEVER_TITLEBAR_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_TITLEBAR_SOURCE'); ?></td>
-    			<td>
-    			<select name="titlebarSource" class="wx-220-select">
-    			<option value="text" <?php echo ($this->theme->titlebarSource == 'text' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LOGO_TEXT'); ?> ("<?php echo strip_tags($this->theme->titlebar_title); ?>")</option>
-    			<option value="image" <?php echo ($this->theme->titlebarSource == 'image' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_LOGO_IMAGE'); ?></option>
-    			<option value="html" <?php echo ($this->theme->titlebarSource == 'html' ? "selected='selected'":""); ?>><?php echo JText::_('WEEVER_CUSTOM_HTML'); ?></option>
-    			</select>
-    			</td>
-    			</tr-->
+    		
     		</table>
     	</fieldset>
     </div>
     
-    
-    
-    <div class=" wx-theme-float">
-    
-    
-    <fieldset class='adminForm wx-theme-fieldset'>
-    <legend><?php echo JText::_('WEEVER_INSTALL_TEXT_AND_ICON'); ?></legend>
-    
-    
-    
-    <div>
-    
-    	<div id="wx-install-icon">
-    	
-    	<!--div class="wx-theme-caption"><?php echo JText::_('WEEVER_ICON'); ?></div>
-    	<div class="wx-theme-note"><?php echo JText::_('WEEVER_ICON_NOTE'); ?><br /><br /><span class="wx-theme-description"><?php echo JText::_('WEEVER_ICON_DESCRIPTION'); ?></span></div>
-    	        <div id="wx-icon-upload"></div-->
-    	<div class="wx-theme-image-container">
-    		<img class="wx-theme-icon-image" id="wx-theme-icon" src="<?php echo $this->theme->images->icon; ?>" />
-    	</div>
-    	
-    	<div id="wx-install-text-container"><input type="text" name="title" maxlength="10" id="wx-install-text" value="<?php echo htmlentities($this->theme->title, ENT_QUOTES, "UTF-8"); ?>" /></div>
-    	
-    	<div id="wx-icon-upload"></div>
-    	
-    	<div id="wx-icon-upload-help"><?php echo JText::_('WEEVER_ICON_HELP'); ?></div>
-    	<!--/div-->
-    	
-    </div>
-    
-    <!--table class="admintable">
-    <tr>
-    <td class="key hasTip" title="<?php echo JText::_("WEEVER_TITLEBAR_TITLE_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_TITLEBAR_TITLE'); ?></td>
-    <td><input type="text" name="titlebar_title" maxlength="35" style="width:250px;" value="<?php echo htmlentities($this->theme->titlebar_title, ENT_QUOTES, "UTF-8"); ?>" /></td>	
-    </tr>
-    
-    
-    <tr><td class="key hasTip" title="<?php echo JText::_("WEEVER_WEB_APP_NAME_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_WEB_APP_NAME'); ?></td>
-    <td><input type="text" name="title" maxlength="10" style="width:90px;" value="<?php echo htmlentities($this->theme->title, ENT_QUOTES, "UTF-8"); ?>" /></td>
-    </tr>
-    
-    
-    </table-->
-    
-    </fieldset>
-    </div>
-        	
 
-	<div style="clear:both;">
-	
-		<fieldset class='adminForm'>
-		<legend><?php echo JText::_('WEEVER_IMAGE_SETTINGS'); ?></legend>
-		<br/>
-		
-		
-		<div class="wx-theme-screen">
-		
-		
-		<div>
-		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TABLET_LAUNCHSCREEN'); ?></div>
-		<div class="wx-theme-note"><?php echo JText::_('WEEVER_TABLET_LAUNCHSCREEN_NOTE'); ?><br /><br /><span class="wx-theme-description"><?php echo JText::_('WEEVER_TABLET_LAUNCHSCREEN_DESCRIPTION'); ?></span></div>
-                <div id="wx-tablet-upload"></div>
-		<div class="wx-theme-image-container"><a href='<?php echo $this->theme->images->tablet_load; ?>' class='popup' id="wx-theme-tablet-load-link" rel='{handler: "iframe", size:  { y: 512, x: 374}}'>
-		<img class="wx-theme-image" id="wx-theme-tablet-load" src="<?php echo $this->theme->images->tablet_load; ?>" />
-		</a></div>
-		</div>
-		
-		</div>
-		
-		
-		<div class="wx-theme-screen">
-		
-		
-		<div>
-		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TABLET_LANDSCAPE_LAUNCHSCREEN'); ?></div>
-		<div class="wx-theme-note"><?php echo JText::_('WEEVER_TABLET_LANDSCAPE_LAUNCHSCREEN_NOTE'); ?><br /><br /><?php echo JText::_('WEEVER_TABLET_LANDSCAPE_LAUNCHSCREEN_DESCRIPTION'); ?><span class="wx-theme-description"></span></div>
-                <div id="wx-tablet-landscape-upload"></div>
-		<div class="wx-theme-image-container"><a href='<?php echo $this->theme->images->tablet_landscape_load; ?>' class='popup' id="wx-theme-tablet-landscape-load-link" rel='{handler: "iframe", size: { y: 512, x: 374}}'>
-		<img class="wx-theme-image" id="wx-theme-tablet-landscape-load" src="<?php echo $this->theme->images->tablet_landscape_load; ?>" />
-		</a></div>
-		</div>
-		
-		</div>
-		
-		<div class="wx-theme-screen">
-		
-		
-		<div>
-		<div class="wx-theme-caption"><?php echo JText::_('WEEVER_PHONE_LAUNCHSCREEN'); ?></div>
-		<div class="wx-theme-note"><?php echo JText::_('WEEVER_PHONE_LAUNCHSCREEN_NOTE'); ?><br /><br /><span class="wx-theme-description"><?php echo JText::_('WEEVER_PHONE_LAUNCHSCREEN_DESCRIPTION'); ?></span></div>
-                <div id="wx-phone-upload"></div>
-		<div class="wx-theme-image-container"><a href='<?php echo $this->theme->images->phone_load; ?>' class='popup' id="wx-theme-phone-load-link" rel='{handler: "iframe", size:  { y: 460, x: 320}}'>
-		<img class="wx-theme-image" id="wx-theme-phone-load" src="<?php echo $this->theme->images->phone_load; ?>" />
-		</a></div>
-		</div>
-		
-		</div>
-		
-		
-		<div class="wx-theme-titlebar-logo-container">
-		
+	<div class=" wx-theme-float-line-2" style="clear:both;">
 
-			<div class="wx-theme-caption"><?php echo JText::_('WEEVER_TITLEBAR_LOGO_IMAGE'); ?></div>
-			<div class="wx-theme-note"><?php echo JText::_('WEEVER_TITLEBAR_LOGO_NOTE'); ?><br /><br /><span class="wx-theme-description"><?php echo JText::_('WEEVER_TITLEBAR_LOGO_DESCRIPTION'); ?></span></div>
-	                <div id="wx-titlebar-upload"></div>
-			<div class="wx-theme-image-container"><a href='<?php echo $this->theme->images->titlebar_logo; ?>' id="wx-theme-titlebar-logo-link" class='popup' rel='{handler: "iframe", size:  { x: 600, y: 64}}'>
-			<img class="wx-theme-titlebar-image" id="wx-theme-titlebar-logo" src="<?php echo $this->theme->images->titlebar_logo; ?>" />
-			</a></div>
+			<fieldset>
 			
-		</div>
+			<legend><?php echo JText::_('WEEVER_IMAGE_SETTINGS'); ?></legend>
+			
+			
+			<div class="wx-theme-screen">
+				
 
-		
-		</fieldset>
+				<div class="wx-theme-caption"><?php echo JText::_('WEEVER_INSTALL_TEXT_AND_ICON'); ?></div>
+				<div class="wx-theme-note"><?php echo JText::_('WEEVER_ICON_HELP'); ?></div>
+				
+				<div class="wx-image-size-warning" id="wx-image-size-icon"><?php echo JText::_('WEEVER_IMAGE_SIZE_WARNING'); ?></div> 
+				
+				        <div id="wx-icon-upload"></div>
+				        
+				       
+				        
+				<div class="wx-theme-image-container wx-theme-image-container-icon">
+					<img class="wx-theme-icon-image" id="wx-theme-icon" src="<?php echo $this->theme->images->icon; ?>" />
+				</div>
+				<div id="wx-install-text-container"><input type="text" name="title" maxlength="10" id="wx-install-text" value="<?php echo htmlentities($this->theme->title, ENT_QUOTES, "UTF-8"); ?>" /></div>
+				
+				<div id="wx-install-text-save-reminder"><?php echo JText::_('WEEVER_INSTALL_TEXT_SAVE_REMINDER'); ?></div>
+
+			
+			</div>
+			
+			
+			
+			<div class="wx-theme-screen">
+			
+				
+	
+				<div class="wx-theme-caption"><?php echo JText::_('WEEVER_PHONE_LAUNCHSCREEN'); ?></div>
+				<div class="wx-theme-note"><?php echo JText::_('WEEVER_PHONE_LAUNCHSCREEN_DESCRIPTION'); ?></div>
+				
+				<div class="wx-image-size-warning" id="wx-image-size-phone"><?php echo JText::_('WEEVER_IMAGE_SIZE_WARNING'); ?></div>
+				
+				        <div id="wx-phone-upload"></div>
+				<div class="wx-theme-image-container wx-theme-image-container-phone"><a href='<?php echo $this->theme->images->phone_load; ?>' class='popup' id="wx-theme-phone-load-link" rel='{handler: "iframe", size:  { y: 460, x: 320}}'>
+				<img class="wx-theme-image" id="wx-theme-phone-load" src="<?php echo $this->theme->images->phone_load; ?>" />
+				</a></div>
+
+			</div>
+			
+			
+			<div class="wx-theme-screen <?php echo $noTablet ? 'wx-theme-disable' : ''; ?>">
+
+				<?php echo $noTablet ? "<div class='wx-tablet-warning'>".JText::_('WEEVER_TABLET_DISABLED').'</div>' : '<div class="wx-theme-caption">'.JText::_('WEEVER_TABLET_LAUNCHSCREEN').'</div>'; ?>
+				
+				<div class="wx-theme-note"><?php echo JText::_('WEEVER_TABLET_LAUNCHSCREEN_DESCRIPTION'); ?></div>
+				
+				
+				<div class="wx-image-size-warning" id="wx-image-size-tablet"><?php echo JText::_('WEEVER_IMAGE_SIZE_WARNING'); ?></div>
+				
+		                <div id="wx-tablet-upload"></div>
+		                
+				<div class="wx-theme-image-container wx-theme-image-container-tablet"><a href='<?php echo $this->theme->images->tablet_load; ?>' class='popup' id="wx-theme-tablet-load-link" rel='{handler: "iframe", size:  { y: 512, x: 374}}'>
+				<img class="wx-theme-image" id="wx-theme-tablet-load" src="<?php echo $this->theme->images->tablet_load; ?>" />
+				</a></div>
+
+			
+			</div>
+			
+			
+			<div class="wx-theme-screen <?php echo $noTablet ? 'wx-theme-disable' : ''; ?>">
+
+				
+				<?php echo $noTablet ? "<div class='wx-tablet-warning'>".JText::_('WEEVER_TABLET_DISABLED').'</div>' : '<div class="wx-theme-caption">'.JText::_('WEEVER_TABLET_LANDSCAPE_LAUNCHSCREEN').'</div>'; ?>
+				
+				<div class="wx-theme-note"><?php echo JText::_('WEEVER_TABLET_LANDSCAPE_LAUNCHSCREEN_DESCRIPTION'); ?></span><span class="wx-theme-description"></div>
+				
+				<div class="wx-image-size-warning" id="wx-image-size-tablet-landscape"><?php echo JText::_('WEEVER_IMAGE_SIZE_WARNING'); ?></div>
+				
+		                <div id="wx-tablet-landscape-upload"></div>
+		                
+				<div class="wx-theme-image-container wx-theme-image-container-tablet-landscape"><a href='<?php echo $this->theme->images->tablet_landscape_load; ?>' class='popup' id="wx-theme-tablet-landscape-load-link" rel='{handler: "iframe", size: { y: 512, x: 374}}'>
+				<img class="wx-theme-image" id="wx-theme-tablet-landscape-load" src="<?php echo $this->theme->images->tablet_landscape_load; ?>" />
+				</a></div>
+
+			
+			</div>
+			
+			</fieldset>
+	
+
 	
 	</div>
+	
+	<div style="clear:both;"></div>
 		
 	<script>      
 	
 		function themeUploadTemplate(text) {
 			return '<div class="qq-uploader">' + 
-		    	'<div class="qq-upload-drop-area"><span>'+text.dropUpload+'</span></div>' +
+		    	'<div class="qq-upload-drop-area '+text.dropClass+'"><span>'+text.dropUpload+'</span></div>' +
 		        '<div class="qq-upload-button"><img src="components/com_weever/assets/icons/upload.png" style="width:1.125em;height:1.125em;padding-right: 0.625em;vertical-align:-1px;" />'+text.uploadButton+'</div>' +
 		        '<ul class="qq-upload-list"></ul>' + 
 		     	'</div>';
@@ -293,7 +420,7 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 		
 		function themeUploadIconTemplate(text) {
 			return '<div class="qq-uploader">' + 
-		    	'<div class="qq-upload-drop-area"><span>'+text.dropUpload+'</span></div>' +
+		    	'<div class="qq-upload-drop-area '+text.dropClass+'"><span>'+text.dropUpload+'</span></div>' +
 		        '<div class="qq-upload-button qq-upload-icon-button"><img src="components/com_weever/assets/icons/upload.png" style="width:1.125em;height:1.125em;padding-right: 0.625em;vertical-align:-1px;" />'+text.uploadButton+'</div>' +
 		        '<ul class="qq-upload-list"></ul>' + 
 		     	'</div>';
@@ -315,7 +442,8 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 	            action: 'index.php?option=com_weever&task=upload&type=tablet_load&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_NEW'); ?>',
-	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP_TABLET'); ?>',
+	            	dropClass: 'qq-upload-drop-tablet'
 	            }),
 	            fileTemplate: fileUploadTemplate(),
 	            debug: true,
@@ -323,6 +451,8 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 	            	jQuery("#wx-theme-tablet-load").attr("src", url);
 	            	jQuery("#wx-theme-tablet-load-link").attr("href", url);
 	            	jQuery("#wx-upload-info").remove();
+	            	jQuery("#wx-image-size-tablet").hide();
+	            	weever.checkTabletImg(url);
 	            }
 	        });   
 	        var tabletLandscapeUploader = new qq.FileUploader({
@@ -330,7 +460,8 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 	            action: 'index.php?option=com_weever&task=upload&type=tablet_landscape_load&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_NEW'); ?>',
-	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP_TABLET_LANDSCAPE'); ?>',
+	            	dropClass: 'qq-upload-drop-tablet-landscape'
 	            }),
 	            fileTemplate: fileUploadTemplate(),
 	            debug: true,
@@ -338,6 +469,8 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 	            	jQuery("#wx-theme-tablet-landscape-load").attr("src", url);
 	            	jQuery("#wx-theme-tablet-landscape-load-link").attr("href", url);
 	            	jQuery("#wx-upload-info").remove();
+	            	jQuery("#wx-image-size-tablet-landscape").hide();
+	            	weever.checkTabletLandscapeImg(url);
 	            }
 	        }); 
 	        var phoneUploader = new qq.FileUploader({
@@ -345,7 +478,8 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 	            action: 'index.php?option=com_weever&task=upload&type=phone_load&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_NEW'); ?>',
-	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP_PHONE'); ?>',
+	            	dropClass: 'qq-upload-drop-phone'
 	            }),
 	            fileTemplate: fileUploadTemplate(),
 	            debug: true,
@@ -353,6 +487,8 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 	            	jQuery("#wx-theme-phone-load").attr("src", url);
 	            	jQuery("#wx-theme-phone-load-link").attr("href", url);
 	            	jQuery("#wx-upload-info").remove();
+	            	jQuery("#wx-image-size-phone").hide();
+	            	weever.checkPhoneImg(url);
 	            }
 	        });         
 	        var iconUploader = new qq.FileUploader({
@@ -360,7 +496,8 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 	            action: 'index.php?option=com_weever&task=upload&type=icon&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadIconTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_ICON'); ?>',
-	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP_ICON'); ?>',
+	            	dropClass: 'qq-upload-drop-icon'
 	            }),
 	            fileTemplate: fileUploadTemplate(),
 	            debug: true,
@@ -368,6 +505,8 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 	            	jQuery("#wx-theme-icon").attr("src", url);
 	            	jQuery("#wx-theme-icon-link").attr("href", url);
 	            	jQuery("#wx-upload-info").remove();
+	            	jQuery("#wx-image-size-icon").hide();
+	            	weever.checkIconImg(url);
 	            }
 	        }); 
 	        var titlebarUploader = new qq.FileUploader({
@@ -375,14 +514,18 @@ $themeDir = JURI::base(true).DS.'components'.DS.'com_weever'.DS.'assets'.DS.'the
 	            action: 'index.php?option=com_weever&task=upload&type=titlebar_logo&site_key=<?php echo $this->site_key; ?>',
 	            template: themeUploadTemplate({
 	            	uploadButton: '<?php echo JText::_('WEEVER_UPLOAD_NEW'); ?>',
-	            	dropUpload: '<?php echo JText::_('WEEVER_DROP'); ?>'
+	            	dropUpload: '<?php echo JText::_('WEEVER_DROP_TITLEBAR'); ?>',
+	            	dropClass: 'qq-upload-drop-titlebar'
 	            }),
 	            fileTemplate: fileUploadTemplate(),
 	            debug: true,
 	            callback: function(url) {
 	            	jQuery("#wx-theme-titlebar-logo").attr("src", url);
+	            	jQuery("#wx-theme-titlebar-logo-preview").attr("src", url);
 	            	jQuery("#wx-theme-titlebar-logo-link").attr("href", url);
 	            	jQuery("#wx-upload-info").remove();
+	            	jQuery("#wx-image-size-titlebar").hide();
+	            	weever.checkTitlebarImg(url);
 	            }
 	        }); 
 	    }

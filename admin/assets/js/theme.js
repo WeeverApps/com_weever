@@ -3,7 +3,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Version: 	1.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
 *   GNU General Public License for more details <http://www.gnu.org/licenses/>.
 *
 */
+
 
 
 jQuery(document).ready(function(){ 
@@ -44,8 +45,47 @@ jQuery(document).ready(function(){
 		
 		jQuery("#wx-theme-screenshot").attr("src", image);	
 		jQuery("#wx-theme-screenshot-link").attr("href", image);
+		jQuery("#wx-titlebar-text-save-reminder").show();
 	
 	
+	});
+	
+	
+	jQuery('input#wx-titlebar-text').keyup(function(){
+		
+		var thisVal = jQuery(this).val();
+		jQuery('div#wx-theme-titlebar-text-preview').text(thisVal);
+		
+		jQuery("#wx-titlebar-text-save-reminder").show();
+
+	});
+	
+	
+	jQuery('input#wx-install-text').keyup(function() {
+	
+		jQuery("#wx-install-text-save-reminder").show();
+	
+	});
+		
+		
+	jQuery("#wx-enable-titlebar-text").click(function() {
+	
+		if( jQuery(this).is(':checked') ) {
+			jQuery("#wx-theme-titlebar-logo-options").hide();
+			jQuery("#wx-theme-titlebar-logo-preview").hide();
+			jQuery("#wx-theme-note-titlebar-text").show();
+			jQuery(".wx-titlebar-text-container").show();
+			jQuery("#wx-theme-titlebar-text-preview").show();
+			jQuery("#wx-titlebar-text-save-reminder").show();
+		} else {
+			jQuery("#wx-theme-titlebar-logo-options").show();
+			jQuery("#wx-theme-titlebar-logo-preview").show();
+			jQuery("#wx-theme-note-titlebar-text").hide();
+			jQuery(".wx-titlebar-text-container").hide();
+			jQuery("#wx-theme-titlebar-text-preview").hide();
+			jQuery("#wx-titlebar-text-save-reminder").show();
+		}
+		
 	});
 
 	//

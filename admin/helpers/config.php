@@ -29,8 +29,8 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.2.3";
-	const RELEASE_TYPE	= "stable";
+	const VERSION		= "1.3";
+	const RELEASE_TYPE	= "dev";
 	const RELEASE_NAME	= "<a href='http://www.fanshaweconservationarea.ca/' target='_blank'>Fanshawe</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";

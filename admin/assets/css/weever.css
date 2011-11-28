@@ -749,8 +749,9 @@ div#wx-nav-icon-preview-wrapper img {
 .wx-220-select { width:220px; }
 
 #wx-theme-select {
-	font-size: 1.125em;
+	font-size: 1.25em;
 	height: 215px;
+	margin-left: 1em;
 	width: 300px;
 }
 
@@ -758,6 +759,30 @@ div#wx-nav-icon-preview-wrapper img {
 .wx-theme-float {
 	float: left;
 	height: 335px;
+}
+
+.wx-theme-float-line-2 {
+	float: left;
+	margin: 0.25em;
+	margin-left: 1.5em;
+	font-size: 1.125em;
+}
+
+
+.wx-titlebar-text-container {
+	margin: 1em;
+	margin-left: 0;
+	display: none;
+}
+
+#wx-theme-note-titlebar-text {
+	display: none;
+}
+
+#wx-titlebar-text {
+	font-size: 2em;
+	font-family: 'Arial';
+	width: 300px;
 }
 
 .wx-theme-fieldset {
@@ -769,7 +794,7 @@ div#wx-nav-icon-preview-wrapper img {
 }
 
 #wx-install-text {
-	font-size: 2em;
+	font-size: 2.125em;
 	font-family: 'Helvetica';
 	text-align:center;
 	width: 160px;
@@ -930,28 +955,117 @@ margin-right:20px;
 	float:left;
 	margin-bottom:2em;
 	min-height: 340px;
-	margin-left: 2em;
+	margin-left: 1em;
+
+}
+
+#wx-titlebar-html-notice {
+	color: #faab1a;
+	font-weight: bold;
+	background-image: url("../icons/warning.png");
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 18px;
+	margin-bottom: 1em;
+	max-width: 160px;
+	font-size: 1em;
+}
+
+#wx-titlebar-text-save-reminder, #wx-install-text-save-reminder {
+	display: none;
+	color: #faab1a;
+	font-weight: bold;
+}
+
+#wx-install-text-save-reminder {
+	max-width: 160px;
+	margin-top: 1em;
 }
 
 .wx-theme-titlebar-logo-container{
 	float:left;
 	margin-bottom:2em;
 	min-height: 340px;
-	margin-left: 2em;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+#wx-app-theme-container {
+	float: left;
+}
+
+#wx-theme-titlebar-logo-preview {
+	width: 130px;
+	height: 14px;
+}
+
+#wx-theme-titlebar-logo-preview-container {
+	position:relative;
+	top:13px;
+	left: 8px;
+	z-index:101;
+}
+
+#wx-theme-titlebar-text-preview {
+	width: 130px;
+	height: 14px;
+	text-align:center;
+	font-size: 0.625em;
+	line-height: 2.0;
+	display: none;
+}
+
+.wx-theme-disable {
+	color: #aaaaaa;
+}
+
+fieldset {
+	border-radius: 8px;
+}
+
+.wx-tablet-warning, .wx-image-size-warning {
+	background-image: url("../icons/warning.png");
+	background-repeat: no-repeat;
+	background-position: left;
+	color: #faab1a;
+	padding-left: 18px;
+	margin-bottom: 1em;
+	max-width: 160px;
+	font-size: 1em;
+}
+
+.wx-image-size-warning {
+	height: 1.25em;
+	color: red;
+	font-size: 0.85em;
+	margin-bottom: 0;
+	display: none;
 }
 
 .wx-theme-caption {
-    max-width: 160px;
     font-size: 1em;
     font-weight: bold;
+    margin-bottom: 1em;
 }
 
 .wx-theme-note {
 	font-size: 0.85em;
 	max-width: 160px;
-	color: #999999;
-	height: 6em;
+	color: #888888;
+	height: 4em;
 }
+
+.wx-theme-note-titlebar {
+	max-width: 320px;
+	height: 3em;
+	margin-top: 1em;
+}
+
+.wx-theme-note-titlebar-2 {
+	height: 2em;
+	font-style: italic;
+}
+
 
 .wx-theme-description {
 	font-style: italic;
@@ -963,14 +1077,78 @@ margin-right:20px;
 	width: 100%;
 }
 
+.wx-theme-image-container-icon {
+	margin-top: 1em;
+	background-image: url("../icons/144x144.png");
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+.wx-theme-image-container-tablet {
+	margin-top: 1em;
+	background-image: url("../icons/1536x2008.png");
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+.wx-theme-image-container-tablet-landscape {
+	margin-top: 1em;
+	background-image: url("../icons/1496x2048.png");
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+.wx-theme-image-container-phone {
+	margin-top: 1em;
+	background-image: url("../icons/640x920.png");
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+.wx-theme-image-container-titlebar {
+	margin-top: 1em;
+	background-image: url("../icons/600x64.png");
+	background-repeat: no-repeat;
+	background-position: top center;
+	height: 4em;
+}
+
 .wx-theme-icon-image {
 	border: 1px solid #eeeeee;
 	border-radius: 16px;
     width: 144px;
     display: inline-block;
-    margin-top: 0.25em;
+    margin-top: 1em;
+    margin-right: 1em;
 }
 
+#wx-theme-tablet-load {
+	border: 1px solid #eeeeee;
+    display: inline-block;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+#wx-theme-tablet-landscape-load {
+	border: 1px solid #eeeeee;
+    display: inline-block;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+#wx-theme-phone-load {
+	border: 1px solid #eeeeee;
+    display: inline-block;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+#wx-theme-titlebar-logo {
+	border: 1px solid #eeeeee;
+    display: inline-block;
+    margin-top: 1em;
+    margin-right: 1em;
+}
 
 .wx-theme-image {
 	border: 1px solid #eeeeee;
@@ -981,12 +1159,12 @@ margin-right:20px;
 }
 
 .wx-theme-titlebar-image {
-	border: 1px solid #eeeeee;
-    max-width: 300px;
+    width: 300px;
     clear: both;
     display: block;
     margin-top: 2em;
-    background-color: #aaaaaa;
+    background-image: url("../icons/transparency-checkerboard.png");
+    margin-bottom: 2em;
 }
 
 .wx-theme-input, #content-box .wx-theme-input {
@@ -1001,8 +1179,50 @@ margin-right:20px;
 	box-shadow: 5px 5px #818181;
 }
 
+.qq-upload-drop-area {
+	border: 3px solid #aaaaaa;
+	border-radius: 5px;
+	z-index: 100;
+	background-color: rgba(250,217,65,0.75);
+	font-weight: bold;
+	color: #000;
+	text-align:center;
+}
 
-.qq-upload-button {
+.qq-upload-drop-tablet {
+	top: 5.625em;
+	width: 160px;
+	height: 212px;
+}
+
+
+.qq-upload-drop-tablet-landscape {
+	top: 5.625em;
+	width: 160px;
+	height: 222px;
+}
+
+.qq-upload-drop-phone {
+	top: 5.65em;
+	width: 160px;
+	height: 212px;
+}
+
+.qq-upload-drop-icon {
+	top: 5.625em;
+	width: 144px;
+	height: 144px;
+}
+
+.qq-upload-drop-titlebar {
+	top: 4em;
+	width: 300px;
+	height: 32px;
+}
+
+
+
+.qq-upload-button, .qq-upload-icon-button  {
     margin: 1em 0 0.25em .25em;
     background: url("../images/alert-overlay.png") repeat-x scroll 0 0 #0C98C4;
     border: 0 none;
@@ -1023,25 +1243,7 @@ margin-right:20px;
 }
 
 
-.qq-upload-icon-button {
-    margin: 0.5em 0 0.25em .25em;
-    background: url("../images/alert-overlay.png") repeat-x scroll 0 0 #0C98C4;
-    border: 0 none;
-    border-radius: 3px 3px 3px 3px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: Helvetica Neue,"Arial",Helvetica,Verdana,sans-serif;
-    font-size: 1.125em;
-    width:  150px;
-    font-weight: bold;
-    line-height: 1;
-    position: relative;
-    text-decoration: none !important;
-    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.376);
 
-}
 
 .qq-upload-drop-area {
 	display: none;
