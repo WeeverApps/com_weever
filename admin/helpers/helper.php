@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1.0.1
+*	Version: 	1.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -197,23 +197,6 @@ class comWeeverHelper
 
 	public static function saveTheme()
 	{
-	
-		$max = ini_get('upload_max_filesize');
-
-		if(JRequest::getVar('icon_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('icon_live',$max,'icon_live.png');
-			
-		if(JRequest::getVar('phone_load_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('phone_load_live',$max,'phone_load_live.png');
-			
-		if(JRequest::getVar('tablet_load_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('tablet_load_live',$max, 'tablet_load_live.png');
-			
-		if(JRequest::getVar('tablet_landscape_load_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('tablet_landscape_load_live',$max, 'tablet_landscape_load_live.png');
-				
-		if(JRequest::getVar('titlebar_logo_live', null, 'files', 'array'))
-			$msg = comWeeverHelper::fileUpload('titlebar_logo_live',$max, 'titlebar_logo_live.png');
 			
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		
@@ -229,10 +212,18 @@ class comWeeverHelper
 		
 		$themeObj->titlebarHtml = JRequest::getVar("titlebarHtml", "", "post","string",JREQUEST_ALLOWHTML);
 		$themeObj->css = JRequest::getVar("css");
-		$themeObj->titlebarSource = JRequest::getVar("titlebarSource");
+		$titlebarTextEnabled = JRequest::getVar("titlebar_title_enabled");
 		$themeObj->template = JRequest::getVar("template");
 		$themeObj->useCssOverride = JRequest::getVar("useCssOverride");
 
+		
+		if(trim($themeObj->titlebarHtml))
+			$themeObj->titlebarSource = "html";
+		else if($titlebarTextEnabled == 1)
+			$themeObj->titlebarSource = "text";
+		else
+			$themeObj->titlebarSource = "image";
+			
 		$launch = new launch_screen;
 		$launch->animation = JRequest::getVar("animation");
 		$launch->duration = JRequest::getVar("duration");
@@ -245,6 +236,28 @@ class comWeeverHelper
 
 		$response = comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);		
 		
+	}
+	
+	
+	
+	public static function parseVersion($str)
+	{
+		
+		$version = array(0,0,0,0);
+	
+		$ver = explode( ".", $str );
+	
+		foreach((array)$ver as $k=>$v)
+		{
+			
+			if(!$v)
+				$v = 0;
+				
+			$version[$k] = $v;
+		}
+		
+		return $version;
+	
 	}
 	
 	
@@ -452,78 +465,7 @@ class comWeeverHelper
 	
 	}
 	
-	public static function fileUpload($var, $max, $filename, $msg = null)
-	{
-		
-		$msg = null;
-		
-		jimport('joomla.filesystem.file');
-
-        $file = JRequest::getVar($var, null, 'files', 'array'); 
- 
-        if($file['tmp_name'])
-        { 
-        
-            if($file['size'] > $max) $msg = JText::_('WEEVER_ONLY_FILES_UNDER').' '.$max;
-
-            $src = $file['tmp_name'];
-            $dest = JPATH_SITE . DS .  'media' . DS . 'com_weever' . DS. $filename;
-            
-            list($width, $height, $type, $attr) = getimagesize($file['tmp_name']);
-            
-            $iterations = 0;
-
-
-            if ($file['type'] && ($file['type'] == "image/png" || $file['type'] == "image/jpeg" ) ) 
-            { 
-     			
-     			if (JFile::upload($src, $dest)) 
-     			{
-     			    $msg = JText::_('WEEVER_FILE_SAVE_AS').' '.$dest;
-     			} 
-     			else 
-     			{
-     			    return JError::raiseWarning(500, JText::_('WEEVER_ERROR_IN_UPLOAD'));
-     			}
-     			
-	            if($var == 'icon_live' && ($width != 144 || $height != 144))
-	            {
-	            	return JError::raiseNotice(100,JText::_('WEEVER_ERROR_ICON_DIMENSIONS'));
-	            }
 	
-				if($var == 'phone_load_live' && (($width != 640 || $height != 920) && ($width != 920 || $height != 640)))
-				{
-					return JError::raiseNotice(100,JText::_('WEEVER_ERROR_PHONE_DIMENSIONS'));
-				}
-				
-				if($var == 'tablet_load_live' && ($width != 1536 || $height != 2008))
-				{
-					return JError::raiseNotice(100, JText::_('WEEVER_ERROR_TABLET_DIMENSIONS'));
-				}
-				
-				if($var == 'tablet_landscape_load_live' && ($width != 1496|| $height != 2048))
-				{
-					return JError::raiseNotice(100, JText::_('WEEVER_ERROR_LANDSCAPE_TABLET_DIMENSIONS'));
-				}
-
-				if($var == 'titlebar_logo_live' && ($width != 600 || $height != 64))
-				{
-					return JError::raiseNotice(100, JText::_('WEEVER_ERROR_TITLEBAR_DIMENSIONS'));
-				}	            
-	            
-            } 
-            else if ($file['type'])
-            {
-            	return JError::raiseWarning(500, JText::_('WEEVER_WRONG_IMAGE_FORMAT'));	
-            }
-
-
-        }
-        
-        return $msg;
-	}
-	
-
 	public static function tabSync($stage=null)
 	{
 	
@@ -567,47 +509,11 @@ class comWeeverHelper
 		$db->setQuery($query);
 		$result = $db->loadObject();
 		
-		comWeeverHelper::generateQRCode();
 
 	
 	}
 	
-	public static function generateQRCode()
-	{
-	
-		$siteDomain = comWeeverHelper::getSiteDomain();	
-		
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
-		$row->load(7); $staging = $row->setting;
-		$row->load(4); $keySiteDomain = $row->setting;
-		
-		if(!$keySiteDomain)
-			$keySiteDomain = $siteDomain;
-		
-		if($staging)
-		{
-			$type = 'stage';
-			$queryExtra = '&staging=1';
-		}
-		else
-		{
-			$type = 'live';
-			$queryExtra = '';
-		}
-			
-		$url = "http://qr.weever.ca/?site=".$siteDomain;
 
-		if(!copy($url, JPATH_SITE . DS .  'media' . DS . 'com_weever' . DS. 'qr_site_'.$type.'.png'))
-			JError::raiseWarning(500, 'QR Code build error. QR Code was not generated.');	
-		
-		$url = "http://qr.weever.ca/?site=".$keySiteDomain."&preview=1&beta=1".$queryExtra;
-
-		if(!copy($url, JPATH_SITE . DS .  'media' . DS . 'com_weever' . DS. 'qr_app_'.$type.'.png'))
-			JError::raiseWarning(500, 'QR Code build error. QR Code was not generated.');
-			
-	
-	}
-	
 
 	public static function sortTabs($order)
 	{
@@ -661,7 +567,8 @@ class comWeeverHelper
 				'site_key' => $key,
 				'm' => "tab_sync",
 				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
+				'generator' => comWeeverConst::NAME,
+				'cms' => 'joomla'
 				)
 			);
 			
@@ -675,6 +582,20 @@ class comWeeverHelper
 		}
 		
 		$j_array = json_decode($json);
+		
+		$latestVersion = comWeeverHelper::parseVersion($j_array->joomla_latest);
+		$currentVersion = comWeeverHelper::parseVersion(comWeeverConst::VERSION);
+		
+		if( $latestVersion[0] > $currentVersion[0] ||
+			($latestVersion[0] == $currentVersion[0] && $latestVersion[1] > $currentVersion[1]) ||
+			($latestVersion[0] == $currentVersion[0] && $latestVersion[1] == $currentVersion[1] && $latestVersion[2] > $currentVersion[2]) ||
+			($latestVersion[0] == $currentVersion[0] && $latestVersion[1] == $currentVersion[1] && $latestVersion[2] == $currentVersion[2] && $latestVersion[3] > $currentVersion[3]) )
+		{
+		
+			JRequest::setVar("upgrade",$j_array->joomla_download);
+			JRequest::setVar("upgradeVersion",$j_array->joomla_latest);
+		
+		}
 		
 		return $j_array->results;	
 	
@@ -945,6 +866,27 @@ class comWeeverHelper
 		return comWeeverHelper::sendToWeeverServer($postdata);
 
 	}
+	
+	
+	public static function pushImageToCloud($url)
+	{
+	
+		$postdata = http_build_query(
+			array( 	
+				'url' => $url,
+				'site_key' => JRequest::getVar('site_key'),
+				'type' => JRequest::getVar('type'),
+				'app' => 'ajax',
+				'm' => "edit_image",
+				'version' => comWeeverConst::VERSION,
+				'generator' => comWeeverConst::NAME
+				)
+			);
+		
+		return comWeeverHelper::sendToWeeverServer($postdata);
+
+	}
+	
 	
 	
 	

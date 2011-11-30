@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.2.1
+*	Version: 	1.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -143,22 +143,27 @@ else
 echo "<p>".$templateInstallText."templates/weever_cartographer: <b>".$message."</b></p>";
 
 
+if( !is_dir(JPATH_ROOT.DS."images".DS."com_weever") )
+{
+	mkdir(JPATH_ROOT.DS."images".DS."com_weever");
+	
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."phone_load_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."phone_load_live.png");
+	
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."icon_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."icon_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."icon_live.png");
+		
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_load_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_load_live.png");
+		
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_landscape_load_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_landscape_load_live.png");
+		
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."titlebar_logo_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_.png", JPATH_ROOT.DS."images".DS."com_weever".DS."titlebar_logo_live.png");
+	
+}
 
-if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_live.png"))
-	copy(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_live.png");
-
-if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."icon_live.png"))
-	copy(JPATH_ROOT.DS."media".DS."com_weever".DS."icon_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."icon_live.png");
-	
-if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_live.png"))
-	copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_live.png");
-	
-if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_live.png"))
-	copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_live.png");
-	
-if(!file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png"))
-	copy(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_.png", JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png");
-	
 
 if(!function_exists("stream_context_create"))
 	echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_STREAM_CONTEXT_CREATE")."</div>";
@@ -212,7 +217,7 @@ if(!isset($code->setting))
 // check if there are server-side app updates to be made
 if($key->setting)
 {
-	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&version=1.2.1&cms=joomla&site_key='.$key->setting);	
+	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&version=1.3&cms=joomla&site_key='.$key->setting);	
 	?>
 	<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	<?php 
@@ -221,6 +226,25 @@ if($key->setting)
 	?>		 
 	</form>
 	<?php
+	
+	// if an upgrade
+	
+		
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."phone_load_live.png") && file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."phone_load_live.png", JPATH_ROOT.DS."images".DS."com_weever".DS."phone_load_live.png");
+	
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."icon_live.png") && file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."icon_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."icon_live.png", JPATH_ROOT.DS."images".DS."com_weever".DS."icon_live.png");
+		
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_load_live.png") && file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_load_live.png", JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_load_live.png");
+		
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_landscape_load_live.png") && file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."tablet_landscape_load_live.png", JPATH_ROOT.DS."images".DS."com_weever".DS."tablet_landscape_load_live.png");
+		
+	if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."titlebar_logo_live.png") && file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png"))
+		copy(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png", JPATH_ROOT.DS."images".DS."com_weever".DS."titlebar_logo_live.png");
+
 }
 else 
 {
@@ -238,6 +262,10 @@ else
 
 	<table class="admintable">
 	
+		
+		<tr>
+		<td><a href="http://weeverapps.com/free" target="_blank" id="headerbutton"><?php JText::_("WEEVER_GET_A_KEY"); ?></a></td>
+		</tr>
 
 	
 		<tr>
