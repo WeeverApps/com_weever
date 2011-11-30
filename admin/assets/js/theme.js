@@ -45,7 +45,7 @@ jQuery(document).ready(function(){
 		
 		jQuery("#wx-theme-screenshot").attr("src", image);	
 		jQuery("#wx-theme-screenshot-link").attr("href", image);
-		jQuery("#wx-titlebar-text-save-reminder").show();
+		jQuery("#wx-titlebar-text-save-reminder").css('display', 'inline-block');
 	
 	
 	});
@@ -56,14 +56,14 @@ jQuery(document).ready(function(){
 		var thisVal = jQuery(this).val();
 		jQuery('div#wx-theme-titlebar-text-preview').text(thisVal);
 		
-		jQuery("#wx-titlebar-text-save-reminder").show();
+		jQuery("#wx-titlebar-text-save-reminder").css('display', 'inline-block');
 
 	});
 	
 	
 	jQuery('input#wx-install-text').keyup(function() {
 	
-		jQuery("#wx-install-text-save-reminder").show();
+		jQuery("#wx-install-text-save-reminder").css('display', 'inline-block');
 	
 	});
 		
@@ -76,14 +76,14 @@ jQuery(document).ready(function(){
 			jQuery("#wx-theme-note-titlebar-text").show();
 			jQuery(".wx-titlebar-text-container").show();
 			jQuery("#wx-theme-titlebar-text-preview").show();
-			jQuery("#wx-titlebar-text-save-reminder").show();
+			jQuery("#wx-titlebar-text-save-reminder").css('display', 'inline-block');
 		} else {
 			jQuery("#wx-theme-titlebar-logo-options").show();
 			jQuery("#wx-theme-titlebar-logo-preview").show();
 			jQuery("#wx-theme-note-titlebar-text").hide();
 			jQuery(".wx-titlebar-text-container").hide();
 			jQuery("#wx-theme-titlebar-text-preview").hide();
-			jQuery("#wx-titlebar-text-save-reminder").show();
+			jQuery("#wx-titlebar-text-save-reminder").css('display', 'inline-block');
 		}
 		
 	});

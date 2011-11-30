@@ -395,6 +395,10 @@ div.m { border-radius: none; }
 	
 }
 
+#wx-images-fieldset {
+	border: 1px #CCC solid;
+}
+
 #content-box table.toolbar a {border:none; }
 
 
@@ -577,13 +581,13 @@ fieldset.adminForm, div.current fieldset.adminForm {
     border: 1px solid #DFDFDF;
     margin: 1.5em;
     padding: 1em 0.5em;
-
+	font-size: 1.125em;
 }
 
 
 #content-box fieldset.adminForm, #content-box div.current fieldset.adminForm {
 	margin:2.25em 1.5em;
-
+	border: 1px solid #DFDFDF;
 }
 
 fieldset.adminForm p { margin:.75em 1em 1em 1.25em; }
@@ -592,6 +596,9 @@ table.admintable td {
 padding: 3px; 
 }
 
+div.current select {
+	margin-bottom: 0;
+}
 
 table.admintable td.key, table.admintable td.paramlist_key {
     padding: 0.5em 0.5em 0.5em 1em;
@@ -744,15 +751,15 @@ div#wx-nav-icon-preview-wrapper img {
 	line-height:1.5em;
 }
 
-
-
 .wx-220-select { width:220px; }
 
 #wx-theme-select {
 	font-size: 1.25em;
 	height: 215px;
-	margin-left: 1em;
+	margin-bottom: 0;
+	margin-left: 0.5em;
 	width: 300px;
+	margin-top: 0;
 }
 
 
@@ -786,7 +793,7 @@ div#wx-nav-icon-preview-wrapper img {
 }
 
 .wx-theme-fieldset {
-	height: 280px;
+	height: 295px;
 }
 
 #wx-install-text-container {
@@ -1003,6 +1010,7 @@ margin-right:20px;
 
 #wx-theme-titlebar-logo-preview {
 	width: 130px;
+	margin: 0;
 	height: 14px;
 }
 
@@ -1163,12 +1171,20 @@ fieldset {
     margin-right: 1em;
 }
 
+#wx-enable-titlebar-text {
+	float: none;
+}
+
 .wx-theme-image {
 	border: 1px solid #eeeeee;
     max-width: 160px;
     clear: both;
     display: block;
     margin-top: 2em;
+}
+
+img.wx-theme-image, img.wx-theme-icon-image, img.wx-theme-titlebar-image {
+	float: none !important;
 }
 
 .wx-theme-titlebar-image {
@@ -1190,6 +1206,15 @@ fieldset {
 	background-color: white;
 	border: 1px solid black;
 	box-shadow: 5px 5px #818181;
+}
+
+.qq-upload-icon {
+	width:1.125em;
+	height:1.125em;
+	padding-right: 0.625em;
+	vertical-align:-1px;
+	margin:0;
+	float:none;
 }
 
 .qq-upload-drop-area {
@@ -1228,7 +1253,7 @@ fieldset {
 }
 
 .qq-upload-drop-titlebar {
-	top: 4em;
+	top: -5em;
 	width: 300px;
 	height: 32px;
 }

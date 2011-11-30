@@ -119,9 +119,9 @@ else
 	}
 	?>
 
-	<span style="font-size: 1.5em; position: absolute; right: 10px; line-height: 1.25em; min-width: 420px; text-align: left; margin: 0pt; top: 136px;"><a href="<?php echo $newDownload; ?>" style="float: left; margin: 0pt 1em;" id="headerbutton"><?php echo JText::_('WEEVER_JOOMLA_UPDATE_BUTTON'); ?></a><?php echo JText::_('WEEVER_JOOMLA_UPDATE_AVAILABLE')." ".JRequest::getVar("upgradeVersion"); ?><br><span style="font-size: 0.65em; margin: 0pt;"><?php echo $updateText; ?></span></span>
+	<span style="font-size: 1.5em; position: absolute; right: 10px; line-height: 1.25em; min-width: 475px; text-align: left; margin: 0pt; top: 136px;"><a href="<?php echo $newDownload; ?>" style="float: left; margin: 0pt 1em;" id="headerbutton"><?php echo JText::_('WEEVER_JOOMLA_UPDATE_BUTTON'); ?></a><?php echo JText::_('WEEVER_JOOMLA_UPDATE_AVAILABLE')." ".JRequest::getVar("upgradeVersion"); ?><br><span style="font-size: 0.65em; margin: 0pt;"><?php echo $updateText; ?></span></span>
 	
-<?php else : ?>
+<?php else : ?> 
 
 	<?php if($this->tier == 1) : ?>
 		<div style="position:absolute; right:10px; top:136px; margin:0 1em;">
@@ -357,7 +357,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 			<td colspan='5'>
 				<div class="wx-list-actions">
 	
-					<div class="wx-button-option" style="margin:0; padding:0;">
+					<div class="wx-button-option" style="margin:0; padding:0;width: 110px;">
 						<img  style="margin:0;" src="components/com_weever/assets/icons/arrow_leftup.png" />
 						<span style="float:right; margin-top:.75em;">with selected:</span>
 					</div>

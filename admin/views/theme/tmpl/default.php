@@ -46,9 +46,13 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/fileupl
 $joomla = comWeeverHelper::joomlaVersion();
 
 if(substr($joomla,0,3) != '1.5')  // ### non-1.5 only
+{
 	$jsJoomla = "Joomla.";
+}
 else 
+{
 	$jsJoomla = "";
+}
 
 $pane = &JPane::getInstance('tabs');
 
@@ -73,6 +77,27 @@ if( !strstr($this->devices, 'DetectTierWeeverTablets') && !strstr($this->devices
 	$noTablet = 1;
 else 
 	$noTablet = null;
+	
+if(!$this->theme->images->phone_load)
+	$this->theme->images->phone_load = "../images/com_weever/phone_load_live.png";
+
+if(!$this->theme->images->tablet_load)
+	$this->theme->images->tablet_load = "../images/com_weever/tablet_load_live.png";
+	
+if(!$this->theme->images->icon)
+	$this->theme->images->icon = "../images/com_weever/icon_live.png";
+
+if(!$this->theme->images->tablet_landscape_load)
+	$this->theme->images->tablet_landscape_load = "../images/com_weever/tablet_landscape_load_live.png";
+	
+if(!$this->theme->images->titlebar_logo)
+	$this->theme->images->titlebar_logo = "../images/com_weever/titlebar_logo_live.png";
+	
+if(!$this->theme->template)
+	$this->theme->template = "sencha";
+	
+if(!$this->theme->title)
+	$this->theme->title = "Untitled";
 
 ?>
 
@@ -240,7 +265,7 @@ else
     					<?php endif; ?>
     					
     					<div class="wx-theme-image-container wx-theme-image-container-titlebar"><a href='<?php echo $this->theme->images->titlebar_logo; ?>' id="wx-theme-titlebar-logo-link" class='popup' rel='{handler: "iframe", size:  { x: 600, y: 64}}'>
-    					<img class="wx-theme-titlebar-image" id="wx-theme-titlebar-logo" src="<?php echo $this->theme->images->titlebar_logo; ?>" />
+    					<img class="wx-theme-titlebar-image " id="wx-theme-titlebar-logo" src="<?php echo $this->theme->images->titlebar_logo; ?>" />
     					</a></div>
     					
     					<div id="wx-titlebar-upload"></div>
@@ -292,7 +317,7 @@ else
     			
     			<div id="wx-theme-titlebar-logo-preview-container"><img id="wx-theme-titlebar-logo-preview" src="<?php echo $this->theme->images->titlebar_logo; ?>" /><div id="wx-theme-titlebar-text-preview"><?php echo $this->theme->titlebar_title; ?></div></div>
     			
-    			<a id="wx-theme-screenshot-link" class="popup" href="<?php echo $themeDir.$this->theme->template.'.png'; ?>" rel='{handler: "iframe", size:  { x: 340, y: 500}}'><img src="<?php echo $themeDir.$this->theme->template.'.png'; ?>" style="height: 215px;margin-top: -15px;" id="wx-theme-screenshot" /></a>
+    			<a id="wx-theme-screenshot-link" class="popup" href="<?php echo $themeDir.$this->theme->template.'.png'; ?>" rel='{handler: "iframe", size:  { x: 340, y: 500}}'><img src="<?php echo $themeDir.$this->theme->template.'.png'; ?>" style="height: 215px;margin-top:-15px !important;" id="wx-theme-screenshot" /></a>
     			
     			</td>
     			<td>
@@ -317,7 +342,7 @@ else
 
 	<div class=" wx-theme-float-line-2" style="clear:both;">
 
-			<fieldset>
+			<fieldset id="wx-images-fieldset">
 			
 			<legend><?php echo JText::_('WEEVER_IMAGE_SETTINGS'); ?></legend>
 			
@@ -413,7 +438,7 @@ else
 		function themeUploadTemplate(text) {
 			return '<div class="qq-uploader">' + 
 		    	'<div class="qq-upload-drop-area '+text.dropClass+'"><span>'+text.dropUpload+'</span></div>' +
-		        '<div class="qq-upload-button"><img src="components/com_weever/assets/icons/upload.png" style="width:1.125em;height:1.125em;padding-right: 0.625em;vertical-align:-1px;" />'+text.uploadButton+'</div>' +
+		        '<div class="qq-upload-button"><img src="components/com_weever/assets/icons/upload.png" class="qq-upload-icon" />'+text.uploadButton+'</div>' +
 		        '<ul class="qq-upload-list"></ul>' + 
 		     	'</div>';
 		};
@@ -421,7 +446,7 @@ else
 		function themeUploadIconTemplate(text) {
 			return '<div class="qq-uploader">' + 
 		    	'<div class="qq-upload-drop-area '+text.dropClass+'"><span>'+text.dropUpload+'</span></div>' +
-		        '<div class="qq-upload-button qq-upload-icon-button"><img src="components/com_weever/assets/icons/upload.png" style="width:1.125em;height:1.125em;padding-right: 0.625em;vertical-align:-1px;" />'+text.uploadButton+'</div>' +
+		        '<div class="qq-upload-button qq-upload-icon-button"><img src="components/com_weever/assets/icons/upload.png" class="qq-upload-icon" />'+text.uploadButton+'</div>' +
 		        '<ul class="qq-upload-list"></ul>' + 
 		     	'</div>';
 		};

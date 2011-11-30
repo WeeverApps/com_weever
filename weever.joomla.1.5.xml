@@ -15,6 +15,7 @@
  <files folder="admin">
 	  <filename>weever.php</filename>
 	  <filename>controller.php</filename>
+	  <folder>classes</folder>
 	  <folder>helpers</folder>
 	  <filename>index.html</filename>
 	  <folder>assets</folder>
