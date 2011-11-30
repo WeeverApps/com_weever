@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.1
+*	Version: 	1.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ $joomla = $version->getShortVersion();
 
 JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
 require_once (JPATH_COMPONENT.DS.'helpers'.DS.'helper'.'.php');
+JHTML::_('behavior.modal', 'a.popup');
 
 if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
 {
@@ -50,7 +51,9 @@ $cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jque
 
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
     $document->addStyleSheet($cssFile, 'text/css', null, array()); 
-
+    
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/fileuploader.css';
+    $document->addStyleSheet($cssFile, 'text/css', null, array()); 
 
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/weever.css?v='.comWeeverConst::VERSION;
 $document->addStyleSheet($cssFile, 'text/css', null, array());
@@ -71,28 +74,7 @@ if($staging)
 else
 	$weeverIcon = "weever_toolbar_title";
 	
-
-
-
-switch(JRequest::getWord('task'))
-{
-	case 'config':
-	case 'theme':
-	case 'account':
-		
-		JToolBarHelper::title( '&nbsp;', $weeverIcon);
-		JToolBarHelper::apply();
-		
-		break;
-
-	default:
-
-		JToolBarHelper::title( '&nbsp;', $weeverIcon);
-		
-		break;
-		
-}
-
+JToolBarHelper::title( '&nbsp;', $weeverIcon);
 
 jimport('joomla.application.component.controller');
 
@@ -109,12 +91,9 @@ $controller->redirect();
 $row->load(6);
 $status = $row->setting;
 
-// now has the button
-/*if($status == 0 && !$staging)
-	JError::raiseNotice(100, JText::_('WEEVER_NOTICE_APP_OFFLINE'));*/
-
 $row->load(3); $key = $row->setting;
 $row->load(4); $keySiteDomain = $row->setting;
+$row->load(10); $domainMap = $row->setting;
 
 if(!$key)
 {
@@ -137,50 +116,20 @@ if($key)
 		$weeverServer = comWeeverConst::LIVE_SERVER;
 		$modetype = 'live';
 	}
-
-	echo '
 	
-      
-    
-    
-    <fieldset class="adminForm" style="margin:1.5em;">
-    <legend>'.JText::_('WEEVER_QR_TEST_CODE').'</legend>
-
-        <img src="http://'.$siteDomain.'/media/com_weever/qr_app_'.$modetype.'.png"  class="wx-qr-imgprev" />
-        <p>'.JText::_('WEEVER_QR_SCAN_PRIVATE').'<br/>
-        QR Link: '.JText::_('WEEVER_QR_DIRECT_ADDRESS').'<a href="'.$weeverServer.'app/'.$keySiteDomain.'">'.$weeverServer.'app/'.$keySiteDomain.'</a></p>
-        <p>'.JText::_('WEEVER_QR_ADDITIONAL_TEST').'</p>
-    
-	</fieldset>
-   
-	';
+	$googleQRUrl = "http://chart.apis.google.com/chart?cht=qr&chs=140x140&choe=UTF-8&chld=H|0&chl=";
+	$googleQRUrlHD = "http://chart.apis.google.com/chart?cht=qr&chs=480x480&choe=UTF-8&chld=H|0&chl=";
 	
-	if(!$staging)
-		echo '<fieldset class="adminForm" style="margin:1.5em;">
-        			<legend style="background:#ECF4E6;">'.JText::_('WEEVER_QR_PUBLIC_CODE').'</legend>
+	if($domainMap)
+		$privateUrl = "http://".$domainMap;
+	else 
+		$privateUrl = $weeverServer.'app/'.$keySiteDomain;
+		
+	$publicUrl = 'http://'.$siteDomain;
 
-                <img src="http://'.$siteDomain.'/media/com_weever/qr_site_'.$modetype.'.png"  class= "wx-qr-imgprev"  />
 
-        
-
-        
-
-              <p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE').' <a href="'.$siteDomain.'">http://'.$siteDomain.'</a></p>
-<p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE_SUGGEST').'</p>
-             </fieldset>';
-	else
-		echo '<fieldset class="adminForm"  style="margin:1.5em;">
-        			<legend style="background:#ECF4E6;">'.JText::_('WEEVER_QR_PUBLIC_CODE').'</legend>
-<p>'.JText::_('WEEVER_QR_STAGING_UNAVAILABLE').'</p>
-    </fieldset>
-	
-	';
-	
-	echo '<div style="clear:both;"></div></div>';
+	include("views/modules/qr.php");
 		
 }
 
-echo '<div style="text-align:center;clear:both; margin-top:24px;">'.comWeeverConst::NAME.' v'.comWeeverConst::VERSION.' '.comWeeverConst::RELEASE_TYPE.' "'.comWeeverConst::RELEASE_NAME.'" <br />'.
-	comWeeverConst::COPYRIGHT_YEAR.' <a target="_blank" href="'.comWeeverConst::COPYRIGHT_URL.'">'.comWeeverConst::COPYRIGHT.'</a> 
-	Released '.comWeeverConst::RELEASE_DATE.' under <a target="_blank" href="'.comWeeverConst::LICENSE_URL.'">'.comWeeverConst::LICENSE.'</a>. 
-	<a target="_blank" href="http://weeverapps.zendesk.com">Contact Support</a></div>';
+include("views/modules/footer.php");

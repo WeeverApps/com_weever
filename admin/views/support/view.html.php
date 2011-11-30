@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3
+*	Version: 	1.2.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -19,28 +19,23 @@
 *
 */
 
-
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
 jimport('joomla.plugin.helper');
 
-class WeeverViewTheme extends JView
+class WeeverViewSupport extends JView
 {
 
 	public function display($tpl = null)
 	{
-	
-		$component = JComponentHelper::getComponent( 'com_weever' );
 
+		/* Call the state object */
+		$state =& $this->get( 'state' );
+		
 		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		$row->load(6);
 		$this->assign('appEnabled', $row->setting);
-		$row->load(5);
-		$this->assign('devices', $row->setting);
-		
-		/* Call the state object */
-		$state =& $this->get( 'state' );
 		
 		if(!$state->get('site_key'))
 		{
@@ -50,20 +45,19 @@ class WeeverViewTheme extends JView
 		}		
 		
 		$this->assign('site_key', $state->get('site_key'));
-		
+
 		$appData = $this->get('appdata');
-		$accountData = $this->get('accountdata');
 		
-		$this->assignRef('theme',$appData);
-		$this->assignRef('account',$accountData);
-		
+		$this->assignRef('account',$appData);
+
 		comWeeverHelper::getJsStrings();
-		
+
 		JSubMenuHelper::addEntry(JText::_('WEEVER_TAB_ITEMS'), 'index.php?option=com_weever', false);
-		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', true);
+		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', false);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_CONFIGURATION'), 'index.php?option=com_weever&view=config&task=config', false);
-		JSubMenuHelper::addEntry(JText::_('WEEVER_ACCOUNT'), 'index.php?option=com_weever&view=account&task=account', false);	
-		JSubMenuHelper::addEntry(JText::_('WEEVER_SUPPORT_TAB'), 'index.php?option=com_weever&view=support&task=support', false);
+		JSubMenuHelper::addEntry(JText::_('WEEVER_ACCOUNT'), 'index.php?option=com_weever&view=account&task=account', false);
+		JSubMenuHelper::addEntry(JText::_('WEEVER_SUPPORT_TAB'), 'index.php?option=com_weever&view=support&task=support', true);
+
 		
 		parent::display($tpl);
 	
