@@ -93,6 +93,7 @@ $status = $row->setting;
 
 $row->load(3); $key = $row->setting;
 $row->load(4); $keySiteDomain = $row->setting;
+$row->load(10); $domainMap = $row->setting;
 
 if(!$key)
 {
@@ -116,47 +117,19 @@ if($key)
 		$modetype = 'live';
 	}
 	
-	$googleQRUrl = "http://chart.apis.google.com/chart?cht=qr&chs=120x120&choe=UTF-8&chld=H|0&chl=";
+	$googleQRUrl = "http://chart.apis.google.com/chart?cht=qr&chs=140x140&choe=UTF-8&chld=H|0&chl=";
 	$googleQRUrlHD = "http://chart.apis.google.com/chart?cht=qr&chs=480x480&choe=UTF-8&chld=H|0&chl=";
-	$privateUrl = $weeverServer.'app/'.$keySiteDomain;
+	
+	if($domainMap)
+		$privateUrl = "http://".$domainMap;
+	else 
+		$privateUrl = $weeverServer.'app/'.$keySiteDomain;
+		
 	$publicUrl = 'http://'.$siteDomain;
 
 
-	echo '
-    <fieldset class="adminForm" style="margin:1.5em;">
-    <legend>'.JText::_('WEEVER_QR_TEST_CODE').'</legend>
-
-        <a href="'.$googleQRUrlHD.$privateUrl.'" class="popup" rel=\'{handler: "iframe", size: {x: 480, y: 480} }\'><img src="'.$googleQRUrl.$privateUrl.'"  class="wx-qr-imgprev" /></a>
-        <p>'.JText::_('WEEVER_QR_SCAN_PRIVATE').'<br/>
-        QR Link: '.JText::_('WEEVER_QR_DIRECT_ADDRESS').'<a href="'.$privateUrl.'">'.$privateUrl.'</a></p>
-        <p>'.JText::_('WEEVER_QR_ADDITIONAL_TEST').'</p>
-    
-	</fieldset>
-   
-	';
-	
-	if(!$staging)
-		echo '<fieldset class="adminForm" style="margin:1.5em;">
-        			<legend style="background:#ECF4E6;">'.JText::_('WEEVER_QR_PUBLIC_CODE').'</legend>
-
-                <a href="'.$googleQRUrlHD.$publicUrl.'" class="popup" rel=\'{handler: "iframe", size: {x: 480, y: 480} }\'><img src="'.$googleQRUrl.$publicUrl.'"  class= "wx-qr-imgprev"  /></a>
-
-              <p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE').' <a href="'.$publicUrl.'">'.$publicUrl.'</a></p>
-<p>'.JText::_('WEEVER_QR_PUBLIC_CODE_SHARE_SUGGEST').'</p>
-             </fieldset>';
-	else
-		echo '<fieldset class="adminForm"  style="margin:1.5em;">
-        			<legend style="background:#ECF4E6;">'.JText::_('WEEVER_QR_PUBLIC_CODE').'</legend>
-<p>'.JText::_('WEEVER_QR_STAGING_UNAVAILABLE').'</p>
-    </fieldset>
-	
-	';
-	
-	echo '<div style="clear:both;"></div></div>';
+	include("views/modules/qr.php");
 		
 }
 
-echo '<div style="text-align:center;clear:both; margin-top:24px;">'.comWeeverConst::NAME.' v'.comWeeverConst::VERSION.' '.comWeeverConst::RELEASE_TYPE.' "'.comWeeverConst::RELEASE_NAME.'" <br />'.
-	comWeeverConst::COPYRIGHT_YEAR.' <a target="_blank" href="'.comWeeverConst::COPYRIGHT_URL.'">'.comWeeverConst::COPYRIGHT.'</a> 
-	Released '.comWeeverConst::RELEASE_DATE.' under <a target="_blank" href="'.comWeeverConst::LICENSE_URL.'">'.comWeeverConst::LICENSE.'</a>. 
-	<a target="_blank" href="http://weeverapps.zendesk.com">Contact Support</a></div>';
+include("views/modules/footer.php");
