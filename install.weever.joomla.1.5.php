@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.3
+*	Version: 	1.3.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -166,7 +166,6 @@ if( !is_dir(JPATH_ROOT.DS."images".DS."com_weever") )
 			
 	}
 }
-
 
 if(!function_exists("stream_context_create"))
 	echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_STREAM_CONTEXT_CREATE")."</div>";

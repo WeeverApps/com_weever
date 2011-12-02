@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3
+*	Version: 	1.3.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -44,11 +44,11 @@ class WeeverController extends JController
 	
 		$allowedExtensions = array("png","jpg","jpeg","gif","svg");
 
-		$sizeLimit = 1024*1024*5;
+		$sizeLimit = 128000;
 		
 		$uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 		
-		$result = $uploader->handleUpload(JPATH_SITE . DS . 'images' . DS .'com_weever'. DS);
+		$result = $uploader->handleUpload(JPATH_ROOT . DS . 'images' . DS .'com_weever'. DS);
 		
 		if(isset($result['success']))
 		{
