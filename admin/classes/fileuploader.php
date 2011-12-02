@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.3
+*	Version: 	1.3.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -119,7 +119,7 @@ class qqFileUploader {
         
         if ($postSize < $this->sizeLimit || $uploadSize < $this->sizeLimit){
             $size = max(1, $this->sizeLimit / 1024 / 1024) . 'M';             
-            die("{'error':'".JText::_('LIB_AJAXUPLOAD_INCREASE_SIZE')."$size'}");    
+            die("{'error':'".JText::_('LIB_AJAXUPLOAD_INCREASE_SIZE').$size."'}");    
         }        
     }
     

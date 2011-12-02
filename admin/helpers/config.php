@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3.1
+*	Version: 	1.3.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.3.1";
+	const VERSION		= "1.3.0.1";
 	const RELEASE_TYPE	= "stable";
 	const RELEASE_NAME	= "<a href='http://www.grca.on.ca/conservation-areas.html' target='_blank'>Ganaraska</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
@@ -38,7 +38,7 @@ final class comWeeverConst
 	const COPYRIGHT_URL = "http://www.weeverapps.com/";
 	const LICENSE		= "GPL v3.0";
 	const LICENSE_URL	= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE	= "November 31, 2011";
+	const RELEASE_DATE	= "December 1, 2011";
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
