@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3
+*	Version: 	1.3.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -69,9 +69,8 @@ class comWeeverHelper
 
 	public static function getJsStrings()
 	{
-	
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
+
+		$joomla = comWeeverHelper::joomlaVersion();
 		
 		if(substr($joomla,0,3) == '1.5')
 		{
@@ -1214,7 +1213,14 @@ class comWeeverHelper
 			$json->state = $contact->state;
 			$json->country = $contact->country;
 			$json->googlemaps = JRequest::getVar('googlemaps', 0);
-			$json->image = $contact->image;
+			
+			$joomla = comWeeverHelper::joomlaVersion();
+			
+			if(substr($joomla,0,3) == '1.5')
+				$json->image = "images/stories/".$contact->image;
+			else 
+				$json->image = $contact->image;
+				
 			$json->misc = $contact->misc;
 			
 			// destringify our options
