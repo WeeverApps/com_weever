@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3
+*	Version: 	1.3.0.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -120,7 +120,7 @@ if($key)
 	$googleQRUrl = "http://chart.apis.google.com/chart?cht=qr&chs=140x140&choe=UTF-8&chld=H|0&chl=";
 	$googleQRUrlHD = "http://chart.apis.google.com/chart?cht=qr&chs=480x480&choe=UTF-8&chld=H|0&chl=";
 	
-	if($domainMap)
+	if($domainMap && !$staging)
 		$privateUrl = "http://".$domainMap;
 	else 
 		$privateUrl = $weeverServer.'app/'.$keySiteDomain;
