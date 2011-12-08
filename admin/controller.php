@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3.0.1
+*	Version: 	1.3.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ class WeeverController extends JController
 	
 		$allowedExtensions = array("png","jpg","jpeg","gif","svg");
 
-		$sizeLimit = 128000;
+		$sizeLimit = 1536000;
 		
 		$uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 		
