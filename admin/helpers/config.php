@@ -31,7 +31,7 @@ final class comWeeverConst
 
 	const VERSION		= "1.3.1";
 	const RELEASE_TYPE	= "stable";
-	const RELEASE_NAME	= "<a href='http://www.grca.on.ca/conservation-areas.html' target='_blank'>Ganaraska</a>";
+	const RELEASE_NAME	= "<a href='http://www.ssmrca.ca/recreation-and-conservation-areas/hiawatha-highlands-conservation-area' target='_blank'>Hiawatha</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";
 	const COPYRIGHT		= "Weever Apps Inc.";
