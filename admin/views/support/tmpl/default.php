@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.3
+*	Version: 	1.3.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -122,7 +122,7 @@ else
 
 
 
-<p>If you are new to Weever Apps — <a href="http://weeverapps.zendesk.com/" title="Weever Apps Support" target="_blank">http://weeverapps.zendesk.com</a> is <em>the</em> place to start. Ask questions, find answers and request new features!</p>
+<p>If you are new to Weever Apps — <a href="http://support.weeverapps.com/" title="Weever Apps Support" target="_blank">http://support.weeverapps.com</a> is <em>the</em> place to start. Ask questions, find answers and request new features!</p>
 
 
 
@@ -131,13 +131,13 @@ else
 
 
 <ul class="supportlistarrow segmentedlist"><strong>New!</strong> — Weever Apps Tutorial Videos
-<li class="none"><a href="http://weeverapps.zendesk.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#social">How to add Social Media</a><br>(YouTube, Flickr, etc.) to your app.</li>
-<li><a href="http://weeverapps.zendesk.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#publishing">How to Choose Mobile Devices</a><br>you wish to display your app on.</li>
-<li><a href="http://weeverapps.zendesk.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#icons">Editing App-Navigation Icons</a><br>aka, 'tab bar icons' to change the image and text-label</li>
+<li class="none"><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#social">How to add Social Media</a><br>(YouTube, Flickr, etc.) to your app.</li>
+<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#publishing">How to Choose Mobile Devices</a><br>you wish to display your app on.</li>
+<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#icons">Editing App-Navigation Icons</a><br>aka, 'tab bar icons' to change the image and text-label</li>
 </ul>
 <ul class="supportlistarrow segmentedlist">
-<li><a href="http://weeverapps.zendesk.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#staging">Staging Mode</a><br>- a separate 'sandbox' for your app!</li>
-<li><a href="http://weeverapps.zendesk.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps&quot;">View all videos</a></li>
+<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#staging">Staging Mode</a><br>- a separate 'sandbox' for your app!</li>
+<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps&quot;">View all videos</a></li>
 </ul>	
 
 
@@ -190,13 +190,13 @@ else
 
 
 
-<p>For more quesitons and answers, please visit our <a href="http://weeverapps.zendesk.com">support site</a>.</p>
+<p>For more quesitons and answers, please visit our <a href="http://support.weeverapps.com">support site</a>.</p>
 <br/>
 
 
 <ul class="supportlistarrow"><a href="http://weeverapps.com/pricing">Premium &amp; Pro</a> Features
-<li>How do I make a <strong><a href="http://weeverapps.zendesk.com/entries/20611136-how-do-i-make-a-weever-map">Weever Map?</a></strong></li>
-<li>How do I setup a <a href="http://weeverapps.zendesk.com/entries/20394158-how-do-i-use-my-own-domain-name-web-site-address-url-with-weever-apps">app.yoursitename.com address</a> for my app?</li>
+<li>How do I make a <strong><a href="http://support.weeverapps.com/entries/20611136-how-do-i-make-a-weever-map">Weever Map?</a></strong></li>
+<li>How do I setup a <a href="http://support.weeverapps.com/entries/20394158-how-do-i-use-my-own-domain-name-web-site-address-url-with-weever-apps">app.yoursitename.com address</a> for my app?</li>
 <li>Can I change the 'Powered by' message on launch?<br/>Yes, just go to 'Mobile Publishing' in the plugin settings.</li>
 </ul>	
 <br/>
@@ -205,7 +205,7 @@ else
 <ul class="supportlistarrow">Marketing &amp; Sales
 <li>Do Weever Apps Install?<br/>Yes! - See the end of <a href="http://weeverapps.com">this video</a> for an example.  'Prompt to install' is coming soon!</li>
 <li>Can I setup a 'landing page' in my app?<br/>Yes! The latest Weever Apps releases include the options to use a single landing page, or to select content from your site for a 'landing page app slideshow'</li>
-<li>How much data do you store on your servers?<br/><a href="http://weeverapps.zendesk.com/entries/20315147-where-does-the-code-stays">Almost none</a>. Your privacy and security is important to us.</li>
+<li>How much data do you store on your servers?<br/><a href="http://support.weeverapps.com/entries/20315147-where-does-the-code-stays">Almost none</a>. Your privacy and security is important to us.</li>
 </ul>
 <br/>
 <ul class="supportlistarrow">Technical / Advanced
