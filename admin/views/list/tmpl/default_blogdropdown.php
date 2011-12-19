@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1.0.1
+*	Version: 	1.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -43,6 +43,7 @@ else
 			<option value='menu'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_MENU'); ?></option>
 			<option value='content-cat'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_JCATEGORY'); ?></option>
 			<?php echo $k2Options; ?>
+			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_R3S_URL'); ?></option>
 		</select>
 	</div>
 	
@@ -62,6 +63,11 @@ else
 		
 		<?php echo $this->blogK2CategoryDropdown;?>
 		
+		<div id="wx-add-blog-r3s-url">
+			<input type='text' value='' id='wx-add-blog-r3s-url-input' class='wx-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
+			<label for='wx-add-blog-r3s-url-input' id='wx-add-blog-r3s-url-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_BLOG_R3S_URL'); ?></label>
+		</div>
+
 		<div id="wx-add-blog-k2-tag">
 		<input type='text' value='' id='wx-add-blog-k2-tag-input' class='wx-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_K2_TAG_PLACEHOLDER"); ?>' />
 		<label for='wx-add-blog-k2-tag-input' id='wx-add-blog-k2-tag-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_BLOG_K2_TAG'); ?></label>
