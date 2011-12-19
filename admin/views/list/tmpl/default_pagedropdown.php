@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9
+*	Version: 	1.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@ defined('_JEXEC') or die;
 		<select id='wx-select-page'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_PAGE_PARENTHESES'); ?></option>
 			<option value='menu'><?php echo JText::_('WEEVER_ADD_ARTICLE_OR_K2_ITEM_FROM_MENU'); ?></option>
+			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_PAGE_R3S_URL'); ?></option>
 			<!--option value='page-cat'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_ARTICLES_AS_LIST'); ?></option>
 			<option value='page-cat-k2'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_K2_ITEMS_AS_LIST'); ?></option-->
 		</select>
@@ -44,6 +45,11 @@ defined('_JEXEC') or die;
 	<div class='wx-add-item-value wx-page-reveal wx-reveal'>
 	
 		<?php echo $this->pageMenuDropdown; ?>
+		
+		<div id="wx-add-page-r3s-url">
+			<input type='text' value='' id='wx-add-page-r3s-url-input' class='wx-input wx-page-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
+			<label for='wx-add-page-r3s-url-input' id='wx-add-page-r3s-url-input-label' class='wx-page-label'><?php echo JText::_('WEEVER_ADD_PAGE_R3S_URL'); ?></label>
+		</div>
 	
 		<?php //echo $this->pageJCategoryDropdown; 
 		?>

@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1.0.1
+*	Version: 	1.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -42,6 +42,7 @@ else
 		<select id='wx-select-map'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_MAP_PARENTHESES'); ?></option>
 			<?php echo $k2Options; ?>
+			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_MAP_FROM_R3S_URL'); ?></option>
 			<option value='' disabled='disabled'>----------------</option>
 			<option value='settings'><?php echo JText::_('WEEVER_MAP_SETTINGS'); ?></option>
 		</select>
@@ -75,6 +76,11 @@ else
 			<input type="hidden" id="id_id-map" class="wx-map-input" name="urlparams[id]" value="0" />
 			<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="<?php echo JText::_('WEEVER_MAP_SELECT_ARTICLE_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_MAP_SELECT_CONTENT'); ?></label>
 
+		</div>
+		
+		<div id="wx-add-map-r3s-url">
+			<input type='text' value='' id='wx-add-map-r3s-url-input' class='wx-input wx-map-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
+			<label for='wx-add-map-r3s-url-input' id='wx-add-map-r3s-url-input-label' class='wx-map-label'><?php echo JText::_('WEEVER_ADD_MAP_R3S_URL'); ?></label>
 		</div>
 						
 						

@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1.0.1
+*	Version: 	1.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -43,6 +43,7 @@ else
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_ABOUTAPP_PARENTHESES'); ?></option>
 			<option value='content'><?php echo JText::_('WEEVER_ADD_ARTICLE'); ?></option>
 			<?php echo $k2Options; ?>
+			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_R3S_URL'); ?></option>
 			<option value='' disabled='disabled'>----------------</option>
 			<option value='settings'><?php echo JText::_('WEEVER_ABOUTAPP_ADVANCED_TRANSITIONS'); ?></option>
 		</select>
@@ -71,6 +72,11 @@ else
 
 		</div>
 		
+		<div id="wx-add-aboutapp-r3s-url">
+			<input type='text' value='' id='wx-add-aboutapp-r3s-url-input' class='wx-input wx-aboutapp-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
+			<label for='wx-add-aboutapp-r3s-url-input' id='wx-add-aboutapp-r3s-url-input-label' class='wx-aboutapp-label'><?php echo JText::_('WEEVER_ADD_PANEL_R3S_URL'); ?></label>
+		</div>
+		
 		
 		<div id='wx-add-aboutapp-content-joomla'>
 		
@@ -82,10 +88,14 @@ else
 
 		</div>
 		
-		<input type="text" id="id_name-aboutapp" placeholder="Select content..." class='wx-input wx-aboutapp-input wx-aboutapp-content-name' disabled="disabled" />
+		<div id='wx-add-aboutapp-content-input-fields'>
 		
-		<input type="hidden" id="id_id-aboutapp" class="wx-aboutapp-input" name="urlparams[id]" value="0" />
-		<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="Select Item::Select an item to link to directly.">Select Content</label>
+			<input type="text" id="id_name-aboutapp" placeholder="Select content..." class='wx-input wx-aboutapp-input wx-aboutapp-content-name' disabled="disabled" />
+			
+			<input type="hidden" id="id_id-aboutapp" class="wx-aboutapp-input" name="urlparams[id]" value="0" />
+			<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="Select Item::Select an item to link to directly.">Select Content</label>
+	
+		</div>
 		
 		
 		<?php //echo $this->pageK2CategoryDropdown; 

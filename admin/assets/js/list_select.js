@@ -3,7 +3,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -248,15 +248,32 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-page-menu-item').show();
 			jQuery('#wx-add-page-menu-item-select').attr('name', 'cms_feed');
 			jQuery('#wx-add-page-menu-item-help').show();
-			jQuery('#wx-add-page-category-joomla').hide();
+			/*jQuery('#wx-add-page-category-joomla').hide();
 			jQuery('#wx-add-page-category-joomla-select').attr('name', 'unnamed');
 			jQuery('#wx-add-page-category-k2').hide();
 			jQuery('#wx-add-page-category-k2-select').attr('name', 'unnamed');
 			jQuery('#wx-add-page-tags-k2').hide();
-			jQuery('#wx-add-page-tags-k2-select').attr('name', 'unnamed');
+			jQuery('#wx-add-page-tags-k2-select').attr('name', 'unnamed');*/
+			jQuery('#wx-add-page-r3s-url').hide();
+			jQuery('#wx-add-page-r3s-url-input').attr('name', 'unnamed');
 		}
 		
-		if(jQuery(this).val() == "page-cat") 
+		if(jQuery(this).val() == "r3s-url") 
+		{
+			jQuery('#wx-add-page-menu-item').hide();
+			jQuery('#wx-add-page-menu-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-page-menu-item-help').hide();
+			/*jQuery('#wx-add-page-category-joomla').hide();
+			jQuery('#wx-add-page-category-joomla-select').attr('name', 'unnamed');
+			jQuery('#wx-add-page-category-k2').hide();
+			jQuery('#wx-add-page-category-k2-select').attr('name', 'unnamed');
+			jQuery('#wx-add-page-tags-k2').hide();
+			jQuery('#wx-add-page-tags-k2-select').attr('name', 'unnamed');*/
+			jQuery('#wx-add-page-r3s-url').show();
+			jQuery('#wx-add-page-r3s-url-input').attr('name', 'cms_feed');
+		}
+		
+		/*if(jQuery(this).val() == "page-cat") 
 		{
 			jQuery('#wx-add-page-menu-item').hide();
 			jQuery('#wx-add-page-menu-item-select').attr('name', 'noname');
@@ -280,7 +297,7 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-page-category-k2-help').show();
 			jQuery('#wx-add-page-tags-k2').hide();
 			jQuery('#wx-add-page-tags-k2-select').attr('name', 'unnamed');
-		}
+		}*/
 		
 		
 		jQuery('.wx-page-reveal').show();
@@ -307,16 +324,33 @@ jQuery(document).ready(function(){
 		if(jQuery(this).val() == "k2") 
 		{
 			jQuery('#id_id').attr('name', 'cms_feed');
+			jQuery('#wx-add-panel-content-input-fields').show();
 			jQuery('#wx-add-panel-k2-item').show();
 			jQuery('#wx-add-panel-content-joomla').hide();
+			jQuery('#wx-add-panel-r3s-url').hide();
+			jQuery('#wx-add-panel-r3s-url-input').attr('name', 'unnamed');
 		}
 		
 		if(jQuery(this).val() == "content") 
 		{
+			jQuery('#wx-add-panel-content-input-fields').show();
 			jQuery('#wx-add-panel-k2-item').hide();
 			jQuery('#wx-add-panel-content-joomla').show();
 			jQuery('#id_id').attr('name', 'cms_feed');
+			jQuery('#wx-add-panel-r3s-url').hide();
+			jQuery('#wx-add-panel-r3s-url-input').attr('name', 'unnamed');
 		}
+		
+		if(jQuery(this).val() == "r3s-url") 
+		{
+			jQuery('#wx-add-panel-k2-item').hide();
+			jQuery('#wx-add-panel-content-joomla').hide();
+			jQuery('#id_id').attr('name', 'unnamed');
+			jQuery('#wx-add-panel-content-input-fields').hide();
+			jQuery('#wx-add-panel-r3s-url').show();
+			jQuery('#wx-add-panel-r3s-url-input').attr('name', 'cms_feed');
+		}
+		
 		
 		if(jQuery(this).val() == "settings")
 		{
@@ -507,25 +541,45 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-map-k2-category-item-select').attr('name', 'unnamed');
 			jQuery('#wx-add-map-k2-tag').hide();
 			jQuery('#wx-add-map-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-map-r3s-url').hide();
+			jQuery('#wx-add-map-r3s-url-input').attr('name', 'unnamed');
 
 		}
 		
 		if(jQuery(this).val() == "k2-cat") 
 		{
+			jQuery('#id_id').attr('name', 'unnamed');
 			jQuery('#wx-add-map-k2-item').hide();
 			jQuery('#wx-add-map-k2-category-item').show();
 			jQuery('#wx-add-map-k2-category-item-select').attr('name', 'cms_feed');
 			jQuery('#wx-add-map-k2-tag').hide();
 			jQuery('#wx-add-map-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-map-r3s-url').hide();
+			jQuery('#wx-add-map-r3s-url-input').attr('name', 'unnamed');
 		}
 		
 		if(jQuery(this).val() == "k2-tags") 
 		{
+			jQuery('#id_id').attr('name', 'unnamed');
 			jQuery('#wx-add-map-k2-item').hide();
 			jQuery('#wx-add-map-k2-category-item').hide();
 			jQuery('#wx-add-map-k2-category-item-select').attr('name', 'unnamed');
 			jQuery('#wx-add-map-k2-tag').show();
 			jQuery('#wx-add-map-k2-tag-input').attr('name', 'tag');
+			jQuery('#wx-add-map-r3s-url').hide();
+			jQuery('#wx-add-map-r3s-url-input').attr('name', 'unnamed');
+		}
+		
+		if(jQuery(this).val() == "r3s-url")
+		{
+			jQuery('#id_id').attr('name', 'unnamed');
+			jQuery('#wx-add-map-k2-item').hide();
+			jQuery('#wx-add-map-k2-category-item').hide();
+			jQuery('#wx-add-map-k2-category-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-map-k2-tag').hide();
+			jQuery('#wx-add-map-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-map-r3s-url').show();
+			jQuery('#wx-add-map-r3s-url-input').attr('name', 'cms_feed');
 		}
 		
 		if(jQuery(this).val() == "settings")
@@ -657,6 +711,9 @@ jQuery(document).ready(function(){
 			jQuery('#id_id').attr('name', 'cms_feed');
 			jQuery('#wx-add-aboutapp-k2-item').show();
 			jQuery('#wx-add-aboutapp-content-joomla').hide();
+			jQuery('#wx-add-aboutapp-content-input-fields').show();
+			jQuery('#wx-add-aboutapp-r3s-url').hide();
+			jQuery('#wx-add-aboutapp-r3s-url-input').attr('name', 'unnamed');
 		}
 		
 		if(jQuery(this).val() == "content") 
@@ -664,6 +721,19 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-aboutapp-k2-item').hide();
 			jQuery('#wx-add-aboutapp-content-joomla').show();
 			jQuery('#id_id').attr('name', 'cms_feed');
+			jQuery('#wx-add-aboutapp-content-input-fields').show();
+			jQuery('#wx-add-aboutapp-r3s-url').hide();
+			jQuery('#wx-add-aboutapp-r3s-url-input').attr('name', 'unnamed');
+		}
+		
+		if(jQuery(this).val() == "r3s-url") 
+		{
+			jQuery('#wx-add-aboutapp-k2-item').hide();
+			jQuery('#wx-add-aboutapp-content-joomla').hide();
+			jQuery('#id_id').attr('name', 'unnamed');
+			jQuery('#wx-add-aboutapp-content-input-fields').hide();
+			jQuery('#wx-add-aboutapp-r3s-url').show();
+			jQuery('#wx-add-aboutapp-r3s-url-input').attr('name', 'cms_feed');
 		}
 		
 		if(jQuery(this).val() == "settings")
@@ -853,6 +923,8 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-directory-k2-category-item-select').attr('name', 'unnamed');
 			jQuery('#wx-add-directory-k2-tag').hide();
 			jQuery('#wx-add-directory-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-directory-r3s-url').hide();
+			jQuery('#wx-add-directory-r3s-url-input').attr('name', 'unnamed');
 		}
 		
 		if(jQuery(this).val() == "k2-cat") 
@@ -863,6 +935,8 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-directory-k2-category-item-select').attr('name', 'cms_feed');
 			jQuery('#wx-add-directory-k2-tag').hide();
 			jQuery('#wx-add-directory-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-directory-r3s-url').hide();
+			jQuery('#wx-add-directory-r3s-url-input').attr('name', 'unnamed');
 		}
 		
 		if(jQuery(this).val() == "k2-tags") 
@@ -873,6 +947,20 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-directory-k2-category-item-select').attr('name', 'unnamed');
 			jQuery('#wx-add-directory-k2-tag').show();
 			jQuery('#wx-add-directory-k2-tag-input').attr('name', 'tag');
+			jQuery('#wx-add-directory-r3s-url').hide();
+			jQuery('#wx-add-directory-r3s-url-input').attr('name', 'unnamed');
+		}
+			
+		if(jQuery(this).val() == "r3s-url")
+		{
+			jQuery('#wx-add-directory-jcategory-item').hide();
+			jQuery('#wx-add-directory-jcategory-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-directory-k2-category-item').hide();
+			jQuery('#wx-add-directory-k2-category-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-directory-k2-tag').hide();
+			jQuery('#wx-add-directory-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-directory-r3s-url').show();
+			jQuery('#wx-add-directory-r3s-url-input').attr('name', 'cms_feed');
 		}
 			
 		jQuery('.wx-directory-reveal').show();
@@ -899,6 +987,8 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'unnamed');
 			jQuery('#wx-add-blog-k2-tag').hide();
 			jQuery('#wx-add-blog-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-blog-r3s-url').hide();
+			jQuery('#wx-add-blog-r3s-url-input').attr('name', 'unnamed');
 		}
 		
 		if(jQuery(this).val() == "content-cat") 
@@ -911,6 +1001,8 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'unnamed');
 			jQuery('#wx-add-blog-k2-tag').hide();
 			jQuery('#wx-add-blog-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-blog-r3s-url').hide();
+			jQuery('#wx-add-blog-r3s-url-input').attr('name', 'unnamed');
 		}
 		
 		if(jQuery(this).val() == "k2-cat") 
@@ -923,6 +1015,8 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'cms_feed');
 			jQuery('#wx-add-blog-k2-tag').hide();
 			jQuery('#wx-add-blog-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-blog-r3s-url').hide();
+			jQuery('#wx-add-blog-r3s-url-input').attr('name', 'unnamed');
 		}
 		
 		if(jQuery(this).val() == "k2-tags") 
@@ -935,6 +1029,22 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'unnamed');
 			jQuery('#wx-add-blog-k2-tag').show();
 			jQuery('#wx-add-blog-k2-tag-input').attr('name', 'tag');
+			jQuery('#wx-add-blog-r3s-url').hide();
+			jQuery('#wx-add-blog-r3s-url-input').attr('name', 'unnamed');
+		}
+		
+		if(jQuery(this).val() == "r3s-url")
+		{
+			jQuery('#wx-add-blog-menu-item').hide();
+			jQuery('#wx-add-blog-menu-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-blog-jcategory-item').hide();
+			jQuery('#wx-add-blog-jcategory-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-blog-k2-category-item').hide();
+			jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'unnamed');
+			jQuery('#wx-add-blog-k2-tag').hide();
+			jQuery('#wx-add-blog-k2-tag-input').attr('name', 'unnamed');
+			jQuery('#wx-add-blog-r3s-url').show();
+			jQuery('#wx-add-blog-r3s-url-input').attr('name', 'cms_feed');
 		}
 			
 		jQuery('.wx-blog-reveal').show();
