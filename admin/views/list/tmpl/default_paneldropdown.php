@@ -71,7 +71,7 @@ else
 				
 				<div id="wx-add-panel-r3s-url">
 					<input type='text' value='' id='wx-add-panel-r3s-url-input' class='wx-input wx-panel-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
-					<label for='wx-add-panel-r3s-url-input' id='wx-add-panel-r3s-url-input-label' class='wx-panel-label'><?php echo JText::_('WEEVER_ADD_PANEL_R3S_URL'); ?></label>
+					<label for='wx-add-panel-r3s-url-input' id='wx-add-panel-r3s-url-input-label' class='wx-panel-label'><?php echo JText::_('WEEVER_ADD_R3S_URL'); ?></label>
 				</div>
 				
 				

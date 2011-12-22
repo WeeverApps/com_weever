@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.1
+*	Version: 	1.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -26,22 +26,10 @@ jimport('joomla.application.component.helper');
 class comWeeverThemeStylesObj
 {
 	
-	public 		$aLink;
-	public 		$spanLogo;
-	public 		$contentButton;
-	public 		$border;	
-	public 		$fontType;
-	public 		$blogIcon;
-	public 		$pagesIcon;
-	public 		$contactIcon;
-	public 		$socialIcon;
-	public 		$videoIcon;
-	public 		$photoIcon;
-	public 		$mapIcon;
 	public 		$titlebarHtml;
 	public 		$titlebarSource		= "text";
 	public 		$template			= "sencha";
-	public 		$useCssOverride;
-	public 		$useCustomIcons;
+	public		$css_url;
+	public 		$css;
 
 }

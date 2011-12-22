@@ -42,7 +42,7 @@ else
 		<select id='wx-select-map'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_MAP_PARENTHESES'); ?></option>
 			<?php echo $k2Options; ?>
-			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_MAP_FROM_R3S_URL'); ?></option>
+			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_R3S_URL'); ?></option>
 			<option value='' disabled='disabled'>----------------</option>
 			<option value='settings'><?php echo JText::_('WEEVER_MAP_SETTINGS'); ?></option>
 		</select>
@@ -80,7 +80,7 @@ else
 		
 		<div id="wx-add-map-r3s-url">
 			<input type='text' value='' id='wx-add-map-r3s-url-input' class='wx-input wx-map-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
-			<label for='wx-add-map-r3s-url-input' id='wx-add-map-r3s-url-input-label' class='wx-map-label'><?php echo JText::_('WEEVER_ADD_MAP_R3S_URL'); ?></label>
+			<label for='wx-add-map-r3s-url-input' id='wx-add-map-r3s-url-input-label' class='wx-map-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>
 		</div>
 						
 						

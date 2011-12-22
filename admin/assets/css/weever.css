@@ -1564,3 +1564,12 @@ ul.supportlistarrow li.ui-state-hover, ul.supportliststar li.ui-state-hover {
 
 ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a:hover, ul.supportliststar li.ui-state-hover a, ul.supportliststar li.ui-state-hover a:hover { color:#333; text-decoration: underline; }
 
+#wx-css-overrides {
+	width: 45em;
+	height: 15em;
+}
+
+#wx-css-url {
+	width: 30em;
+	font-size: 1.125em;
+}

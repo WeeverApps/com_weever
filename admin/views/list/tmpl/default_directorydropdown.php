@@ -42,7 +42,7 @@ else
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_DIR_PARENTHESES'); ?></option>
 			<option value='content-cat'><?php echo JText::_('WEEVER_ADD_DIR_FROM_JCATEGORY'); ?></option>
 			<?php echo $k2Options; ?>
-			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_DIR_FROM_R3S_URL'); ?></option>
+			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_R3S_URL'); ?></option>
 		</select>
 		<label for="wx-select-directory" class="key" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"><?php echo JText::_('WEEVER_ADD_DIR_HELP_LABEL'); ?></label>
 	</div>
@@ -63,7 +63,7 @@ else
 		
 		<div id="wx-add-directory-r3s-url">
 			<input type='text' value='' id='wx-add-directory-r3s-url-input' class='wx-input wx-directory-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
-			<label for='wx-add-directory-r3s-url-input' id='wx-add-directory-r3s-url-input-label' class='wx-directory-label'><?php echo JText::_('WEEVER_ADD_DIR_R3S_URL'); ?></label>
+			<label for='wx-add-directory-r3s-url-input' id='wx-add-directory-r3s-url-input-label' class='wx-directory-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>
 		</div>
 		
 		<div id="wx-add-directory-k2-tag">

@@ -30,19 +30,19 @@ final class comWeeverConst
 {
 
 	const VERSION		= "1.4";
-	const RELEASE_TYPE	= "dev";
-	const RELEASE_NAME	= "<a href='http://www.ssmrca.ca/recreation-and-conservation-areas/hiawatha-highlands-conservation-area' target='_blank'>Hiawatha</a>";
+	const RELEASE_TYPE	= "stable";
+	const RELEASE_NAME	= "<a href='http://public.greysauble.on.ca/ca_lands/inglisfalls.html' target='_blank'>Inglis</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2011";
 	const COPYRIGHT		= "Weever Apps Inc.";
 	const COPYRIGHT_URL = "http://www.weeverapps.com/";
 	const LICENSE		= "GPL v3.0";
 	const LICENSE_URL	= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE	= "December 8, 2011";
+	const RELEASE_DATE	= "December 22, 2011";
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
+	const LIVE_STAGE	= "http://stage.weeverapp.com/";
 
 }
 
