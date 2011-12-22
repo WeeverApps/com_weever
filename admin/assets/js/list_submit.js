@@ -81,10 +81,21 @@ jQuery(document).ready(function(){
 	  	var tabName = jQuery('input#wx-aboutapp-title').val();
 	  	
 	  	if(component == "k2") {
+	  	
 	  		cmsFeed = "index.php?option=com_k2&view=item&id="+id;
-	  	}
-	  	else {
+	  		
+	  	} else if (component == "r3s-url") {
+	  	
+	  		cmsFeed = jQuery("input#wx-add-aboutapp-r3s-url-input").val();
+
+	  	} else {
+	  	
 	  		cmsFeed = "index.php?opton=com_content&view=article&id="+id;
+	  		
+	  	}
+	  	
+	  	if(cmsFeed == undefined) {
+	  		cmsFeed = jQuery("input#wx-add-aboutapp-r3s-url-input").val();
 	  	}
 	  	
 	  	jQuery.ajax({
@@ -123,9 +134,17 @@ jQuery(document).ready(function(){
 	  	var tabName = jQuery('input#wx-panel-title').val();
 	  	
 	  	if(component == "k2") {
+	  	
 	  		cmsFeed = "index.php?option=com_k2&view=item&id="+id;
+	  		
+	  	} else if (component == "r3s-url") {
+
+	  		cmsFeed = jQuery("input#wx-add-panel-r3s-url-input").val();
+
 	  	} else {
+	  	
 	  		cmsFeed = "index.php?opton=com_content&view=article&id="+id;
+	  		
 	  	}
 	  	
 	  	jQuery.ajax({
@@ -163,8 +182,8 @@ jQuery(document).ready(function(){
 	  	
 	  		case "k2":
 	  		
-	  			id = jQuery("#id_id").val()
-	  			name = jQuery("#id_name").val()
+	  			id = jQuery("#id_id").val();
+	  			name = jQuery("#id_name").val();
 	  			cmsFeed = "index.php?option=com_k2&view=item&id="+id+"&template=weever_cartographer";
 	  			
 	  			break;
@@ -181,6 +200,13 @@ jQuery(document).ready(function(){
 	  			tag	= jQuery('input[name=tag]').val();
 	  			name = "Tag: "+tag;
 	  			tagQString = "&tag="+encodeURIComponent(tag);
+	  			
+	  			break;
+	  			
+	  		case "r3s-url":
+	  		
+	  			name = jQuery("input#wx-map-title").val();
+	  			cmsFeed = jQuery("input#wx-add-map-r3s-url-input").val();
 	  			
 	  			break;
 	  	
@@ -217,6 +243,10 @@ jQuery(document).ready(function(){
 	  	var tabName = jQuery('input#wx-page-title').val();
 	  	var siteKey = jQuery("input#wx-site-key").val();
 	  	
+	  	if(cmsFeed == undefined) {
+	  		cmsFeed = jQuery("input#wx-add-page-r3s-url-input").val();
+	  	}
+	  	
 	  	jQuery.ajax({
 	  	   type: "POST",
 	  	   url: "index.php",
@@ -250,6 +280,10 @@ jQuery(document).ready(function(){
 		  	var tabTag	= jQuery('input[name=tag]').val();
 		  	var siteKey = jQuery("input#wx-site-key").val();
 		  	
+		  	if(cmsFeed == undefined) {
+		  		cmsFeed = jQuery("input#wx-add-directory-r3s-url-input").val();
+		  	}
+		  	
 		  	jQuery.ajax({
 		  	   type: "POST",
 		  	   url: "index.php",
@@ -281,6 +315,10 @@ jQuery(document).ready(function(){
   	  	var tabName = jQuery('input#wx-blog-title').val();
   	  	var tabTag	= jQuery('input[name=tag]').val();
   	  	var siteKey = jQuery("input#wx-site-key").val();
+  	  	
+  	  	if(cmsFeed == undefined) {
+  	  		cmsFeed = jQuery("input#wx-add-blog-r3s-url-input").val();
+  	  	}
   	  	
   	  	jQuery.ajax({
   	  	   type: "POST",

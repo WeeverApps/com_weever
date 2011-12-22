@@ -649,6 +649,42 @@ jQuery(document).ready(function(){
         
 	});
 	
+	jQuery('#wx-add-directory-r3s-url-input').change(function(){
+	
+		jQuery('#wx-directory-submit').removeAttr('disabled');
+	
+	});
+	
+	jQuery('#wx-add-page-r3s-url-input').change(function(){
+	
+		jQuery('#wx-page-submit').removeAttr('disabled');
+	
+	});
+	
+	jQuery('#wx-add-blog-r3s-url-input').change(function(){
+	
+		jQuery('#wx-blog-submit').removeAttr('disabled');
+	
+	});
+	
+	jQuery('#wx-add-map-r3s-url-input').keyup(function(){
+	
+		jQuery('#wx-map-submit').removeAttr('disabled');
+	
+	});
+	
+	jQuery('#wx-add-panel-r3s-url-input').change(function(){
+	
+		jQuery('#wx-panel-submit').removeAttr('disabled');
+	
+	});
+	
+	jQuery('#wx-add-aboutapp-r3s-url-input').change(function(){
+	
+		jQuery('#wx-aboutapp-submit').removeAttr('disabled');
+	
+	});
+	
 	jQuery('#wx-add-contact-joomla-select').change(function(){
 		
 		var thisText = jQuery("select#wx-add-contact-joomla-select option:selected").text();
@@ -687,7 +723,7 @@ jQuery(document).ready(function(){
 	
 	    if(jQuery('input#id_name').val() != '' && jQuery('input#wx-panel-title').val() != ''){
 	       jQuery('#wx-panel-submit').removeAttr('disabled');
-	    } else { jQuery('#wx-panel-submit').attr('disabled', 'disabled'); }
+	    } 
 	    
 	});
 	
@@ -704,7 +740,7 @@ jQuery(document).ready(function(){
 	
 	    if(jQuery('input#id_name').val() != '' && jQuery('input#wx-aboutapp-title').val() != ''){
 	       jQuery('#wx-aboutapp-submit').removeAttr('disabled');
-	    } else { jQuery('#wx-aboutapp-submit').attr('disabled', 'disabled'); }
+	    } 
 	    
 	});
 	

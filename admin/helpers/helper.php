@@ -211,6 +211,7 @@ class comWeeverHelper
 		
 		$themeObj->titlebarHtml = JRequest::getVar("titlebarHtml", "", "post","string",JREQUEST_ALLOWHTML);
 		$themeObj->css = JRequest::getVar("css");
+		$themeObj->css_url = JRequest::getVar("css_url");
 		$titlebarTextEnabled = JRequest::getVar("titlebar_title_enabled");
 		$themeObj->template = JRequest::getVar("template");
 		

@@ -74,7 +74,7 @@ else
 		
 		<div id="wx-add-aboutapp-r3s-url">
 			<input type='text' value='' id='wx-add-aboutapp-r3s-url-input' class='wx-input wx-aboutapp-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
-			<label for='wx-add-aboutapp-r3s-url-input' id='wx-add-aboutapp-r3s-url-input-label' class='wx-aboutapp-label'><?php echo JText::_('WEEVER_ADD_PANEL_R3S_URL'); ?></label>
+			<label for='wx-add-aboutapp-r3s-url-input' id='wx-add-aboutapp-r3s-url-input-label' class='wx-aboutapp-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>
 		</div>
 		
 		

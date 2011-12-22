@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3
+*	Version: 	1.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -651,12 +651,18 @@ if(!$this->theme->title)
 			
 
 		
-		<tr><td class="key"><?php echo JText::_('WEEVER_CSS_OVERRIDES'); ?></td>
+		<tr><td class="key hasTip" title="<?php echo JText::_('WEEVER_CSS_OVERRIDES_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_CSS_OVERRIDES'); ?></td>
 		<td>
-		<textarea name="css"><?php echo $this->theme->css->css; ?></textarea>
+		<textarea name="css" id="wx-css-overrides"><?php echo $this->theme->css->css; ?></textarea>
 		</td>
 		</tr>
-	
+		
+		
+		<tr><td class="key hasTip" title="<?php echo JText::_('WEEVER_CSS_URL_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_CSS_URL'); ?></td>
+		<td>
+		<input type="text" placeholder="http://" name="css_url" id="wx-css-url" value="<?php echo $this->theme->css->css_url; ?>" />
+		</td>
+		</tr>	
 	
 		</table>
 		
