@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4
+*	Version: 	1.4.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,20 +29,21 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.4";
+	const VERSION		= "1.4.1";
 	const RELEASE_TYPE	= "stable";
-	const RELEASE_NAME	= "<a href='http://public.greysauble.on.ca/ca_lands/inglisfalls.html' target='_blank'>Inglis</a>";
+	const RELEASE_NAME	= "<a href='http://www.otonabee.com/jacksontrail.htm' target='_blank'>Jackson Creek</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
-	const COPYRIGHT_YEAR= "(c) 2010-2011";
+	const COPYRIGHT_YEAR= "(c) 2010-2012";
 	const COPYRIGHT		= "Weever Apps Inc.";
 	const COPYRIGHT_URL = "http://www.weeverapps.com/";
 	const LICENSE		= "GPL v3.0";
 	const LICENSE_URL	= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE	= "December 22, 2011";
+	const RELEASE_DATE	= "January 15, 2012";
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://stage.weeverapp.com/";
+	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
+	const API_VERSION	= "api/v1/";
 
 }
 

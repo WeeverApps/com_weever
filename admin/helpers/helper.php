@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4
+*	Version: 	1.4.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -716,7 +716,7 @@ class comWeeverHelper
 		else
 			$weeverServer = comWeeverConst::LIVE_SERVER;
 			
-		$url = $weeverServer."index.php";
+		$url = $weeverServer.comWeeverConst::API_VERSION;
 		
 		$ch = curl_init($url);
 		
@@ -775,7 +775,7 @@ class comWeeverHelper
 		else
 			$weeverServer = comWeeverConst::LIVE_SERVER;
 			
-		$url = $weeverServer."index.php";
+		$url = $weeverServer.comWeeverConst::API_VERSION;
 		
 		$response = file_get_contents($url, false, $context);
 		
