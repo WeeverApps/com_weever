@@ -1583,6 +1583,16 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 	
 }
 
+.wx-promotion-basic-webkit {
+	
+	position:absolute; 
+	right:120px; 
+	top:136px; 
+	margin:0 1em;
+	
+}
+
+
 .wx-promotion-basic-title {
 
 	float: right; 
@@ -1615,6 +1625,20 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 }
 
 
+.wx-promotion-trial-webkit {
+
+	font-size: 1.5em; 
+	position: absolute; 
+	right: 120px; 
+	line-height: 1.25em; 
+	min-width: 420px; 
+	text-align: left; 
+	margin: 0pt; 
+	top: 136px;
+
+}
+
+
 .wx-promotion-trial-button {
 
 	float: left; 
@@ -1635,6 +1659,20 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 	font-size: 1.5em; 
 	position: absolute; 
 	right: 10px; 
+	line-height: 1.25em; 
+	min-width: 475px; 
+	text-align: left; 
+	margin: 0pt; 
+	top: 136px;
+
+}
+
+
+.wx-download-update-webkit {
+
+	font-size: 1.5em; 
+	position: absolute; 
+	right: 120px; 
 	line-height: 1.25em; 
 	min-width: 475px; 
 	text-align: left; 

@@ -101,7 +101,7 @@ if(!$this->theme->title)
 if(comWeeverHelper::isWebKit())
 	$dashWebKit = "-webkit";
 else 
-	$daskWebKit = "";
+	$dashWebKit = "";
 
 
 ?>
