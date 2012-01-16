@@ -370,7 +370,6 @@ class comWeeverHelper
 		
 		comWeeverHelper::tabSync();
 
-		return $msg;
 	}
 	
 
@@ -487,6 +486,7 @@ class comWeeverHelper
 				
 				
 				case "site_key":
+				case "staging_mode":
 				
 					break;
 				
