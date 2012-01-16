@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3.1
+*	Version: 	1.4.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -75,6 +75,29 @@ else
 	$weeverIcon = "weever_toolbar_title";
 	
 JToolBarHelper::title( '&nbsp;', $weeverIcon);
+
+
+$u_agent = $_SERVER['HTTP_USER_AGENT'];
+
+if (preg_match('/webkit/i', $u_agent)) 
+{
+
+	$row->load(4); $keySiteDomain = $row->setting;
+	
+	if($staging)
+	{
+		$weeverServer = comWeeverConst::LIVE_STAGE;
+	}
+	else
+	{
+		$weeverServer = comWeeverConst::LIVE_SERVER;
+	}
+	
+	$url = $weeverServer.'app/'.$keySiteDomain;
+	$bar = JToolBar::getInstance('toolbar');
+	$bar->appendButton('Popup', 'preview', 'Preview your app', $url, 320, 480);
+	
+} 
 
 jimport('joomla.application.component.controller');
 
