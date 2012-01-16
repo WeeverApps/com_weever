@@ -1,7 +1,7 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
 *	Version: 	1.4.1
@@ -103,6 +103,12 @@ else
 	$offlineStatusClass = "class=\"wx-app-status-button-offline\"";
 }
 
+if(comWeeverHelper::isWebKit())
+	$dashWebKit = "-webkit";
+else 
+	$daskWebKit = "";
+
+
 ?>
 
 <?php if( $newDownload = JRequest::getVar("upgrade") ) : ?>
@@ -119,17 +125,17 @@ else
 	}
 	?>
 
-	<span style="font-size: 1.5em; position: absolute; right: 10px; line-height: 1.25em; min-width: 475px; text-align: left; margin: 0pt; top: 136px;"><a href="<?php echo $newDownload; ?>" style="float: left; margin: 0pt 1em;" id="headerbutton"><?php echo JText::_('WEEVER_JOOMLA_UPDATE_BUTTON'); ?></a><?php echo JText::_('WEEVER_JOOMLA_UPDATE_AVAILABLE')." ".JRequest::getVar("upgradeVersion"); ?><br><span style="font-size: 0.65em; margin: 0pt;"><?php echo $updateText; ?></span></span>
+	<span class="wx-download-update<?php echo $dashWebKit; ?>"><a href="<?php echo $newDownload; ?>" class="wx-download-button" id="headerbutton"><?php echo JText::_('WEEVER_JOOMLA_UPDATE_BUTTON'); ?></a><?php echo JText::_('WEEVER_JOOMLA_UPDATE_AVAILABLE')." ".JRequest::getVar("upgradeVersion"); ?><br><span class="wx-download-byline"><?php echo $updateText; ?></span></span>
 	
 <?php else : ?> 
 
 	<?php if($this->tier == 1) : ?>
-		<div style="position:absolute; right:10px; top:136px; margin:0 1em;">
-		<span style="float: right; font-size: 10px;"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION'); ?></span>
-		<span style="float:right; line-height: 1.25em; font-size: 1em; text-align: right; margin:1px 1.5em 0 0;"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION_LEARN_MORE'); ?></span></div>
-	
+		<div class="wx-promotion-basic<?php echo $dashWebKit; ?>">
+		<span class="wx-promotion-basic-title"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION'); ?></span>
+		<span class="wx-promotion-basic-link"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION_LEARN_MORE'); ?></span></div>
+			
 	<?php elseif($this->tier == 2.1) : ?>
-		<span style="font-size: 1.5em; position: absolute; right: 10px; line-height: 1.25em; min-width: 420px; text-align: left; margin: 0pt; top: 136px;"><a href="http://weeverapps.com/pricing" style="float: left; margin: 0pt 1em;" id="headerbutton"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BUTTON'); ?></a><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_CALL'); ?><br><span style="font-size: 0.65em; margin: 0pt;"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BYLINE'); ?></span></span>
+		<span class="wx-promotion-trial<?php echo $dashWebKit; ?>"><a href="http://weeverapps.com/pricing" class="wx-promotion-trial-button" id="headerbutton"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BUTTON'); ?></a><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_CALL'); ?><br><span class="wx-promotion-trial-byline"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BYLINE'); ?></span></span>
 		
 	<?php endif; ?>
 	

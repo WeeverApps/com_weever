@@ -1,8 +1,7 @@
 <?php
-
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
 *	Version: 	1.4.1
@@ -76,10 +75,7 @@ else
 	
 JToolBarHelper::title( '&nbsp;', $weeverIcon);
 
-
-$u_agent = $_SERVER['HTTP_USER_AGENT'];
-
-if (preg_match('/webkit/i', $u_agent)) 
+if (comWeeverHelper::isWebKit()) 
 {
 
 	$row->load(4); $keySiteDomain = $row->setting;
@@ -95,7 +91,7 @@ if (preg_match('/webkit/i', $u_agent))
 	
 	$url = $weeverServer.'app/'.$keySiteDomain;
 	$bar = JToolBar::getInstance('toolbar');
-	$bar->appendButton('Popup', 'preview', 'Preview your app', $url, 320, 480);
+	$bar->appendButton('Popup', 'preview', JText::_("WEEVER_PREVIEW_YOUR_APP"), $url, 320, 480);
 	
 } 
 

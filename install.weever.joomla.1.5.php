@@ -1,10 +1,10 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.3.0.1
+*	Version: 	1.4.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -167,17 +167,8 @@ if( !is_dir(JPATH_ROOT.DS."images".DS."com_weever") )
 	}
 }
 
-if(!function_exists("stream_context_create"))
+if(!function_exists("stream_context_create") && !function_exists("fopen") && !function_exists("stream_get_contents") && ini_get('allow_url_fopen') != 1)
 	echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_STREAM_CONTEXT_CREATE")."</div>";
-	
-if(!function_exists("fopen"))
-	echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_STREAM_CONTEXT_CREATE")."</div>";
-
-if(!function_exists("stream_get_contents"))
-	echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_STREAM_CONTEXT_CREATE")."</div>";
-
-if(ini_get('allow_url_fopen') != 1)
-	echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_URL_FOPEN")."</div>";
 	
 
 $query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";

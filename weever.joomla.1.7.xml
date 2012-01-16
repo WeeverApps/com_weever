@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="1.6.0" method="upgrade">
+<extension type="component" version="1.7.0" method="upgrade">
  <name>COM_WEEVER</name>
- <creationDate>2012-01-15</creationDate>
+ <creationDate>2012-01-16</creationDate>
  <author>Robert Gerald Porter</author>
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>

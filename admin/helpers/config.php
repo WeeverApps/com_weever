@@ -1,7 +1,7 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
 *	Version: 	1.4.1
@@ -38,11 +38,11 @@ final class comWeeverConst
 	const COPYRIGHT_URL = "http://www.weeverapps.com/";
 	const LICENSE		= "GPL v3.0";
 	const LICENSE_URL	= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE	= "January 15, 2012";
+	const RELEASE_DATE	= "January 16, 2012";
 	const BUGS_EMAIL 	= "bugs@weever.ca";
 	const SUPPORT_WEB	= "http://www.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
+	const LIVE_STAGE	= "http://stage.weeverapp.com/";
 	const API_VERSION	= "api/v1/";
 
 }

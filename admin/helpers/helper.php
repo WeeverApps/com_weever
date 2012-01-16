@@ -1,7 +1,7 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
 *	Version: 	1.4.1
@@ -39,6 +39,15 @@ class comWeeverHelper
 	
 	}
 	
+	
+	public static function isWebKit()
+	{
+	
+		$u_agent = $_SERVER['HTTP_USER_AGENT'];
+		
+		return preg_match('/webkit/i', $u_agent);
+	
+	}
 	
 	public static function componentExists($component)
 	{
