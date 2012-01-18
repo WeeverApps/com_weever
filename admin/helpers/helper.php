@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4.1
+*	Version: 	1.5
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -39,6 +39,20 @@ class comWeeverHelper
 	
 	}
 	
+	public static function getSetting($id)
+	{
+	
+		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		$row->load($id);
+		
+		return $row->setting;
+	
+	}
+	
+	public static function getKey() 			{ return self::getSetting(3); }	
+	public static function getDeviceSettings() 	{ return self::getSetting(5); }
+	public static function getAppStatus() 		{ return self::getSetting(6); }
+	public static function getStageStatus()		{ return self::getSetting(7); }
 	
 	public static function isWebKit()
 	{
@@ -74,7 +88,7 @@ class comWeeverHelper
 		return $siteDomain;
 	
 	}
-	
+
 
 	public static function getJsStrings()
 	{
@@ -547,12 +561,8 @@ class comWeeverHelper
 
 	public static function getJsonTabSync()
 	{
-	
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
-		$row->load(7);
-		$staging = $row->setting;
 		
-		if($staging)
+		if(self::getStageStatus())
 		{
 			$weeverServer = comWeeverConst::LIVE_STAGE;
 			$stageUrl = comWeeverHelper::getSiteDomain();
@@ -564,8 +574,8 @@ class comWeeverHelper
 		}
 			
 		$url = $weeverServer;
-		$row->load(3);
-		$key = $row->setting;
+
+		$key = self::getKey();
 		
 		$postdata = http_build_query(
 			array( 	
@@ -608,69 +618,11 @@ class comWeeverHelper
 	
 	}
 	
-	
-	public static function getJsonThemeSync($all = null)
-	{
-	
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
-		$row->load(7);
-		$staging = $row->setting;
-		
-		if($staging)
-		{
-			$weeverServer = comWeeverConst::LIVE_STAGE;
-			$stageUrl = comWeeverHelper::getSiteDomain();
-		}
-		else
-		{
-			$weeverServer = comWeeverConst::LIVE_SERVER;
-			$stageUrl = '';
-		}
-			
-		$url = $weeverServer;
-		$row->load(3);
-		$key = $row->setting;
-		
-		$postdata = http_build_query(
-			array( 	
-				'stage' => $stageUrl,
-				'app' => 'json',
-				'site_key' => $key,
-				'm' => "theme_sync",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME,
-				'cms' => 'joomla'
-				)
-			);
-			
-		
-		$json = comWeeverHelper::sendToWeeverServer($postdata);
-
-		if($json == "Site key missing or invalid.")
-		{
-			 JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
-			 return false;
-		}
-		
-		$j_array = json_decode($json);
-		
-		if($all)
-			return $j_array;
-		else 
-			return $j_array->results;	
-	
-	}
-
-
 
 	public static function getJsonAccountSync()
 	{
-	
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
-		$row->load(7);
-		$staging = $row->setting;
 		
-		if($staging)
+		if(self::getStageStatus())
 		{
 			$weeverServer = comWeeverConst::LIVE_STAGE;
 			$stageUrl = comWeeverHelper::getSiteDomain();
@@ -682,8 +634,8 @@ class comWeeverHelper
 		}
 			
 		$url = $weeverServer;
-		$row->load(3);
-		$key = $row->setting;
+		
+		$key = self::getKey();
 		
 		$postdata = http_build_query(
 			array( 	
@@ -713,14 +665,21 @@ class comWeeverHelper
 	}
 	
 
+	public static function buildWeeverHttpQuery($array)
+	{
+	
+		$array['version'] = comWeeverConst::VERSION;
+		$array['generator'] = comWeeverConst::NAME;
+		$array['cms'] = 'joomla';
+		
+		return http_build_query($array);	
+	
+	}
 
 	public static function sendToWeeverServerCurl($context)
 	{
-	
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
-		$row->load(7); $staging = $row->setting;
-		
-		if($staging)
+
+		if(self::getStageStatus())
 			$weeverServer = comWeeverConst::LIVE_STAGE;
 		else
 			$weeverServer = comWeeverConst::LIVE_SERVER;
@@ -775,11 +734,8 @@ class comWeeverHelper
 	
 	public static function sendToWeeverServerFOpen($context)
 	{
-	
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
-	    $row->load(7); $staging = $row->setting;
 		
-		if($staging)
+		if(self::getStageStatus())
 			$weeverServer = comWeeverConst::LIVE_STAGE;
 		else
 			$weeverServer = comWeeverConst::LIVE_SERVER;
@@ -1076,27 +1032,6 @@ class comWeeverHelper
 	
 	}
 	
-	
-	public static function checkIfTab($id)
-	{
-	
-		$query = " 	SELECT id ".
-				"	FROM	#__weever_tabs ".
-				"	WHERE	id = '".$id."' ".
-				"	AND		type = 'tab' ";
-				
-		$db = &JFactory::getDBO();
-		
-		$db->setQuery($query);
-		$result = $db->loadObject();
-		
-		if($result->id)
-			return TRUE;
-		else
-			return FALSE;
-	
-	}
-
 
 	public static function buildQuery($query, $start, $limit, $where, $order)
 	{

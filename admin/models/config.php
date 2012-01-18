@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.1
+*	Version: 	1.5
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,42 +29,58 @@ class WeeverModelConfig extends JModel
 {
 
 	public $json		= null;
-	public $jsonTheme 	= null;
-	public $data		= null;
 	
 	public function __construct()
 	{
         
         parent::__construct();
-        
-        $this->json = comWeeverHelper::getJsonTabSync();
-        $this->jsonTheme = comWeeverHelper::getJsonThemeSync();
-         
-        $mainframe = JFactory::getApplication();
-        $option = JRequest::getCmd('option');
-        
-        $query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
-        $db = &JFactory::getDBO();
-        
-        $db->setQuery($query);
-        $key = $db->loadObject();
 
-        $this->setState('site_key', $key->setting);
+		$this->getJsonConfigSync();
         
 	}
 	
-	public function getAppData()
+	public function getConfigData()
 	{
 		
 		return $this->json;
 	
 	}
-	
-	public function getThemeData()
+
+	public function getJsonConfigSync()
 	{
+	
+		if( comWeeverHelper::getStageStatus() )
+		{
+			$weeverServer = comWeeverConst::LIVE_STAGE;
+			$stageUrl = comWeeverHelper::getSiteDomain();
+		}
+		else
+		{
+			$weeverServer = comWeeverConst::LIVE_SERVER;
+			$stageUrl = '';
+		}
 		
-		return $this->jsonTheme;
+		$postdata = comWeeverHelper::buildWeeverHttpQuery(
+			array( 	
+				'stage' => $stageUrl,
+				'app' => 'json',
+				'site_key' => comWeeverHelper::getKey(),
+				'm' => "config_sync"				
+				)
+		);
+			
+		$json = comWeeverHelper::sendToWeeverServer($postdata);
+
+		if($json == "Site key missing or invalid.")
+		{
+			 JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
+			 return false;
+		}
+		
+		$this->json = json_decode($json);
+
 	
 	}
+
 
 }

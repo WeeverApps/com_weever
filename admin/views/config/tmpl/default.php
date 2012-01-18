@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4.1
+*	Version: 	1.5
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -132,7 +132,7 @@ else
 	
 
 	
-	<?php echo $pane->startPane('theme'); ?>
+	<?php echo $pane->startPane('config'); ?>
 	<?php echo $pane->startPanel(JText::_("WEEVER_BASIC_SETTINGS"), 'basic-settings'); ?>
 	
 	<div class="wx-submitcontainer">

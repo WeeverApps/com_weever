@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.3
+*	Version: 	1.5
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -23,84 +23,58 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
-jimport('joomla.plugin.helper');
 
 class WeeverViewConfig extends JView
 {
 
 	public function display($tpl = null)
 	{
+
+		$configData = $this->get('configdata');
+		
+		$this->assignRef('local', $configData->local);
+		
+		$this->assign('tier', $configData->tier);
+		$this->assign('appEnabled', comWeeverHelper::getAppStatus() );
+		$this->assign('ecosystem', $configData->ecosystem);
+		$this->assign('google_analytics', $configData->google_analytics);
+		$this->assign('loadspinner', $configData->loadspinner);
+		$this->assign('domain', $configData->domain);
+		$this->assign('site_key', comWeeverHelper::getKey() );
+		
+		$this->assign('granular','');
+		$this->assign('DetectIphoneOrIpod','');
+		$this->assign('DetectAndroid','');
+		$this->assign('DetectBlackBerryTouch','');
+		$this->assign('DetectTouchPad','');
+		$this->assign('DetectIpad','');
+		$this->assign('DetectBlackBerryTablet','');
+		$this->assign('DetectAndroidTablet','');
+		$this->assign('DetectGoogleTV','');
+		$this->assign('DetectAppleTVTwo','');
+		$this->assign('DetectTierWeeverTablets','');
+		$this->assign('DetectTierWeeverSmartphones','');
 	
-		$layout = JRequest::getWord('layout');
-		$component = JComponentHelper::getComponent( 'com_weever' );
+		$devices = explode(",",$configData->devices);
 		
-		$appData = $this->get('appdata');
-		
-		$this->assignRef('tier', $appData->config->tier);
-
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
-		
-		$row->load(6);
-		$this->assign('appEnabled', $row->setting);
-
-		for($i = 1; $i <= 12; $i++)
+		foreach((array)$devices as $v)
 		{
-		
-			$row->load($i);
-			
-			switch($row->option)
+			if($v)
 			{
-			
-				case "devices":
-				
-					$this->assign('granular','');
-					$this->assign('DetectIphoneOrIpod','');
-					$this->assign('DetectAndroid','');
-					$this->assign('DetectBlackBerryTouch','');
-					$this->assign('DetectTouchPad','');
-					$this->assign('DetectIpad','');
-					$this->assign('DetectBlackBerryTablet','');
-					$this->assign('DetectAndroidTablet','');
-					$this->assign('DetectGoogleTV','');
-					$this->assign('DetectAppleTVTwo','');
-					$this->assign('DetectTierWeeverTablets','');
-					$this->assign('DetectTierWeeverSmartphones','');
-				
-					$devices = explode(",",$row->setting);
-					
-					foreach((array)$devices as $v)
-					{
-						if($v)
-						{
-							$this->assign($v,'selected="selected"');
-							if($v == "DetectIphoneOrIpod" ||
-									$v == "DetectAndroid" ||
-									$v == "DetectBlackBerryTouch" ||
-									$v == "DetectTouchPad" ||
-									$v == "DetectIpad" ||
-									$v == "DetectBlackBerryTablet" ||
-									$v == "DetectAndroidTablet" ||
-									$v == "DetectGoogleTV" ||
-									$v == "DetectAppleTVTwo")
-							{
-								$this->assign('granular','checked="checked"');
-							}
-						}
-					}
-				
-					break;
-					
-				default:
-				
-					$this->assign($row->option,$row->setting);
-					
-					break;
-			
+				$this->assign($v,'selected="selected"');
+				if($v == "DetectIphoneOrIpod" ||
+						$v == "DetectAndroid" ||
+						$v == "DetectBlackBerryTouch" ||
+						$v == "DetectTouchPad" ||
+						$v == "DetectIpad" ||
+						$v == "DetectBlackBerryTablet" ||
+						$v == "DetectAndroidTablet" ||
+						$v == "DetectGoogleTV" ||
+						$v == "DetectAppleTVTwo")
+				{
+					$this->assign('granular','checked="checked"');
+				}
 			}
-			
-			
-			
-		
 		}
 		
 		comWeeverHelper::getJsStrings();

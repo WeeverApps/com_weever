@@ -45,7 +45,6 @@ class WeeverModelList extends JModel
         parent::__construct();
         
         $this->json = comWeeverHelper::getJsonTabSync();
-        $this->jsonTheme = comWeeverHelper::getJsonThemeSync();
          
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
@@ -113,14 +112,6 @@ class WeeverModelList extends JModel
 		return $this->json;
 	
 	}
-	
-	public function getThemeData()
-	{
-		
-		return $this->jsonTheme;
-	
-	}
-	
 
 	public function getJContactDropdown()
 	{

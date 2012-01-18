@@ -49,6 +49,7 @@ class WeeverViewList extends JView
 		$tabRows = array();
 		
 		$this->assignRef('tier', $appData->config->tier);
+		$this->assignRef('theme',$appData->theme_params);
 
 		foreach((array)$appData->tabs as $k=>$v)
 		{
@@ -121,57 +122,13 @@ class WeeverViewList extends JView
        $lists['order']     = $state->get( 'filter_order' );
 
        $this->assignRef( 'lists', $lists );
-       
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
 		
-		$row->load(6);
-		$this->assign('appEnabled', $row->setting);
-		
-		$row->load(11);
-		$this->assign('about_app', $row->setting);
-
-		$row->load(13);
-		$this->assign('about_app_name', $row->setting);
-
-		$theme = $this->get('themedata');
-		$this->assignRef('theme',$theme);
+		$this->assign('appEnabled', comWeeverHelper::getAppStatus() );
 		
 		comWeeverHelper::getJsStrings();			
 		
 		/* Time zone stuff for Facebook Events... */
 		
-	    $list = DateTimeZone::listAbbreviations();
-	    $idents = DateTimeZone::listIdentifiers();
-	
-	    $data = $offset = $added = array();
-	    foreach ($list as $abbr => $info) {
-	        foreach ($info as $zone) {
-	            if ( ! empty($zone['timezone_id'])
-	                AND
-	                ! in_array($zone['timezone_id'], $added)
-	                AND 
-	                  in_array($zone['timezone_id'], $idents)) {
-	                $z = new DateTimeZone($zone['timezone_id']);
-	                $c = new DateTime(null, $z);
-	                $zone['time'] = $c->format('H:i a');
-	                $data[] = $zone;
-	                $offset[] = $z->getOffset($c);
-	                $added[] = $zone['timezone_id'];
-	            }
-	        }
-	    }
-	
-	    array_multisort($offset, SORT_ASC, $data);
-	    $options = array();
-	    $times = array();
-	    foreach ($data as $key => $row) {
-	        $options[$row['time']][] = $row['timezone_id'];
-	        $times[$row['time']] = $row['time'];
-	    }
-	    
-	    $this->assignRef('timezone_ids', $options);
-	    $this->assignRef('timezone_times', $times);
-	    
 	    $version = new JVersion;
 	    $joomla = $version->getShortVersion();
 	    

@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3
+*	Version: 	1.5
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -23,39 +23,22 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
-jimport('joomla.plugin.helper');
 
 class WeeverViewTheme extends JView
 {
 
 	public function display($tpl = null)
 	{
-	
-		$component = JComponentHelper::getComponent( 'com_weever' );
 
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
-		$row->load(6);
-		$this->assign('appEnabled', $row->setting);
-		$row->load(5);
-		$this->assign('devices', $row->setting);
-		
-		/* Call the state object */
-		$state =& $this->get( 'state' );
-		
-		if(!$state->get('site_key'))
-		{
-		
+		if(!comWeeverHelper::getKey())
 			JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
+
+		$this->assign('appEnabled', comWeeverHelper::getAppStatus() );
+		$this->assign('devices', comWeeverHelper::getDeviceSettings() );
+		$this->assign('site_key', comWeeverHelper::getKey() );
 		
-		}		
-		
-		$this->assign('site_key', $state->get('site_key'));
-		
-		$appData = $this->get('appdata');
-		$accountData = $this->get('accountdata');
-		
-		$this->assignRef('theme',$appData);
-		$this->assignRef('account',$accountData);
+		$this->assignRef('theme', $this->get('appdata') );
+		$this->assignRef('account', $this->get('accountdata') );
 		
 		comWeeverHelper::getJsStrings();
 		

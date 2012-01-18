@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4.1
+*	Version: 	1.5
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,20 +29,19 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.4.1";
+	const VERSION		= "1.5";
 	const RELEASE_TYPE	= "stable";
-	const RELEASE_NAME	= "<a href='http://www.otonabee.com/jacksontrail.htm' target='_blank'>Jackson Creek</a>";
+	const RELEASE_NAME	= "<a href='http://www.kawarthaconservation.com/' target='_blank'>Kawartha</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR= "(c) 2010-2012";
 	const COPYRIGHT		= "Weever Apps Inc.";
 	const COPYRIGHT_URL = "http://www.weeverapps.com/";
 	const LICENSE		= "GPL v3.0";
 	const LICENSE_URL	= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE	= "January 16, 2012";
-	const BUGS_EMAIL 	= "bugs@weever.ca";
-	const SUPPORT_WEB	= "http://www.weeverapps.com/";
+	const RELEASE_DATE	= "January 18, 2012";
+	const SUPPORT_WEB	= "http://support.weeverapps.com/";
 	const LIVE_SERVER	= "http://weeverapp.com/";
-	const LIVE_STAGE	= "http://stage.weeverapp.com/";
+	const LIVE_STAGE	= "http://cephalopod.weeverapp.com/";
 	const API_VERSION	= "api/v1/";
 
 }
@@ -80,7 +79,6 @@ class comWeeverHelperJS
 				LICENSE: "'.comWeeverConst::LICENSE.'",
 				LICENSE_URL: "'.comWeeverConst::LICENSE_URL.'",
 				RELEASE_DATE: "'.comWeeverConst::RELEASE_DATE.'",
-				BUGS_EMAIL: "'.comWeeverConst::BUGS_EMAIL.'",
 				SUPPORT_WEB: "'.comWeeverConst::SUPPORT_WEB.'",
 				LIVE_SERVER: "'.comWeeverConst::LIVE_SERVER.'",
 				LIVE_STAGE: "'.comWeeverConst::LIVE_STAGE.'",
