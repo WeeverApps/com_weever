@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.4.1
+*	Version: 	1.5
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -229,59 +229,12 @@ class com_WeeverInstallerScript
  		$manifest = $parent->get("manifest");
  		$parent = $parent->getParent();
  		$source = $parent->getPath("source");
+ 		$result = null;
  		
  		$lang = &JFactory::getLanguage();
  		$lang->load("com_weever");
  		
  		$uninstaller = new JInstaller();
- 		
- 		// remove legacy plugins
- 		// 0.9.2+
- 		
-  		$id = $this->getExtensionId('plugin', 'cartographer', 'system');
- 		
- 		if($id)
- 			$result = $uninstaller->uninstall('plugin',$id,0);   	
- 			
- 		if($result)
- 			$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
- 		else
- 			$message = "<span style='color:grey'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
- 			
- 		echo "<p>".JText::_("WEEVER_UNINSTALLING_PLUGIN")."system/cartographer: <b>".$message."</b></p>";
- 		
- 		
- 			
- 		$id = $this->getExtensionId('plugin', 'cartographerk2', 'system');
- 		
- 		if($id)
- 			$result = $uninstaller->uninstall('plugin',$id,0);  
- 			
- 		if($result)
- 			$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
- 		else
- 			$message = "<span style='color:grey'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
- 			
- 		echo "<p>".JText::_("WEEVER_UNINSTALLING_PLUGIN")."system/cartographer_k2: <b>".$message."</b></p>";
- 		
- 		
- 			
- 		$id = $this->getExtensionId('template', 'weever_cartographerdetails');
- 		
- 		if($id)
- 			$result = $uninstaller->uninstall('template',$id,0);  
- 			
- 		if($result)
- 			$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
- 		else
- 			$message = "<span style='color:grey'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
- 			
- 		echo "<p>".JText::_("WEEVER_UNINSTALLING_TEMPLATE")."templates/weever_cartographerdetails: <b>".$message."</b></p>";
- 		
- 		// end legacy removals
-		
-		// add image directory if not there yet
-		// copy old images over if needed
 		
 		if( !is_dir(JPATH_ROOT.DS."images".DS."com_weever") )
 		{

@@ -19,3 +19,16 @@ INSERT IGNORE INTO `#__weever_config` VALUES(10, 'domain', '');
 INSERT IGNORE INTO `#__weever_config` VALUES(11, 'about_app', '');
 INSERT IGNORE INTO `#__weever_config` VALUES(12, 'loadspinner', '');
 INSERT IGNORE INTO `#__weever_config` VALUES(100, 'theme_params', '{"aLink":null,"spanLogo":"","contentButton":"","border":"","fontType":"","blogIcon":"","pagesIcon":"","contactIcon":"","socialIcon":"","videoIcon":"","photoIcon":"","mapIcon":null,"titlebarHtml":null,"template":"sencha"}');
+
+CREATE TABLE IF NOT EXISTS `#__weever_maps` (
+  `id` int(11) NOT NULL auto_increment,
+  `component_id` int(11) NOT NULL,
+  `component` varchar(24) NOT NULL,
+  `altitude` decimal(10,3) NOT NULL,
+  `address` mediumtext NOT NULL,
+  `label` varchar(16) NOT NULL,
+  `kml` tinytext NOT NULL,
+  `marker` tinytext NOT NULL,
+  `location` point NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

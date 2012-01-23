@@ -32,7 +32,11 @@ class WeeverViewConfig extends JView
 
 		$configData = $this->get('configdata');
 		
+		if(!$configData->local)
+			$configData->local = "en-US";
+		
 		$this->assignRef('local', $configData->local);
+		$this->assignRef('locales', $configData->locales);
 		
 		$this->assign('tier', $configData->tier);
 		$this->assign('appEnabled', comWeeverHelper::getAppStatus() );

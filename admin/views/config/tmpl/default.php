@@ -145,85 +145,97 @@ else
 	
 	
 		<fieldset class='adminForm'><legend><?php echo JText::_('WEEVER_CONFIG_SIMPLE_DEVICE_SETTINGS'); ?></legend>
+				
+			<table class="admintable">
 			
-		<table class="admintable">
-		
-		<tr><td class="key hasTip" title="<?php echo JText::_('WEEVER_ENABLE_SMARTPHONES_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_CONFIG_ENABLE_SMARTPHONES_Q'); ?></td>
-		<td>
-		<select name="DetectTierWeeverSmartphones">
-		<option value="0"><?php echo JText::_('NO'); ?></option>
-		<option value="1" <?php echo $this->DetectTierWeeverSmartphones; ?>><?php echo JText::_('YES'); ?></option>
-		</select>
-		</td>
-		</tr>
-		
-		<tr><td class="key hasTip" title="<?php echo JText::_('WEEVER_ENABLE_TABLETS_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_CONFIG_ENABLE_TABLETS_AND_IPADS_Q'); ?></td>
-		<td>
-		<select name="DetectTierWeeverTablets">
-		<option value="0"><?php echo JText::_('NO'); ?></option>
-		<option value="1" <?php echo $this->DetectTierWeeverTablets; ?>><?php echo JText::_('YES'); ?></option>
-		</select>
-		</td>
-		</tr>
-		
-		</table>
+			<tr><td class="key hasTip" title="<?php echo JText::_('WEEVER_ENABLE_SMARTPHONES_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_CONFIG_ENABLE_SMARTPHONES_Q'); ?></td>
+			<td>
+			<select name="DetectTierWeeverSmartphones">
+			<option value="0"><?php echo JText::_('NO'); ?></option>
+			<option value="1" <?php echo $this->DetectTierWeeverSmartphones; ?>><?php echo JText::_('YES'); ?></option>
+			</select>
+			</td>
+			</tr>
+			
+			<tr><td class="key hasTip" title="<?php echo JText::_('WEEVER_ENABLE_TABLETS_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_CONFIG_ENABLE_TABLETS_AND_IPADS_Q'); ?></td>
+			<td>
+			<select name="DetectTierWeeverTablets">
+			<option value="0"><?php echo JText::_('NO'); ?></option>
+			<option value="1" <?php echo $this->DetectTierWeeverTablets; ?>><?php echo JText::_('YES'); ?></option>
+			</select>
+			</td>
+			</tr>
+			
+			</table>
 		
 		</fieldset>
 	
-	
-	
-	
-	<fieldset class='adminForm'>
-	<legend><?php echo JText::_('WEEVER_CONFIG_ADDITIONAL_SERVICES'); ?></legend>
 
-	<table class="admintable">
-	
-	<tr>
-	<td class="key hasTip" title="<?php echo JText::_("WEEVER_GOOGLE_ANALYTICS_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_GOOGLE_ANALYTICS_UA_CODE'); ?></td>
-	<td><input type="textbox" name="google_analytics" value="<?php echo $this->google_analytics; ?>" id="wx-google-analytics-input" placeholder="UA-XXXXXX-XX" /></td>	
-	</tr>
-	
-	<tr>
-	<td class="key hasTip" title="<?php echo JText::_("WEEVER_ECOSYSTEM_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_ECOSYSTEM'); ?></td>
-	<td><input type="checkbox" name="ecosystem" value="1" <?php echo ($this->ecosystem == 1 ? "checked='checked'":""); ?>" /> <label for="checkEcosystem"><?php echo JText::_('WEEVER_ECOSYSTEM_ENABLE'); ?></label></td>	
-	</tr>
-	
-
-
-	</table>
-	
-	</fieldset>
-
-
-	
-	<fieldset class='adminForm'>
-	<legend><?php echo JText::_('WEEVER_CONFIG_PRO_FEATURES'); ?></legend>
-
-	<p><?php echo JText::_("WEEVER_DOMAIN_MAPPING_INSTRUCTIONS"); ?></p>
-
-	<table class="admintable">
-	
-	<tr>
-	<td class="key hasTip" title="<?php echo JText::_("WEEVER_DOMAIN_MAPPING_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_DOMAIN_MAPPING'); ?></td>
-	<td><input type="textbox" name="domain"  value="<?php echo $this->domain; ?>" id="wx-domain-map-input" placeholder="app.yourdomain.com" /> </td>	
-	</tr>
-	
-	<tr>
-	<td class="key hasTip" title="<?php echo JText::_("WEEVER_LOADING_SPINNER_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_LOADING_SPINNER_TEXT'); ?></td>
-	<td><textarea type="textbox" name="loadspinner" id="wx-load-spinner" placeholder="<?php echo JText::_("WEEVER_LOADING_SPINNER_PLACEHOLDER"); ?>"><?php echo htmlspecialchars($this->loadspinner); ?></textarea> </td>	
-	</tr>	
-
-	
-	</table>
-	
-	</fieldset>
-
-
-	
-		</div>
+		<fieldset class='adminForm'>
+			<legend><?php echo JText::_('WEEVER_CONFIG_ADDITIONAL_SERVICES'); ?></legend>
 		
-			<?php echo $pane->endPanel(); ?>
-			<?php echo $pane->startPanel(JText::_("WEEVER_ADVANCED_DEVICE_SETTINGS_TAB"), 'advanced-settings'); ?>
+			<table class="admintable">
+			
+			<tr>
+			<td class="key hasTip" title="<?php echo JText::_("WEEVER_LOCALIZATION_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_LOCALIZATION_SETTING'); ?></td>
+			<td>
+			
+				<select name="local" id="wx-local-select">
+				
+				<?php foreach( (object) $this->locales as $k=>$v) : ?>
+				
+					<option value="<?php echo $k; ?>"<?php echo ($this->local == $k) ? " selected='selected'"; ?>>
+						<?php echo $v; ?>
+					</option>
+					
+				<?php endforeach; ?>
+				
+				</select>
+			
+			</td>	
+			</tr>
+			
+			<tr>
+			<td class="key hasTip" title="<?php echo JText::_("WEEVER_GOOGLE_ANALYTICS_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_GOOGLE_ANALYTICS_UA_CODE'); ?></td>
+			<td><input type="textbox" name="google_analytics" value="<?php echo $this->google_analytics; ?>" id="wx-google-analytics-input" placeholder="UA-XXXXXX-XX" /></td>	
+			</tr>
+			
+			<tr>
+			<td class="key hasTip" title="<?php echo JText::_("WEEVER_ECOSYSTEM_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_ECOSYSTEM'); ?></td>
+			<td><input type="checkbox" name="ecosystem" value="1" <?php echo ($this->ecosystem == 1 ? "checked='checked'":""); ?> /> <label for="checkEcosystem"><?php echo JText::_('WEEVER_ECOSYSTEM_ENABLE'); ?></label></td>	
+			</tr>
+			</table>
+		</fieldset>
+
+
+		<fieldset class='adminForm'>
+			<legend><?php echo JText::_('WEEVER_CONFIG_PRO_FEATURES'); ?></legend>
+		
+			<p><?php echo JText::_("WEEVER_DOMAIN_MAPPING_INSTRUCTIONS"); ?></p>
+		
+			<table class="admintable">
+			
+			<tr>
+			<td class="key hasTip" title="<?php echo JText::_("WEEVER_DOMAIN_MAPPING_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_DOMAIN_MAPPING'); ?></td>
+			<td><input type="textbox" name="domain"  value="<?php echo $this->domain; ?>" id="wx-domain-map-input" placeholder="app.yourdomain.com" /> </td>	
+			</tr>
+			
+			<tr>
+			<td class="key hasTip" title="<?php echo JText::_("WEEVER_LOADING_SPINNER_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_LOADING_SPINNER_TEXT'); ?></td>
+			<td><textarea type="textbox" name="loadspinner" id="wx-load-spinner" placeholder="<?php echo JText::_("WEEVER_LOADING_SPINNER_PLACEHOLDER"); ?>"><?php echo htmlspecialchars($this->loadspinner); ?></textarea> </td>	
+			</tr>	
+		
+			
+			</table>
+		
+		</fieldset>
+
+
+
+	</div>
+		
+	<?php echo $pane->endPanel(); ?>
+	<?php echo $pane->startPanel(JText::_("WEEVER_ADVANCED_DEVICE_SETTINGS_TAB"), 'advanced-settings'); ?>
 			
 			<div class="wx-submitcontainer">
 			        <a href="#" onclick="javascript:<?php echo $jsJoomla; ?>submitbutton('apply')"><button class="wx-button-submit wx-button-save"><img src="components/com_weever/assets/icons/check.png" style="width:1em;height:1em;padding-right: 0.625em;" /><?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>

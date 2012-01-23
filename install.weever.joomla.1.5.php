@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.4.1
+*	Version: 	1.5
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -30,69 +30,6 @@ $lang->load("com_weever");
 
 $db = & JFactory::getDBO();
 
-
-// remove legacy plugins
-// 0.9.2+
-$query = "SELECT `id` FROM `#__plugins` WHERE element=".$db->Quote('cartographer')." AND folder=".$db->Quote('system');
-$db->setQuery($query);
-$check = $db->loadResultArray();
-$plugins = $db->loadResultArray();
-
-if(count($plugins))
-{
-	foreach($plugins as $plugin)
-		$cartographerId = $plugin;
-}
-
-$query = "SELECT `id` FROM `#__plugins` WHERE element=".$db->Quote('cartographerk2')." AND folder=".$db->Quote('system');
-$db->setQuery($query);
-$check = $db->loadResultArray();
-$plugins = $db->loadResultArray();
-
-if(count($plugins))
-{
-	foreach($plugins as $plugin)
-		$cartographerK2Id = $plugin;
-}
-
-if(count($check) > 0)
-{	
-
-	$installer = new JInstaller;
-	$result = $installer->uninstall('plugin', $cartographerId, 0);
-	
-	if($result)
-		$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
-	else
-		$message = "<span style='color:red'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
-		
-	echo "<p>".JText::_("WEEVER_UNINSTALLING_PLUGIN")."system/cartographer: <b>".$message."</b></p>";
-	
-	$result = $installer->uninstall('plugin',$cartographerK2Id, 0);
-	
-	if($result)
-		$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
-	else
-		$message = "<span style='color:red'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
-		
-	echo "<p>".JText::_("WEEVER_UNINSTALLING_PLUGIN")."system/cartographer_k2: <b>".$message."</b></p>";
-	
-	$result = $installer->uninstall('template','weever_cartographerdetails', 0);
-	
-	if($result)
-		$message = "<span style='color:green'>".JText::_("WEEVER_UNINSTALLED")."</span>";
-	else
-		$message = "<span style='color:red'>".JText::_("WEEVER_NOT_PRESENT")."</span>";
-		
-	echo "<p>".JText::_("WEEVER_UNINSTALLING_TEMPLATE")."templates/weever_cartographerdetails: <b>".$message."</b></p>";
-	
-	$detailsTemplate = 1;
-	
-}
-
-// end legacy removals
-
-
 $query = "SELECT `id` FROM `#__plugins` WHERE element=".$db->Quote('mobileesp')." AND folder=".$db->Quote('system');
 $db->setQuery($query);
 $check = $db->loadResultArray();
@@ -113,6 +50,8 @@ else
 }
 
 
+// INSTALL mobileESP plugin
+
 $installer = new JInstaller;
 $src = $this->parent->getPath('source');
 $path = $src.DS.'plugins'.DS.'system'.DS.'mobileesp';
@@ -132,6 +71,33 @@ $db->query();
 echo "<p><i>".JText::_("WEEVER_ENABLED_PLUGIN")."MobileESP</i></p>";
 
 
+// DETECT K2
+// then INSTALL weevermapsk2 plugin
+
+if( JFolder::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2') )
+{
+
+	$src = $this->parent->getPath('source');
+	$path = $src.DS.'plugins'.DS.'k2'.DS.'weevermapsk2';
+	$result = $installer->install($path);
+	
+	if($result)
+		$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+	else
+		$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+		
+	echo "<p>".$pluginInstallText."k2/weevermapsk2: <b>".$message."</b></p>";
+	
+	
+	$query = "UPDATE #__plugins SET published='1' WHERE element='weevermapsk2' AND folder='k2'";
+	$db->setQuery($query);
+	$db->query();
+	echo "<p><i>".JText::_("WEEVER_ENABLED_PLUGIN")."Weever Maps Geocoder for K2</i></p>";
+
+}
+
+// INSTALL weever_cartographer R3S template
+
 $path = $src.DS.'templates';
 $result = $installer->install($path);
 
@@ -141,6 +107,8 @@ else
 	$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
 	
 echo "<p>".$templateInstallText."templates/weever_cartographer: <b>".$message."</b></p>";
+
+
 
 
 if( !is_dir(JPATH_ROOT.DS."images".DS."com_weever") )
@@ -210,7 +178,7 @@ if(!isset($code->setting))
 // check if there are server-side app updates to be made
 if($key->setting)
 {
-	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&version=1.3&cms=joomla&site_key='.$key->setting);	
+	$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&m=upgrade&version=1.5&cms=joomla&site_key='.$key->setting);	
 	?>
 	<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	<?php 
@@ -262,7 +230,7 @@ else
 
 	
 		<tr>
-		<td><input type="text" name="site_key" maxlength="42" style="width:250px;" placeholder="Paste your Site Key here" value="" /><input type="submit" value="<?php echo JText::_("WEEVER_INSTALL_SUBMIT_KEY"); ?>" /> <?php echo JText::_("WEEVER_ALLOW_FEW_SECONDS"); ?></td>
+		<td><input type="text" name="site_key" maxlength="42" style="width:250px;" placeholder="<?php JText::_("WEEVER_PASTE_WEEVER_SITE_KEY_HERE"); ?>" value="" /><input type="submit" value="<?php echo JText::_("WEEVER_INSTALL_SUBMIT_KEY"); ?>" /><p><?php echo JText::_("WEEVER_ALLOW_FEW_SECONDS"); ?></p></td>
 		</tr>	
 	
 		<tr>
