@@ -184,7 +184,7 @@ else
 				
 				<?php foreach( (object) $this->locales as $k=>$v) : ?>
 				
-					<option value="<?php echo $k; ?>"<?php echo ($this->local == $k) ? " selected='selected'"; ?>>
+					<option value="<?php echo $k; ?>"<?php echo ( ($this->local == $k) ? " selected='selected'" : ""); ?>>
 						<?php echo $v; ?>
 					</option>
 					

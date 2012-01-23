@@ -927,6 +927,7 @@ class comWeeverHelper
 				'domain' => JRequest::getVar('domain'),
 				'loadspinner' => JRequest::getVar('loadspinner',"", "post","string",JREQUEST_ALLOWHTML),
 				'google_analytics' => JRequest::getVar('google_analytics'),
+				'local' => JRequest::getVar('local'),
 				'app' => 'ajax',
 				'cms' => 'joomla',
 				'm' => "edit_config",
