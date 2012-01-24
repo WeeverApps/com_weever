@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.3.1
+*	Version: 	1.5
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@ class WeeverController extends JController
 		if(isset($result['success']))
 		{
 		
-			$result['url'] = 'http://' . comWeeverHelper::getSiteDomain() . DS . 'images' . DS . 'com_weever' . DS . $result['filename'];
+			$result['url'] = 'http://'.comWeeverHelper::getSiteDomain().'/images/com_weever/'.$result['filename'];
 		
 			$result['weever_response'] = comWeeverHelper::pushImageToCloud($result['url']);
 			
