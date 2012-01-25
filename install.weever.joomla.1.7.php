@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.5
+*	Version: 	1.5.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -26,6 +26,8 @@ jimport("joomla.installer.installer");
 
 class com_WeeverInstallerScript
 {
+
+	private	$release = "1.5";
 
 	public function install($parent)
 	{
@@ -261,8 +263,8 @@ class com_WeeverInstallerScript
 		
 		foreach($manifest->plugins->plugin as $plugin) 
 		{
+			
 			$attributes = $plugin->attributes();
-			// 'folder' for install. No idea why this works.
 			$plg = $source . DS . $attributes['folder'].DS.$attributes['plugin'];
 			$result = $installer->install($plg);
 			
@@ -276,13 +278,15 @@ class com_WeeverInstallerScript
 
 			$this->enableExtension($attributes['plugin'], 'plugin');
 			echo " <p><i>".JText::_("WEEVER_ENABLED_PLUGIN").$attributes['plugin']."</i></p>";
+			
 		}
 		
 		foreach($manifest->templates->template as $template) 
 		{
+			
 			$attributes = $template->attributes();
-			$tmpl = $source . DS . 'templates'. DS . $attributes['template'];
-			$result = $installer->install($tmpl);
+			$tmpl = $source . DS . $attributes['folder'] . DS . $attributes['template'];
+			$result = @$installer->install($tmpl);
 			
 			if($result)
 				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
@@ -292,8 +296,7 @@ class com_WeeverInstallerScript
 			<p><?php echo JText::_("WEEVER_UPDATING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
 			<?php	
 
-		}
-		
+		} 		
 		
 		$query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
 		$db = &JFactory::getDBO();
@@ -314,18 +317,18 @@ class com_WeeverInstallerScript
 			$query = " INSERT IGNORE INTO `#__weever_config` VALUES(9, 'google_analytics', ''); ";
 			$db = &JFactory::getDBO();
 			$db->setQuery($query);
-			@$db->loadObject();
+			@$db->query();
 			
 		
 			$query = " INSERT IGNORE INTO `#__weever_config` VALUES(10, 'domain', ''); ";
 			$db = &JFactory::getDBO();
 			$db->setQuery($query);	
-			@$db->loadObject();
+			@$db->query();
 		
 			$query = " INSERT IGNORE INTO `#__weever_config` VALUES(11, 'loadspinner', ''); ";
 			$db = &JFactory::getDBO();
 			$db->setQuery($query);
-			@$db->loadObject();
+			@$db->query();
 		
 		}
 		
@@ -344,6 +347,22 @@ class com_WeeverInstallerScript
 			</form>
 			<?php
 		}
+		
+		$query = "CREATE TABLE IF NOT EXISTS `#__weever_maps` (
+		  `id` int(11) NOT NULL auto_increment,
+		  `component_id` int(11) NOT NULL,
+		  `component` varchar(24) NOT NULL,
+		  `altitude` decimal(10,3) NOT NULL,
+		  `address` mediumtext NOT NULL,
+		  `label` varchar(16) NOT NULL,
+		  `kml` tinytext NOT NULL,
+		  `marker` tinytext NOT NULL,
+		  `location` point NOT NULL,
+		  PRIMARY KEY  (`id`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+		
+		$db->setQuery($query);
+		$db->query();
 		
 
  		

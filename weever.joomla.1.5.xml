@@ -2,13 +2,13 @@
 <install type="component" version="1.5.0" method="upgrade">
 
  <name>Weever</name>
- <creationDate>2012-01-23</creationDate>
+ <creationDate>2012-01-24</creationDate>
  <author>Robert Gerald Porter</author>
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>
  <copyright>(c) 2010-2012 Weever Apps Inc.</copyright>
  <license>GPLv3</license>
- <version>1.5</version>
+ <version>1.5.0.1</version>
  <releaseType>Stable</releaseType>
  <description>Weever turns your Joomla site into a mobile web app!</description>
  
@@ -26,8 +26,7 @@
 		  <folder>models</folder>
 		  <folder>tables</folder>
 		  <folder>views</folder>
-		  <filename>install.sql</filename>
-		  <filename>uninstall.sql</filename>
+		  <folder>sql</folder>
 	  </files>
 	  
 	  <languages folder="admin/languages">
@@ -48,12 +47,12 @@
   
  <install>
   <sql>
-    <file charset="utf8" driver="mysql">install.sql</file>
+    <file charset="utf8" driver="mysql">sql/install.sql</file>
   </sql>
  </install>
  <uninstall>
   <sql>
-    <file charset="utf8" driver="mysql">uninstall.sql</file>
+    <file charset="utf8" driver="mysql">sql/uninstall.sql</file>
   </sql>
  </uninstall>
  

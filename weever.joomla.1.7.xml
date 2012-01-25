@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="1.6" method="upgrade">
  <name>COM_WEEVER</name>
- <creationDate>2012-01-23</creationDate>
+ <creationDate>2012-01-24</creationDate>
  <author>Robert Gerald Porter</author>
  <authorEmail>rob@weeverapps.com</authorEmail>
  <authorUrl>http://www.weeverapps.com/</authorUrl>
  <copyright>(c) 2010-2012 Weever Apps Inc.</copyright>
  <license>GPLv3</license>
- <version>1.5</version>
+ <version>1.5.0.1</version>
  <description>COM_WEEVER_DESCRIPTION</description>
  
  <scriptfile>install.weever.joomla.1.7.php</scriptfile>
  
-  <install>
-   <sql>
-     <file charset="utf8" driver="mysql">install.sql</file>
-   </sql>
-  </install>
-  <uninstall>
-   <sql>
-     <file charset="utf8" driver="mysql">uninstall.sql</file>
-   </sql>
-  </uninstall>
- 
- 
- <administration>
- 	 <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">COM_WEEVER_MENU</menu>
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">sql/install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">sql/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	
+	<update> <!-- Runs on update; New in 1.7 -->
+			<schemas>
+				<schemapath type="mysql">sql/updates/mysql</schemapath>
+			</schemas>
+	</update>
+	
+	<administration>
+		 <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">COM_WEEVER_MENU</menu>
 	 <files folder="admin">
 		<filename>weever.php</filename>
 		<filename>controller.php</filename>
@@ -36,8 +41,7 @@
 		<folder>models</folder>
 		<folder>tables</folder>
 		<folder>views</folder>
-		<filename>install.sql</filename>
-		<filename>uninstall.sql</filename>
+		<folder>sql</folder>
 	  </files>
 	  
 	  <languages folder="admin">
@@ -45,30 +49,28 @@
 	  	<language tag="en-GB">languages/en-GB/en-GB.com_weever.sys.ini</language>
 	  </languages>
 	  
- </administration>
- 
- <media destination="com_weever" folder="media">
- 	<filename>index.html</filename>
+	</administration>
+	
+	<media destination="com_weever" folder="media">
+		<filename>index.html</filename>
 	<filename>phone_load_.png</filename>
 	<filename>tablet_load_.png</filename>
 	<filename>tablet_landscape_load_.png</filename>
 	<filename>icon_.png</filename>
 	<filename>titlebar_logo_.png</filename>
- </media>
+	</media>
+	
+	<plugins>
+		<plugin folder="plugins/system" plugin="mobileesp" name="System - MobileESP for Joomla" group="system" />
+		<plugin folder="plugins/k2" plugin="weevermapsk2" name="K2 - Weever Maps Geotagger for K2" group="k2" />
+	</plugins>
  
- 
- <plugins>
- <plugin folder="plugins/system" plugin="mobileesp" name="System - MobileESP for Joomla" group="system" />
- <plugin folder="plugins/k2" plugin="weevermapsk2" name="K2 - Weever Maps Geotagger for K2" group="k2" />
- </plugins>
- 
- 
- <templates>
- <template folder="templates" template="weever_cartographer" name="Weever Cartographer R3S JSON Feed Template" />
-</templates>
+	<templates>
+		<template folder="templates" template="weever_cartographer" name="Weever Cartographer R3S JSON Feed Template" />
+	</templates>
 
-<updateservers>
-	<server type="extension" priority="2" name="Weever Apps Updates">http://weeverapps.com/download_files/com_weever.xml</server>
-</updateservers>
- 
+	<updateservers>
+		<server type="extension" priority="2" name="Weever Apps Updates">http://weeverapps.com/download_files/com_weever.xml</server>
+	</updateservers>
+	 
 </extension>
