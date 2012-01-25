@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.5
+*	Version: 	1.5.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION		= "1.5";
+	const VERSION		= "1.5.0.1";
 	const RELEASE_TYPE	= "stable";
 	const RELEASE_NAME	= "<a href='http://www.kawarthaconservation.com/' target='_blank'>Kawartha</a>";
 	const NAME			= "Weever Apps Administrator Component for Joomla!";
