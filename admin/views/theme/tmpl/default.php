@@ -3,8 +3,8 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4.1
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -683,7 +683,7 @@ else
 	
 	<tr>
 	<td class="key"><?php echo JText::_('WEEVER_TITLEBAR_CUSTOM_HTML_TEXTAREA_DESCRIPTION'); ?></td>
-	<td><textarea name="titlebarHtml" rows="7" cols="50"><? echo htmlspecialchars($this->theme->titlebarHtml); ?></textarea></td>	
+	<td><textarea name="titlebarHtml" rows="7" cols="50"><?php echo htmlspecialchars($this->theme->titlebarHtml); ?></textarea></td>	
 	</tr>
 	
 	</table>
