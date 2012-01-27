@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.5.0.1
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ jimport("joomla.installer.installer");
 class com_WeeverInstallerScript
 {
 
-	private	$release = "1.5";
+	private	$release = "1.5.1";
 
 	public function install($parent)
 	{
@@ -44,7 +44,6 @@ class com_WeeverInstallerScript
 		foreach($manifest->plugins->plugin as $plugin) 
 		{
 			$attributes = $plugin->attributes();
-			// 'folder' for install. No idea why this works.
 			$plg = $source . DS . $attributes['folder'].DS.$attributes['plugin'];
 			$result = $installer->install($plg);
 			
@@ -72,6 +71,23 @@ class com_WeeverInstallerScript
 				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
 			?>
 			<p><?php echo JText::_("WEEVER_INSTALLING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
+			<?php	
+		
+		}
+		
+		
+		foreach($manifest->components->component as $component) 
+		{
+			$attributes = $component->attributes();
+			$com = $source . DS . $attributes['folder']. DS . $attributes['component'];
+			$result = $installer->install($com);
+			
+			if($result)
+				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+			else
+				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+			?>
+			<p><?php echo JText::_("WEEVER_INSTALLING_COMPONENT"); ?><?php echo $attributes['component'].": <b>".$message."</b>"; ?></p>
 			<?php	
 		
 		}
@@ -222,6 +238,13 @@ class com_WeeverInstallerScript
    			$uninstaller->uninstall('template',$id);
    		}
    		
+   		foreach($manifest->components->component as $template) 
+   		{
+   			$attributes = $component->attributes();
+   			$id = $this->getExtensionId('component', $attributes['component']);
+   			$uninstaller->uninstall('component',$id);
+   		}
+   		
 
    }
 
@@ -297,6 +320,23 @@ class com_WeeverInstallerScript
 			<?php	
 
 		} 		
+		
+		foreach($manifest->components->component as $component) 
+		{
+			$attributes = $component->attributes();
+			$com = $source . DS . $attributes['folder']. DS . $attributes['component'];
+			$result = $installer->install($com);
+			
+			if($result)
+				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+			else
+				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+			?>
+			<p><?php echo JText::_("WEEVER_INSTALLING_COMPONENT"); ?><?php echo $attributes['component'].": <b>".$message."</b>"; ?></p>
+			<?php	
+		
+		}
+		
 		
 		$query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
 		$db = &JFactory::getDBO();
