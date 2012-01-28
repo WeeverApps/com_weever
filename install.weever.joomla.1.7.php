@@ -27,72 +27,46 @@ jimport("joomla.installer.installer");
 class com_WeeverInstallerScript
 {
 
-	private	$release = "1.5.1";
+	public		$release 	= "1.5.1";
+	public		$src;
+	public		$installer;
 
 	public function install($parent)
 	{
 	
-		$manifest = $parent->get("manifest");
-		$parent = $parent->getParent();
-		$source = $parent->getPath("source");
+		$manifest 			= $parent->get("manifest");
+		$parent 			= $parent->getParent();	
+		$this->src 			= $parent->getPath("source");
+		$this->installer 	= new JInstaller();
+		$lang 				= &JFactory::getLanguage();
 		
-		$lang = &JFactory::getLanguage();
 		$lang->load("com_weever");
 		
-		$installer = new JInstaller();
+		$document = &JFactory::getDocument();
 		
-		foreach($manifest->plugins->plugin as $plugin) 
-		{
-			$attributes = $plugin->attributes();
-			$plg = $source . DS . $attributes['folder'].DS.$attributes['plugin'];
-			$result = $installer->install($plg);
-			
-			if($result)
-				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
-			else
-				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
-			?>
-			<p><?php echo JText::_("WEEVER_INSTALLING_PLUGIN"); ?><?php echo $attributes['folder']."/".$attributes['plugin'].": <b>".$message."</b>"; ?></p>
-			<?php	
-
-			$this->enableExtension($attributes['plugin'], 'plugin');
-			echo " <p><i>".JText::_("WEEVER_ENABLED_PLUGIN").$attributes['plugin']."</i></p>";
-		}
-		
-		foreach($manifest->templates->template as $template) 
-		{
-			$attributes = $template->attributes();
-			$tmpl = $source . DS . 'templates'. DS . $attributes['template'];
-			$result = $installer->install($tmpl);
-			
-			if($result)
-				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
-			else
-				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
-			?>
-			<p><?php echo JText::_("WEEVER_INSTALLING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
-			<?php	
+		$document->addStyleDeclaration("		
+		.progress-bar {
+		  border: 2px solid red;
+		  border-radius: 14px;
 		
 		}
-		
-		
-		foreach($manifest->components->component as $component) 
-		{
-			$attributes = $component->attributes();
-			$com = $source . DS . $attributes['folder']. DS . $attributes['component'];
-			$result = $installer->install($com);
-			
-			if($result)
-				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
-			else
-				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
-			?>
-			<p><?php echo JText::_("WEEVER_INSTALLING_COMPONENT"); ?><?php echo $attributes['component'].": <b>".$message."</b>"; ?></p>
-			<?php	
-		
+		.progress-bar > div { 
+		  color: white; 
+		  background: red;
+		  overflow: hidden;
+		  white-space: nowrap; 
+		  padding: 10px 20px;
+		  border-radius: 10px;
+		  
+		  animation: progress-bar 2s;
 		}
 		
+		@keyframes progress-bar {
+		   0% { width: 0; }
+		}");
 		
+		$this->installPackagedExtensions($manifest);
+			
 		if( !is_dir(JPATH_ROOT.DS."images".DS."com_weever") )
 		{
 			mkdir(JPATH_ROOT.DS."images".DS."com_weever");
@@ -122,43 +96,45 @@ class com_WeeverInstallerScript
 			echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_STREAM_CONTEXT_CREATE")."</div>";
 		
 		?>
+		
+		<div class="progress-bar">
+		  <div style="width: 100%">&nbsp;</div>
+		</div>
+		
 		<p><?php echo JText::_("WEEVER_INSTALL_WELCOME"); ?></p>
 		
-		<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
+		<form action='index.php' enctype='multipart/form-data' method='post'>
 				
 			<div>
 			
-			<fieldset class='adminForm'>
-			<legend><?php echo JText::_("WEEVER_INSTALL_SITE_KEY"); ?></legend>
-
-		
-			<table class="admintable">
+				<fieldset class='adminForm'>
+				<legend><?php echo JText::_("WEEVER_INSTALL_SITE_KEY"); ?></legend>
+	
+					<table class="admintable">
 			
-			
+						<tr>
+							<td><a href="http://weeverapps.com/free" target="_blank"><?php JText::_("WEEVER_GET_A_KEY"); ?></a></td>
+						</tr>
+					
+						<tr>
+							<td><input type="text" name="site_key" maxlength="42" style="width:250px;" placeholder="Paste your Site Key here" value="" /><input type="submit" value="<?php echo JText::_("WEEVER_INSTALL_SUBMIT_KEY"); ?>" /> <?php echo JText::_("WEEVER_ALLOW_FEW_SECONDS"); ?></td>
+						</tr>	
+					
+						<tr>
+							<td><input type="checkbox" name="staging" value="1" id="checkStaging" /> <label for="checkStaging"><?php echo JText::_("WEEVER_INSTALL_STAGING_MODE"); ?></label></td>
+						</tr>
 				
-				<tr>
-				<td><a href="http://weeverapps.com/free" target="_blank" id="headerbutton"><?php JText::_("WEEVER_GET_A_KEY"); ?></a></td>
-				</tr>
+					</table>
 				
-		
+				</fieldset>
 			
-				<tr>
-				<td><input type="text" name="site_key" maxlength="42" style="width:250px;" placeholder="Paste your Site Key here" value="" /><input type="submit" value="<?php echo JText::_("WEEVER_INSTALL_SUBMIT_KEY"); ?>" /> <?php echo JText::_("WEEVER_ALLOW_FEW_SECONDS"); ?></td>
-				</tr>	
-			
-				<tr>
-				<td><input type="checkbox" name="staging" value="1" id="checkStaging" /> <label for="checkStaging"><?php echo JText::_("WEEVER_INSTALL_STAGING_MODE"); ?></label></td></tr>
-			
-		
-			</table>
-			
-			</fieldset>
 			</div>
 			
 			<input type="hidden" name="option" value="com_weever" />
 			<input type="hidden" name="view" value="account" />
 			<input type="hidden" name="task" value="save" />
 			<input type="hidden" name="install" value="1" />
+			
 			<?php echo JHTML::_('form.token'); ?>
 			 
 		</form>
@@ -168,99 +144,225 @@ class com_WeeverInstallerScript
 		
 	}
 	
-   function enableExtension($ext, $type)
-   {
+	
+	protected function installPackagedExtensions($manifest)
+	{
+		
+		$output = "";
+	
+		if( isset($manifest->plugins) )
+			$output .= $this->installPlugins($manifest);
+			
+		if( isset($manifest->templates) )
+			$output .= $this->installTemplates($manifest);
+			
+		if( isset($manifest->components) )
+			$output .= $this->installComponents($manifest);
+			
+		echo $output;
+			
+	}
+	
+	
+	protected function installPlugins($manifest)
+	{
+	
+		$output = "";
+	
+		foreach( $manifest->plugins->plugin as $plugin ) 
+		{
+			
+			$attributes 	= $plugin->attributes();
+			$plg 			= $this->src.DS.$attributes['folder'].DS.$attributes['plugin'];
+			
+			$result = @$this->installer->install($plg);
+			
+			if($result)
+				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+			else
+				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+			
+			$output .= "<p>".JText::_("WEEVER_INSTALLING_PLUGIN").$attributes['folder'].DS.
+							$attributes['plugin'].": <b>".$message."</b></p>";
+
+			$result = $this->enablePlugin($attributes['plugin']);
+			
+			if($result)			
+				$output .= "<p><i>".JText::_("WEEVER_ENABLED_PLUGIN").$attributes['plugin']."</i></p>";
+			else 
+				$output .= "<p style='color:red'><i>".JText::_("WEEVER_ENABLE_PLUGIN_ERROR").$attributes['plugin']."</i></p>";
+				
+		}
+		
+		return $output;
+
+	}
+	
+		
+	protected function installComponents($manifest)
+	{
+	
+		$output = "";
+	
+		foreach( $manifest->components->component as $component ) 
+		{
+			
+			$attributes 	= $component->attributes();
+			$com 			= $this->src.DS.$attributes['folder'].DS.$attributes['component'];
+			
+			$result = $this->installer->install($com);
+			
+			if($result)
+				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+			else
+				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+			
+			$output .= "<p>".JText::_("WEEVER_INSTALLING_COMPONENT").
+							$attributes['component'].": <b>".$message."</b></p>";
+				
+		}
+		
+		return $output;
+
+	}
+	
+	
+	protected function installTemplates($manifest)
+	{
+	
+		$output = "";
+	
+		foreach( $manifest->templates->template as $template ) 
+		{
+			
+			$attributes 	= $template->attributes();
+			$tmpl 			= $this->src.DS.'templates'.DS.$attributes['template'];
+			
+			$result = $this->installer->install($tmpl);
+			
+			if($result)
+				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
+			else
+				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
+			
+			$output .= "<p>".JText::_("WEEVER_INSTALLING_TEMPLATE").'templates'.DS.
+							$attributes['template'].": <b>".$message."</b></p>";
+				
+		}
+		
+		return $output;
+
+	}
+		
+	
+	protected function enablePlugin($ext, $type = 'plugin')
+	{
 	   
-	   	$db = JFactory::getDbo();
-	   	$tableExtensions = $db->nameQuote("#__extensions");
-	   	$columnElement   = $db->nameQuote("element");
-	   	$columnType      = $db->nameQuote("type");
-	   	$columnEnabled   = $db->nameQuote("enabled");
+	   	$db = &JFactory::getDBO();
 	   	
-	   	// Enable plugins
-	   	$db->setQuery(
-	   	"UPDATE
-	   	".$tableExtensions."
-	   	SET
-	   	".$columnEnabled."='1'
-	   	WHERE
-	   	".$columnElement."='".$ext."'
-	   	AND
-	   	".$columnType."='".$type."'"
-	   	);
+	   	$query = "UPDATE #__extensions ".
+	   			"SET 	".$db->nameQuote('enabled')	." = 1 ".
+	   			"WHERE	".$db->nameQuote('element')	." = ".$db->quote($ext)." ".
+	   			"AND	".$db->nameQuote('type')	." = ".$db->quote($type)." ";
 	   	
-	   	$db->query();
-   
-   }
-   
-   function getExtensionId($type, $name, $group='')
-   {
-
-	   	$db =& JFactory::getDBO();
-
-   		if($type=='plugin')
-   			$db->setQuery("SELECT extension_id FROM #__extensions WHERE `type`='".$type."' AND `folder`='".$group."' AND `element`='".$name."'");
-   			
-   		else
-   			$db->setQuery("SELECT extension_id FROM #__extensions WHERE `type`='".$type."' AND `element`='".$name."'");
-   			
-   		return $db->loadResult();
-
-
-   }
+	   	$db->setQuery($query);
+	   	$result = $db->query();
+	   	
+	   	return $result;
+	
+	}
+	
+	
+	protected function getExtensionId($type, $name, $group='')
+	{
+	
+	   	$db = &JFactory::getDBO();
+	
+		if($type=='plugin')
+		{
+			
+			$query = "SELECT extension_id ".
+					"FROM 	#__extensions ".
+					"WHERE 	".$db->quoteName('type')."		= ".$db->quote($type)	." ".
+					"AND 	".$db->quoteName('folder')."	= ".$db->quote($group)	." ".
+					"AND 	".$db->quoteName('element')."	= ".$db->quote($name)	." ";
+					
+			$db->setQuery($query);
+			$db->query();
+			
+		}
+		else
+		{
+			
+			$query = "SELECT extension_id ".
+					"FROM #__extensions ".
+					"WHERE 	".$db->quoteName('type')."		= ".$db->quote($type)." ".
+					"AND 	".$db->quoteName('element')."	= ".$db->quote($name)." ";
+					
+			$db->setQuery($query);
+			$db->query();
+		
+		}
+			
+		$result = $db->loadResult();
+		
+		return $result;
+	
+	}
    
 	
-   function uninstall($parent) 
-   {
-
-
-   		$manifest = $parent->get("manifest");
-   		$parent = $parent->getParent();
-   		$source = $parent->getPath("source");
-   		
-   		$lang = &JFactory::getLanguage();
-   		$lang->load("com_weever");
-   		
-   		$uninstaller = new JInstaller();
-   		
-   		foreach($manifest->plugins->plugin as $plugin) 
-   		{
-   			$attributes = $plugin->attributes();
-   			// 'group' for uninstall. 
-   			$id = $this->getExtensionId('plugin', $attributes['plugin'], $attributes['group']);
-   			$uninstaller->uninstall('plugin',$id,0);   			
-   		}
-   		
-   		foreach($manifest->templates->template as $template) 
-   		{
-   			$attributes = $template->attributes();
-   			$id = $this->getExtensionId('template', $attributes['template']);
-   			$uninstaller->uninstall('template',$id);
-   		}
-   		
-   		foreach($manifest->components->component as $template) 
-   		{
-   			$attributes = $component->attributes();
-   			$id = $this->getExtensionId('component', $attributes['component']);
-   			$uninstaller->uninstall('component',$id);
-   		}
-   		
-
-   }
-
-   function update($parent) 
-   {
-
- 		$manifest = $parent->get("manifest");
- 		$parent = $parent->getParent();
- 		$source = $parent->getPath("source");
- 		$result = null;
- 		
- 		$lang = &JFactory::getLanguage();
- 		$lang->load("com_weever");
- 		
- 		$uninstaller = new JInstaller();
+	public function uninstall($parent) 
+	{
+	
+	
+		$manifest = $parent->get("manifest");
+		$parent = $parent->getParent();
+		$source = $parent->getPath("source");
 		
+		$lang = &JFactory::getLanguage();
+		$lang->load("com_weever");
+		
+		$uninstaller = new JInstaller();
+		
+		foreach($manifest->plugins->plugin as $plugin) 
+		{
+			$attributes = $plugin->attributes();
+			// 'group' for uninstall. 
+			$id = $this->getExtensionId('plugin', $attributes['plugin'], $attributes['group']);
+			$uninstaller->uninstall('plugin',$id,0);   			
+		}
+		
+		foreach($manifest->templates->template as $template) 
+		{
+			$attributes = $template->attributes();
+			$id = $this->getExtensionId('template', $attributes['template']);
+			$uninstaller->uninstall('template',$id);
+		}
+		
+		foreach($manifest->components->component as $component) 
+		{
+			$attributes = $component->attributes();
+			$id = $this->getExtensionId('component', $attributes['component']);
+			$uninstaller->uninstall('component',$id);
+		}
+			
+	
+	}
+	
+	
+	public function update($parent) 
+	{
+	
+			$manifest 			= $parent->get("manifest");
+			$parent 			= $parent->getParent();	
+			$this->src 			= $parent->getPath("source");
+		$this->installer 	= new JInstaller();
+		$lang 				= &JFactory::getLanguage();
+		
+		$lang->load("com_weever");
+	
+		$this->installPackagedExtensions($manifest);
+	
 		if( !is_dir(JPATH_ROOT.DS."images".DS."com_weever") )
 		{
 			mkdir(JPATH_ROOT.DS."images".DS."com_weever");
@@ -279,64 +381,7 @@ class com_WeeverInstallerScript
 				
 			if(!file_exists(JPATH_ROOT.DS."images".DS."com_weever".DS."titlebar_logo_live.png") && file_exists(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png"))
 				copy(JPATH_ROOT.DS."media".DS."com_weever".DS."titlebar_logo_live.png", JPATH_ROOT.DS."images".DS."com_weever".DS."titlebar_logo_live.png");
-		}
-				
-
-		$installer = new JInstaller();
-		
-		foreach($manifest->plugins->plugin as $plugin) 
-		{
-			
-			$attributes = $plugin->attributes();
-			$plg = $source . DS . $attributes['folder'].DS.$attributes['plugin'];
-			$result = $installer->install($plg);
-			
-			if($result)
-				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
-			else
-				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
-			?>
-			<p><?php echo JText::_("WEEVER_UPDATING_PLUGIN"); ?><?php echo $attributes['folder']."/".$attributes['plugin'].": <b>".$message."</b>"; ?></p>
-			<?php	
-
-			$this->enableExtension($attributes['plugin'], 'plugin');
-			echo " <p><i>".JText::_("WEEVER_ENABLED_PLUGIN").$attributes['plugin']."</i></p>";
-			
-		}
-		
-		foreach($manifest->templates->template as $template) 
-		{
-			
-			$attributes = $template->attributes();
-			$tmpl = $source . DS . $attributes['folder'] . DS . $attributes['template'];
-			$result = @$installer->install($tmpl);
-			
-			if($result)
-				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
-			else
-				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
-			?>
-			<p><?php echo JText::_("WEEVER_UPDATING_TEMPLATE"); ?><?php echo $attributes['template'].": <b>".$message."</b>"; ?></p>
-			<?php	
-
-		} 		
-		
-		foreach($manifest->components->component as $component) 
-		{
-			$attributes = $component->attributes();
-			$com = $source . DS . $attributes['folder']. DS . $attributes['component'];
-			$result = $installer->install($com);
-			
-			if($result)
-				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
-			else
-				$message = "<span style='color:red'>".JText::_("WEEVER_FAILED")."</span>";
-			?>
-			<p><?php echo JText::_("WEEVER_INSTALLING_COMPONENT"); ?><?php echo $attributes['component'].": <b>".$message."</b>"; ?></p>
-			<?php	
-		
-		}
-		
+		}		
 		
 		$query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
 		$db = &JFactory::getDBO();
@@ -376,8 +421,8 @@ class com_WeeverInstallerScript
 		// check if there are server-side app updates to be made
 		if($key->setting)
 		{
-
-			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&version=1.3&cms=joomla&m=upgrade&site_key='.$key->setting);	
+	
+			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&version='.$this->release.'&cms=joomla&m=upgrade&site_key='.$key->setting);	
 			?>
 			<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 			<?php 
@@ -403,20 +448,18 @@ class com_WeeverInstallerScript
 		
 		$db->setQuery($query);
 		$db->query();
-		
+			
+	}
+	
+	
+	   public function preflight($type, $parent) 
+	   {
+	
+			//echo '<p>' . JText::_('COM_WEEVER_PREFLIGHT_' . $type . '_TEXT') . '</p>';
+	   }
+	
 
- 		
-   }
-
-
-   function preflight($type, $parent) 
-   {
-
-		//echo '<p>' . JText::_('COM_WEEVER_PREFLIGHT_' . $type . '_TEXT') . '</p>';
-   }
-
-
-   function postflight($type, $parent) 
+   public function postflight($type, $parent) 
    {
 		//echo '<p>' . JText::_('COM_WEEVER_POSTFLIGHT_' . $type . '_TEXT') . '</p>';
 
