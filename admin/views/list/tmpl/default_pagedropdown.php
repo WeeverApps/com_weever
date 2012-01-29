@@ -43,9 +43,22 @@ defined('_JEXEC') or die;
 	</div>
 
 	<div class='wx-add-item-value wx-page-reveal wx-reveal'>
-	
-		<?php echo $this->pageMenuDropdown; ?>
+
+		<div id='wx-add-page-menu-item'>
 		
+			<select name='unnamed' id='wx-add-page-menu-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_CONTENT_ITEM_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->menuItems as $k=>$v ) : ?>
+					
+					<option value='<?php echo $v->link; ?>'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>
+			
 		<div id="wx-add-page-r3s-url">
 			<input type='text' value='' id='wx-add-page-r3s-url-input' class='wx-input wx-page-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
 			<label for='wx-add-page-r3s-url-input' id='wx-add-page-r3s-url-input-label' class='wx-page-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>

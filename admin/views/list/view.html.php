@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.3
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -31,20 +31,13 @@ class WeeverViewList extends JView
 	public function display($tpl = null)
 	{
 	
-		JRequest::setVar('layout','default');
+		$k2Categories = new stdClass();
 		$component = JComponentHelper::getComponent( 'com_weever' );
 		$params = new JParameter( $component->params );
 		
-		/* Call the state object */
+		JRequest::setVar('layout','default');
+		
 		$state =& $this->get( 'state' );
-		
-		if(!$state->get('site_key'))
-		{
-		
-			JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
-		
-		}		
-
 		$appData = $this->get('appdata');
 		$tabRows = array();
 		
@@ -76,63 +69,31 @@ class WeeverViewList extends JView
 		$this->assignRef('mapRows', $mapRows);
 		
 		if( comWeeverHelper::componentExists("com_k2") )
-		{
+			$k2Categories 	= $this->get('k2Categories');
+			
+		$contentCategories 	= $this->get('contentCategories');
+		$menuItems 			= $this->get('menuItems');
+		$menuCategories		= $this->get('menuCategories');
+		$contactItems		= $this->get('contactItems');
 		
-			$blogK2CategoryDropdown =& $this->get('blogk2categorydropdown');
-			$mapK2CategoryDropdown =& $this->get('mapk2categorydropdown');
-			$directoryK2CategoryDropdown =& $this->get('directoryk2categorydropdown');
-			$pageK2CategoryDropdown =& $this->get('pagek2categorydropdown');
-	
-		}
-		else 
-		{
-		
-			$blogK2CategoryDropdown = ""; $mapK2CategoryDropdown=""; 
-			$pageK2CategoryDropdown=""; $directoryK2CategoryDropdown = "";
-		
-		}
-		
-		$this->assignRef('blogK2CategoryDropdown',$blogK2CategoryDropdown);
-		$this->assignRef('mapK2CategoryDropdown',$mapK2CategoryDropdown);
-		$this->assignRef('directoryK2CategoryDropdown',$directoryK2CategoryDropdown);
-		$this->assignRef('pageK2CategoryDropdown',$pageK2CategoryDropdown);
-		
-		$blogMenuDropdown =& $this->get('blogmenudropdown');
-		$this->assignRef('blogMenuDropdown',$blogMenuDropdown);
-		
-		$directoryJCategoryDropdown =& $this->get('directoryjcategorydropdown');
-		$this->assignRef('directoryJCategoryDropdown',$directoryJCategoryDropdown);
-		
-		$blogJCategoryDropdown =& $this->get('blogjcategorydropdown');
-		$this->assignRef('blogJCategoryDropdown',$blogJCategoryDropdown);
-
-		$pageMenuDropdown =& $this->get('pagemenudropdown');
-		$this->assignRef('pageMenuDropdown',$pageMenuDropdown);
-		
-		$pageJCategoryDropdown =& $this->get('pagejcategorydropdown');
-		$this->assignRef('pageJCategoryDropdown',$pageJCategoryDropdown);
-		
-		$jContactDropdown =& $this->get('jcontactdropdown');
-		$this->assignRef('jContactDropdown',$jContactDropdown);
+		$this->assignRef('k2Categories', $k2Categories);
+		$this->assignRef('contentCategories', $contentCategories);
+		$this->assignRef('menuItems', $menuItems);
+		$this->assignRef('menuCategories', $menuCategories);
+		$this->assignRef('contactItems', $contactItems);
 		
 		$this->assign('site_key', $state->get('site_key'));
 
-       /* Get the values from the state object that were inserted in the model's construct function */
-       $lists['order_Dir'] = $state->get( 'filter_order_Dir' );
-       $lists['order']     = $state->get( 'filter_order' );
-
-       $this->assignRef( 'lists', $lists );
+		$lists['order_Dir'] = $state->get( 'filter_order_Dir' );
+		$lists['order']     = $state->get( 'filter_order' );
+		
+		$this->assignRef( 'lists', $lists );
 		
 		$this->assign('appEnabled', comWeeverHelper::getAppStatus() );
 		
 		comWeeverHelper::getJsStrings();			
-		
-		/* Time zone stuff for Facebook Events... */
-		
-	    $version = new JVersion;
-	    $joomla = $version->getShortVersion();
-	    
-	    if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
+
+	    if( comWeeverHelper::joomlaVersion() == '1.5' )  // ### 1.5 only
 	    {
 	    	$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id';
 	    	$this->assignRef('jArticleLink', $link);

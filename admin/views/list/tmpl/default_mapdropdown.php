@@ -56,7 +56,43 @@ else
 	
 	<div class='wx-add-item-option wx-map-reveal wx-reveal'>
 		
-		<?php echo $this->mapK2CategoryDropdown;?>
+		<?php if(comWeeverHelper::joomlaVersion() != "1.5") : ?>
+		
+		<div id='wx-add-map-jcategory-item'>
+		
+			<select name='unnamed' id='wx-add-map-jcategory-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->contentCategories as $k=>$v ) : ?>
+				
+					<?php $link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id; ?>
+					
+					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>
+		
+		<?php endif; ?>	
+		
+		<div id='wx-add-map-k2-category-item'>
+		
+			<select name='unnamed' id='wx-add-map-k2-category-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->k2Categories as $k=>$v ) : ?>
+				
+					<?php $link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id; ?>
+					
+					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>		
 		
 		<div id="wx-add-map-k2-tag">
 		<input type='text' value='' id='wx-add-map-k2-tag-input' class='wx-input wx-map-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_K2_TAG_PLACEHOLDER"); ?>' />

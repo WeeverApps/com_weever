@@ -1,10 +1,10 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -56,11 +56,41 @@ else
 	</div>
 	
 	<div class='wx-add-item-option wx-directory-reveal wx-reveal'>
+	
+		<div id='wx-add-directory-jcategory-item'>
+		
+			<select name='unnamed' id='wx-add-directory-jcategory-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_DIRECTORY_JCATEGORY_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->contentCategories as $k=>$v ) : ?>
+				
+					<?php $link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id; ?>
+					
+					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>		
+		
+		<div id='wx-add-directory-k2-category-item'>
+		
+			<select name='unnamed' id='wx-add-directory-k2-category-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->k2Categories as $k=>$v ) : ?>
+				
+					<?php $link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id; ?>
+					
+					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>
 
-		<?php echo $this->directoryJCategoryDropdown;?>
-		
-		<?php echo $this->directoryK2CategoryDropdown;?>
-		
 		<div id="wx-add-directory-r3s-url">
 			<input type='text' value='' id='wx-add-directory-r3s-url-input' class='wx-input wx-directory-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
 			<label for='wx-add-directory-r3s-url-input' id='wx-add-directory-r3s-url-input-label' class='wx-directory-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>

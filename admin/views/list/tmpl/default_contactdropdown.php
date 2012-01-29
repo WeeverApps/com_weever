@@ -1,10 +1,10 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -42,8 +42,32 @@ defined('_JEXEC') or die;
 	
 	<div class='wx-add-item-value wx-contact-reveal wx-reveal'>
 	
-		<?php echo $this->jContactDropdown; ?>
-                <label><?php echo JText::_('WEEVER_CONTACT_CHOOSE'); ?></label>
+		<div id='wx-add-contact-joomla'>
+		
+			<select name='component_id' id='wx-add-contact-joomla-select' class='wx-component-id-select'>
+				<option value='0'><?php echo JText::_('WEEVER_CHOOSE_CONTACT_PARENTHESES'); ?></option>
+				
+				<?php $hidden_array = ""; $hidden = ""; ?>
+				
+				<?php foreach( (object) $this->contactItems as $k=>$v ) : ?>
+					
+					<option value='<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
+					
+					<?php $hidden = "<input type='hidden' name='contact_name[]' value='".$v->name."' />"; ?>
+					<?php $hidden_array .= $v->id.","; ?>
+				
+				<?php endforeach; ?>
+				
+				<?php $hidden_array = rtrim($hidden_array,","); ?>
+				<?php $hidden .= "<input type='hidden' name='comp_array' value='".$hidden_array."' />"; ?>
+			
+			</select>
+			
+			<?php echo $hidden; ?>
+		
+		</div>
+		
+        <label><?php echo JText::_('WEEVER_CONTACT_CHOOSE'); ?></label>
 	
 	</div>
 	

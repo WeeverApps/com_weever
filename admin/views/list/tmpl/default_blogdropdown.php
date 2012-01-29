@@ -1,10 +1,10 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -57,11 +57,58 @@ else
 	
 	<div class='wx-add-item-option wx-blog-reveal wx-reveal'>
 	
-		<?php echo $this->blogMenuDropdown; ?> 
+	
+		<div id='wx-add-blog-menu-item'>
 		
-		<?php echo $this->blogJCategoryDropdown;?>
+			<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->menuCategories as $k=>$v ) : ?>
+					
+					<option value='<?php echo $v->link; ?>&template=weever_cartographer&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
 		
-		<?php echo $this->blogK2CategoryDropdown;?>
+		</div>
+	
+		
+		<div id='wx-add-blog-jcategory-item'>
+		
+			<select name='unnamed' id='wx-add-blog-jcategory-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->contentCategories as $k=>$v ) : ?>
+				
+					<?php $link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id; ?>
+					
+					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>
+		
+		
+		<div id='wx-add-blog-k2-category-item'>
+		
+			<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->k2Categories as $k=>$v ) : ?>
+				
+					<?php $link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id; ?>
+					
+					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>
+
 		
 		<div id="wx-add-blog-r3s-url">
 			<input type='text' value='' id='wx-add-blog-r3s-url-input' class='wx-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
