@@ -2,10 +2,10 @@
 
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.1
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -49,18 +49,14 @@ class WeeverModelList extends JModel
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         
-        $query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
-        $db = &JFactory::getDBO();
-        
-        $db->setQuery($query);
-        $key = $db->loadObject();
+        $key = comWeeverHelper::getKey();
        
         $filter_order     = $mainframe->getUserStateFromRequest($option.'filter_order', 'filter_order', 'ordering', 'cmd');
         $filter_order_Dir = $mainframe->getUserStateFromRequest($option.'filter_order_Dir', 'filter_order_Dir', 'asc', 'word');
  
         $this->setState('filter_order', $filter_order);
         $this->setState('filter_order_Dir', $filter_order_Dir);
-        $this->setState('site_key', $key->setting);
+        $this->setState('site_key', $key);
         
 	}
 	
@@ -70,16 +66,15 @@ class WeeverModelList extends JModel
     	$mainframe = JFactory::getApplication();
     	$option = JRequest::getCmd('option');
 
-            $orderby = '';
-            $filter_order     = $this->getState('filter_order');
-            $filter_order_Dir = $this->getState('filter_order_Dir');
+        $orderby = '';
+        $filter_order     = $this->getState('filter_order');
+        $filter_order_Dir = $this->getState('filter_order_Dir');
 
-            /* Error handling is never a bad thing*/
-            if(!empty($filter_order) && !empty($filter_order_Dir) ){
-                    $orderby = ' ORDER BY '.$filter_order.' '.$filter_order_Dir;
-            }
+        if(!empty($filter_order) && !empty($filter_order_Dir) ){
+                $orderby = ' ORDER BY '.$filter_order.' '.$filter_order_Dir;
+        }
 
-            return $orderby;
+        return $orderby;
 	}
 	
 		
@@ -128,17 +123,14 @@ class WeeverModelList extends JModel
 	public function getJContactDB()
 	{
 	
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
-		
-		if(substr($joomla,0,3) == '1.6' || substr($joomla,0,3) == '1.7' || substr($joomla,0,3) == '1.8' || substr($joomla,0,3) == '1.9')
-		{
-		 	$query = "SELECT * FROM #__contact_details WHERE published = '1' AND access < '2'"; 
-		} 
-		else 
+		if(comWeeverHelper::joomlaVersion() == "1.5")
 		{
 		 	$query = "SELECT * FROM #__contact_details WHERE published = '1' AND access = '0'"; 
 		}
+		else 
+		{
+		 	$query = "SELECT * FROM #__contact_details WHERE published = '1' AND access < '2'"; 
+		} 
 	
 		$this->contacts = $this->_getList($query);		
 
@@ -153,7 +145,7 @@ class WeeverModelList extends JModel
 		$hidden_array = "";
 		$hidden = "";
 	
-		foreach((object)$this->contacts as $k=>$v)
+		foreach( (object) $this->contacts as $k=>$v )
 		{
 
 			$this->dropdown .= "<option value='".$v->id."'>".$v->name."</option>";
@@ -186,18 +178,15 @@ class WeeverModelList extends JModel
 	{
 	
 		$this->pages = null;
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
-	
-		if(substr($joomla,0,3) == '1.6' || substr($joomla,0,3) == '1.7' || substr($joomla,0,3) == '1.8' || substr($joomla,0,3) == '1.9')
-		{
-		 	$query = "SELECT * FROM #__k2_categories WHERE published = '1' AND access < '2'";  
-		} 
-		else 
+		 
+		if(comWeeverHelper::joomlaVersion() == "1.5")
 		{
 		 	$query = "SELECT * FROM #__k2_categories WHERE published = '1' AND access = '0'";  
 		}
-	
+		else 
+		{
+		 	$query = "SELECT * FROM #__k2_categories WHERE published = '1' AND access < '2'";  
+		}
 
 		$this->pages = $this->_getList($query);
 	
@@ -240,17 +229,15 @@ class WeeverModelList extends JModel
 	{
 	
 		$this->pages = null;
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
-	
-		if(substr($joomla,0,3) == '1.6' || substr($joomla,0,3) == '1.7' || substr($joomla,0,3) == '1.8' || substr($joomla,0,3) == '1.9')
-		{
-		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access < '2'";  
-		} 
-		else 
+		
+		if(comWeeverHelper::joomlaVersion() == "1.5")
 		{
 		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access = '0'";  
 		}
+		else 
+		{
+		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access < '2'";  
+		} 
 	
 
 		$this->pages = $this->_getList($query);
@@ -264,7 +251,7 @@ class WeeverModelList extends JModel
 		$this->dropdown .= " <div id='wx-add-page-category-joomla'>
 		<select name='unnamed' id='wx-add-page-category-joomla-select' class='wx-cms-feed-select'><option value='0'>".JText::_('WEEVER_CHOOSE_PAGE_JCATEGORY_PARENTHESES')."</option>";
 	
-		foreach((object)$this->pages as $k=>$v)
+		foreach( (object) $this->pages as $k=>$v )
 		{
 			$link = "index.php?option=com_content&view=category&id=".$v->id;
 			$this->dropdown .= "<option value='".$link."&template=weever_cartographer'>".$v->name."</option>";
@@ -297,15 +284,14 @@ class WeeverModelList extends JModel
 		$this->dropdown .= " <div id='wx-add-blog-menu-item'>
 		<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES')."</option>";
 	
-		foreach((object)$this->blogs as $k=>$v)
+		foreach( (object) $this->blogs as $k=>$v )
 		{
 			
 			$this->dropdown .= "<option value='".$v->link."&template=weever_cartographer&Itemid=".$v->id."'>".$v->name."</option>";
 		
 		}
 		
-		$this->dropdown .= "</select>
-		</div>";
+		$this->dropdown .= "</select></div>";
 	
 	}
 	
@@ -314,17 +300,15 @@ class WeeverModelList extends JModel
 	{
 	
 		$this->blogs = null;
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
-	
-		if(substr($joomla,0,3) == '1.6' || substr($joomla,0,3) == '1.7' || substr($joomla,0,3) == '1.8' || substr($joomla,0,3) == '1.9')
-		{
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_k2&view=itemlist%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=featured%') AND published = '1' AND access < '2'";  
-		} 
-		else 
+		
+		if(comWeeverHelper::joomlaVersion() == "1.5")
 		{
 		 	$query = "SELECT * FROM #__menu WHERE (link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_k2&view=itemlist%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=frontpage%') AND published = '1' AND access = '0'";  
 		}
+		else 
+		{
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_k2&view=itemlist%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=featured%') AND published = '1' AND access < '2'";  
+		} 
 	
 
 		$this->blogs = $this->_getList($query);		
@@ -372,8 +356,7 @@ class WeeverModelList extends JModel
 		
 		}
 		
-		$this->dropdown .= "</select>
-		</div>";
+		$this->dropdown .= "</select></div>";
 	
 	}
 	
@@ -393,8 +376,7 @@ class WeeverModelList extends JModel
 		
 		}
 		
-		$this->dropdown .= "</select>
-		</div>";
+		$this->dropdown .= "</select></div>";
 	
 	}
 	
@@ -403,17 +385,15 @@ class WeeverModelList extends JModel
 	
 	
 		$this->blogs = null;
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
-	
-		if(substr($joomla,0,3) == '1.6' || substr($joomla,0,3) == '1.7' || substr($joomla,0,3) == '1.8' || substr($joomla,0,3) == '1.9')
-		{
-		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access < '2'";  
-		} 
-		else 
+		
+		if(comWeeverHelper::joomlaVersion() == "1.5")
 		{
 		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access = '0'";  
 		}
+		else 
+		{
+		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access < '2'";  
+		} 
 	
 
 		$this->blogs = $this->_getList($query);
@@ -466,7 +446,7 @@ class WeeverModelList extends JModel
 		$this->dropdown .= " <div id='wx-add-blog-k2-category-item'>
 		<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
 	
-		foreach((object)$this->blogs as $k=>$v)
+		foreach( (object) $this->blogs as $k=>$v )
 		{
 			
 			$link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id;
@@ -474,8 +454,7 @@ class WeeverModelList extends JModel
 		
 		}
 		
-		$this->dropdown .= "</select>
-		</div>";
+		$this->dropdown .= "</select></div>";
 	
 	}
 	
@@ -486,7 +465,7 @@ class WeeverModelList extends JModel
 		$this->dropdown .= " <div id='wx-add-directory-k2-category-item'>
 		<select name='unnamed' id='wx-add-directory-k2-category-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
 	
-		foreach((object)$this->blogs as $k=>$v)
+		foreach( (object) $this->blogs as $k=>$v )
 		{
 			
 			$link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id;
@@ -494,8 +473,7 @@ class WeeverModelList extends JModel
 		
 		}
 		
-		$this->dropdown .= "</select>
-		</div>";
+		$this->dropdown .= "</select></div>";
 	
 	}
 
@@ -506,7 +484,7 @@ class WeeverModelList extends JModel
 		$this->dropdown .= " <div id='wx-add-map-k2-category-item'>
 		<select name='unnamed' id='wx-add-map-k2-category-item-select' class='wx-cms-feed-select'><option>".JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES')."</option>";
 	
-		foreach((object)$this->blogs as $k=>$v)
+		foreach( (object) $this->blogs as $k=>$v )
 		{
 			
 			$link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id;
@@ -514,8 +492,7 @@ class WeeverModelList extends JModel
 		
 		}
 		
-		$this->dropdown .= "</select>
-		</div>";
+		$this->dropdown .= "</select></div>";
 	
 	}
 
@@ -524,17 +501,15 @@ class WeeverModelList extends JModel
 	{
 	
 		$this->blogs = null;
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
-	
-		if(substr($joomla,0,3) == '1.6' || substr($joomla,0,3) == '1.7' || substr($joomla,0,3) == '1.8' || substr($joomla,0,3) == '1.9')
-		{
-		 	$query = "SELECT * FROM #__k2_categories WHERE published = '1' AND access < '2'";  
-		} 
-		else 
+		
+		if(comWeeverHelper::joomlaVersion() == "1.5")
 		{
 		 	$query = "SELECT * FROM #__k2_categories WHERE published = '1' AND access = '0'";  
 		}
+		else 
+		{
+		 	$query = "SELECT * FROM #__k2_categories WHERE published = '1' AND access < '2'";  
+		} 
 	
 		$this->blogs = $this->_getList($query);
 	
@@ -561,15 +536,14 @@ class WeeverModelList extends JModel
 		$this->dropdown .= " <div id='wx-add-page-menu-item'>
 		<select id='wx-add-page-menu-item-select' class='wx-cms-feed-select' name='noname'><option value='0'>".JText::_('WEEVER_CHOOSE_CONTENT_ITEM_PARENTHESES')."</option>";
 	
-		foreach((object)$this->pages as $k=>$v)
+		foreach( (object) $this->pages as $k=>$v )
 		{
 			
 			$this->dropdown .= "<option value='".$v->link."'>".$v->name."</option>";
 		
 		}
 		
-		$this->dropdown .= "</select>
-		</div>";
+		$this->dropdown .= "</select></div>";
 	
 	}
 	
@@ -578,17 +552,15 @@ class WeeverModelList extends JModel
 	{
 	
 		$this->pages = null;
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
-	
-		if(substr($joomla,0,3) == '1.6' || substr($joomla,0,3) == '1.7' || substr($joomla,0,3) == '1.8' || substr($joomla,0,3) == '1.9')
-		{
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1' AND access < '2'"; 
-		} 
-		else 
+		
+		if(comWeeverHelper::joomlaVersion() == "1.5")
 		{
 		 	$query = "SELECT * FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1' AND access = '0'"; 
 		}
+		else 
+		{
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1' AND access < '2'"; 
+		} 
 		
 		$this->pages = $this->_getList($query);		
 
