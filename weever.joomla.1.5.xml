@@ -8,7 +8,7 @@
  <authorUrl>http://www.weeverapps.com/</authorUrl>
  <copyright>(c) 2010-2012 Weever Apps Inc.</copyright>
  <license>GPLv3</license>
- <version>1.5.0.1</version>
+ <version>1.5.1</version>
  <releaseType>Stable</releaseType>
  <description>Weever turns your Joomla site into a mobile web app!</description>
  
@@ -16,7 +16,7 @@
  
 	 <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">Weever Mobile App</menu>
 	 
-	 <files folder="admin">
+	 <files folder="components/com_weever">
 		  <filename>weever.php</filename>
 		  <filename>controller.php</filename>
 		  <folder>classes</folder>
