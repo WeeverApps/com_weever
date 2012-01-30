@@ -38,20 +38,38 @@ jQuery(document).ready(function(){
 		jQuery("#id_id-page").attr("id", "id_id");
 		jQuery("#id_name-page").attr("id", "id_name");
 		
+		jQuery('#wx-add-page-content-joomla').hide();
+		jQuery('#wx-add-page-k2-item').hide();
+		jQuery('#wx-add-page-content-input-fields').hide();
+		jQuery('#wx-add-page-r3s-url').hide();
+		jQuery('#wx-add-page-r3s-url-input').attr('name', 'unnamed');
+		jQuery('#wx-add-page-menu-item').hide();
+		jQuery('#wx-add-page-menu-item-select').attr('name', 'unnamed');
+		jQuery('#wx-add-page-menu-item-help').hide();
+		
 		if(jQuery(this).val() == "menu") 
 		{
 			jQuery('#wx-add-page-menu-item').show();
 			jQuery('#wx-add-page-menu-item-select').attr('name', 'cms_feed');
-			jQuery('#wx-add-page-menu-item-help').show();
-			jQuery('#wx-add-page-r3s-url').hide();
-			jQuery('#wx-add-page-r3s-url-input').attr('name', 'unnamed');
+			jQuery('#wx-add-page-menu-item-help').show();	
+		}
+		
+		if(jQuery(this).val() == "k2-item")
+		{
+			jQuery('#id_id').attr('name', 'cms_feed');
+			jQuery('#wx-add-page-k2-item').show();
+			jQuery('#wx-add-page-content-input-fields').show();	
+		}
+		
+		if(jQuery(this).val() == "joomla-article")
+		{
+			jQuery('#wx-add-page-content-joomla').show();
+			jQuery('#id_id').attr('name', 'cms_feed');
+			jQuery('#wx-add-page-content-input-fields').show();
 		}
 		
 		if(jQuery(this).val() == "r3s-url") 
 		{
-			jQuery('#wx-add-page-menu-item').hide();
-			jQuery('#wx-add-page-menu-item-select').attr('name', 'unnamed');
-			jQuery('#wx-add-page-menu-item-help').hide();
 			jQuery('#wx-add-page-r3s-url').show();
 			jQuery('#wx-add-page-r3s-url-input').attr('name', 'cms_feed');
 		}
