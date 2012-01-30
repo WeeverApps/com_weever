@@ -32,6 +32,8 @@ jQuery(document).ready(function(){
 		jQuery("#id_name.wx-panel-input").attr("id", "id_name-panel");
 		jQuery("#id_id.wx-map-input").attr("id", "id_id-map");
 		jQuery("#id_name.wx-map-input").attr("id", "id_name-map");
+		jQuery("#id_id.wx-page-input").attr("id", "id_id-page");
+		jQuery("#id_name.wx-page-input").attr("id", "id_name-page");
 		jQuery("#id_id-aboutapp").attr("id", "id_id");
 		jQuery("#id_name-aboutapp").attr("id", "id_name");
 		

@@ -1,10 +1,10 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -56,9 +56,4 @@ defined('_JEXEC') or die;
 	<div class='wx-add-submit'>
 		<input type='submit' id='wx-component-submit' class='wx-submit' value='<?php echo JText::_('WEEVER_ADD_COMPONENT_SUBMIT'); ?>' name='add' disabled='disabled' />
 	</div>
-	
-	
-	
-
-
 </div>

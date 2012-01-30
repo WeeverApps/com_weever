@@ -29,6 +29,15 @@ jQuery(document).ready(function(){
 		jQuery('.wx-dummy').hide();
 		jQuery('.wx-submit').attr('disabled', 'disabled');
 		
+		jQuery("#id_id.wx-panel-input").attr("id", "id_id-panel");
+		jQuery("#id_name.wx-panel-input").attr("id", "id_name-panel");
+		jQuery("#id_id.wx-map-input").attr("id", "id_id-map");
+		jQuery("#id_name.wx-map-input").attr("id", "id_name-map");
+		jQuery("#id_id-aboutapp").attr("id", "id_id-aboutapp");
+		jQuery("#id_name-aboutapp").attr("id", "id_name-aboutapp");
+		jQuery("#id_id-page").attr("id", "id_id");
+		jQuery("#id_name-page").attr("id", "id_name");
+		
 		if(jQuery(this).val() == "menu") 
 		{
 			jQuery('#wx-add-page-menu-item').show();

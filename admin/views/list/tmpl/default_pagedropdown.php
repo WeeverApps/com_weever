@@ -1,10 +1,10 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -28,9 +28,9 @@ defined('_JEXEC') or die;
 		<select id='wx-select-page'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_PAGE_PARENTHESES'); ?></option>
 			<option value='menu'><?php echo JText::_('WEEVER_ADD_ARTICLE_OR_K2_ITEM_FROM_MENU'); ?></option>
+			<option value='joomla-article'><?php echo JText::_('WEEVER_ADD_ARTICLE'); ?></option>
+			<option value='k2-item'><?php echo JText::_('WEEVER_ADD_K2_ITEM'); ?></option>
 			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_R3S_URL'); ?></option>
-			<!--option value='page-cat'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_ARTICLES_AS_LIST'); ?></option>
-			<option value='page-cat-k2'><?php echo JText::_('WEEVER_ADD_WHOLE_CATEGORY_OF_K2_ITEMS_AS_LIST'); ?></option-->
 		</select>
 	</div>
 	
@@ -64,11 +64,34 @@ defined('_JEXEC') or die;
 			<label for='wx-add-page-r3s-url-input' id='wx-add-page-r3s-url-input-label' class='wx-page-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>
 		</div>
 	
-		<?php //echo $this->pageJCategoryDropdown; 
-		?>
+		<div id='wx-add-page-k2-item'>
+				
+			<div class="button2-left" style='float:right;'>
+				<div class="blank">
+					<a class="modal page-k2-modal" title="<?php echo JText::_('WEEVER_PAGE_SELECT_K2_ITEM'); ?>"  href="index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_PAGE_SELECT'); ?></a>
+				</div>
+			</div>
 		
-		<?php //echo $this->pageK2CategoryDropdown; 
-		?>
+		</div>
+		
+		<div id='wx-add-page-content-joomla'>
+				
+			<div class="button2-left">
+				<div class="blank">
+					<a class="modal" title="Select a Joomla article"  href="<?php echo $this->jArticleLink; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
+				</div>
+			</div>
+		
+		</div>
+		
+		<div id='wx-add-page-content-input-fields'>
+			
+				<input type="text" id="id_name-page" placeholder="Select content..." class='wx-input wx-page-input wx-page-content-name' disabled="disabled" />
+				
+				<input type="hidden" id="id_id-page" class="wx-page-input" name="urlparams[id]" value="0" />
+				<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="Select Item::Select an item to link to directly.">Select Content</label>
+		
+		</div>
 	
 	</div>
 	

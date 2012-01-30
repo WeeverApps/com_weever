@@ -63,6 +63,15 @@ class comWeeverHelper
 	
 	}
 	
+	public static function typeIsSupported($type) {
+
+		if( strstr(comWeeverConst::SUPPORTED_TYPES, "-".$type."-") )
+			return true;
+		else 
+			return false;
+	
+	}
+	
 	public static function componentExists($component)
 	{
 		

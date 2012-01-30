@@ -1,72 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="component" version="1.5.0" method="upgrade">
 
- <name>Weever</name>
- <creationDate>2012-01-24</creationDate>
- <author>Robert Gerald Porter</author>
- <authorEmail>rob@weeverapps.com</authorEmail>
- <authorUrl>http://www.weeverapps.com/</authorUrl>
- <copyright>(c) 2010-2012 Weever Apps Inc.</copyright>
- <license>GPLv3</license>
- <version>1.5.1</version>
- <releaseType>Stable</releaseType>
- <description>Weever turns your Joomla site into a mobile web app!</description>
- 
- <administration>
- 
-	 <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">Weever Mobile App</menu>
-	 
-	 <files folder="components/com_weever">
-		  <filename>weever.php</filename>
-		  <filename>controller.php</filename>
-		  <folder>classes</folder>
-		  <folder>helpers</folder>
-		  <filename>index.html</filename>
-		  <folder>assets</folder>
-		  <folder>models</folder>
-		  <folder>tables</folder>
-		  <folder>views</folder>
-		  <folder>sql</folder>
-	  </files>
+	<name>Weever</name>
+	<creationDate>2012-01-30</creationDate>
+	<author>Robert Gerald Porter</author>
+	<authorEmail>rob@weeverapps.com</authorEmail>
+	<authorUrl>http://www.weeverapps.com/</authorUrl>
+	<copyright>(c) 2010-2012 Weever Apps Inc.</copyright>
+	<license>GPLv3</license>
+	<version>1.5.1</version>
+	<releaseType>Stable</releaseType>
+	<description>Weever turns your Joomla site into a mobile web app!</description>
+	
+	<administration>
+	
+		 <menu link="com_weever" img="components/com_weever/assets/icons/icon-16-weever_menu_logo.png">Weever Mobile App</menu>
+		 
+		 <files folder="components/com_weever">
+			  <filename>weever.php</filename>
+			  <filename>controller.php</filename>
+			  <folder>classes</folder>
+			  <folder>helpers</folder>
+			  <filename>index.html</filename>
+			  <folder>assets</folder>
+			  <folder>models</folder>
+			  <folder>tables</folder>
+			  <folder>views</folder>
+			  <folder>sql</folder>
+		  </files>
+		  
+		  <languages folder="admin/languages">
+		  	<language tag="en-GB">en-GB/en-GB.com_weever.ini</language>
+		  	<language tag="en-GB">en-GB/en-GB.com_weever.sys.ini</language>
+		  </languages>
 	  
-	  <languages folder="admin/languages">
-	  	<language tag="en-GB">en-GB/en-GB.com_weever.ini</language>
-	  	<language tag="en-GB">en-GB/en-GB.com_weever.sys.ini</language>
-	  </languages>
-	  
- </administration>
- 
- <media destination="com_weever" folder="media">
- 	<filename>index.html</filename>
-	<filename>phone_load_.png</filename>
-	<filename>tablet_load_.png</filename>
-	<filename>tablet_landscape_load_.png</filename>
-	<filename>icon_.png</filename>
-	<filename>titlebar_logo_.png</filename>
- </media>
-  
- <install>
-  <sql>
-    <file charset="utf8" driver="mysql">sql/install.sql</file>
-  </sql>
- </install>
- <uninstall>
-  <sql>
-    <file charset="utf8" driver="mysql">sql/uninstall.sql</file>
-  </sql>
- </uninstall>
- 
-  
- <plugins>
- 	<plugin plugin="mobileesp" group="system" />
- 	<plugin plugin="weevermapsk2" group="k2" />
- </plugins>
- 
- <templates>
- 	<template template="weever_cartographer" />
- </templates>
- 
- <installfile>install.weever.joomla.1.5.php</installfile>
- <uninstallfile>uninstall.weever.joomla.1.5.php</uninstallfile>
+	</administration>
+	
+	<media destination="com_weever" folder="media">
+		<filename>index.html</filename>
+		<filename>phone_load_.png</filename>
+		<filename>tablet_load_.png</filename>
+		<filename>tablet_landscape_load_.png</filename>
+		<filename>icon_.png</filename>
+		<filename>titlebar_logo_.png</filename>
+	</media>
+	
+	<install>
+	
+		<sql>
+			<file charset="utf8" driver="mysql">sql/install.sql</file>
+		</sql>
+		
+	</install>
+	
+	<uninstall>
+	
+		<sql>
+			<file charset="utf8" driver="mysql">sql/uninstall.sql</file>
+		</sql>
+		
+	</uninstall>
+	
+	
+	<plugins>
+		<plugin plugin="mobileesp" group="system" />
+		<plugin plugin="weevermapsk2" group="k2" />
+	</plugins>
+	
+	<templates>
+		<template template="weever_cartographer" />
+	</templates>
+	
+	<installfile>install.weever.joomla.1.5.php</installfile>
+	<uninstallfile>uninstall.weever.joomla.1.5.php</uninstallfile>
 
 </install>

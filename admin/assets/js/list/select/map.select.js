@@ -29,10 +29,13 @@ jQuery(document).ready(function(){
 		jQuery('.wx-panel-help').hide();
 		jQuery('.wx-dummy').hide();
 		jQuery('.wx-submit').attr('disabled', 'disabled');
+		
 		jQuery("#id_id.wx-aboutapp-input").attr("id", "id_id-aboutapp");
 		jQuery("#id_name.wx-aboutapp-input").attr("id", "id_name-aboutapp");
 		jQuery("#id_id.wx-panel-input").attr("id", "id_id-panel");
 		jQuery("#id_name.wx-panel-input").attr("id", "id_name-panel");
+		jQuery("#id_id.wx-page-input").attr("id", "id_id-page");
+		jQuery("#id_name.wx-page-input").attr("id", "id_name-page");
 		jQuery("#id_id-map").attr("id", "id_id");
 		jQuery("#id_name-map").attr("id", "id_name");
 		

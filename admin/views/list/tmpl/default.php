@@ -287,10 +287,9 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 
 	?>
 	
-	
 	<div id="<?php echo $row->component . 'Tab' ?>">
 	
-	<?php if ($row->component == "blog" || $row->component == "calendar" || $row->component == "component" || $row->component == "contact" || $row->component == "form" || $row->component == "listingcomponent" || $row->component == "page" || $row->component == "photo" || $row->component == "social" || $row->component == "video" || $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map" || $row->component == "directory") : ?>
+	<?php if ( comWeeverHelper::typeIsSupported($row->component) ) : ?>
 		
 		<?php echo $this->loadTemplate($row->component.'dropdown'); ?>
 		
