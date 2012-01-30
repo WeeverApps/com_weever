@@ -160,7 +160,7 @@ else
 
 
 <div id="listTabs">
-<ul id="listTabsSortable" style="padding-right: 15%">
+<ul id="listTabsSortable" style="padding-right: 5%">
 
 <?php 
 

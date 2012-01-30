@@ -126,7 +126,7 @@ if( comWeeverHelper::joomlaVersion() != "1.5" )
 				
 			<div class="button2-left">
 				<div class="blank">
-					<a class="modal" title="Select a Joomla article"  href="<?php echo $this->jArticleLink; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
+					<a class="modal map-joomla-modal" title="Select a Joomla article"  href="<?php echo $this->jArticleLink; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
 				</div>
 			</div>
 

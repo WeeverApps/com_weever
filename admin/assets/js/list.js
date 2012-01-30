@@ -546,6 +546,10 @@ jQuery(document).ready(function(){
            jQuery('#wx-map-submit').removeAttr('disabled');
         } else { jQuery('#wx-map-submit').attr('disabled', 'disabled'); }
         
+        if(jQuery(this).val() != ''){
+           jQuery('#wx-proximity-submit').removeAttr('disabled');
+        } else { jQuery('#wx-proximity-submit').attr('disabled', 'disabled'); }
+        
         if(jQuery('input#wx-blog-title' == '')) {
         	var thisText = jQuery("select[name=cms_feed] option:selected").text();
         	jQuery('input#wx-blog-title').val(thisText);
@@ -604,6 +608,12 @@ jQuery(document).ready(function(){
 	
 	});
 	
+	jQuery('#wx-add-proximity-r3s-url-input').change(function(){
+	
+		jQuery('#wx-proximity-submit').removeAttr('disabled');
+	
+	});
+	
 	jQuery('#wx-add-contact-joomla-select').change(function(){
 		
 		var thisText = jQuery("select#wx-add-contact-joomla-select option:selected").text();
@@ -648,13 +658,17 @@ jQuery(document).ready(function(){
 	
 	
 	jQuery('a.map-k2-modal').click(function(){
-	
 
 	       jQuery('#wx-map-submit').removeAttr('disabled');
-
 	    
 	});
 	
+	jQuery('a.map-joomla-modal').click(function(){
+	
+		   jQuery('#wx-map-submit').removeAttr('disabled');
+		    
+	});
+
 	jQuery('input.wx-aboutapp-input').keyup(function(){
 	
 	    if(jQuery('input#id_name').val() != '' && jQuery('input#wx-aboutapp-title').val() != ''){
@@ -711,6 +725,14 @@ jQuery(document).ready(function(){
 		
 		if(thisVal != "")
 			jQuery('#wx-map-submit').removeAttr('disabled');
+	});
+	
+	jQuery('input#wx-add-proximity-k2-tag-input').keyup(function(){
+		
+		var thisVal = jQuery('input#wx-add-proximity-k2-tag-input').val();
+		
+		if(thisVal != "")
+			jQuery('#wx-proximity-submit').removeAttr('disabled');
 	});
 	
 	jQuery('input#wx-add-directory-k2-tag-input').keyup(function(){

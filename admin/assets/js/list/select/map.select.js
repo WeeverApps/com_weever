@@ -50,6 +50,8 @@ jQuery(document).ready(function(){
 		jQuery('#wx-add-map-content-input-fields').hide();
 		jQuery('#wx-add-map-jcategory-item').hide();
 		jQuery('#wx-add-map-jcategory-item-select').attr('name', 'unnamed');
+		jQuery('.map-k2-modal').hide();
+		jQuery('.map-joomla-modal').hide();
 		
 		
 		if(jQuery(this).val() == "joomla-category")
@@ -63,6 +65,7 @@ jQuery(document).ready(function(){
 			jQuery('#wx-add-map-content-joomla').show();
 			jQuery('#id_id').attr('name', 'cms_feed');
 			jQuery('#wx-add-map-content-input-fields').show();
+			jQuery('.map-joomla-modal').show();
 		}
 		
 		if(jQuery(this).val() == "k2") 
@@ -70,6 +73,8 @@ jQuery(document).ready(function(){
 			jQuery('#id_id').attr('name', 'cms_feed');
 			jQuery('#wx-add-map-k2-item').show();
 			jQuery('#wx-add-map-content-input-fields').show();
+			jQuery('.map-k2-modal').show();
+			
 		}
 		
 		if(jQuery(this).val() == "k2-cat") 

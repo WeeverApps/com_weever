@@ -52,8 +52,6 @@ if( comWeeverHelper::joomlaVersion() != "1.5" )
 			<?php echo $jOptions; ?>
 			<?php echo $k2Options; ?>
 			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_R3S_URL'); ?></option>
-			<option value='' disabled='disabled'>----------------</option>
-			<option value='settings'><?php echo JText::_('WEEVER_PROXIMITY_SETTINGS'); ?></option>
 		</select>
 		<label for="wx-select-proximity" class="key hasTip" style="color: #888888; font-size: 0.75em; padding-left: 4px; text-transform: uppercase;"
 		 title="<?php echo JText::_('WEEVER_ADD_PROXIMITY_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_ADD_PROXIMITY_HELP_LABEL'); ?></label>
