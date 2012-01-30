@@ -1,9 +1,9 @@
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.2
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -36,15 +36,65 @@ jQuery(document).ready(function(){
 	    			jObj.fadeOut(750);
 	    		}, 600 );
 	    });
-	
+	   
+	    
+	jQuery("#wx-theme-select").change(function() {
 
-	//
+		var image = jQsuery("option:selected", this).attr("rel");
+		
+		jQuery("#wx-theme-screenshot").attr("src", image);	
+		jQuery("#wx-theme-screenshot-link").attr("href", image);
+		jQuery("#wx-titlebar-text-save-reminder").css('display', 'inline-block');
+	
+	});
+	
+	
+	jQuery('input#wx-titlebar-text').keyup(function(){
+		
+		var thisVal = jQuery(this).val();
+		
+		jQuery('div#wx-theme-titlebar-text-preview').text(thisVal);
+		jQuery("#wx-titlebar-text-save-reminder").css('display', 'inline-block');
+
+	});
+	
+	
+	jQuery('input#wx-install-text').keyup(function() {
+	
+		jQuery("#wx-install-text-save-reminder").css('display', 'inline-block');
+	
+	});
+		
+		
+	jQuery("#wx-enable-titlebar-text").click(function() {
+	
+		if( jQuery(this).is(':checked') ) 
+		{
+			jQuery("#wx-theme-titlebar-logo-options").hide();
+			jQuery("#wx-theme-titlebar-logo-preview").hide();
+			jQuery("#wx-theme-note-titlebar-text").show();
+			jQuery(".wx-titlebar-text-container").show();
+			jQuery("#wx-theme-titlebar-text-preview").show();
+			jQuery("#wx-titlebar-text-save-reminder").css('display', 'inline-block');
+		} 
+		else 
+		{
+			jQuery("#wx-theme-titlebar-logo-options").show();
+			jQuery("#wx-theme-titlebar-logo-preview").show();
+			jQuery("#wx-theme-note-titlebar-text").hide();
+			jQuery(".wx-titlebar-text-container").hide();
+			jQuery("#wx-theme-titlebar-text-preview").hide();
+			jQuery("#wx-titlebar-text-save-reminder").css('display', 'inline-block');
+		}
+		
+	});
+
+
 	jQuery("#wx-app-status-button").click(function(e) {
 	
 		var siteKey = jQuery("input#wx-site-key").val();
 	
 		if( jQuery("#wx-app-status-online").hasClass("wx-app-hide-status") ) {
-			
 			
 			jQuery.ajax({
 			   type: "POST",
@@ -69,10 +119,10 @@ jQuery(document).ready(function(){
 	
 			   }
 			 });
-			
-			
+			 
 		}
-		else {
+		else 
+		{
 	
 			jQuery.ajax({
 			   type: "POST",
@@ -97,7 +147,6 @@ jQuery(document).ready(function(){
 	
 			   }
 			 });
-	
 	
 		}
 	
