@@ -44,6 +44,12 @@ comWeeverHelperJS::loadConfJS($staging);
 
 $document =& JFactory::getDocument();
 
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
+$document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jq.common.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
 
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
     $document->addStyleSheet($cssFile, 'text/css', null, array());

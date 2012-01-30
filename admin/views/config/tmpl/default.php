@@ -3,8 +3,8 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.5
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -27,20 +27,7 @@ JHTML::_('behavior.mootools');
 JHTML::_('behavior.tooltip');
 jimport('joomla.html.pane');
 
-$document = &JFactory::getDocument();
-
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
-$document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
-
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
-	
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/config.js' );
-
-$joomla = comWeeverHelper::joomlaVersion();
-
-if(substr($joomla,0,3) != '1.5')  // ### non-1.5 only
+if(comWeeverHelper::joomlaVersion() != '1.5')  // ### non-1.5 only
 	$jsJoomla = "Joomla.";
 else 
 	$jsJoomla = "";
@@ -51,12 +38,8 @@ $plugin_html_enabled = "";
 $plugin_html_disabled = "";
 
 if(!$this->site_key)
-{
-
 	JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
-
-}
-
+	
 $onlineSpan = "";
 $offlineSpan = "";
 
@@ -75,7 +58,6 @@ if(comWeeverHelper::isWebKit())
 	$dashWebKit = "-webkit";
 else 
 	$dashWebKit = "";
-
 
 ?>
 

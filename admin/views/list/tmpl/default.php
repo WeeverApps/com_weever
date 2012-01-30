@@ -3,8 +3,8 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4.1
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -31,12 +31,7 @@ jimport('joomla.html.pane');
 
 $document = &JFactory::getDocument();
 
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
-$document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
-
-$joomla = comWeeverHelper::joomlaVersion();
-
-if(substr($joomla,0,3) == '1.5')  // ### 1.5 only
+if(comWeeverHelper::joomlaVersion() == '1.5')  // ### 1.5 only
 {
 	$js_close = "document.getElementById('sbox-window').close();";
 }
@@ -68,12 +63,6 @@ $document->addCustomTag ('<script type="text/javascript">
                 }
                 
                 </script>');
-
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
-
-
 	
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_icons.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js' );
@@ -114,7 +103,7 @@ else
 <?php if( $newDownload = JRequest::getVar("upgrade") ) : ?>
 
 	<?php 
-	if(substr($joomla,0,3) != '1.5') 
+	if(comWeeverHelper::joomlaVersion() != '1.5') 
 	{ 
 		$newDownload = "index.php?option=com_installer&view=update"; 
 		$updateText = JText::_('WEEVER_JOOMLA_UPDATE_AVAILABLE_BYLINE');			

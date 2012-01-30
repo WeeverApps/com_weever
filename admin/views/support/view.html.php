@@ -1,10 +1,10 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.2.3
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,26 +29,13 @@ class WeeverViewSupport extends JView
 
 	public function display($tpl = null)
 	{
-
-		/* Call the state object */
-		$state =& $this->get( 'state' );
 		
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
-		$row->load(6);
-		$this->assign('appEnabled', $row->setting);
-		
-		if(!$state->get('site_key'))
-		{
-		
-			JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
-		
-		}		
-		
-		$this->assign('site_key', $state->get('site_key'));
+		$this->assign( 'appEnabled', comWeeverHelper::getAppStatus() );
+		$this->assign( 'site_key', comWeeverHelper::getKey() );
 
 		$appData = $this->get('appdata');
 		
-		$this->assignRef('account',$appData);
+		$this->assignRef('account', $appData);
 
 		comWeeverHelper::getJsStrings();
 
@@ -58,7 +45,6 @@ class WeeverViewSupport extends JView
 		JSubMenuHelper::addEntry(JText::_('WEEVER_ACCOUNT'), 'index.php?option=com_weever&view=account&task=account', false);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_SUPPORT_TAB'), 'index.php?option=com_weever&view=support&task=support', true);
 
-		
 		parent::display($tpl);
 	
 	}

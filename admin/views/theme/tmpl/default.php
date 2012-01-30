@@ -31,20 +31,10 @@ JHTML::_('behavior.tooltip');
 jimport('joomla.html.pane');
 
 $document = &JFactory::getDocument();
-
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
-$document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
-
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
 	
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/theme.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/fileuploader.js' );
 
-$joomla = comWeeverHelper::joomlaVersion();
-
-if(substr($joomla,0,3) != '1.5')  // ### non-1.5 only
+if(comWeeverHelper::joomlaVersion() != '1.5')  // ### non-1.5 only
 {
 	$jsJoomla = "Joomla.";
 }
@@ -54,7 +44,6 @@ else
 }
 
 $pane = &JPane::getInstance('tabs');
-
 
 $onlineSpan = "";
 $offlineSpan = "";
