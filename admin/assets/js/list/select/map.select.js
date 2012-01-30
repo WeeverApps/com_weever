@@ -47,12 +47,29 @@ jQuery(document).ready(function(){
 		jQuery('#wx-add-map-r3s-url-input').attr('name', 'unnamed');
 		jQuery('#id_id').attr('name', 'unnamed');
 		jQuery('#wx-add-map-k2-item').hide();
+		jQuery('#wx-add-map-content-input-fields').hide();
+		jQuery('#wx-add-map-jcategory-item').hide();
+		jQuery('#wx-add-map-jcategory-item-select').attr('name', 'unnamed');
 		
+		
+		if(jQuery(this).val() == "joomla-category")
+		{
+			jQuery('#wx-add-map-jcategory-item').show();
+			jQuery('#wx-add-map-jcategory-item-select').attr('name', 'cms_feed');
+		}
+		
+		if(jQuery(this).val() == "joomla-article")
+		{
+			jQuery('#wx-add-map-content-joomla').show();
+			jQuery('#id_id').attr('name', 'cms_feed');
+			jQuery('#wx-add-map-content-input-fields').show();
+		}
 		
 		if(jQuery(this).val() == "k2") 
 		{
 			jQuery('#id_id').attr('name', 'cms_feed');
 			jQuery('#wx-add-map-k2-item').show();
+			jQuery('#wx-add-map-content-input-fields').show();
 		}
 		
 		if(jQuery(this).val() == "k2-cat") 

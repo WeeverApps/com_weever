@@ -1,10 +1,10 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -21,6 +21,8 @@
 
 defined('_JEXEC') or die;
 
+$jOptions = "";
+
 if( comWeeverHelper::componentExists("com_k2") )
 {
 
@@ -36,11 +38,20 @@ else
 
 }
 
+if( comWeeverHelper::joomlaVersion() != "1.5" ) 
+{
+
+	$jOptions = "<option value='joomla-article'>".JText::_('WEEVER_ADD_MAP_FROM_ARTICLE')."</option>
+	<option value='joomla-category'>".JText::_('WEEVER_ADD_MAP_FROM_CATEGORY')."</option>";
+
+}
+
 ?>
 <div class="wx-add-ui formspacer">
 	<div class='wx-add-item-map wx-add-item-dropdown'>
 		<select id='wx-select-map'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_MAP_PARENTHESES'); ?></option>
+			<?php echo $jOptions; ?>
 			<?php echo $k2Options; ?>
 			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_R3S_URL'); ?></option>
 			<option value='' disabled='disabled'>----------------</option>
@@ -106,6 +117,24 @@ else
 					<a class="modal map-k2-modal" title="<?php echo JText::_('WEEVER_MAP_SELECT_K2_ITEM'); ?>"  href="index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object=id" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_MAP_SELECT'); ?></a>
 				</div>
 			</div>
+			
+		</div>
+		
+		<?php if(comWeeverHelper::joomlaVersion() != "1.5") : ?>
+		
+		<div id='wx-add-map-content-joomla'>
+				
+			<div class="button2-left">
+				<div class="blank">
+					<a class="modal" title="Select a Joomla article"  href="<?php echo $this->jArticleLink; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}">select</a>
+				</div>
+			</div>
+
+		</div>
+		
+		<?php endif; ?>
+		
+		<div id='wx-add-map-content-input-fields'>
 			
 			<input type="text" id="id_name-map" placeholder="Select content..." class='wx-input wx-map-input' disabled="disabled" />
 			
