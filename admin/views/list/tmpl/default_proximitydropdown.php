@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.5.1
+*	Version: 	1.6
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -121,7 +121,5 @@ if( comWeeverHelper::joomlaVersion() != "1.5" )
 	<div class='wx-add-submit'>
 		<input type='submit' id='wx-proximity-submit' class='wx-submit' value='<?php echo JText::_('WEEVER_ADD_PROXIMITY_SUBMIT'); ?>' name='add' disabled='disabled' />
 	</div>
-	
-	
 
 </div>

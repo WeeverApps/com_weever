@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.5.1
+*	Version: 	1.6
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -66,7 +66,6 @@ $document->addCustomTag ('<script type="text/javascript">
 	
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_icons.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_submit.js' );
 
 $this->loadTemplate('base64images');
 
@@ -192,6 +191,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	$tabIcon = $row->component . "Icon";
 	
 	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/select/'.$row->component.'.select.js' );
+	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js' );
 	
 	if(!$componentRowsCount || $tabActive == 0)
 		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs" rel="unpublished" style="float:right;" style="float:center;"><a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'"><div class="wx-grayed-out wx-nav-icon" rel="'.$this->site_key.'" style="height:32px;width:auto;min-width:32px;text-align:center" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label wx-grayed-out" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';	
