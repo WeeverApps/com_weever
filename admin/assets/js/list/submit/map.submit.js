@@ -18,13 +18,14 @@
 *
 */
 
-jQuery(document).ready(function(){ 
+jQuery(document).ready(function() { 
 	
 
 	jQuery('input#wx-map-submit').click(function(e) {
 
 	  	var siteKey = jQuery("input#wx-site-key").val(),
 	  		component = jQuery('select#wx-select-map').val(),
+	  		componentType = "map",
 	  		id, name, cmsFeed, tag, tagQString = '';
 	  	
 	  	switch(component) {
@@ -34,6 +35,7 @@ jQuery(document).ready(function(){
 	  			id = jQuery("#id_id").val();
 	  			name = jQuery("#id_name").val();
 	  			cmsFeed = "index.php?option=com_k2&view=item&id="+id+"&template=weever_cartographer";
+	  			componentType = "mapitem";
 	  			
 	  			break;
 	  		
@@ -52,6 +54,22 @@ jQuery(document).ready(function(){
 	  			
 	  			break;
 	  			
+	  		case "joomla-article":
+	  		
+	  			id = jQuery("#id_id").val();
+	  			name = jQuery("#id_name").val();
+	  			cmsFeed = "index.php?option=com_content&view=article&id="+id+"&template=weever_cartographer";
+	  			componentType = "mapitem";
+	  			
+	  			break;	  		
+	  		
+	  		case "joomla-category":
+	  		
+	  			name = jQuery("select[name=cms_feed] option:selected").text();
+	  			cmsFeed = jQuery("select[name=cms_feed]").val();
+	  		
+	  			break;
+	  			
 	  		case "r3s-url":
 	  		
 	  			name = jQuery("input#wx-map-title").val();
@@ -64,7 +82,7 @@ jQuery(document).ready(function(){
 	  	jQuery.ajax({
 	  	   type: "POST",
 	  	   url: "index.php",
-	  	   data: "option=com_weever&task=ajaxSaveNewTab&name=" + encodeURIComponent(name) + "&type=map&component=map&weever_action=add&published=1&cms_feed=" + encodeURIComponent(cmsFeed)+"&site_key="+siteKey+tagQString,
+	  	   data: "option=com_weever&task=ajaxSaveNewTab&name=" + encodeURIComponent(name) + "&type=map&component="+componentType+"&weever_action=add&published=1&cms_feed=" + encodeURIComponent(cmsFeed)+"&site_key="+siteKey+tagQString,
 	  	   success: function(msg){
 	  	     jQuery('#wx-modal-loading-text').html(msg);
 	  	     

@@ -2,13 +2,13 @@
 <extension type="component" version="1.7" method="upgrade">
 
 	<name>COM_WEEVER</name>
-	<creationDate>2012-01-27</creationDate>
+	<creationDate>2012-02-02</creationDate>
 	<author>Robert Gerald Porter</author>
 	<authorEmail>rob@weeverapps.com</authorEmail>
 	<authorUrl>http://www.weeverapps.com/</authorUrl>
 	<copyright>(c) 2010-2012 Weever Apps Inc.</copyright>
 	<license>GPLv3</license>
-	<version>1.5.1</version>
+	<version>1.6</version>
 	<description>COM_WEEVER_DESCRIPTION</description>
 	
 	<scriptfile>install.weever.joomla.1.7.php</scriptfile>
@@ -66,12 +66,6 @@
 		<filename>icon_.png</filename>
 		<filename>titlebar_logo_.png</filename>
 	</media>
-	
-	<components>
-	
-		<component folder="components" component="com_weevercartographer" name="Weever Cartographer" />
-	
-	</components>
 	
 	<plugins>
 	

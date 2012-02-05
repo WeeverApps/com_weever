@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.5.1
+*	Version: 	1.6
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION			= "1.5.1";
+	const VERSION			= "1.6";
 	const RELEASE_TYPE		= "stable";
 	const RELEASE_NAME		= "<a href='http://www.lprca.on.ca/' target='_blank'>Long Point</a>";
 	const NAME				= "Weever Apps Administrator Component for Joomla!";
@@ -38,7 +38,7 @@ final class comWeeverConst
 	const COPYRIGHT_URL		= "http://www.weeverapps.com/";
 	const LICENSE			= "GPL v3.0";
 	const LICENSE_URL		= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE		= "January 30, 2012";
+	const RELEASE_DATE		= "February 1, 2012";
 	const SUPPORT_WEB		= "http://support.weeverapps.com/";
 	const LIVE_SERVER		= "http://weeverapp.com/";
 	const LIVE_STAGE		= "http://stage.weeverapp.com/";

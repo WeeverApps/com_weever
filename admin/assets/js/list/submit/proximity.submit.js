@@ -21,10 +21,10 @@
 jQuery(document).ready(function(){ 
 	
 
-	jQuery('input#wx-map-submit').click(function(e) {
+	jQuery('input#wx-proximity-submit').click(function(e) {
 
 	  	var siteKey = jQuery("input#wx-site-key").val(),
-	  		component = jQuery('select#wx-select-map').val(),
+	  		component = jQuery('select#wx-select-proximity').val(),
 	  		id, name, cmsFeed, tag, tagQString = '';
 	  	
 	  	switch(component) {
@@ -53,8 +53,8 @@ jQuery(document).ready(function(){
 	  			
 	  		case "r3s-url":
 	  		
-	  			name = jQuery("input#wx-map-title").val();
-	  			cmsFeed = jQuery("input#wx-add-map-r3s-url-input").val();
+	  			name = jQuery("input#wx-proximity-title").val();
+	  			cmsFeed = jQuery("input#wx-add-proximity-r3s-url-input").val();
 	  			
 	  			break;
 	  	
@@ -63,14 +63,14 @@ jQuery(document).ready(function(){
 	  	jQuery.ajax({
 	  	   type: "POST",
 	  	   url: "index.php",
-	  	   data: "option=com_weever&task=ajaxSaveNewTab&name=" + encodeURIComponent(name) + "&type=map&component=map&weever_action=add&published=1&cms_feed=" + encodeURIComponent(cmsFeed)+"&site_key="+siteKey+tagQString,
+	  	   data: "option=com_weever&task=ajaxSaveNewTab&name=" + encodeURIComponent(name) + "&type=proximity&component=proximity&weever_action=add&published=1&cms_feed=" + encodeURIComponent(cmsFeed)+"&site_key="+siteKey+tagQString,
 	  	   success: function(msg){
 	  	     jQuery('#wx-modal-loading-text').html(msg);
 	  	     
 	  	     if(msg == "Item Added")
 	  	     {
 	  	     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
-	  	     	document.location.href = "index.php?option=com_weever#mapTab";
+	  	     	document.location.href = "index.php?option=com_weever#proximityTab";
 	  	     	document.location.reload(true);
 	  	     }
 	  	     else

@@ -1,11 +1,10 @@
 <?php
-
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.5.1
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.6
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -23,10 +22,8 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
 
-
 class WeeverViewList extends JView
 {
-
 
 	public function display($tpl = null)
 	{
@@ -67,6 +64,7 @@ class WeeverViewList extends JView
 		$this->assignRef('panelRows', $panelRows);
 		$this->assignRef('calendarRows', $calendarRows);
 		$this->assignRef('mapRows', $mapRows);
+		$this->assignRef('proximityRows', $proximityRows);
 		
 		if( comWeeverHelper::componentExists("com_k2") )
 			$k2Categories 	= $this->get('k2Categories');
@@ -93,16 +91,21 @@ class WeeverViewList extends JView
 		
 		comWeeverHelper::getJsStrings();			
 
-	    if( comWeeverHelper::joomlaVersion() == '1.5' )  // ### 1.5 only
-	    {
-	    	$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id';
-	    	$this->assignRef('jArticleLink', $link);
-	    }
-	    else 
-	    {
-	    	$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;layout=modal&amp;function=jSelectArticleNew';
-	    	$this->assignRef('jArticleLink', $link);	    
-	    }
+		if( comWeeverHelper::joomlaVersion() == '1.5' )  // ### 1.5 only
+		{
+			$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id';
+			$this->assignRef('jArticleLink', $link);
+		}
+		else 
+		{
+			$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;layout=modal&amp;function=jSelectArticleNew';
+			$this->assignRef('jArticleLink', $link);	    
+		}
+		
+		if( JRequest::getVar("wxTabSync") )
+		{
+			var_dump($appData);
+		}
 	
 		JSubMenuHelper::addEntry(JText::_('WEEVER_TAB_ITEMS'), 'index.php?option=com_weever', true);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_THEMING'), 'index.php?option=com_weever&view=theme&task=theme', false);
@@ -110,10 +113,8 @@ class WeeverViewList extends JView
 		JSubMenuHelper::addEntry(JText::_('WEEVER_ACCOUNT'), 'index.php?option=com_weever&view=account&task=account', false);
 		JSubMenuHelper::addEntry(JText::_('WEEVER_SUPPORT_TAB'), 'index.php?option=com_weever&view=support&task=support', false);
 
-
 		parent::display($tpl);
 	
 	}
-	
 
 }

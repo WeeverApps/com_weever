@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.5.1
+*	Version: 	1.6
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ if( comWeeverHelper::componentExists("com_k2") )
 else 
 {
 
-	$k2Options = "<option value='' disabled='disabled'>K2 must be installed to build maps with Weever</option>";
+	$k2Options = "<option value='' disabled='disabled'>K2 not installed, options unavailable</option>";
 
 }
 

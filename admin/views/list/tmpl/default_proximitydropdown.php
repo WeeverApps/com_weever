@@ -33,7 +33,7 @@ if( comWeeverHelper::componentExists("com_k2") )
 else 
 {
 
-	$k2Options = "<option value='' disabled='disabled'>K2 must be installed to build maps with Weever</option>";
+	$k2Options = "<option value='' disabled='disabled'>K2 not installed, options unavailable</option>";
 
 }
 

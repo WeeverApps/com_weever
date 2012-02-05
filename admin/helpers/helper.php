@@ -3,8 +3,8 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.5
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.6
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -674,16 +674,35 @@ class comWeeverHelper
 	}
 	
 
-	public static function buildWeeverHttpQuery($array)
+	public static function buildWeeverHttpQuery($array, $ajax = false)
 	{
 	
-		$array['version'] = comWeeverConst::VERSION;
+		$array['version'] 	= comWeeverConst::VERSION;
 		$array['generator'] = comWeeverConst::NAME;
-		$array['cms'] = 'joomla';
+		$array['cms'] 		= 'joomla';
+		
+		if($ajax == true)
+		{
+		
+			$array['app']	= 'ajax';
+			$array['site_key'] = self::getKey();
+		
+		}
 		
 		return http_build_query($array);	
 	
 	}
+	
+	
+	public static function buildAjaxQuery($query)
+	{
+	
+		$postdata = self::buildWeeverHttpQuery($query, true);
+		
+		return comWeeverHelper::sendToWeeverServer($postdata);
+	
+	}
+	
 
 	public static function sendToWeeverServerCurl($context)
 	{
@@ -780,21 +799,15 @@ class comWeeverHelper
 	public static function pushSubtabReorderToCloud()
 	{
 
-		$postdata = http_build_query(
-			array( 	
-				'id' => JRequest::getVar('id'),
-				'reordering' => 'subtab',
-				'type' => JRequest::getVar('type'),
-				'dir' => JRequest::getVar('dir'),
-				'app' => 'ajax',
-				'site_key' => JRequest::getVar('site_key'),
-				'm' => "update_order",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
+		$query = array( 	
+					'id' => JRequest::getVar('id'),
+					'reordering' => 'subtab',
+					'type' => JRequest::getVar('type'),
+					'dir' => JRequest::getVar('dir'),
+					'm' => "update_order"
+				);
 		
-		return  comWeeverHelper::sendToWeeverServer($postdata);
+		return self::buildAjaxQuery($query);
 
 	}
 	
@@ -802,19 +815,12 @@ class comWeeverHelper
 	public static function pushReorderToCloud()
 	{
 
-		$postdata = http_build_query(
-			array( 	
-				'reordering' => JRequest::getVar('reordering'),
-				'app' => 'ajax',
-				'site_key' => JRequest::getVar('site_key'),
-				'm' => "update_order",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME,
-				'cms' => 'joomla'
-				)
-			);
+		$query = array( 	
+					'reordering' 	=> JRequest::getVar('reordering'),
+					'm' 			=> "update_order"
+				);
 		
-		return  comWeeverHelper::sendToWeeverServer($postdata);
+		return self::buildAjaxQuery($query);
 
 	}
 	
@@ -822,20 +828,14 @@ class comWeeverHelper
 	public static function pushTabSettingsToCloud($var)
 	{
 	
-		$postdata = http_build_query(
-			array( 	
-				'var' => $var,
-				'site_key' => JRequest::getVar('site_key'),
-				'id' => JRequest::getVar('id'),
-				'type' => JRequest::getVar('type'),
-				'app' => 'ajax',
-				'm' => "update_tab_settings",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
+		$query = array( 	
+					'var' 		=> $var,
+					'id' 		=> JRequest::getVar('id'),
+					'type' 		=> JRequest::getVar('type'),
+					'm' 		=> "update_tab_settings"
+				);
 		
-		return comWeeverHelper::sendToWeeverServer($postdata);
+		return self::buildAjaxQuery($query);
 
 	}
 	
@@ -843,41 +843,27 @@ class comWeeverHelper
 	public static function pushImageToCloud($url)
 	{
 	
-		$postdata = http_build_query(
-			array( 	
-				'url' => $url,
-				'site_key' => JRequest::getVar('site_key'),
-				'type' => JRequest::getVar('type'),
-				'app' => 'ajax',
-				'm' => "edit_image",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
-		
-		return comWeeverHelper::sendToWeeverServer($postdata);
+		$query = array( 	
+					'url' 		=> $url,
+					'type' 		=> JRequest::getVar('type'),
+					'm' 		=> "edit_image"
+				);
+			
+		return self::buildAjaxQuery($query);
 
 	}
 	
-	
-	
-	
+
 	public static function pushTabNameToCloud()
 	{
 	
-		$postdata = http_build_query(
-			array( 	
-				'name' => JRequest::getVar('name'),
-				'site_key' => JRequest::getVar('site_key'),
-				'id' => JRequest::getVar('id'),
-				'app' => 'ajax',
-				'm' => "edit_tab_name",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
+		$query = array( 	
+					'name' 	=> JRequest::getVar('name'),
+					'id' 	=> JRequest::getVar('id'),
+					'm' 	=> "edit_tab_name"
+				);
 		
-		return comWeeverHelper::sendToWeeverServer($postdata);
+		return self::buildAjaxQuery($query);
 
 	}
 	
@@ -885,40 +871,29 @@ class comWeeverHelper
 	public static function pushTabIconToCloud()
 	{
 
-		$postdata = http_build_query(
-			array( 	
-				'icon' => JRequest::getVar('icon'),
-				'site_key' => JRequest::getVar('site_key'),
-				'type' => JRequest::getVar('type'),
-				'app' => 'ajax',
-				'm' => "edit_tab_icon",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
+		$query = array( 	
+					'icon' 			=> JRequest::getVar('icon'),
+					'type' 			=> JRequest::getVar('type'),
+					'm' 			=> "edit_tab_icon"
+				);
+			
+		return self::buildAjaxQuery($query);
 		
-		return comWeeverHelper::sendToWeeverServer($postdata);
 	}
+	
 	
 	public static function pushThemeToCloud($jsonTheme, $jsonLaunch)
 	{
 	
-		$postdata = http_build_query(
-			array( 	
-				'theme' => $jsonTheme,
-				'launch' => $jsonLaunch,
-				'site_key' => JRequest::getVar('site_key'),
-				'app' => 'ajax',
-				'titlebar_title' => JRequest::getVar('titlebar_title'),
-				'title' => JRequest::getVar('title'),
-				'm' => "edit_theme",
-				'cms' => 'joomla',
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
+		$query = array( 	
+					'theme' 			=> $jsonTheme,
+					'launch' 			=> $jsonLaunch,
+					'titlebar_title' 	=> JRequest::getVar('titlebar_title'),
+					'title' 			=> JRequest::getVar('title'),
+					'm' 				=> "edit_theme"
+				);
 		
-		return comWeeverHelper::sendToWeeverServer($postdata);
+		return self::buildAjaxQuery($query);
 
 	}
 						
@@ -926,26 +901,19 @@ class comWeeverHelper
 	public static function pushConfigToCloud()
 	{
 	
-		$postdata = http_build_query(
-			array( 	
-				'title' => JRequest::getVar('title'),
-				'devices' => JRequest::getVar('devices'),
-				'ecosystem' => JRequest::getVar('ecosystem'),
-				'app_enabled' => JRequest::getVar('app_enabled'),
-				'site_key' => JRequest::getVar('site_key'),
-				'domain' => JRequest::getVar('domain'),
-				'loadspinner' => JRequest::getVar('loadspinner',"", "post","string",JREQUEST_ALLOWHTML),
-				'google_analytics' => JRequest::getVar('google_analytics'),
-				'local' => JRequest::getVar('local'),
-				'app' => 'ajax',
-				'cms' => 'joomla',
-				'm' => "edit_config",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
+		$query = array( 	
+					'title' 			=> JRequest::getVar('title'),
+					'devices' 			=> JRequest::getVar('devices'),
+					'ecosystem' 		=> JRequest::getVar('ecosystem'),
+					'app_enabled' 		=> JRequest::getVar('app_enabled'),
+					'domain' 			=> JRequest::getVar('domain'),
+					'loadspinner' 		=> JRequest::getVar('loadspinner',"", "post","string",JREQUEST_ALLOWHTML),
+					'google_analytics' 	=> JRequest::getVar('google_analytics'),
+					'local' 			=> JRequest::getVar('local'),
+					'm' 				=> "edit_config"
+				);
 		
-		return comWeeverHelper::sendToWeeverServer($postdata);
+		return self::buildAjaxQuery($query);
 	
 	}
 	
@@ -953,19 +921,12 @@ class comWeeverHelper
 	public static function pushAppStatusToCloud($status)
 	{
 	
-		$postdata = http_build_query(
-			array( 	
-				'app_enabled' => $status,
-				'site_key' => JRequest::getVar('site_key'),
-				'app' => 'ajax',
-				'cms' => 'joomla',
-				'm' => "app_status",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
+		$query = array( 	
+					'app_enabled' 		=> $status,
+					'm' 				=> "app_status"
+				);
 		
-		return comWeeverHelper::sendToWeeverServer($postdata);
+		return self::buildAjaxQuery($query);
 	
 	}
 	
@@ -973,72 +934,52 @@ class comWeeverHelper
 	public static function pushSettingsToCloud()
 	{
 		
-		$postdata = http_build_query(
-			array( 	
-				'name' => JRequest::getVar('name'),
-				'hash' => JRequest::getVar('hash'),
-				'component' => JRequest::getVar('component'),
-				'published' => JRequest::getVar('published'),
-				'component_id' => JRequest::getVar('component_id'),
-				'ordering' => JRequest::getVar('ordering'),
-				'id' => JRequest::getVar('id'),
-				'rss_update' => JRequest::getVar('rss_update'),
-				'icon' => JRequest::getVar('icon'),
-				'rss' => JRequest::getVar('rss'),
-				'type' => JRequest::getVar('type'),
-				'component_behaviour' => JRequest::getVar('component_behaviour'),
-				'var' => JRequest::getVar('var',"", "post","string",JREQUEST_ALLOWRAW),
-				'site_key' => JRequest::getVar('site_key'),
-				'cms_feed' => JRequest::getVar('cms_feed'),
-				'app' => 'ajax',
-				'm' => JRequest::getVar('weever_action') . "_tab",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME
-				)
-			);
+		$query = array( 	
+					'name' 					=> JRequest::getVar('name'),
+					'hash' 					=> JRequest::getVar('hash'),
+					'component' 			=> JRequest::getVar('component'),
+					'published' 			=> JRequest::getVar('published'),
+					'component_id' 			=> JRequest::getVar('component_id'),
+					'ordering' 				=> JRequest::getVar('ordering'),
+					'id' 					=> JRequest::getVar('id'),
+					'rss_update' 			=> JRequest::getVar('rss_update'),
+					'icon' 					=> JRequest::getVar('icon'),
+					'rss' 					=> JRequest::getVar('rss'),
+					'type' 					=> JRequest::getVar('type'),
+					'component_behaviour' 	=> JRequest::getVar('component_behaviour'),
+					'var' 					=> JRequest::getVar('var',"", "post","string",JREQUEST_ALLOWRAW),
+					'cms_feed' 				=> JRequest::getVar('cms_feed'),
+					'm' 					=> JRequest::getVar('weever_action') . "_tab"
+				);
 
-		return comWeeverHelper::sendToWeeverServer($postdata);
+		return self::buildAjaxQuery($query);
 		
 	}
+	
 	
 	public static function pushPublishToCloud($cid, $publish)
 	{
 	
-	
-		$postdata = http_build_query(
-			array(
-				'published' => $publish,
-				'app' =>'ajax',
-				'm' => 'publish_tab',
-				'site_key' => JRequest::getVar('site_key'),
-				'cloud_tab_id' => $cid,
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME,
-				'cms' => 'joomla'
-				)
-			);
-			
-		return comWeeverHelper::sendToWeeverServer($postdata);
-	
+		$query = array(
+					'published' 		=> $publish,
+					'm' 				=> 'publish_tab',
+					'cloud_tab_id' 		=> $cid
+				);
+				
+		return self::buildAjaxQuery($query);
+
 	}
 	
 		
 	public static function pushDeleteToCloud($id)
 	{
 	
-		$postdata = http_build_query(
-			array(
-				'cloud_tab_id' => $id,
-				'app' => 'ajax',
-				'm' => 'delete_tab',
-				'site_key' => JRequest::getVar('site_key'),
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME,
-				'cms' => 'joomla'
-				)
-			);
-		
-		return comWeeverHelper::sendToWeeverServer($postdata);
+		$query = array(
+					'cloud_tab_id' 		=> $id,
+					'm' 				=> 'delete_tab'
+				);
+	
+		return self::buildAjaxQuery($query);
 	
 	}
 	
@@ -1066,6 +1007,7 @@ class comWeeverHelper
 		return $query;
 		
 	}
+	
 	
 	public static function _buildProximityFeedURL() 
 	{
@@ -1126,6 +1068,7 @@ class comWeeverHelper
 	
 	}
 	
+	
 	public static function _buildPageFeedURL() 
 	{
 	
@@ -1142,6 +1085,7 @@ class comWeeverHelper
 		return true;
 		
 	}
+	
 	
 	public static function _buildComponentFeedURL() 
 	{
