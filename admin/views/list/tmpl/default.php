@@ -19,7 +19,6 @@
 *
 */
 
-
 defined('_JEXEC') or die;
 
 $option = JRequest::getCmd('option');

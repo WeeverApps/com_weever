@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
-*	Version: 	1.5.1
+*	Version: 	1.6
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ jimport("joomla.installer.installer");
 class com_WeeverInstallerScript
 {
 
-	public		$release 	= "1.5.1";
+	public		$release 	= "1.6";
 	public		$src;
 	public		$installer;
 
@@ -43,27 +43,6 @@ class com_WeeverInstallerScript
 		$lang->load("com_weever");
 		
 		$document = &JFactory::getDocument();
-		
-		$document->addStyleDeclaration("		
-		.progress-bar {
-		  border: 2px solid red;
-		  border-radius: 14px;
-		
-		}
-		.progress-bar > div { 
-		  color: white; 
-		  background: red;
-		  overflow: hidden;
-		  white-space: nowrap; 
-		  padding: 10px 20px;
-		  border-radius: 10px;
-		  
-		  animation: progress-bar 2s;
-		}
-		
-		@keyframes progress-bar {
-		   0% { width: 0; }
-		}");
 		
 		$this->installPackagedExtensions($manifest);
 			
@@ -96,10 +75,6 @@ class com_WeeverInstallerScript
 			echo "<div style='color:#700; font-weight:bold'>".JText::_("WEEVER_ERROR_STREAM_CONTEXT_CREATE")."</div>";
 		
 		?>
-		
-		<div class="progress-bar">
-		  <div style="width: 100%">&nbsp;</div>
-		</div>
 		
 		<p><?php echo JText::_("WEEVER_INSTALL_WELCOME"); ?></p>
 		
@@ -175,7 +150,7 @@ class com_WeeverInstallerScript
 			$attributes 	= $plugin->attributes();
 			$plg 			= $this->src.DS.$attributes['folder'].DS.$attributes['plugin'];
 			
-			$result = @$this->installer->install($plg);
+			$result = $this->installer->install($plg);
 			
 			if($result)
 				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
@@ -238,7 +213,8 @@ class com_WeeverInstallerScript
 			$attributes 	= $template->attributes();
 			$tmpl 			= $this->src.DS.'templates'.DS.$attributes['template'];
 			
-			$result = $this->installer->install($tmpl);
+			// @ for 2.5.0 - 2.5.1 template install bug
+			$result = @$this->installer->install($tmpl);
 			
 			if($result)
 				$message = "<span style='color:green'>".JText::_("WEEVER_SUCCESS")."</span>";
