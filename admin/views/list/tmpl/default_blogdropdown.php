@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.5.1
+*	Version: 	1.6
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -42,6 +42,7 @@ else
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_BLOG_PARENTHESES'); ?></option>
 			<option value='menu'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_MENU'); ?></option>
 			<option value='content-cat'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_JCATEGORY'); ?></option>
+			<option value='blogger'><?php echo JText::_('WEEVER_ADD_BLOG_FROM_BLOGGER'); ?></option>
 			<?php echo $k2Options; ?>
 			<option value='r3s-url'><?php echo JText::_('WEEVER_ADD_R3S_URL'); ?></option>
 		</select>
@@ -108,16 +109,27 @@ else
 			</select>
 		
 		</div>
+		
+		<div id="wx-add-blog-blogger-url">
+		
+			<input type='text' value='' id='wx-add-blog-blogger-url-input' class='wx-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_BLOGGER_URL_PLACEHOLDER"); ?>' />
+			<label for='wx-add-blog-blogger-url-input' id='wx-add-blog-blogger-url-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_BLOGGER_URL_LABEL'); ?></label>
+			
+		</div>
 
 		
 		<div id="wx-add-blog-r3s-url">
+		
 			<input type='text' value='' id='wx-add-blog-r3s-url-input' class='wx-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
 			<label for='wx-add-blog-r3s-url-input' id='wx-add-blog-r3s-url-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>
+			
 		</div>
 
 		<div id="wx-add-blog-k2-tag">
-		<input type='text' value='' id='wx-add-blog-k2-tag-input' class='wx-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_K2_TAG_PLACEHOLDER"); ?>' />
-		<label for='wx-add-blog-k2-tag-input' id='wx-add-blog-k2-tag-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_BLOG_K2_TAG'); ?></label>
+		
+			<input type='text' value='' id='wx-add-blog-k2-tag-input' class='wx-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_K2_TAG_PLACEHOLDER"); ?>' />
+			<label for='wx-add-blog-k2-tag-input' id='wx-add-blog-k2-tag-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_BLOG_K2_TAG'); ?></label>
+			
 		</div>
 	
 	</div>

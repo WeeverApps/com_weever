@@ -23,19 +23,25 @@ jQuery(document).ready(function(){
 	
 	jQuery('input#wx-blog-submit').click(function(e) {
 	  
-			var cmsFeed = jQuery("select[name=cms_feed]").val();
-		  	var tabName = jQuery('input#wx-blog-title').val();
-		  	var tabTag	= jQuery('input[name=tag]').val();
-		  	var siteKey = jQuery("input#wx-site-key").val();
+			var cmsFeed 	= jQuery("select[name=cms_feed]").val(),
+		  		tabName 	= jQuery('input#wx-blog-title').val(),
+		  		tabTag		= jQuery('input[name=tag]').val(),
+		  		siteKey 	= jQuery("input#wx-site-key").val(),
+		  		blogType 	= jQuery("#wx-select-blog").val(),
+		  		component 	= "blog";
 		  	
-		  	if(cmsFeed == undefined) {
+		  	if(blogType == "r3s-url")
 		  		cmsFeed = jQuery("input#wx-add-blog-r3s-url-input").val();
+		  	else if(blogType == "blogger") {
+		  		cmsFeed = jQuery("input#wx-add-blog-blogger-url-input").val();
+		  		component = "blogger";
 		  	}
+		  	
 		  	
 		  	jQuery.ajax({
 		  	   type: "POST",
 		  	   url: "index.php",
-		  	   data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=blog&component=blog&tag="+encodeURIComponent(tabTag)+"&weever_action=add&published=1&cms_feed="+encodeURIComponent(cmsFeed)+"&site_key="+siteKey,
+		  	   data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=blog&component="+component+"&tag="+encodeURIComponent(tabTag)+"&weever_action=add&published=1&cms_feed="+encodeURIComponent(cmsFeed)+"&site_key="+siteKey,
 		  	   success: function(msg){
 		  	     jQuery('#wx-modal-loading-text').html(msg);
 		  	     

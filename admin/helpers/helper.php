@@ -225,7 +225,6 @@ class comWeeverHelper
 	}
 		
 	
-
 	public static function saveTheme()
 	{
 			
@@ -267,7 +266,6 @@ class comWeeverHelper
 		$response = comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);		
 		
 	}
-	
 	
 	
 	public static function parseVersion($str)
@@ -341,6 +339,7 @@ class comWeeverHelper
 	
 	}
 	
+	
 	public static function saveThemeJson($json)
 	{
 				
@@ -354,6 +353,7 @@ class comWeeverHelper
 		$result = @$db->loadObject();
 	
 	}
+	
 	
 	public static function enableStagingMode()
 	{
@@ -371,6 +371,7 @@ class comWeeverHelper
 		
 	}
 	
+	
 	public static function disableStagingMode()
 	{
 	
@@ -385,6 +386,7 @@ class comWeeverHelper
 
 		return $msg;	
 	}
+	
 	
 	public static function saveAccount()
 	{
@@ -470,6 +472,7 @@ class comWeeverHelper
 		return $msg;
 	
 	}
+	
 	
 	public static function toggleAppStatus()
 	{
@@ -583,23 +586,18 @@ class comWeeverHelper
 		}
 			
 		$url = $weeverServer;
-
 		$key = self::getKey();
 		
-		$postdata = http_build_query(
-			array( 	
-				'stage' => $stageUrl,
-				'app' => 'json',
-				'site_key' => $key,
-				'm' => "tab_sync",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME,
-				'cms' => 'joomla'
-				)
-			);
+		$query = array( 	
+					'stage' 		=> $stageUrl,
+					'app'			=> 'json',
+					'site_key' 		=> $key,
+					'm' 			=> "tab_sync"
+				);
 			
+		$postdata = self::buildWeeverHttpQuery($query, false);
 		
-		$json = comWeeverHelper::sendToWeeverServer($postdata);
+		$json = self::sendToWeeverServer($postdata);
 
 		if($json == "Site key missing or invalid.")
 		{
@@ -643,23 +641,18 @@ class comWeeverHelper
 		}
 			
 		$url = $weeverServer;
-		
 		$key = self::getKey();
 		
-		$postdata = http_build_query(
-			array( 	
-				'stage' => $stageUrl,
-				'app' => 'json',
-				'site_key' => $key,
-				'm' => "account_sync",
-				'version' => comWeeverConst::VERSION,
-				'generator' => comWeeverConst::NAME,
-				'cms' => 'joomla'
-				)
-			);
+		$query = array( 	
+					'stage' 		=> $stageUrl,
+					'app' 			=> 'json',
+					'site_key' 		=> $key,
+					'm' 			=> "account_sync"
+				);
 			
+		$postdata = self::buildWeeverHttpQuery($query, false);
 		
-		$json = comWeeverHelper::sendToWeeverServer($postdata);
+		$json = self::sendToWeeverServer($postdata);
 
 		if($json == "Site key missing or invalid.")
 		{
@@ -737,6 +730,7 @@ class comWeeverHelper
 
 	}
 	
+	
 	public static function sendToWeeverServer($postdata)
 	{
 
@@ -781,30 +775,32 @@ class comWeeverHelper
 	{
 	
 		$opts = array(
-					'http'=>array(
+					'http'	=> array(
 					
-						'method'=>"POST",
-						'header'=>"User-Agent: ".comWeeverConst::NAME." version: ".comWeeverConst::VERSION."\r\n".
-						         "Content-length: " . strlen($postdata)."\r\n".
-						         "Content-type: application/x-www-form-urlencoded\r\n",
-						'content' => $postdata
-					
-						)
+							'method'	=>"POST",
+							'header'	=>"User-Agent: ".comWeeverConst::NAME." version: ". 
+										comWeeverConst::VERSION."\r\n"."Content-length: " .
+										strlen($postdata)."\r\n".
+							         	"Content-type: application/x-www-form-urlencoded\r\n",
+							'content' 	=> $postdata
+						
+							)
 					);
 	
 		return stream_context_create($opts);
 	
 	}
 	
+	
 	public static function pushSubtabReorderToCloud()
 	{
 
 		$query = array( 	
-					'id' => JRequest::getVar('id'),
-					'reordering' => 'subtab',
-					'type' => JRequest::getVar('type'),
-					'dir' => JRequest::getVar('dir'),
-					'm' => "update_order"
+					'id' 			=> JRequest::getVar('id'),
+					'reordering' 	=> 'subtab',
+					'type' 			=> JRequest::getVar('type'),
+					'dir' 			=> JRequest::getVar('dir'),
+					'm' 			=> "update_order"
 				);
 		
 		return self::buildAjaxQuery($query);
@@ -1155,8 +1151,6 @@ class comWeeverHelper
 	
 	}
 	
-
-
 
 }
 

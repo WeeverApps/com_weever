@@ -584,6 +584,12 @@ jQuery(document).ready(function(){
 	
 	});
 	
+	jQuery('#wx-add-blog-blogger-url-input').change(function(){
+	
+		jQuery('#wx-blog-submit').removeAttr('disabled');
+	
+	});
+	
 	jQuery('#wx-add-blog-r3s-url-input').change(function(){
 	
 		jQuery('#wx-blog-submit').removeAttr('disabled');

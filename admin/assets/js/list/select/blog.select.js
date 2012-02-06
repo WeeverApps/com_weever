@@ -37,6 +37,8 @@ jQuery(document).ready(function(){
 		jQuery('#wx-add-blog-k2-category-item-select').attr('name', 'unnamed');
 		jQuery('#wx-add-blog-k2-tag').hide();
 		jQuery('#wx-add-blog-k2-tag-input').attr('name', 'unnamed');
+		jQuery('#wx-add-blog-blogger-url').hide();
+		jQuery('#wx-add-blog-blogger-url-input').attr('name', 'unnamed');
 		jQuery('#wx-add-blog-r3s-url').hide();
 		jQuery('#wx-add-blog-r3s-url-input').attr('name', 'unnamed');
 	
@@ -62,6 +64,12 @@ jQuery(document).ready(function(){
 		{
 			jQuery('#wx-add-blog-k2-tag').show();
 			jQuery('#wx-add-blog-k2-tag-input').attr('name', 'tag');
+		}
+		
+		if(jQuery(this).val() == "blogger")
+		{
+			jQuery('#wx-add-blog-blogger-url').show();
+			jQuery('#wx-add-blog-blogger-url-input').attr('name', 'cms_feed');
 		}
 		
 		if(jQuery(this).val() == "r3s-url")
