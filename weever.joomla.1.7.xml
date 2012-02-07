@@ -2,7 +2,7 @@
 <extension type="component" version="1.7" method="upgrade">
 
 	<name>COM_WEEVER</name>
-	<creationDate>2012-02-06</creationDate>
+	<creationDate>2012-02-07</creationDate>
 	<author>Robert Gerald Porter</author>
 	<authorEmail>rob@weeverapps.com</authorEmail>
 	<authorUrl>http://www.weeverapps.com/</authorUrl>
