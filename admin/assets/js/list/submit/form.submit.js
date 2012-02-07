@@ -33,22 +33,24 @@ jQuery(document).ready(function(){
 	  	   url: "index.php",
 	  	   data: "option=com_weever&task=ajaxSaveNewTab&name="+encodeURIComponent(tabName)+"&type=form&weever_action=add&published=1&component="+component+"&component_behaviour="+encodeURIComponent(tabUrl)+"&site_key="+siteKey+"&var="+APIKey,
 	  	   success: function(msg){
-	  	     jQuery('#wx-modal-loading-text').html(msg);
-	  	     
-	  	     if(msg == "Item Added")
-	  	     {
-	  	     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
-	  	     	document.location.href = "index.php?option=com_weever#formTab";
-	  	     	document.location.reload(true);
-	  	     }
-	  	     else
-	  	     {
-	  	     	jQuery('#wx-modal-secondary-text').html('');
-	  	     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
-	  	     }
+	  		 jQuery('#wx-modal-loading-text').html(msg);
+	  		 
+	  		 if(msg == "Item Added")
+	  		 {
+	  		 	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+	  		 	document.location.href = "index.php?option=com_weever#formTab";
+	  		 	document.location.reload(true);
+	  		 }
+	  		 else
+	  		 {
+	  		 	jQuery('#wx-modal-secondary-text').html('');
+	  		 	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+	  		 }
 	  	   }
 	  	 });
 	  	 
 	  	 e.preventDefault();
+	  	 
+	});
   	
 });

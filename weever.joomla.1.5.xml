@@ -29,7 +29,7 @@
 			  <folder>sql</folder>
 		  </files>
 		  
-		  <languages folder="admin/languages">
+		  <languages folder="components/com_weever/languages">
 		  	<language tag="en-GB">en-GB/en-GB.com_weever.ini</language>
 		  	<language tag="en-GB">en-GB/en-GB.com_weever.sys.ini</language>
 		  </languages>

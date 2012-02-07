@@ -393,18 +393,23 @@ class com_WeeverInstallerScript
 		
 		}
 		
-		
 		// check if there are server-side app updates to be made
 		if($key->setting)
 		{
 	
+			$key->setting = (string) $key->setting;
+	
 			$response = file_get_contents('http://weeverapp.com/index.php?app=ajax&version='.$this->release.'&cms=joomla&m=upgrade&site_key='.$key->setting);	
+			
 			?>
+			
 			<form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
+			
 			<?php 
 			echo $response;
 			echo JHTML::_('form.token');
-			?>		 
+			?>		
+			 
 			</form>
 			<?php
 		}
@@ -428,12 +433,12 @@ class com_WeeverInstallerScript
 	}
 	
 	
-	   public function preflight($type, $parent) 
-	   {
-	
-			//echo '<p>' . JText::_('COM_WEEVER_PREFLIGHT_' . $type . '_TEXT') . '</p>';
-	   }
-	
+   public function preflight($type, $parent) 
+   {
+
+		//echo '<p>' . JText::_('COM_WEEVER_PREFLIGHT_' . $type . '_TEXT') . '</p>';
+   }
+
 
    public function postflight($type, $parent) 
    {
