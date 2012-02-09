@@ -29,7 +29,7 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION			= "1.6";
+	const VERSION			= "1.6.0.1";
 	const RELEASE_TYPE		= "stable";
 	const RELEASE_NAME		= "<a href='http://www.lprca.on.ca/' target='_blank'>Long Point</a>";
 	const NAME				= "Weever Apps Administrator Component for Joomla!";

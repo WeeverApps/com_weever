@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.6
+*	Version: 	1.6.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -34,6 +34,8 @@ class comWeeverHelper
 	
 		$version = new JVersion;
 		$joomla = $version->getShortVersion();
+		
+		$joomla = substr($joomla,0,3);
 		
 		return $joomla;
 	
