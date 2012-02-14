@@ -1,10 +1,10 @@
 <?php
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.6.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ defined('_JEXEC') or die;
 		<select id='wx-select-video' class='wx-component-select' name='noname'>
 			<option value='0'><?php echo JText::_('WEEVER_ADD_NEW_VIDEO_FEED_PARENTHESES'); ?></option>
 			<option value='youtube'><?php echo JText::_('WEEVER_VIDEO_YOUTUBE_CHANNEL'); ?></option>
+			<option value='youtube.playlists'><?php echo JText::_('WEEVER_VIDEO_YOUTUBE_PLAYLIST'); ?></option>
 			<option value='vimeo'><?php echo JText::_('WEEVER_VIDEO_VIMEO_CHANNEL'); ?></option>
 		</select>
 	</div>
@@ -45,6 +46,7 @@ defined('_JEXEC') or die;
 		<input type='text' value='' placeholder='http://' name='component_behaviour' id='wx-video-url' class='wx-input wx-video-input' />
 		<label for='wx-video-url' id='wx-vimeo-url' class='wx-video-label'><?php echo JText::_('WEEVER_VIMEO_URL'); ?></label>
 		<label for='wx-video-url' id='wx-youtube-url' class='wx-video-label'><?php echo JText::_('WEEVER_YOUTUBE_URL'); ?></label>
+		<label for='wx-video-url' id='wx-youtube-playlist-url' class='wx-video-label'><?php echo JText::_('WEEVER_YOUTUBE_PLAYLIST_URL'); ?></label>
 	</div>
 	
 

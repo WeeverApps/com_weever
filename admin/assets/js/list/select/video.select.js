@@ -3,7 +3,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.5.1
+*	Version: 	1.6.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -33,8 +33,15 @@ jQuery(document).ready(function(){
 
 		if(jQuery(this).val() == "youtube") 
 		{
-			jQuery('#wx-add-video-youtube-help').show();
 			jQuery('label#wx-youtube-url').show();
+			jQuery('input#wx-video-url').val('');
+			jQuery('input#wx-video-url').attr('placeholder', 'http://');
+			jQuery('input#wx-video-title').val('YouTube');
+		}
+		
+		if(jQuery(this).val() == "youtube.playlists") 
+		{
+			jQuery('label#wx-youtube-playlist-url').show();
 			jQuery('input#wx-video-url').val('');
 			jQuery('input#wx-video-url').attr('placeholder', 'http://');
 			jQuery('input#wx-video-title').val('YouTube');
@@ -42,7 +49,6 @@ jQuery(document).ready(function(){
 		
 		if(jQuery(this).val() == "vimeo") 
 		{
-			jQuery('#wx-add-video-vimeo-help').show();
 			jQuery('label#wx-vimeo-url').show();
 			jQuery('input#wx-video-url').val('');
 			jQuery('input#wx-video-url').attr('placeholder', 'http://');
