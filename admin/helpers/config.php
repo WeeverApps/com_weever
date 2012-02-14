@@ -30,7 +30,7 @@ final class comWeeverConst
 
 	const VERSION			= "1.6.1";
 	const RELEASE_TYPE		= "stable";
-	const RELEASE_NAME		= "<a href='http://quinteconservation.ca/gallery/thumbnails.php?album=15' target='_blank'>Massasssauga Point</a>";
+	const RELEASE_NAME		= "<a href='http://quinteconservation.ca/gallery/thumbnails.php?album=15' target='_blank'>Massassauga Point</a>";
 	const NAME				= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR	= "(c) 2010-2012";
 	const COPYRIGHT			= "Weever Apps Inc.";
