@@ -3,7 +3,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.5.1
+*	Version: 	1.6.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -472,64 +472,12 @@ jQuery(document).ready(function(){
 		});
 	
 	
-	jQuery("a.wx-subtab-up").click(function() {
+	jQuery('input#wx-page-title.wx-page-input').keyup(function(){
 	
-		var tabId = jQuery(this).attr('title');
-		tabId = tabId.substring(4);
-		var siteKey = jQuery("input#wx-site-key").val();
-		var tabType = jQuery(this).attr('rel');
-	
-		jQuery.ajax({
-		   type: "POST",
-		   url: "index.php",
-		   data: "option=com_weever&task=ajaxSaveSubtabOrder&site_key="+siteKey+"&type="+tabType+"&dir=up&id="+tabId,
-		   success: function(msg){
-		     jQuery('#wx-modal-loading-text').html(msg);
-		     
-		     if(msg == "Order Updated")
-		     {
-		     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
-		     	document.location.href = "index.php?option=com_weever#"+tabType+"Tab";
-		     	setTimeout("document.location.reload(true);",20);
-		     }
-		     else
-		     {
-		     	jQuery('#wx-modal-secondary-text').html('');
-		     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
-		     }
-		   }
-		 });
-	
-	});
-	
-	jQuery("a.wx-subtab-down").click(function() {
-	
-		var tabId = jQuery(this).attr('title');
-		tabId = tabId.substring(4);
-		var siteKey = jQuery("input#wx-site-key").val();
-		var tabType = jQuery(this).attr('rel');
-	
-		jQuery.ajax({
-		   type: "POST",
-		   url: "index.php",
-		   data: "option=com_weever&task=ajaxSaveSubtabOrder&site_key="+siteKey+"&dir=down&type="+tabType+"&id="+tabId,
-		   success: function(msg){
-		     jQuery('#wx-modal-loading-text').html(msg);
-		     
-		     if(msg == "Order Updated")
-		     {
-		     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
-		     	document.location.href = "index.php?option=com_weever#"+tabType+"Tab";
-		     	setTimeout("document.location.reload(true);",20);
-		     }
-		     else
-		     {
-		     	jQuery('#wx-modal-secondary-text').html('');
-		     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
-		     }
-		   }
-		 });
-	
+		if(jQuery(this).val() != '' && jQuery('input#id_name').val() != ''){
+			jQuery('#wx-page-submit').removeAttr('disabled');
+		} else { jQuery('#wx-page-submit').attr('disabled', 'disabled'); }		
+		
 	});
 	
 	jQuery('select.wx-cms-feed-select').change(function(){

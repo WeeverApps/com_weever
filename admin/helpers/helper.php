@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.6.0.1
+*	Version: 	1.6.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -41,6 +41,7 @@ class comWeeverHelper
 	
 	}
 	
+	
 	public static function getSetting($id)
 	{
 	
@@ -51,10 +52,12 @@ class comWeeverHelper
 	
 	}
 	
+	
 	public static function getKey() 			{ return self::getSetting(3); }	
 	public static function getDeviceSettings() 	{ return self::getSetting(5); }
 	public static function getAppStatus() 		{ return self::getSetting(6); }
 	public static function getStageStatus()		{ return self::getSetting(7); }
+	
 	
 	public static function isWebKit()
 	{
@@ -65,7 +68,9 @@ class comWeeverHelper
 	
 	}
 	
-	public static function typeIsSupported($type) {
+	
+	public static function typeIsSupported($type) 
+	{
 
 		if( strstr(comWeeverConst::SUPPORTED_TYPES, "-".$type."-") )
 			return true;
@@ -73,6 +78,7 @@ class comWeeverHelper
 			return false;
 	
 	}
+	
 	
 	public static function componentExists($component)
 	{
@@ -223,7 +229,6 @@ class comWeeverHelper
 		
 		}
 
-	
 	}
 		
 	
@@ -242,11 +247,11 @@ class comWeeverHelper
 		
 		$themeObj = new comWeeverThemeStylesObj;
 		
-		$themeObj->titlebarHtml = JRequest::getVar("titlebarHtml", "", "post","string",JREQUEST_ALLOWHTML);
-		$themeObj->css = JRequest::getVar("css");
-		$themeObj->css_url = JRequest::getVar("css_url");
-		$titlebarTextEnabled = JRequest::getVar("titlebar_title_enabled");
-		$themeObj->template = JRequest::getVar("template");
+		$themeObj->titlebarHtml 		= JRequest::getVar("titlebarHtml", "", "post","string",JREQUEST_ALLOWHTML);
+		$themeObj->css 					= JRequest::getVar("css");
+		$themeObj->css_url 				= JRequest::getVar("css_url");
+		$titlebarTextEnabled 			= JRequest::getVar("titlebar_title_enabled");
+		$themeObj->template 			= JRequest::getVar("template");
 		
 		if(trim($themeObj->titlebarHtml))
 			$themeObj->titlebarSource = "html";
@@ -255,17 +260,15 @@ class comWeeverHelper
 		else
 			$themeObj->titlebarSource = "image";
 			
-		$launch = new launch_screen;
-		$launch->animation = JRequest::getVar("animation");
-		$launch->duration = JRequest::getVar("duration");
-		$launch->timeout = JRequest::getVar("timeout");
-		$launch->install_prompt = JRequest::getVar("install_prompt");
+		$launch 					= new StdClass();
+		$launch->animation 			= JRequest::getVar("animation");
+		$launch->duration 			= JRequest::getVar("duration");
+		$launch->timeout 			= JRequest::getVar("timeout");
+		$launch->install_prompt 	= JRequest::getVar("install_prompt");
 		
-		$jsonLaunch = json_encode($launch);
-
-		$jsonTheme = json_encode($themeObj);
-
-		$response = comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);		
+		$jsonLaunch 	= json_encode($launch);
+		$jsonTheme 		= json_encode($themeObj);
+		$response 		= comWeeverHelper::pushThemeToCloud($jsonTheme, $jsonLaunch);		
 		
 	}
 	
@@ -301,35 +304,35 @@ class comWeeverHelper
 		
 			case "map":
 			
-				$var = new map_settings;
-				$var->start = new map_start;
+				$var 					= new StdClass();
+				$var->start 			= new StdClass();
 				
-				$submittedVars = explode(",",JRequest::getVar("var"));
+				$submittedVars 			= explode(",",JRequest::getVar("var"));
 				
-				$var->start->latitude = $submittedVars[0];
-				$var->start->longitude = $submittedVars[1];
-				$var->start->zoom = $submittedVars[2];
-				$var->marker = $submittedVars[3];
+				$var->start->latitude 	= $submittedVars[0];
+				$var->start->longitude 	= $submittedVars[1];
+				$var->start->zoom 		= $submittedVars[2];
+				$var->marker 			= $submittedVars[3];
 				
-				$var_json = json_encode($var);
+				$var_json 				= json_encode($var);
 			
 				break;
 				
 			case "panel": 
 			case "aboutapp":
 			
-				$var = new panel_settings;
-				$var->animation = new animation;
+				$var 							= new StdClass();
+				$var->animation 				= new StdClass();
 				
-				$submittedVars = explode(",",JRequest::getVar("var"));
+				$submittedVars 					= explode(",",JRequest::getVar("var"));
 				
 				
-				$var->animation->type = $submittedVars[0];
-				$var->animation->duration = $submittedVars[1];
-				$var->animation->timeout = $submittedVars[2];
-				$var->content_header = $submittedVars[3];
+				$var->animation->type 			= $submittedVars[0];
+				$var->animation->duration 		= $submittedVars[1];
+				$var->animation->timeout 		= $submittedVars[2];
+				$var->content_header 			= $submittedVars[3];
 			
-				$var_json = json_encode($var);
+				$var_json 						= json_encode($var);
 			
 				break;
 		
@@ -503,15 +506,15 @@ class comWeeverHelper
 	public static function tabSync($stage=null)
 	{
 	
-		$tab_obj = comWeeverHelper::getJsonTabSync();
+		$tab_obj 	= comWeeverHelper::getJsonTabSync();
 		
-		$query = " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
-		$db = &JFactory::getDBO();
+		$query 		= " SELECT `setting` FROM #__weever_config WHERE `option`='site_key' ";
+		$db 		= &JFactory::getDBO();
 		
 		$db->setQuery($query);
-		$key = $db->loadObject();
+		$key 		= $db->loadObject();
 		
-		$row =& JTable::getInstance('WeeverConfig', 'Table');
+		$row 		=& JTable::getInstance('WeeverConfig', 'Table');
 		
 		for($i = 1; $i <= 8; $i++)
 		{
@@ -543,23 +546,22 @@ class comWeeverHelper
 		
 		$db->setQuery($query);
 		$result = $db->loadObject();
-		
-
 	
 	}
 	
 
-
 	public static function sortTabs($order)
 	{
 
-		$orderArray = explode(",",$order);
-		$reorderType = array();
+		$orderArray 	= explode(",",$order);
+		$reorderType 	= array();
 		
-		foreach((array)$orderArray as $k=>$v)
+		foreach( (array) $orderArray as $k=>$v )
 		{
+		
 			$v = str_replace("TabID","",$v);	
 			$reorder[] = $v;
+			
 		}
 	
 		$reordering = json_encode($reorder);
@@ -578,13 +580,13 @@ class comWeeverHelper
 		
 		if(self::getStageStatus())
 		{
-			$weeverServer = comWeeverConst::LIVE_STAGE;
-			$stageUrl = comWeeverHelper::getSiteDomain();
+			$weeverServer 	= comWeeverConst::LIVE_STAGE;
+			$stageUrl 		= comWeeverHelper::getSiteDomain();
 		}
 		else
 		{
-			$weeverServer = comWeeverConst::LIVE_SERVER;
-			$stageUrl = '';
+			$weeverServer 	= comWeeverConst::LIVE_SERVER;
+			$stageUrl 		= '';
 		}
 			
 		$url = $weeverServer;
@@ -597,7 +599,7 @@ class comWeeverHelper
 					'm' 			=> "tab_sync"
 				);
 			
-		$postdata = self::buildWeeverHttpQuery($query, false);
+		$postdata 	= self::buildWeeverHttpQuery($query, false);
 		
 		$json = self::sendToWeeverServer($postdata);
 
@@ -609,8 +611,8 @@ class comWeeverHelper
 		
 		$j_array = json_decode($json);
 		
-		$latestVersion = comWeeverHelper::parseVersion($j_array->joomla_latest);
-		$currentVersion = comWeeverHelper::parseVersion(comWeeverConst::VERSION);
+		$latestVersion 		= comWeeverHelper::parseVersion($j_array->joomla_latest);
+		$currentVersion 	= comWeeverHelper::parseVersion(comWeeverConst::VERSION);
 		
 		if( $latestVersion[0] > $currentVersion[0] ||
 			($latestVersion[0] == $currentVersion[0] && $latestVersion[1] > $currentVersion[1]) ||
@@ -869,10 +871,12 @@ class comWeeverHelper
 	public static function pushTabIconToCloud()
 	{
 
-		$query = array( 	
+		$query = array( 
+			
 					'icon' 			=> JRequest::getVar('icon'),
 					'type' 			=> JRequest::getVar('type'),
 					'm' 			=> "edit_tab_icon"
+					
 				);
 			
 		return self::buildAjaxQuery($query);
@@ -883,12 +887,14 @@ class comWeeverHelper
 	public static function pushThemeToCloud($jsonTheme, $jsonLaunch)
 	{
 	
-		$query = array( 	
+		$query = array( 
+			
 					'theme' 			=> $jsonTheme,
 					'launch' 			=> $jsonLaunch,
 					'titlebar_title' 	=> JRequest::getVar('titlebar_title'),
 					'title' 			=> JRequest::getVar('title'),
 					'm' 				=> "edit_theme"
+					
 				);
 		
 		return self::buildAjaxQuery($query);
@@ -900,6 +906,7 @@ class comWeeverHelper
 	{
 	
 		$query = array( 	
+		
 					'title' 			=> JRequest::getVar('title'),
 					'devices' 			=> JRequest::getVar('devices'),
 					'ecosystem' 		=> JRequest::getVar('ecosystem'),
@@ -909,6 +916,7 @@ class comWeeverHelper
 					'google_analytics' 	=> JRequest::getVar('google_analytics'),
 					'local' 			=> JRequest::getVar('local'),
 					'm' 				=> "edit_config"
+					
 				);
 		
 		return self::buildAjaxQuery($query);
@@ -920,8 +928,10 @@ class comWeeverHelper
 	{
 	
 		$query = array( 	
+		
 					'app_enabled' 		=> $status,
 					'm' 				=> "app_status"
+					
 				);
 		
 		return self::buildAjaxQuery($query);
@@ -933,6 +943,7 @@ class comWeeverHelper
 	{
 		
 		$query = array( 	
+		
 					'name' 					=> JRequest::getVar('name'),
 					'hash' 					=> JRequest::getVar('hash'),
 					'component' 			=> JRequest::getVar('component'),
@@ -948,6 +959,7 @@ class comWeeverHelper
 					'var' 					=> JRequest::getVar('var',"", "post","string",JREQUEST_ALLOWRAW),
 					'cms_feed' 				=> JRequest::getVar('cms_feed'),
 					'm' 					=> JRequest::getVar('weever_action') . "_tab"
+					
 				);
 
 		return self::buildAjaxQuery($query);
@@ -959,9 +971,11 @@ class comWeeverHelper
 	{
 	
 		$query = array(
+		
 					'published' 		=> $publish,
 					'm' 				=> 'publish_tab',
 					'cloud_tab_id' 		=> $cid
+					
 				);
 				
 		return self::buildAjaxQuery($query);
@@ -973,8 +987,10 @@ class comWeeverHelper
 	{
 	
 		$query = array(
+		
 					'cloud_tab_id' 		=> $id,
 					'm' 				=> 'delete_tab'
+					
 				);
 	
 		return self::buildAjaxQuery($query);
@@ -1074,10 +1090,13 @@ class comWeeverHelper
 		
 		if($var = JRequest::getVar("tags"))	
 		{
-			$var = str_replace(",,","[[comma]]",$var);
-			$var = explode( ",", $var );
-			$var = json_encode($var);
+		
+			$var 	= str_replace(",,","[[comma]]",$var);
+			$var 	= explode( ",", $var );
+			$var 	= json_encode($var);
+			
 			JRequest::setVar("var", $var);
+			
 		}
 			
 		return true;
@@ -1102,6 +1121,7 @@ class comWeeverHelper
 
 		if(JRequest::getVar('weever_action') == 'add')
 		{
+			
 			$type = JRequest::getVar('component_behaviour');
 			
 			$query = 	
@@ -1114,24 +1134,24 @@ class comWeeverHelper
 			$db->setQuery($query);
 			$contact = $db->loadObject();
 			
-			$json = new contact_json;
+			$json = new StdClass();
 			
-			$json->telephone = $contact->telephone;
-			$json->email_to = $contact->email_to;
-			$json->address = $contact->address;
-			$json->town = $contact->suburb;
-			$json->state = $contact->state;
-			$json->country = $contact->country;
-			$json->googlemaps = JRequest::getVar('googlemaps', 0);
+			$json->telephone 		= $contact->telephone;
+			$json->email_to 		= $contact->email_to;
+			$json->address 			= $contact->address;
+			$json->town 			= $contact->suburb;
+			$json->state 			= $contact->state;
+			$json->country 			= $contact->country;
+			$json->googlemaps 		= JRequest::getVar('googlemaps', 0);
 			
-			$joomla = comWeeverHelper::joomlaVersion();
+			$joomla 				= comWeeverHelper::joomlaVersion();
 			
 			if(substr($joomla,0,3) == '1.5')
 				$json->image = "images/stories/".$contact->image;
 			else 
 				$json->image = $contact->image;
 				
-			$json->misc = $contact->misc;
+			$json->misc 			= $contact->misc;
 			
 			// destringify our options
 			
@@ -1157,63 +1177,3 @@ class comWeeverHelper
 }
 
 
-class contact_json
-{
-
-	public 	$telephone;
-	public 	$email_to;	
-	public 	$name;
-	public 	$address;
-	public 	$town;
-	public 	$state;
-	public 	$country;
-	public  $emailform;
-	public 	$googlemaps;
-	public	$image;
-	public 	$misc;
-
-}
-
-class map_settings
-{
-
-	public $start;
-	public $marker;
-
-}
-
-class map_start
-{
-
-	public $latitude;
-	public $longitude;
-	public $zoom;
-
-}
-
-class panel_settings
-{
-
-	public $animation;
-	public $content_header;
-
-}
-
-class animation
-{
-
-	public $type;
-	public $duration;
-	public $timeout;
-	
-}
-
-class launch_screen
-{
-
-	public $animation;
-	public $duration;
-	public $install_prompt;
-	public $timeout;
-
-}
