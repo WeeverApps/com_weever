@@ -78,13 +78,17 @@ $offlineSpan 		= "";
 
 if($this->appEnabled)
 {
+
 	$offlineSpan = 'class="wx-app-hide-status"';
 	$offlineStatusClass = "";
+	
 }
 else 
 {
+
 	$onlineSpan = 'class="wx-app-hide-status"';
 	$offlineStatusClass = "class=\"wx-app-status-button-offline\"";
+	
 }
 
 if(comWeeverHelper::isWebKit())
