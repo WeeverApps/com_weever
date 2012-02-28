@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.6
+*	Version: 	1.6.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -21,23 +21,19 @@
 
 defined('_JEXEC') or die;
 
-$option = JRequest::getCmd('option');
+$option 		= JRequest::getCmd('option');
+$document 		= &JFactory::getDocument();
+
 JHTML::_('behavior.tooltip');
 JHTML::_('behavior.mootools');
 JHTML::_('behavior.modal', 'a.modal');
 
 jimport('joomla.html.pane');
 
-$document = &JFactory::getDocument();
-
 if(comWeeverHelper::joomlaVersion() == '1.5')  // ### 1.5 only
-{
 	$js_close = "document.getElementById('sbox-window').close();";
-}
 else 
-{
 	$js_close = "window.parent.SqueezeBox.close();";
-}
 
 $document->addCustomTag ('<script type="text/javascript">
 
@@ -61,22 +57,24 @@ $document->addCustomTag ('<script type="text/javascript">
                                         
                 }
                 
-                </script>');
+                </script>
+                
+	');
 	
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_icons.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_icons.js?v='.comWeeverConst::VERSION );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js?v='.comWeeverConst::VERSION );
 
 $this->loadTemplate('base64images');
 
 jimport('joomla.filter.output');
 
 
-$child_html = "";
-$k = 0; // for alternating shaded rows
-$iii = 0; // for making checkboxes line up right
-$tabsUnpublished = 0;
-$onlineSpan = "";
-$offlineSpan = "";
+$child_html 		= "";
+$k 					= 0; // for alternating shaded rows
+$iii 				= 0; // for making checkboxes line up right
+$tabsUnpublished 	= 0;
+$onlineSpan 		= "";
+$offlineSpan 		= "";
 
 if($this->appEnabled)
 {
@@ -94,7 +92,6 @@ if(comWeeverHelper::isWebKit())
 else 
 	$dashWebKit = "";
 
-
 ?>
 
 <?php if( $newDownload = JRequest::getVar("upgrade") ) : ?>
@@ -102,12 +99,16 @@ else
 	<?php 
 	if(comWeeverHelper::joomlaVersion() != '1.5') 
 	{ 
+	
 		$newDownload = "index.php?option=com_installer&view=update"; 
-		$updateText = JText::_('WEEVER_JOOMLA_UPDATE_AVAILABLE_BYLINE');			
+		$updateText = JText::_('WEEVER_JOOMLA_UPDATE_AVAILABLE_BYLINE');
+					
 	} 
 	else 
 	{
+	
 		$updateText = JText::_('WEEVER_JOOMLA_UPDATE_AVAILABLE_BYLINE_15');
+		
 	}
 	?>
 
@@ -164,12 +165,13 @@ else
 
 for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 {
-	$row = &$this->tabRows[$i];
-	$componentRowsName = $row->component . 'Rows';
-	$componentRows = @$this->{$componentRowsName}; // no error for experimental tabs
-	$tabActive = 0;
+
+	$row 				= &$this->tabRows[$i];
+	$componentRowsName 	= $row->component . 'Rows';
+	$componentRows 		= @$this->{$componentRowsName}; // no error for experimental tabs
+	$tabActive 			= 0;
 	
-	$row->id = $row->cloud_tab_id;
+	$row->id 			= $row->cloud_tab_id;
 	
 	for($ii=0, $nn=count($componentRows); $ii<$nn; $ii++)
 	{
@@ -189,8 +191,8 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	$componentRowsCount = count($componentRows);
 	$tabIcon = $row->component . "Icon";
 	
-	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/select/'.$row->component.'.select.js' );
-	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js' );
+	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/select/'.$row->component.'.select.js?v='.comWeeverConst::VERSION );
+	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js?v='.comWeeverConst::VERSION );
 	
 	if(!$componentRowsCount || $tabActive == 0)
 		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs" rel="unpublished" style="float:right;" style="float:center;"><a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'"><div class="wx-grayed-out wx-nav-icon" rel="'.$this->site_key.'" style="height:32px;width:auto;min-width:32px;text-align:center" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label wx-grayed-out" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';	
@@ -200,8 +202,6 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 }
 	
-		
-
  ?>
  
  </ul>
@@ -235,53 +235,66 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	switch($row->component)
 	{
+	
 		case "blog":
 			$componentName = JText::_('WEEVER_TYPE_BLOG');
 			$componentHelp = JText::_('WEEVER_LIST_BLOG_HELP');
 			break;
+			
 		case "page":
 			$componentName = JText::_('WEEVER_TYPE_ARTICLE');
 			$componentHelp = JText::_('WEEVER_LIST_ARTICLE_HELP');
 			break;
+			
 		case "contact":
 			$componentName = JText::_('WEEVER_TYPE_CONTACT');
 			$componentHelp = JText::_('WEEVER_LIST_CONTACT_HELP');
 			break;
+			
 		case "component":
 			$componentName = JText::_('WEEVER_TYPE_COMPONENT');
 			$componentHelp = JText::_('WEEVER_LIST_COMPONENT_HELP');
 			break;
+			
 		case "listingcomponent":
 			$componentName = JText::_('WEEVER_TYPE_COMPONENT_LIST');
 			$componentHelp = JText::_('WEEVER_LIST_COMPONENT_LIST_HELP');
 			break;
+			
 		case "video":
 			$componentName = JText::_('WEEVER_TYPE_VIDEO_FEED');
 			$componentHelp = JText::_('WEEVER_LIST_VIDEO_HELP');
 			break;
+			
 		case "social":
 			$componentName = JText::_('WEEVER_TYPE_SOCIAL_NETWORK');
 			$componentHelp = JText::_('WEEVER_LIST_SOCIAL_NETWORK_HELP');
 			break;
+			
 		case "photo":
 			$componentName = JText::_('WEEVER_TYPE_PHOTO_FEED');
 			$componentHelp = JText::_('WEEVER_LIST_PHOTO_FEED_HELP');
 			break;
+			
 	}
 	
 	if(count($componentRows))
 	{
+		
 		$published = JHTML::_('grid.published', $row, $iii);
 		$checked = JHTML::_('grid.id', $iii, $row->id);
 		
 		if($row->published == 0)
 			$tabsUnpublished++;
+			
 	}
 	else
 	{
+	
 		$published = JText::_('WEEVER_NOT_APPLICABLE');
 		$checked = null;
 		$tabsUnpublished++;
+		
 	}
 
 	?>
