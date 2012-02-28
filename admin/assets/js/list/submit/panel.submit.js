@@ -3,7 +3,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.6
+*	Version: 	1.6.3
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -24,10 +24,10 @@ jQuery(document).ready(function(){
 	jQuery('input#wx-panel-submit').click(function(e) {
 
 	  	var cmsFeed;
-	  	var id = jQuery("#id_id").val();
-	  	var component = jQuery('select#wx-select-panel').val();
-	  	var siteKey = jQuery("input#wx-site-key").val();
-	  	var tabName = jQuery('input#wx-panel-title').val();
+	  	var id 			= jQuery("#id_id").val();
+	  	var component 	= jQuery('select#wx-select-panel').val();
+	  	var siteKey 	= jQuery("input#wx-site-key").val();
+	  	var tabName 	= jQuery('input#wx-panel-title').val();
 	  	
 	  	if(component == "k2") {
 	  	
