@@ -8,10 +8,10 @@
 	<authorUrl>http://www.weeverapps.com/</authorUrl>
 	<copyright>(c) 2010-2012 Weever Apps Inc.</copyright>
 	<license>GPLv3</license>
-	<version>1.6.3.1</version>
+	<version>1.7</version>
 	<description>COM_WEEVER_DESCRIPTION</description>
 	
-	<scriptfile>install.weever.joomla.1.7.php</scriptfile>
+	<scriptfile>install.weever.joomla.2.5.php</scriptfile>
  
 	<install>
 		<sql>

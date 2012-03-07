@@ -28,8 +28,8 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION			= "1.6.3.1";
-	const RELEASE_TYPE		= "stable";
+	const VERSION			= "1.7";
+	const RELEASE_TYPE		= "dev";
 	const RELEASE_NAME		= "<a href='http://www.nvca.on.ca/index.htm' target='_blank'>Nottawasaga Valley</a>";
 	const NAME				= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR	= "(c) 2010-2012";
@@ -40,7 +40,7 @@ final class comWeeverConst
 	const RELEASE_DATE		= "March 7, 2012";
 	const SUPPORT_WEB		= "http://support.weeverapps.com/";
 	const LIVE_SERVER		= "http://weeverapp.com/";
-	const LIVE_STAGE		= "http://stage.weeverapp.com/";
+	const LIVE_STAGE		= "http://cephalopod.weeverapp.com/";
 	const API_VERSION		= "api/v1/";
 	const SUPPORTED_TYPES	= "-blog--calendar--component--contact--form--listingcomponent--page--photo--social--video--panel--aboutapp--map--directory--proximity-";
 
