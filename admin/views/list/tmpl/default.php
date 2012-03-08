@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.6.3
+*	Version: 	1.7
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -165,6 +165,8 @@ else
 <div id="listTabs">
 <ul id="listTabsSortable" style="padding-right: 5%">
 
+<li id="addTab" class="wx-nav-tabs"><a href="#addTab" class="wx-tab-sortable"><div class="wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" title="Add"><img class="wx-nav-icon-img" src="data:image/png;base64,<?php echo $this->theme->addIcon; ?>" /></div><div class="wx-nav-label">+</div></a></li>
+
 <?php 
 
 for($i=0, $n=count($this->tabRows); $i < $n; $i++)
@@ -196,8 +198,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	$tabIcon = $row->component . "Icon";
 	
 	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/select/'.$row->component.'.select.js?v='.comWeeverConst::VERSION );
-	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js?v='.comWeeverConst::VERSION );
-	
+	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js?v='.comWeeverConst::VERSION );	
 	if(!$componentRowsCount || $tabActive == 0)
 		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs" rel="unpublished" style="float:right;" style="float:center;"><a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'"><div class="wx-grayed-out wx-nav-icon" rel="'.$this->site_key.'" style="height:32px;width:auto;min-width:32px;text-align:center" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label wx-grayed-out" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';	
 
@@ -455,8 +456,84 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 
 }
 
-
 ?>
+<div id="addTab">
+
+<div class="wx-add-item-prompt">What would you like to add to your app today?</div>
+	
+<div>
+	
+	<div id="add-joomla" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
+	<span>Joomla Content</span>
+	</div>
+	
+	<div id="add-joomla" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
+	<span>Joomla Contact</span>
+	</div>
+	
+	<div id="add-k2" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
+	<span>K2 Content</span>
+	</div>
+
+	<div id="add-twitter" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/TwitterBird_NoCircle.png" />
+	<span>Twitter</span>
+	</div>
+	
+	<div id="add-identica" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/Indentica_NoCircle.png" />
+	<span>Identi.ca</span>
+	</div>
+	
+	<div id="add-youtube" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/Youtube_NoCircle.png" />
+	<span>YouTube</span>
+	</div>
+	
+	<div id="add-vimeo" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/Vimeo_NoCircle.png" />
+	<span>Blogger</span>
+	</div>
+	
+	<div id="add-wufoo" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/Wufoo_NoCircle.png" />
+	<span>Wufoo Forms</span>
+	</div>
+	
+	<div id="add-foursquare" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/Foursquare_NoCircle.png" />
+	<span>Foursquare</span>
+	</div>
+	
+	<div id="add-picasa" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/Picasa_NoCircle.png" />
+	<span>Picasa</span>
+	</div>
+	
+	<div id="add-google-calendar" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/calendar.png" />
+	<span>Google Calendar</span>
+	</div>
+	
+	<div id="add-blogger" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/Blogger_NoCircle.png" />
+	<span>Blogger</span>
+	</div>
+
+	<div id="add-r3s" class="wx-add-item-icon">
+	<img src="components/com_weever/assets/icons/sources/cloud5.png" />
+	<span>R3S Feeds</span>
+	</div>
+	
+</div>	
+
+<div style="clear:both;">&nbsp;</div>
+
+</div>
+
 
 <input type="hidden" name="option" value="<?php echo $option; ?>" />
 <input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $this->site_key; ?>" />
