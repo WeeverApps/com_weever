@@ -463,74 +463,180 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 <div>
 	
-	<div id="add-joomla" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
-	<span>Joomla Content</span>
+	<div style="clear:left;"><p>From Your Joomla Site...</p>
+	
+		<div id="add-joomla" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
+		<span>Joomla Content</span>
+		</div>
+		
+		<div id="add-joomla-contact" class="wx-add-source-icon wx-unavailable">
+		<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
+		<span>Joomla Contact</span>
+		</div>
+		
+		<div id="add-k2" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
+		<span>K2 Content</span>
+		</div>
+		
+		<div id="add-easyblog" class="wx-add-source-icon wx-unavailable">
+		<img src="components/com_weever/assets/icons/sources/cloud5.png" />
+		<span>EasyBlog Content</span>
+		</div>
+		
+		<div id="add-easyblog" class="wx-add-source-icon wx-unavailable">
+		<img src="components/com_weever/assets/icons/sources/cloud5.png" />
+		<span>VirtueMart</span>
+		</div>
+		
 	</div>
 	
-	<div id="add-joomla" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
-	<span>Joomla Contact</span>
+	<div style="clear:left; text-align: left;"><p>From Third-Party Services...</p>
+	
+		<div id="add-twitter" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/TwitterBird_NoCircle.png" />
+		<span>Twitter</span>
+		</div>
+		
+		<div id="add-facebook" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/Facebook_Square.png" />
+		<span>Facebook</span>
+		</div>
+		
+		<div id="add-facebook" class="wx-add-source-icon wx-unavailable">
+		<img src="components/com_weever/assets/icons/sources/GooglePlus.png" />
+		<span>Google+</span>
+		</div>
+		
+		<div id="add-youtube" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/Youtube_NoCircle.png" />
+		<span>YouTube</span>
+		</div>
+		
+		<div id="add-vimeo" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/Vimeo_NoCircle.png" />
+		<span>Vimeo</span>
+		</div>
+		
+		<div id="add-wufoo" class="wx-add-source-icon wx-unavailable">
+		<img src="components/com_weever/assets/icons/sources/Wufoo_NoCircle.png" />
+		<span>Wufoo Forms</span>
+		</div>
+		
+		<div id="add-flickr" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/Flickr_Circle.png" />
+		<span>Flickr</span>
+		</div>
+		
+		<div id="add-picasa" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/Picasa_NoCircle.png" />
+		<span>Picasa</span>
+		</div>
+		
+		<div id="add-foursquare" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/Foursquare_NoCircle.png" />
+		<span>Foursquare</span>
+		</div>
+		
+		<div id="add-soundcloud" class="wx-add-source-icon wx-unavailable">
+		<img src="components/com_weever/assets/icons/sources/Soundcloud_NoCircle_White.png" />
+		<span>SoundCloud</span>
+		</div>
+		
+		<div id="add-bandcamp" class="wx-add-source-icon wx-unavailable">
+		<img src="components/com_weever/assets/icons/sources/Bandcamp_ShapeLetters.png" />
+		<span>BandCamp</span>
+		</div>
+		
+		<div id="add-google-calendar" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/calendar.png" />
+		<span>Google Calendar</span>
+		</div>
+		
+		<div id="add-blogger" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/Blogger_NoCircle.png" />
+		<span>Blogger</span>
+		</div>
+		
+		<div id="add-identica" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/Indentica_NoCircle.png" />
+		<span>Identi.ca</span>
+		</div>
+		
 	</div>
 	
-	<div id="add-k2" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
-	<span>K2 Content</span>
-	</div>
+	<div style="clear:both;"><p>From Anywhere... (advanced)</p>
 
-	<div id="add-twitter" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/TwitterBird_NoCircle.png" />
-	<span>Twitter</span>
-	</div>
-	
-	<div id="add-identica" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/Indentica_NoCircle.png" />
-	<span>Identi.ca</span>
-	</div>
-	
-	<div id="add-youtube" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/Youtube_NoCircle.png" />
-	<span>YouTube</span>
-	</div>
-	
-	<div id="add-vimeo" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/Vimeo_NoCircle.png" />
-	<span>Blogger</span>
-	</div>
-	
-	<div id="add-wufoo" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/Wufoo_NoCircle.png" />
-	<span>Wufoo Forms</span>
-	</div>
-	
-	<div id="add-foursquare" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/Foursquare_NoCircle.png" />
-	<span>Foursquare</span>
-	</div>
-	
-	<div id="add-picasa" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/Picasa_NoCircle.png" />
-	<span>Picasa</span>
-	</div>
-	
-	<div id="add-google-calendar" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/calendar.png" />
-	<span>Google Calendar</span>
-	</div>
-	
-	<div id="add-blogger" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/Blogger_NoCircle.png" />
-	<span>Blogger</span>
-	</div>
-
-	<div id="add-r3s" class="wx-add-item-icon">
-	<img src="components/com_weever/assets/icons/sources/cloud5.png" />
-	<span>R3S Feeds</span>
+		<div id="add-r3s" class="wx-add-source-icon">
+		<img src="components/com_weever/assets/icons/sources/cloud5.png" />
+		<span>R3S Feeds</span>
+		</div>
+		
 	</div>
 	
 </div>	
 
 <div style="clear:both;">&nbsp;</div>
+
+<div id="wx-add-joomla-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Your Joomla Site...</p>
+		
+		<div id="add-joomla-category" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
+			<span>+ Blog or Category</span>
+		</div>
+		
+		<div id="add-joomla-article" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
+			<span>+ Article</span>
+		</div>
+		
+		<div id="add-joomla-menu" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
+			<span>+ Content from Menu</span>
+		</div>
+		
+	</div>
+
+</div>
+
+<div id="wx-add-k2-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Your Joomla Site...</p>
+		
+		<div id="add-k2-category" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
+			<span>+ K2 Blog or Category</span>
+		</div>
+		
+		<div id="add-k2-article" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
+			<span>+ K2 Item</span>
+		</div>
+		
+		<div id="add-k2-menu" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
+			<span>+ Content from Menu</span>
+		</div>
+		
+	</div>
+
+</div>
+
+<div id="wx-add-twitter-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-facebook-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-youtube-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-vimeo-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-wufoo-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-flickr-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-picasa-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-foursquare-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-google-calendar-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-blogger-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-identica-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+<div id="wx-add-r3s-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
 
 </div>
 

@@ -1698,21 +1698,24 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 
 }
 
-.wx-add-item-icon {
+.wx-add-source-icon, .wx-add-item-icon {
 	float: left;
 	padding: 1em;
 	margin: 1em;
 	text-align: center;
+	cursor: pointer;
+	width: 6.5em;
 }
 
-.wx-add-item-icon img {
+.wx-add-source-icon img, .wx-add-item-icon img {
 	display:  block;
 	width: 5em;
 	height: 5em;
 	padding: 0.5em;
+	margin: 0 auto;
 }
 
-.wx-add-item-icon span {
+.wx-add-source-icon span, .wx-add-item-icon span {
 	font-size: 1.375em;
 	font-weight: bold;
 }
@@ -1721,4 +1724,20 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 	font-size: 1.5em;
 	padding: 1.25em;
 	padding-bottom: 0.25em;
+}
+
+#wx-add-items-dialog {
+
+}
+
+.wx-hide {
+	display: none;
+}
+
+.wx-unavailable {
+	opacity: 0.25;
+}
+
+div.wx-jquery-dialog.ui-dialog-content {
+	background-color: white;
 }

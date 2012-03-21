@@ -19,6 +19,7 @@
 */
 
 jQuery(function() {
+
 	jQuery("#listTabs").tabs( {
 		
 		select: function(e, ui) {
@@ -671,6 +672,7 @@ jQuery(document).ready(function(){
 		
 		if(thisVal != "")
 			jQuery('#wx-blog-submit').removeAttr('disabled');
+			
 	});
 	
 	jQuery('input#wx-add-map-k2-tag-input').keyup(function(){
@@ -679,6 +681,7 @@ jQuery(document).ready(function(){
 		
 		if(thisVal != "")
 			jQuery('#wx-map-submit').removeAttr('disabled');
+			
 	});
 	
 	jQuery('input#wx-add-proximity-k2-tag-input').keyup(function(){
@@ -687,6 +690,7 @@ jQuery(document).ready(function(){
 		
 		if(thisVal != "")
 			jQuery('#wx-proximity-submit').removeAttr('disabled');
+			
 	});
 	
 	jQuery('input#wx-add-directory-k2-tag-input').keyup(function(){
@@ -696,8 +700,42 @@ jQuery(document).ready(function(){
 		
 		if(thisVal != "")
 			jQuery('#wx-directory-submit').removeAttr('disabled');
+			
 	});
 	
+	jQuery('div.wx-add-source-icon').click(function() {
+	
+		var typeId 		= jQuery(this).attr('id'),
+			dialogId;
+			
+		if( jQuery(this).is('.wx-unavailable') ) {
+		
+			alert("This function is not available");
+			return;
+		
+		}
+		
+		dialogId = "#wx-" + typeId + "-dialog";
+	
+		jQuery(dialogId).dialog({
+		
+			modal: true, 
+			resizable: false,
+			width: 'auto',
+			height: 'auto',
+			buttons: {
+			
+				Cancel: 		function() {
+				
+					jQuery(this).dialog( "close" );
+					
+				}
+						
+			}
+			
+		}); 
+	
+	});
 	
 
 });
