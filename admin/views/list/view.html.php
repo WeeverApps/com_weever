@@ -90,17 +90,6 @@ class WeeverViewList extends JView
 		$this->assign('appEnabled', comWeeverHelper::getAppStatus() );
 		
 		comWeeverHelper::getJsStrings();			
-
-		if( comWeeverHelper::joomlaVersion() == '1.5' )  // ### 1.5 only
-		{
-			$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=id';
-			$this->assignRef('jArticleLink', $link);
-		}
-		else 
-		{
-			$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;layout=modal&amp;function=jSelectArticleNew';
-			$this->assignRef('jArticleLink', $link);	    
-		}
 		
 		if( JRequest::getVar("wxTabSync") )
 		{

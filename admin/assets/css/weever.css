@@ -940,10 +940,8 @@ margin-right:20px;
 .wx-page-reveal,
 .wx-video-reveal,
 #wx-add-menu-item,
-#wx-add-blog-k2-tag,
 #wx-add-category-joomla,
 #wx-add-category-k2,
-#wx-add-contact-joomla,
 .wx-page-help,
 .wx-blog-help,
 .wx-video-help,
@@ -951,9 +949,6 @@ margin-right:20px;
 .wx-listingcomponent-help,
 .wx-social-help,
 .wx-contact-help,
-.wx-photo-label,
-.wx-video-label,
-.wx-social-label,
 .wx-reveal {
 	display: none;
 }

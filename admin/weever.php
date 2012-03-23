@@ -3,8 +3,8 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.4.1
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.7
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -50,6 +50,7 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jq.common.js' );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/wx.js' );
 
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
     $document->addStyleSheet($cssFile, 'text/css', null, array());
@@ -69,12 +70,13 @@ if((ini_get('allow_url_fopen') != 1) && (!in_array('curl', get_loaded_extensions
 if(!JPluginHelper::isEnabled('system', 'mobileesp'))
 	JError::raiseNotice(100, JText::_('WEEVER_ERROR_PLUGIN_DISABLED'));
 
-
 if($staging)
 {
+
 	$weeverIcon = "weever_toolbar_title_staging";
 	$style = "#wx-app-status-button { visibility:hidden !important; }";
 	$document->addStyleDeclaration($style);
+	
 }
 else
 	$weeverIcon = "weever_toolbar_title";

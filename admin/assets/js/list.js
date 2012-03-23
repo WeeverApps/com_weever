@@ -706,7 +706,9 @@ jQuery(document).ready(function(){
 	jQuery('div.wx-add-source-icon').click(function() {
 	
 		var typeId 		= jQuery(this).attr('id'),
-			dialogId;
+			dialogId,
+			buttonNames	= ["Cancel", "Add to App"],
+			buttons		= {};
 			
 		if( jQuery(this).is('.wx-unavailable') ) {
 		
@@ -716,26 +718,53 @@ jQuery(document).ready(function(){
 		}
 		
 		dialogId = "#wx-" + typeId + "-dialog";
+		
+		buttons[ buttonNames[0] ] 	= function() {
+		
+			jQuery(this).dialog( "close" );
+		
+		}
+		
+		if( jQuery(this).hasClass('wx-add-single') ) {
+		
+			buttons[ buttonNames[1] ] 	= function() {
+			
+				jQuery(this).dialog( "close" );
+			
+			}
+		
+		}
 	
 		jQuery(dialogId).dialog({
 		
-			modal: true, 
-			resizable: false,
-			width: 'auto',
-			height: 'auto',
-			buttons: {
-			
-				Cancel: 		function() {
-				
-					jQuery(this).dialog( "close" );
-					
-				}
-						
-			}
+			modal: 		true, 
+			resizable: 	false,
+			width: 		'auto',
+			height:		'auto',
+			buttons: 	buttons
 			
 		}); 
 	
-	});
+	});	
 	
+	jQuery('div.wx-add-item-icon').click(function() {
+
+		var typeId		= jQuery(this).attr('id'),
+			dialogId,
+			backAction,
+			service		= typeId.split('-')[1];
+			
+		console.log(service);
+			
+		backAction		= function() { jQuery('#wx-add-'+ service +'-dialog').dialog('open'); };
+		
+		jQuery('#wx-add-'+ service +'-dialog').dialog('close');
+		
+		dialogId = "#wx-" + typeId + "-dialog";
+		
+		wx.localizedConditionalDialog( ["« Back", "Add to App"], dialogId, backAction );
+		
+	});		
+
 
 });

@@ -470,7 +470,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		<span>Joomla Content</span>
 		</div>
 		
-		<div id="add-joomla-contact" class="wx-add-source-icon wx-unavailable">
+		<div id="add-joomla_contact" class="wx-add-source-icon wx-add-single">
 		<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
 		<span>Joomla Contact</span>
 		</div>
@@ -480,12 +480,12 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		<span>K2 Content</span>
 		</div>
 		
-		<div id="add-easyblog" class="wx-add-source-icon wx-unavailable">
+		<div id="add-easyblog" class="wx-add-source-icon">
 		<img src="components/com_weever/assets/icons/sources/cloud5.png" />
 		<span>EasyBlog Content</span>
 		</div>
 		
-		<div id="add-easyblog" class="wx-add-source-icon wx-unavailable">
+		<div id="add-virtuemart" class="wx-add-source-icon wx-unavailable">
 		<img src="components/com_weever/assets/icons/sources/cloud5.png" />
 		<span>VirtueMart</span>
 		</div>
@@ -504,7 +504,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		<span>Facebook</span>
 		</div>
 		
-		<div id="add-facebook" class="wx-add-source-icon wx-unavailable">
+		<div id="add-google_plus" class="wx-add-source-icon wx-unavailable">
 		<img src="components/com_weever/assets/icons/sources/GooglePlus.png" />
 		<span>Google+</span>
 		</div>
@@ -514,12 +514,12 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		<span>YouTube</span>
 		</div>
 		
-		<div id="add-vimeo" class="wx-add-source-icon">
+		<div id="add-vimeo" class="wx-add-source-icon wx-add-single">
 		<img src="components/com_weever/assets/icons/sources/Vimeo_NoCircle.png" />
 		<span>Vimeo</span>
 		</div>
 		
-		<div id="add-wufoo" class="wx-add-source-icon wx-unavailable">
+		<div id="add-wufoo" class="wx-add-source-icon wx-add-single">
 		<img src="components/com_weever/assets/icons/sources/Wufoo_NoCircle.png" />
 		<span>Wufoo Forms</span>
 		</div>
@@ -529,12 +529,12 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		<span>Flickr</span>
 		</div>
 		
-		<div id="add-picasa" class="wx-add-source-icon">
+		<div id="add-picasa" class="wx-add-source-icon wx-add-single">
 		<img src="components/com_weever/assets/icons/sources/Picasa_NoCircle.png" />
 		<span>Picasa</span>
 		</div>
 		
-		<div id="add-foursquare" class="wx-add-source-icon">
+		<div id="add-foursquare" class="wx-add-source-icon wx-add-single">
 		<img src="components/com_weever/assets/icons/sources/Foursquare_NoCircle.png" />
 		<span>Foursquare</span>
 		</div>
@@ -549,17 +549,17 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		<span>BandCamp</span>
 		</div>
 		
-		<div id="add-google-calendar" class="wx-add-source-icon">
+		<div id="add-google_calendar" class="wx-add-source-icon wx-add-single">
 		<img src="components/com_weever/assets/icons/sources/calendar.png" />
 		<span>Google Calendar</span>
 		</div>
 		
-		<div id="add-blogger" class="wx-add-source-icon">
+		<div id="add-blogger" class="wx-add-source-icon wx-add-single">
 		<img src="components/com_weever/assets/icons/sources/Blogger_NoCircle.png" />
 		<span>Blogger</span>
 		</div>
 		
-		<div id="add-identica" class="wx-add-source-icon">
+		<div id="add-identica" class="wx-add-source-icon wx-add-single">
 		<img src="components/com_weever/assets/icons/sources/Indentica_NoCircle.png" />
 		<span>Identi.ca</span>
 		</div>
@@ -568,7 +568,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	<div style="clear:both;"><p>From Anywhere... (advanced)</p>
 
-		<div id="add-r3s" class="wx-add-source-icon">
+		<div id="add-r3s" class="wx-add-source-icon wx-add-single">
 		<img src="components/com_weever/assets/icons/sources/cloud5.png" />
 		<span>R3S Feeds</span>
 		</div>
@@ -583,17 +583,17 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 
 	<div><p>From Your Joomla Site...</p>
 		
-		<div id="add-joomla-category" class="wx-add-item-icon">
+		<div id="add-joomla-category" class="wx-add-item-icon wx-add-joomla-dialog-item">
 			<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
 			<span>+ Blog or Category</span>
 		</div>
 		
-		<div id="add-joomla-article" class="wx-add-item-icon">
+		<div id="add-joomla-article" class="wx-add-item-icon wx-add-joomla-dialog-item">
 			<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
 			<span>+ Article</span>
 		</div>
 		
-		<div id="add-joomla-menu" class="wx-add-item-icon">
+		<div id="add-joomla-menu" class="wx-add-item-icon wx-add-joomla-dialog-item wx-unavailable">
 			<img src="components/com_weever/assets/icons/sources/Joomla_NoCircle.png" />
 			<span>+ Content from Menu</span>
 		</div>
@@ -601,6 +601,44 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	</div>
 
 </div>
+
+
+<div id="wx-add-joomla_contact-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Your Joomla Contacts</p>
+		
+		<div id='wx-add-contact-joomla'>
+		
+			<select name='component_id' id='wx-add-contact-joomla-select' class='wx-component-id-select'>
+				<option value='0'><?php echo JText::_('WEEVER_CHOOSE_CONTACT_PARENTHESES'); ?></option>
+				
+				<?php $hidden_array = ""; $hidden = ""; ?>
+				
+				<?php foreach( (object) $this->contactItems as $k=>$v ) : ?>
+					
+					<option value='<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
+					
+					<?php $hidden = "<input type='hidden' name='contact_name[]' value='".$v->name."' />"; ?>
+					<?php $hidden_array .= $v->id.","; ?>
+				
+				<?php endforeach; ?>
+				
+				<?php $hidden_array = rtrim($hidden_array,","); ?>
+				<?php $hidden .= "<input type='hidden' name='comp_array' value='".$hidden_array."' />"; ?>
+			
+			</select>
+			
+			<?php echo $hidden; ?>
+		
+		</div>
+		
+		<label><?php echo JText::_('WEEVER_CONTACT_CHOOSE'); ?></label>
+		
+	</div>
+
+</div>
+
+
 
 <div id="wx-add-k2-dialog" class="wx-jquery-dialog wx-hide">
 
@@ -608,15 +646,20 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		
 		<div id="add-k2-category" class="wx-add-item-icon">
 			<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
-			<span>+ K2 Blog or Category</span>
+			<span>+ Blog or Category</span>
 		</div>
 		
 		<div id="add-k2-article" class="wx-add-item-icon">
 			<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
-			<span>+ K2 Item</span>
+			<span>+ Item</span>
 		</div>
 		
-		<div id="add-k2-menu" class="wx-add-item-icon">
+		<div id="add-k2-tag" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
+			<span>+ Tag</span>
+		</div>
+		
+		<div id="add-k2-menu" class="wx-add-item-icon wx-unavailable">
 			<img src="components/com_weever/assets/icons/sources/K2_Square.png" />
 			<span>+ Content from Menu</span>
 		</div>
@@ -625,18 +668,510 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 
 </div>
 
-<div id="wx-add-twitter-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-facebook-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-youtube-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-vimeo-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-wufoo-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-flickr-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-picasa-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-foursquare-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-google-calendar-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-blogger-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-identica-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
-<div id="wx-add-r3s-dialog" class="wx-jquery-dialog wx-hide"><p>This is the Joomla dialogue area</p></div>
+
+<div id="wx-add-easyblog-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Your Joomla Site...</p>
+		
+		<div id="add-easyblog-category" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/cloud5.png" />
+			<span>+ Category</span>
+		</div>
+		
+		<div id="add-easyblog-article" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/cloud5.png" />
+			<span>+ Article</span>
+		</div>
+		
+		<div id="add-easyblog-tag" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/cloud5.png" />
+			<span>+ Tag</span>
+		</div>
+		
+		<div id="add-easyblog-menu" class="wx-add-item-icon wx-unavailable">
+			<img src="components/com_weever/assets/icons/sources/cloud5.png" />
+			<span>+ Content from Menu</span>
+		</div>
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-k2-category-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Choose a K2 Content Category</p>
+		
+		<div id='wx-add-blog-k2-category-item'>
+		
+			<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->k2Categories as $k=>$v ) : ?>
+				
+					<?php $link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id; ?>
+					
+					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-easyblog-category-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Choose a EasyBlog Category</p>
+		
+		<div id='wx-add-blog-k2-category-item'>
+		
+			<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->k2Categories as $k=>$v ) : ?>
+				
+					<?php $link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id; ?>
+					
+					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-k2-article-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Select a K2 Item</p>
+
+
+		<div id='wx-add-panel-k2-item'>
+						
+			<div class="button2-left">
+				<div class="blank">
+					<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_K2_ITEM'); ?>"  href="index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object=k2item" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_PANEL_SELECT'); ?></a>
+				</div>
+			</div>
+			
+			<input type="text" id="k2item_name" placeholder="Select content..." class='wx-input wx-panel-input wx-panel-content-name' disabled="disabled" />
+
+			<input type="hidden" id="k2item_id" class="wx-panel-input" name="urlparams[id]" value="0" />
+			<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="<?php echo JText::_('WEEVER_PANEL_SELECT_ARTICLE_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_PANEL_SELECT_CONTENT'); ?></label>
+
+		</div>		
+		
+	</div>
+
+</div>
+
+
+
+<div id="wx-add-k2-tag-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Type in the K2 Tag</p>
+
+
+		<div id="wx-add-blog-k2-tag">
+		
+			<input type='text' value='' id='wx-add-blog-k2-tag-input' class='wx-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_K2_TAG_PLACEHOLDER"); ?>' />
+			<label for='wx-add-blog-k2-tag-input' id='wx-add-blog-k2-tag-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_BLOG_K2_TAG'); ?></label>
+			
+		</div>	
+		
+	</div>
+
+</div>
+
+
+
+
+<div id="wx-add-joomla-category-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Choose a Joomla Content Category</p>
+		
+		<div id='wx-add-blog-jcategory-item'>
+		
+			<select name='unnamed' id='wx-add-blog-jcategory-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES'); ?></option>
+				
+				<?php foreach( (object) $this->contentCategories as $k=>$v ) : ?>
+				
+					<?php $link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id; ?>
+					
+					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				
+				<?php endforeach; ?>
+			
+			</select>
+		
+		</div>
+		
+	</div>
+
+</div>
+
+
+
+<div id="wx-add-joomla-article-dialog" class="wx-jquery-dialog wx-hide">
+
+	<?php 
+	
+	if( comWeeverHelper::joomlaVersion() == '1.5' )  // ### 1.5 only
+	{
+		$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;object=jarticle';
+	}
+	else 
+	{
+		$link = 'index.php?option=com_content&amp;task=element&amp;tmpl=component&amp;layout=modal&amp;function=jSelectArticleNew&amp;object=jarticle';  
+	}
+
+	?>
+
+	<div><p>Select a Joomla Article</p>
+
+
+		<div id='wx-add-panel-content-joomla'>
+		
+			<div class="button2-left">
+				<div class="blank">
+					<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_JOOMLA_ARTICLE'); ?>" href="<?php echo $link; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_PANEL_SELECT'); ?></a>
+				</div>
+				
+				<input type="text" id="jarticle_name" placeholder="Select content..." class='wx-input wx-panel-input wx-panel-content-name' disabled="disabled" />
+				
+				<input type="hidden" id="jarticle_id" class="wx-panel-input" name="urlparams[id]" value="0" />
+				
+			</div>
+			
+		</div>
+		
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-twitter-user-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Type in your username</p>
+
+		<input type='text' value='' class='wx-input wx-social-input' id='wx-twitter-user-value' name='component_behaviour' />
+		<label for='wx-twitter-user-value' id='wx-twitter-user' class='wx-social-label'><?php echo JText::_('WEEVER_TWITTER_USER'); ?></label>			
+		
+	</div>
+
+</div>
+
+<div id="wx-add-twitter-hashtag-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Type in your username</p>
+
+		<input type='text' value='' class='wx-input wx-social-input' id='wx-twitter-hashtag-value' name='component_behaviour' />
+		<label for='wx-twitter-hashtag-value' id='wx-twitter-hashtag' class='wx-social-label'><?php echo JText::_('WEEVER_TWITTER_HASHTAG'); ?></label>		
+		
+	</div>
+
+</div>
+
+<div id="wx-add-twitter-search-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Type in your username</p>
+
+		<input type='text' value='' class='wx-input wx-social-input' id='wx-twitter-search-value' name='component_behaviour' />
+		<label for='wx-twitter-search-value' id='wx-twitter-query' class='wx-social-label'><?php echo JText::_('WEEVER_TWITTER_QUERY'); ?></label>		
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-facebook-stream-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Enter your Facebook page URL</p>
+
+		<input type='text' value='' class='wx-input wx-social-input' id='wx-facebook-stream-value' name='component_behaviour' />
+		<label for='wx-facebook-stream-value' id='wx-facebook-url' class='wx-social-label'><?php echo JText::_('WEEVER_FACEBOOK_URL'); ?></label>
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-facebook-albums-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Enter your Facebook page URL</p>
+
+		<input type='text' value='' class='wx-input wx-social-input' id='wx-facebook-albums-value' name='component_behaviour' />
+		<label for='wx-facebook-albums-value' id='wx-facebook-url' class='wx-social-label'><?php echo JText::_('WEEVER_FACEBOOK_URL'); ?></label>
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-facebook-events-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Enter your Facebook page URL</p>
+
+		<input type='text' value='' class='wx-input wx-social-input' id='wx-facebook-events-value' name='component_behaviour' />
+		<label for='wx-facebook-events-value' id='wx-facebook-url' class='wx-social-label'><?php echo JText::_('WEEVER_FACEBOOK_URL'); ?></label>
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-twitter-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Twitter...</p>
+		
+		<div id="add-twitter-user" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/TwitterBird_NoCircle.png" />
+			<span>Twitter User</span>
+		</div>
+		
+		<div id="add-twitter-hashtag" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/TwitterBird_NoCircle.png" />
+			<span>Hash Tag</span>
+		</div>
+		
+		<div id="add-twitter-search" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/TwitterBird_NoCircle.png" />
+			<span>Search Term</span>
+		</div>
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-facebook-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Facebook Pages...</p>
+		
+		<div id="add-facebook-stream" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Facebook_Square.png" />
+			<span>Status Stream</span>
+		</div>
+		
+		<div id="add-facebook-albums" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Facebook_Square.png" />
+			<span>Photo Albums</span>
+		</div>
+		
+		<div id="add-facebook-events" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Facebook_Square.png" />
+			<span>Events</span>
+		</div>
+		
+	</div>
+
+</div>
+
+
+
+<div id="wx-add-youtube-channel-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Youtube Channel / User...</p>
+		
+		
+		<input type='text' value='' placeholder='http://' name='component_behaviour' id='wx-youtube-channel-url' class='wx-input wx-video-input' />
+		<label for='wx-youtube-channel-url' id='wx-youtube-url' class='wx-video-label'><?php echo JText::_('WEEVER_YOUTUBE_URL'); ?></label>
+				
+				
+	</div>
+
+</div>
+
+
+
+<div id="wx-add-youtube-playlist-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Youtube Playlist...</p>
+		
+		
+		<input type='text' value='' placeholder='http://' name='component_behaviour' id='wx-youtube-playlist-url' class='wx-input wx-video-input' />
+		<label for='wx-youtube-playlist-url' id='wx-youtube-playlist-url-label' class='wx-video-label'><?php echo JText::_('WEEVER_YOUTUBE_PLAYLIST_URL'); ?></label>
+				
+				
+	</div>
+
+</div>
+
+
+<div id="wx-add-youtube-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Youtube...</p>
+		
+		<div id="add-youtube-channel" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Youtube_NoCircle.png" />
+			<span>Channel / User</span>
+		</div>
+		
+		<div id="add-youtube-playlist" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Youtube_NoCircle.png" />
+			<span>Playlist</span>
+		</div>
+		
+	</div>
+
+</div>
+
+
+<div id="wx-add-vimeo-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Vimeo User or Channel...</p>
+		
+		
+		<input type='text' value='' placeholder='http://' name='component_behaviour' id='wx-vimeo-channel-url' class='wx-input wx-video-input' />
+		<label for='wx-vimeo-channel-url' id='wx-vimeo-url' class='wx-video-label'><?php echo JText::_('WEEVER_VIMEO_URL'); ?></label>
+				
+				
+	</div>
+
+</div>
+
+
+<div id="wx-add-wufoo-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Add your Wufoo Forms...</p>
+		
+		<input type='text' id='wx-form-url' class='wx-input wx-form-input' name='url' />
+		<label for='wx-form-url'><?php echo JText::_('WEEVER_WUFOO_FORM_URL'); ?></label>
+		
+		<input type='text' id='wx-form-api-key' class='wx-input wx-form-input' name='api_key' />
+		<label for='wx-form-api-key'><?php echo JText::_('WEEVER_WUFOO_API_KEY'); ?></label>
+				
+	</div>
+
+</div>
+
+
+<div id="wx-add-foursquare-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Add your Foursquare Venue Photos...</p>
+		
+		<input type='text' value='' id='wx-foursquare-photo-url' class='wx-input wx-photo-input' name='url' />
+		<label for='wx-foursquare-photo-url' id='wx-foursquare-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FOURSQUARE_URL'); ?></label>
+				
+	</div>
+
+</div>
+
+
+<div id="wx-add-picasa-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Add your Picasa Albums...</p>
+		
+		<input type='text' value='' id='wx-picasa-photo-url' class='wx-input wx-photo-input' name='url' />
+		<label for='wx-picasa-photo-url' id='wx-google-picasa-email' class='wx-photo-label'><?php echo JText::_('WEEVER_GOOGLE_PICASA_EMAIL'); ?></label>
+				
+	</div>
+
+</div>
+
+
+<div id="wx-add-google_calendar-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Add your Google Calendar...</p>
+		
+		<input type='text' value='yourname@email.com' id='wx-google-calendar-email' class='wx-calendar-input wx-input' name='email' />
+		<label for='wx-google-calendar-email' id='wx-google-calendar-email-label'><?php echo JText::_('WEEVER_GOOGLE_CALENDAR_EMAIL_ID'); ?></label>
+				
+	</div>
+
+</div>
+
+<div id="wx-add-blogger-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Add your Blogger...</p>
+		
+		<input type='text' value='' id='wx-add-blog-blogger-url-input' class='wx-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_BLOGGER_URL_PLACEHOLDER"); ?>' />
+		<label for='wx-add-blog-blogger-url-input' id='wx-add-blog-blogger-url-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_BLOGGER_URL_LABEL'); ?></label>
+				
+	</div>
+
+</div>
+
+
+<div id="wx-add-identica-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>Add your Identi.ca...</p>
+		
+		<input type='text' value='' class='wx-input wx-social-input' id='wx-identica-social-value' name='component_behaviour' />
+		<label for='wx-identica-social-value' id='wx-identica-query' class='wx-social-label'><?php echo JText::_('WEEVER_IDENTICA_QUERY'); ?></label>
+
+	</div>
+
+</div>
+
+
+<div id="wx-add-flickr-photostream-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Flickr PhotoStream...</p>
+		
+		
+		<input type='text' value='' id='wx-flickr-photostream-photo-url' class='wx-input wx-photo-input' name='url' />
+		<label for='wx-flickr-photostream-photo-url' id='wx-flickr-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FLICKR_URL'); ?></label>
+				
+	</div>
+
+</div>
+
+
+<div id="wx-add-flickr-photosets-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Flickr Photosets...</p>
+		
+		
+		<input type='text' value='' id='wx-flickr-photosets-photo-url' class='wx-input wx-photo-input' name='url' />
+		<label for='wx-flickr-photosets-photo-url' id='wx-flickr-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FLICKR_URL'); ?></label>
+				
+	</div>
+
+</div>
+
+
+<div id="wx-add-flickr-dialog" class="wx-jquery-dialog wx-hide">
+
+	<div><p>From Flickr...</p>
+		
+		<div id="add-flickr-photostream" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Flickr_Circle.png" />
+			<span>PhotoStream (latest only)</span>
+		</div>
+		
+		<div id="add-flickr-photosets" class="wx-add-item-icon">
+			<img src="components/com_weever/assets/icons/sources/Flickr_Circle.png" />
+			<span>All Photosets</span>
+		</div>
+		
+	</div>
+
+</div>
+
+<div id="wx-add-r3s-dialog" class="wx-jquery-dialog wx-hide">
+
+	<p>Add an R3S Feed Directly...</p>
+	
+	<div id="wx-add-page-r3s-url">
+	
+		<input type='text' value='' id='wx-add-page-r3s-url-input' class='wx-input wx-page-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
+		<label for='wx-add-page-r3s-url-input' id='wx-add-page-r3s-url-input-label' class='wx-page-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>
+		
+	</div>
+
+</div>
 
 </div>
 

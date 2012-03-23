@@ -5,7 +5,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.3.1
+*	Version: 	1.6.4
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -43,6 +43,11 @@ class qqUploadedFileXhr {
     function save($path) {    
         $input = fopen("php://input", "r");
         $temp = tmpfile();
+        
+        // fix for server env without tmpfile() support
+        if( is_bool($temp) === true )
+        	$temp = fopen("php://temp", "wb"); 
+        
         $realSize = stream_copy_to_stream($input, $temp);
         fclose($input);
         
