@@ -114,13 +114,13 @@ else
 		
 		
 		<ul class="supportlistarrow segmentedlist"><strong>New!</strong> — Weever Apps Tutorial Videos
-		<li class="none"><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#social">How to add Social Media</a><br>(YouTube, Flickr, etc.) to your app.</li>
-		<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#publishing">How to Choose Mobile Devices</a><br>you wish to display your app on.</li>
-		<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#icons">Editing App-Navigation Icons</a><br>aka, 'tab bar icons' to change the image and text-label</li>
+		<li class="none"><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#social" target="_blank">How to add Social Media</a><br>(YouTube, Flickr, etc.) to your app.</li>
+		<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#publishing" target="_blank">How to Choose Mobile Devices</a><br>you wish to display your app on.</li>
+		<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#icons" target="_blank">Editing App-Navigation Icons</a><br>aka, 'tab bar icons' to change the image and text-label</li>
 		</ul>
 		<ul class="supportlistarrow segmentedlist">
-		<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#staging">Staging Mode</a><br>- a separate 'sandbox' for your app!</li>
-		<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps&quot;">View all videos</a></li>
+		<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps#staging" target="_blank">Staging Mode</a><br>- a separate 'sandbox' for your app!</li>
+		<li><a href="http://support.weeverapps.com/entries/20531627-new-support-tutorial-videos-now-available-for-weever-apps" target="_blank">View all videos</a></li>
 		</ul>	
 		
 		
@@ -139,22 +139,17 @@ else
 
 		
 		
-		<p>We add new features all the time! &nbsp;View <a href="http://weeverapps.com/pricing">plans &amp; pricing</a></p>
+		<p>We add new features all the time!<br/><br/>&bull; <a href="http://weeverapps.com/mobile/tour" target="_blank">Latest Features</a><br/>&bull; <a href="http://weeverapps.com/pricing">Plans & Pricing</a></p>
 		
 		
 		
 		
 		
 		
-		<ul class="supportliststar segmentedlist"><strong>Latest News...</strong>
-		<li><a href="http://weeverapps.com/pricing">Mobile Maps</a> for Joomla! Sites - Wordpress soon!</li>
-		<li>Weever Apps <a href="http://weeverapps.com/blog/item/136-weever-apps-wins-lions-lair">wins the "Lion's Lair" TV Contest</a></li>
-		<li>Latest Featured App: <a href="http://weeverapps.com/apps/item/143-souls-harbour">Souls Harbour, UK</a></li>
-		</ul>
+		
 		<ul class="supportliststar segmentedlist"><strong>Connect with us!</strong>
 		<li>Follow <a href="http://twitter.com/weeverapps">@WeeverApps</a> on Twitter</li>
-		<li><a href="http://eepurl.com/fP-oD">Subcribe to our newsletter</a> for product updates</li>
-		<li>Visit Weever Apps on <a href="http://www.facebook.com/pages/Weever-Apps/116527295103220">Facebook</a></li>
+		<li>Like us on <a href="http://www.facebook.com/pages/Weever-Apps/116527295103220">Facebook</a></li>
 		<li><a href="http://weeverapps.com/blog">Read our blog</a> on Joomla!, Wordpress and Mobile</li>
 		</ul>	
 		
@@ -181,20 +176,19 @@ else
 		<ul class="supportlistarrow"><a href="http://weeverapps.com/pricing">Premium &amp; Pro</a> Features
 		<li>How do I make a <strong><a href="http://support.weeverapps.com/entries/20611136-how-do-i-make-a-weever-map">Weever Map?</a></strong></li>
 		<li>How do I setup a <a href="http://support.weeverapps.com/entries/20394158-how-do-i-use-my-own-domain-name-web-site-address-url-with-weever-apps">app.yoursitename.com address</a> for my app?</li>
-		<li>Can I change the 'Powered by' message on launch?<br/>Yes, just go to 'Mobile Publishing' in the plugin settings.</li>
+		<li>Can I change the 'Powered by' message on launch?<br/>Yes, just go to 'Mobile Publishing' in the plugin settings.  You'll need a "Reseller Account" to rebrand the 'powered by' message.  View <a href="http://weeverapps.com/reseller" target="_blank">our reseller page</a> or <a href="http://weeverapps.com/pricing" target="_blank">reseller pricing</a> for more info.</li>
 		</ul>	
 		<br/>
 		
 		
 		<ul class="supportlistarrow">Marketing &amp; Sales
-		<li>Do Weever Apps Install?<br/>Yes! - See the end of <a href="http://weeverapps.com">this video</a> for an example.  'Prompt to install' is coming soon!</li>
+		<li>Do Weever Apps Install?<br/>Yes! You can also 'Prompt to install' when a visitor loads the app for the first time.</li>
 		<li>Can I setup a 'landing page' in my app?<br/>Yes! The latest Weever Apps releases include the options to use a single landing page, or to select content from your site for a 'landing page app slideshow'</li>
 		<li>How much data do you store on your servers?<br/><a href="http://support.weeverapps.com/entries/20315147-where-does-the-code-stays">Almost none</a>. Your privacy and security is important to us.</li>
 		</ul>
 		<br/>
 		<ul class="supportlistarrow">Technical / Advanced
-		<li>Can I style the app with CSS? - <em>Sure!</em><br/>Just go to 'logo, images and theme' and select 'advanced'.</li>
-		<li>What is 'Staging Mode'?<br/>Staging mode creates a separate copy of your Weever App in a test environment.  It's a 'sandbox' mode for you to try new features</li>
+		<li>Can I style the app with CSS? - <em>Sure!</em><br/>Just go to 'logo, images and theme' and select 'Custom CSS and HTML'.</li>
 		</ul>
 		
 		
