@@ -36,7 +36,7 @@ class WeeverViewList extends JView
 		
 		$state 			= &$this->get( 'state' );
 		$tabsData 		= $this->get('tabsdata');
-		$appData 		= json_decode($tabsData);
+		$appData 		= json_decode($tabsData)->results;
 		$accountData 	= $this->get('AccountData');
 		$tabRows 		= array();
 		

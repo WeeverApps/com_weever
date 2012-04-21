@@ -173,32 +173,6 @@ else
 
 <li id="addTabID" class="wx-nav-tabs"><a href="#addTab" class="wx-tab-sortable"><div class="wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" title="Add"><img class="wx-nav-icon-img" src="data:image/png;base64,<?php echo $this->theme->addIcon; ?>" /></div><div class="wx-nav-label">+</div></a></li>
 
-<div id="addTab">
-
-	<div id="wx-add-content-to-app">
-		
-		<div id="wx-swipe" class="swipe">
-		
-			<div id="wx-swipe-wrap" class="swipe-wrap">
-				
-			</div>
-			
-		</div>
-		
-	</div>
-	
-	<div id="wx-add-content-nav">
-	
-		<div id="wx-add-content-next"> <button class="wx-add-content-nav-button" onclick='wx.swipe.next()'>next</button></div>
-		
-		<div id="wx-add-content-prev"> <button class="wx-add-content-nav-button" onclick='wx.swipe.prev()'>prev</button></div>
-		
-		<div id="wx-add-content-skip"> <button class="wx-add-content-nav-button" onclick='wx.swipe.slide(4, 350)'>types</button></div>
-	
-	</div>
-	
-</div>
-
 <?php 
 
 for($i=0, $n=count($this->tabRows); $i < $n; $i++)
@@ -232,7 +206,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/select/'.$row->component.'.select.js?v='.comWeeverConst::VERSION );
 	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js?v='.comWeeverConst::VERSION );	
 	if(!$componentRowsCount || $tabActive == 0)
-		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs" rel="unpublished" style="float:right;" style="float:center;"><a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'"><div class="wx-grayed-out wx-nav-icon" rel="'.$this->site_key.'" style="height:32px;width:auto;min-width:32px;text-align:center" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label wx-grayed-out" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';	
+		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs" rel="unpublished" style="float:right;display:none" style="float:center;"><a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'"><div class="wx-grayed-out wx-nav-icon" rel="'.$this->site_key.'" style="height:32px;width:auto;min-width:32px;text-align:center" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label wx-grayed-out" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';	
 
 	else
 		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs"><a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'"><div class="wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" rel="'.$this->site_key.'" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';	
@@ -242,6 +216,32 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
  ?>
  
  </ul>
+ 
+ <div id="addTab">
+ 
+ 	<div id="wx-add-content-to-app">
+ 		
+ 		<div id="wx-swipe" class="swipe">
+ 		
+ 			<div id="wx-swipe-wrap" class="swipe-wrap">
+ 				
+ 			</div>
+ 			
+ 		</div>
+ 		
+ 	</div>
+ 	
+ 	<div id="wx-add-content-nav">
+ 	
+ 		<div id="wx-add-content-next"> <button class="wx-add-content-nav-button" onclick='wx.swipe.next()'>next</button></div>
+ 		
+ 		<div id="wx-add-content-prev"> <button class="wx-add-content-nav-button" onclick='wx.swipe.prev()'>prev</button></div>
+ 		
+ 		<div id="wx-add-content-skip"> <button class="wx-add-content-nav-button" onclick='wx.swipe.slide(4, 350)'>types</button></div>
+ 	
+ 	</div>
+ 	
+ </div>
  
 <div id="wx-overlay-drag"><div id="wx-overlay-unpublished"><?php echo JText::_('WEEVER_ICON_HAS_NO_PUB_ITEMS'); ?></div><img id="wx-overlay-drag-img" src="components/com_weever/assets/icons/drag.png" /><div><?php echo JText::_('WEEVER_DOUBLE_CLICK_EDIT'); ?></div></div>
 
@@ -500,4 +500,6 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 <?php echo JHTML::_('form.token'); ?>
 </form>
 </div>
+
+<?php echo $this->loadTemplate('dialogs'); ?>
 
