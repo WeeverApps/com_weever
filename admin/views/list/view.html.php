@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.6
+*	Version: 	1.7
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -28,18 +28,33 @@ class WeeverViewList extends JView
 	public function display($tpl = null)
 	{
 	
-		$k2Categories = new stdClass();
-		$component = JComponentHelper::getComponent( 'com_weever' );
-		$params = new JParameter( $component->params );
+		$k2Categories 	= new stdClass();
+		$component 		= JComponentHelper::getComponent( 'com_weever' );
+		$params 		= new JParameter( $component->params );
 		
 		JRequest::setVar('layout','default');
 		
-		$state =& $this->get( 'state' );
-		$appData = $this->get('appdata');
-		$tabRows = array();
+		$state 			= &$this->get( 'state' );
+		$tabsData 		= $this->get('tabsdata');
+		$appData 		= json_decode($tabsData);
+		$accountData 	= $this->get('AccountData');
+		$tabRows 		= array();
+		
+		$document 		= &JFactory::getDocument();
+		
+		$document->addCustomTag (
+		
+			'<script type="text/javascript">'.
+			
+				'wx.tabSyncData = ' . $tabsData .
+			
+			'</script>'
+			
+		);
 		
 		$this->assignRef('tier', $appData->config->tier);
 		$this->assignRef('theme',$appData->theme_params);
+		$this->assignRef('account', $accountData);
 
 		foreach((array)$appData->tabs as $k=>$v)
 		{

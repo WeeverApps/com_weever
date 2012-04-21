@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.6.2
+*	Version: 	1.7
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ class comWeeverHelper
 		return $row->setting;
 	
 	}
-	
+
 	
 	public static function getKey() 			{ return self::getSetting(3); }	
 	public static function getDeviceSettings() 	{ return self::getSetting(5); }
@@ -593,11 +593,14 @@ class comWeeverHelper
 		$key = self::getKey();
 		
 		$query = array( 	
-					'stage' 		=> $stageUrl,
-					'app'			=> 'json',
-					'site_key' 		=> $key,
-					'm' 			=> "tab_sync"
-				);
+		
+			'stage' 		=> $stageUrl,
+			'app'			=> 'json',
+			'site_key' 		=> $key,
+			'all_tabs'		=> true,
+			'm' 			=> "tab_sync"
+					
+		);
 			
 		$postdata 	= self::buildWeeverHttpQuery($query, false);
 		
@@ -625,7 +628,7 @@ class comWeeverHelper
 		
 		}
 		
-		return $j_array->results;	
+		return $json;	
 	
 	}
 	

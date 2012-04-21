@@ -397,6 +397,7 @@ class WeeverController extends JController
 	
 	}
 	
+	
 	public function publish()
 	{
 	

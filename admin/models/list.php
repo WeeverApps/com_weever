@@ -32,6 +32,7 @@ class WeeverModelList extends JModel
 	public $components 	= null;
 	public $json		= null;
 	public $jsonTheme 	= null;
+	public $jsonAccount = null;
 	public $data		= null;
 	
 	public function __construct()
@@ -39,10 +40,11 @@ class WeeverModelList extends JModel
         
         parent::__construct();
         
-        $this->json = comWeeverHelper::getJsonTabSync();
+        $this->json 			= comWeeverHelper::getJsonTabSync();
+        $this->jsonAccount 		= comWeeverHelper::getJsonAccountSync();
          
-        $mainframe = JFactory::getApplication();
-        $option = JRequest::getCmd('option');
+        $mainframe 	= JFactory::getApplication();
+        $option 	= JRequest::getCmd('option');
         
         $key = comWeeverHelper::getKey();
        
@@ -96,8 +98,16 @@ class WeeverModelList extends JModel
 	
 	}
 	
+	
+	public function getAccountData()
+	{
 		
-	public function getAppData()
+		return $this->jsonAccount;
+	
+	}
+	
+		
+	public function getTabsData()
 	{
 		
 		return $this->json;
