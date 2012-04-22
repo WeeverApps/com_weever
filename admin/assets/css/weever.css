@@ -109,6 +109,10 @@ ul#listTabsSortable {
 
 }
 
+li#addTabID {
+	margin-right: 100px;
+}
+
 #content-box #theme, #content-box #account {
 	border:none;
 	border-radius: 0 0 .25em .25em;

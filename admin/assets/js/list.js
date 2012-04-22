@@ -3,7 +3,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.6.2
+*	Version: 	1.7
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -43,33 +43,42 @@ jQuery(function() {
 	});
 
 	jQuery("#listTabsSortable").sortable({ 
-										axis: "x",
-										update: function(event, info) {
-															
-											var str = String(jQuery(this).sortable('toArray'));
-											var siteKey = jQuery("input#wx-site-key").val();
-											
-											
-											jQuery.ajax({
-											   type: "POST",
-											   url: "index.php",
-											   data: "option=com_weever&task=ajaxSaveTabOrder&site_key="+siteKey+"&order="+str,
-											   success: function(msg){
-											     jQuery('#wx-modal-loading-text').html(msg);
-											     
-											     if(msg == "Order Updated")
-											     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
-											     else
-											     {
-											     	jQuery('#wx-modal-secondary-text').html('');
-											     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
-											     }
-											   }
-											 });
-															
-										}
-																					 	
-									});
+	
+		axis: 		"x",
+		cancel:		'.wx-nosort',
+		update: 	function(event, info) {
+							
+			var str = String(jQuery(this).sortable('toArray'));
+			var siteKey = jQuery("input#wx-site-key").val();
+			
+			
+			jQuery.ajax({
+			
+			   type: 		"POST",
+			   url: 		"index.php",
+			   data: 		"option=com_weever&task=ajaxSaveTabOrder&site_key="+siteKey+"&order="+str,
+			   success: 	function(msg) {
+			   
+				     jQuery('#wx-modal-loading-text').html(msg);
+				     
+				     if(msg == "Order Updated")
+				     	jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+				     	
+				     else
+				     {
+				     
+				     	jQuery('#wx-modal-secondary-text').html('');
+				     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+				     	
+				     }
+			     
+			   }
+			   
+			 });
+							
+		}
+													 	
+	});
 
 });
 
@@ -112,10 +121,8 @@ jQuery(document).ready(function(){
 	
 	jQuery('.wx-table-sort').disableSelection();
 
-	jQuery("li.wx-nav-tabs").bind("mouseover", function(){
-	
-		
-		
+	jQuery("li.wx-nav-tabs.wx-sort").bind("mouseover", function(){
+
 		if(jQuery(this).attr("rel") == "unpublished")
 		{
 			jQuery("#wx-overlay-drag-img").hide();
@@ -123,9 +130,7 @@ jQuery(document).ready(function(){
 		}
 		
 		jQuery("#wx-overlay-drag").show();
-		
-		
-	
+
 	});
 	
 	jQuery("li.wx-nav-tabs").bind("mouseout", function(){
