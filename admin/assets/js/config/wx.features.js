@@ -1,5 +1,5 @@
 /*	
-*	Weever Apps Administrator Component for Joomla
+*	Weever Apps Administrator extension for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
@@ -23,9 +23,7 @@ wx.features = [
 
 	{
 	
-		group:		'local-content',
 		id:			'joomla',
-		icon:		'Joomla_NoCircle.png',
 		name:		'Joomla Content',
 		summary:	'From your Joomla site...',
 		items:	[
@@ -33,8 +31,7 @@ wx.features = [
 			{
 			
 				id:				'category',
-				name:			'Blog or Category',
-				icon:			'category_icon.png',
+				name:			'Content Category',
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			},
@@ -42,7 +39,6 @@ wx.features = [
 			
 				id:				'article',
 				name:			'Article',
-				icon:			'/article_icon.png',
 				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
 			
 			},
@@ -50,8 +46,7 @@ wx.features = [
 			
 				id:				'menu',
 				name:			'Content from Menu',
-				icon:			'Joomla_NoCircle.png',
-				unavailable:	true
+				types:			['page', 'panel', 'map', 'aboutapp', 'proximity', 'blog', 'directory']
 			
 			}
 		
@@ -61,43 +56,39 @@ wx.features = [
 	},
 	{
 	
-		group:		'local-content',
 		id:			'joomla_contact',
-		name:		'Joomla Contact',
-		icon:		'contact_icon.png',
+		name:		'Contact',
 		types:		'contact'
 		
 	},
 	{
-	
-		group:		'local-content',
+
 		id:			'k2',
-		component:	'com_k2',
+		extension:	'com_k2',
 		name:		'K2 Content',
-		icon:		'K2_Square.png',
 		items:	[
 		
 			{
 			
 				id:				'category',
-				name:			'Category',
-				icon:			'category_icon.png',
+				name:			'K2 Category',
+				extension:		'com_k2',
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			},
 			{
 			
-				id:				'article',
-				name:			'Article',
-				icon:			'/article_icon.png',
+				id:				'item',
+				name:			'K2 Item',
+				extension:		'com_k2',
 				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
 			
 			},
 			{
 			
 				id:				'tag',
-				name:			'Tag',
-				icon:			'tag_icon.png',
+				name:			'K2 Tag',
+				extension:		'com_k2',
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			}
@@ -107,47 +98,42 @@ wx.features = [
 	},
 	{
 	
-		group:			'local-content',
 		id:				'virtuemart',
-		component:		'com_virtuemart',
+		extension:		'com_virtuemart',
 		name:			'Virtuemart',
-		icon:			'Store_Pricetag',
-		unavailable:	true,
+		unavailable:	'Feature coming soon!',
 		types:			'product',
 		tier:			2
 	
 	},
 	{
 	
-		group:			'local-content',
 		id:				'easyblog',
-		component:		'com_easyblog',
+		extension:		'com_easyblog',
 		name:			'EasyBlog Content',
-		icon:			'easyblog_icon.png',
-		unavailable: 	true,
 		items:	[
 		
 			{
 			
 				id:				'category',
-				name:			'Category',
-				icon:			'category_icon.png',
+				name:			'EasyBlog Category',
+				extension:		'com_easyblog',
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			},
 			{
 			
-				id:				'article',
-				name:			'Article',
-				icon:			'/article_icon.png',
+				id:				'post',
+				name:			'EasyBlog Post',
+				extension:		'com_easyblog',
 				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
 			
 			},
 			{
 			
 				id:				'tag',
-				name:			'Tag',
-				icon:			'tag_icon.png',
+				name:			'EasyBlog Tag',
+				extension:		'com_easyblog',
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			}
@@ -157,18 +143,25 @@ wx.features = [
 	},
 	{
 	
-		group:			'third-party',
 		vertical:		'all',
 		id:				'twitter',
 		name:			'Twitter',
-		icon:			'TwitterBird_NoCircle.png',
+		url:			'http://twitter.com/',
+		description:	'<p>Twitter offers businesses an easy way to communicate with an engaged mobile audience.</p>' +
+		
+					'<h4>Mobile App Features</h4>'+
+					
+					   '<ul><li>Display Twitter user streams, #hashtag(s) or search results</li>'+
+					    '<li>Share Blog Post or Pages via Twitter (options button)</li>'+
+					    '<li>Share App via Twitter (from the ‘Share App’ tab)</li>'+
+					    '</ul></p>',
+					
 		items:	[
 		
 			{
 			
 				id:			'user',
 				name:		'Twitter User',
-				icon:		'profile_icon.png',
 				types:		'social'
 			
 			},
@@ -176,7 +169,6 @@ wx.features = [
 				
 				id:			'hashtag',
 				name:		'Hash Tag',
-				icon:		'hashtag_icon.png',
 				types:		'social'
 			
 			},
@@ -184,7 +176,6 @@ wx.features = [
 			
 				id:			'search',
 				name:		'Search Term',
-				icon:		'search_icon.png',
 				types:		'social'
 			
 			}			
@@ -198,10 +189,9 @@ wx.features = [
 		id:				'facebook',
 		vertical:		'all',
 		name:			'Facebook',
-		icon:			'Facebook_Square.png',
 		description:	'<p>Add a stream of Facebook updates to your mobile app!</p>' +
 			
-				'<p>Mobile App Features:'+
+				'<h4>Mobile App Features</h4>'+
 				
 				   '<ul><li>Display Facebook updates instantly</li>'+
 				    '<li>Share App via Facebook (from the ‘Share App’ tab)</li>'+
@@ -209,8 +199,6 @@ wx.features = [
 				    '<li>Display your Facebook Events</li>'+
 				    
 				    '</ul>'+
-				    
-				' </p>'+
 				 
 				' <p><em>It is recommended you add Pages, rather than personal profiles. Due to privacy settings, personal profiles may not work in the app.</em></p>	',
 				
@@ -221,7 +209,6 @@ wx.features = [
 			
 				id:			'stream',
 				name:		'Status Stream',
-				icon:		'profile_icon.png',
 				types:		'social'
 			
 			},
@@ -229,7 +216,6 @@ wx.features = [
 			
 				id:			'albums',
 				name:		'Photo Albums',
-				icon:		'album_photos_icon.png',
 				types:		'photo'
 			
 			},
@@ -237,7 +223,6 @@ wx.features = [
 			
 				id:			'events',
 				name:		'Events',
-				icon:		'calendar.png',
 				types:		'calendar'
 			
 			}
@@ -247,39 +232,45 @@ wx.features = [
 	},
 	{
 	
-		group:			'third-party',
 		id:				'tumblr',
 		vertical:		'all',
 		name:			'Tumblr',
-		icon:			'tumblr_icon.png',
 		types:			'blog',
-		unavailable:	true
+		unavailable:	'Tumblr Support is coming soon!'
 	
 	},
 	{
 	
-		group:			'third-party',
 		vertical:		'all',
 		id:				'google_plus',
 		name:			'Google +',
-		icon:			'GooglePlus.png',
-		types:			'social'
+		types:			'social',
+		unavailable:	'Google Plus Support is coming soon!'
 	
 	},
 	{
 	
-		group:			'third-party',
 		vertical:		'all',
 		id:				'youtube',
 		name:			'Youtube',
-		icon:			'Youtube_NoCircle.png',
+		url:			'http://youtube.com/',
+		description:	'<p>Share your YouTube video channels, playlists and embeds inside your app.</p>'+
+			
+			'<h4>Mobile App Features</h4>'+
+			
+			'<ul>'+
+			'<li>Display YouTube Channel videos</li>'+
+			'<li>Display YouTube Playlist videos</li>'+
+			'<li>Play videos embedded in articles</li>'+
+			'<li>Videos play in full screen</li>'+
+			'</ul>',
+
 		items:			[
 		
 			{
 			
 				id:			'channel',
 				name:		'User or Channel',
-				icon:		'video_icon.png',
 				types:		'video'
 			
 			},
@@ -287,7 +278,6 @@ wx.features = [
 			
 				id:			'playlist',
 				name:		'Playlist',
-				icon:		'video_icon.png',
 				types:		'video'
 			
 			}
@@ -297,40 +287,85 @@ wx.features = [
 	},
 	{
 	
-		group:			'third-party',
 		vertical:		'all',
 		id:				'vimeo',
 		name:			'Vimeo',
-		icon:			'Vimeo_NoCircle.png',
+		url:			'http://vimeo.com/',
+		description:	'<p>Add Vimeo video channels to your mobile app – share your media!</p>'+
+		
+			'<h4>Mobile App Features</h4>'+
+			
+			'<ul>'+
+			
+			    '<li>Display Vimeo channel videos</li>'+
+			    '<li>Display Vimeo user videos</li>'+
+			    '<li>Play videos embedded in articles</li>'+
+			    '<li>Videos play in full screen</li>'+
+			    
+			'</ul>',
+			
 		types:			'video'
 	
 	
 	},
 	{
 	
-		group:			'third-party',
 		vertical:		'all',
 		id:				'wufoo',
 		name:			'Wufoo Forms',
-		icon:			'Wufoo_NoCircle.png',
+		url:			'http://wufoo.com/',
+		description:	'<p>Use Wufoo’s free online form creator to power your Weever App’s contact forms, online surveys, and event registrations.</p>'+
+		
+			'<p>Wufoo Forms connect to many free and paid services on the web.</p>'+
+			
+			'<h4>Integrates With:</h4>'+
+			
+			'<ul>'+
+			
+				    '<li>MailChimp Newsletters</li>'+
+				    '<li>Campaign Monitor Newsletters</li>'+
+				    '<li>PayPal Donations and Payments</li>'+
+				    '<li>SalesForce CRM</li>'+
+				    '<li>Freshbooks Accounting & Billing</li>'+
+				    '<li>Highrise Contact Management</li>'+
+				    '<li>Twitter “Auto Form Tweets”</li>'+
+				
+			'</ul>'+
+			
+			'<p>For more information check out: <a href="http://wufoo.com/integrations" target="_blank">http://wufoo.com/integrations</a></p>',
+			
 		types:			'form',
 		tier:			2
 	
 	},
 	{
 	
-		group:			'third-party',
 		vertical:		'all',
 		id:				'flickr',
 		name:			'Flickr',
-		icon:			'Flickr_Circle.png',
+		url:			'http://flickr.com/',
+		description:	'<p>Add Flickr Photo streams, sets (galleries) and even group pools to your app!</p>' +
+		
+			'<h4>Mobile App Features</h4>' +
+			
+			'<ul>' +
+			
+				    '<li>Flickr User Photo Streams</li>'+
+				    '<li>Flickr Photo Sets (galleries)</li>'+
+				    '<li>Coming soon: Flickr Group Pools (a stream of photos from multiple Flickr users)</li>'+
+				    '<li>Albums display in a swipe-to-see-next photo stream</li>'+
+				    '<li>Double-tap to display photos at full-screen size</li>'+
+			
+			'</ul>'+
+			
+			'<p>Compatible with all <em>publicly available</em> photos on Flickr. Note that photos uploaded prior to April 2011 may not display as gallery thumbnails – simply rotate and save these photos to fix.</p>',
+			
 		items:			[
 		
 			{
 			
 				id:		'photostream',
 				name:	'Photostream (latest only)',
-				icon:	'album_photos_icon.png',
 				types:	'photo'
 			
 			},
@@ -338,7 +373,6 @@ wx.features = [
 			
 				id:		'photosets',
 				name:	'All Photosets',
-				icon:	'album_photos_icon.png',
 				types:	'photo'
 			
 			}
@@ -348,39 +382,60 @@ wx.features = [
 	},
 	{
 	
-		group:			'third-party',
 		id:				'picasa',
 		vertical:		'all',
 		name:			'Picasa',
-		icon:			'Picasa_NoCircle.png',
+		url:			'http://picasa.google.com/',
+		description:	'<p>Fast and easy photo sharing from Google.</p>'+
+		
+			'<h4>Mobile App Features</h4>' +
+			
+			'<ul>' +
+			
+				'<li>Add your Picasa Web Albums to your mobile app</li>'+
+				'<li>Albums display in a gallery and swipe-to-see-next photo stream</li>'+
+				'<li>Double-tap to display photos at full-screen size</li>'+
+			
+			'</ul>', 
+			
+		
 		types:			'photo'
 	
 	},
 	{
 	
-		group:			'third-party',
 		vertical:		'all',
 		id:				'foursquare',
 		name:			'Foursquare',
-		icon:			'Foursquare_NoCircle.png',
+		url:			'http://foursquare.com/',
+		description:	'<p>Foursquare is a location-based social networking website for mobile devices. Users “check-in” at venues by selecting from a list of venues the app locates nearby. Each check-in awards the user points and sometimes “badges”.</p>' +
+		
+			'<p>With Weever Apps, you can add a real-time photo stream for a Foursquare location.'+
+			
+			'<ul>'+
+			
+				    '<li>Add a real-time stream of user-generated Foursquare Venue Photos to your mobile app.</li>'+
+				    '<li>Albums display in a swipe-to-see-next photo stream</li>'+
+				    '<li>Double-tap to display photos at full-screen size</li>'+
+				
+			
+			'</ul>',
+			
 		types:			'photo'	
 	
 	},
 	{
 	
-		group:			'third-party',
 		vertical:		'all',
 		id:				'soundcloud',
 		name:			'SoundCloud',
-		icon:			'Soundcloud_NoCircle_White.png',
-		unavailable:	true,
+		unavailable:	'Sound Cloud support is coming soon!',
 		items:			[
 		
 			{
 				
 				id:		'user',
 				name:	'User',
-				icon:	'profile_icon.png',
 				types:	'audio'				
 			
 			},
@@ -388,7 +443,6 @@ wx.features = [
 			
 				id:		'set',
 				name:	'Set',
-				icon:	'album_icon.png',
 				types:	'audio'
 			
 			}
@@ -398,19 +452,16 @@ wx.features = [
 	},
 	{
 	
-		group:			'third-party',
 		id:				'bandcamp',
 		vertical:		['music', 'event'],
 		name:			'BandCamp',
-		unavailable:	true,
-		icon:			'Bandcamp_ShapeLetters.png',
+		unavailable:	'BandCamp support is coming soon!',
 		items:			[
 			
 			{
 			
 				id:		'band',
 				name:	'Band',
-				icon:	'profile_icon.png',
 				types:	'audio'
 			
 			},
@@ -418,7 +469,6 @@ wx.features = [
 			
 				id:		'album',
 				name:	'Album',
-				icon:	'album_icon.png',
 				types:	'audio'			
 			
 			}
@@ -428,38 +478,39 @@ wx.features = [
 	},
 	{
 	
-		group:			'third-party',
 		id:				'google_calendar',
 		name:			'Google Calendar',
-		icon:			'calendar.png',
 		types:			'calendar'
 	
 	},
 	{
 	
-		group:			'third-party',
 		id:				'blogger',
 		name:			'Blogger',
-		icon:			'Blogger_NoCircle.png',
 		types:			'blog'
 	
 	},
 	{
 	
-		group:			'third-party',
 		id:				'identica',
 		name:			'Identi.ca',
-		icon:			'Indentica_NoCircle.png',
+		description:	'<p>Identi.ca is a social microblogging service similar to Twitter, but built on open source tools and open standards.' +
+					
+					'<p>In Weever, you can display a search term or hashtag stream.</p>',
 		types:			'social'
 	
 	},
 	{
 	
-		group:			'advanced-feed',
 		id:				'r3s',
 		name:			'R3S Feed',
-		icon:			'cloud5.png',
 		types:			['blog', 'page', 'map', 'panel', 'directory', 'aboutapp', 'proximity']
+	
+	},
+	{
+	
+		id:				'suggestion',
+		name:			'Something Missing?',
 	
 	}
 

@@ -91,10 +91,14 @@ jQuery(document).ready( function() {
 		
 			for( var ii=0; ii < item.items.length; ii++ ) { 
 			
-				var		iiExtraClass	= '';
+				var	iiExtraClass	= '',
+					icon			= item.id + "-" + item.items[ii].id + ".png";
 				
 				if( item.items[ii].unavailable )
-					iiExtraClass = iiExtraClass + ' wx-unavailable';
+					iiExtraClass += ' wx-unavailable';
+					
+				if( item.items[ii].extension )
+					iiExtraClass += ' wx-require-extension-' + item.extension;
 					
 				item.types = pushItemTypes(item.types, item.items[ii].types);		
 	
@@ -102,7 +106,7 @@ jQuery(document).ready( function() {
 					
 					"<div id='add-" + item.id + "-" + item.items[ii].id + "' class='wx-add-item-icon wx-add-" + item.id + "-dialog-item" + extraClass + "'>" +
 					
-						"<img src='components/com_weever/assets/icons/sources/" + item.items[ii].icon + "' />" +
+						"<img src='components/com_weever/assets/icons/nav/" + icon + "' />" +
 						"<span>" + item.items[ii].name + "</span>" +
 						
 					"</div>"
@@ -112,18 +116,21 @@ jQuery(document).ready( function() {
 			}
 		
 		}
+		
+		/* Add an icon to a tab type */
 	
 		var insertToTypeDialogs	= function(item, extraClass) {
 				
 			for( var ii=0; ii < item.types.length; ii++ ) {
 			
-				var type 	= item.types[ii];
+				var type 	= item.types[ii],
+					icon	= item.id.replace(/\./, "-") + ".png";
 				
 				jQuery( 'div#wx-add-' + type + '-type-dialog' ).append(
 				
-					"<div id='add-" + item.id + "' rel='" + type + "' class='wx-add-source-icon" + extraClass + "'>" +
+					"<div id='add-" + item.id + "'  ref='add-" + item.id + "' rel='" + type + "' class='wx-add-source-icon" + extraClass + "'>" +
 					
-						"<img src='components/com_weever/assets/icons/sources/" + item.icon + "' />" +
+						"<img src='components/com_weever/assets/icons/nav/" + icon + "' />" +
 						"<span>" + item.name + "</span>" +
 						
 					"</div>"
@@ -134,15 +141,30 @@ jQuery(document).ready( function() {
 	
 		}
 		
-		var checkExtraClasses	= function(item) {
+		var checkExtraClasses	= function(item, addDescription) {
 		
 			var extraClass	= '';
+			
+			if( item.extension )
+				extraClass += ' wx-require-extension-' + item.extension;
 		
-			if(item.unavailable)
+			if( item.unavailable )
 				extraClass += ' wx-unavailable';
 				
 			if( !(item.items instanceof Array) )
 				extraClass += ' wx-add-single';
+				
+			if( true == addDescription && item.description ) {
+			
+				jQuery( '.wx-service-' + item.id ).prepend( 
+				
+					"<div class='wx-service-description'>" + 
+						item.description + 
+					"</div>" 
+			
+				);
+				
+			}
 				
 			return extraClass;
 		
@@ -150,10 +172,13 @@ jQuery(document).ready( function() {
 		
 		var createSwipePages	= function() {
 		
+			/* Add a service type icon */
+			
 			var serviceIconHtml		= function(item, id) {
 			
-					var extraClass 			= checkExtraClasses(item),
-						appendDiv			= '';
+					var extraClass 			= checkExtraClasses(item, true),
+						appendDiv			= '',
+						icon				= id.replace(/\./, "-") + ".png";
 					
 					if( item.types instanceof Array && undefined != wx.types[ item.types[0] ] ) {
 					
@@ -169,17 +194,20 @@ jQuery(document).ready( function() {
 							
 					}
 				
-					return "<div id='add-" + id + "' class='wx-add-source-icon" + 
+					return "<div id='add-" + id + "' ref='add-" + id + "' class='wx-add-source-icon" + 
 										extraClass + "'>" +
 					
-								"<img src='components/com_weever/assets/icons/sources/" + 
-											item.icon + "' />" +
+								"<img src='components/com_weever/assets/icons/nav/" + 
+											icon + "' />" +
 											
 								"<span>" + item.name + "</span>" + appendDiv +
 						
 							"</div>";
 			
 				},
+				
+				/* Add upgrade or trial badge */
+				
 				appendNoticeDiv				= function(serviceDiv, notice) {
 				
 					if( notice == 'upgrade' ) {
@@ -197,6 +225,9 @@ jQuery(document).ready( function() {
 					return appendDiv =  '<div class="wx-icon-badge-notice">' + notice + '</div>';
 		
 				},
+				
+				/* Add tab type icon */
+				
 				typeIconHtml				= function(type) {
 				
 					if( wx.types[ type ] == undefined ) {
@@ -206,14 +237,17 @@ jQuery(document).ready( function() {
 						
 					}
 				
-					return 	"<div id='add-" + type + "-type' class='wx-add-source-icon'>" +
+					return 	"<div id='add-" + type + "-type' ref='add-" + type + "-type' class='wx-add-source-icon'>" +
 					
-								"<img src='components/com_weever/assets/icons/sources/" + type + ".png' />" +
+								"<img src='components/com_weever/assets/icons/nav/" + type + ".png' />" +
 								"<span>" + wx.types[type].name + "</span>" +
 						
 							"</div>";
 	
 				},
+				
+				/* Find out about what a page icon should be linked to */
+				
 				getItemData					= function(alias) {
 			
 					var alias		= alias.split("."),
@@ -286,6 +320,9 @@ jQuery(document).ready( function() {
 					notice:		{}
 			
 				},
+				
+				/* Add check badge */
+				
 				appendCheckDiv		= function(serviceDiv) {
 				
 					if( badges.check[ serviceDiv ] != true ) {
@@ -301,6 +338,9 @@ jQuery(document).ready( function() {
 					}
 				
 				},
+				
+				/* Add trial or upgrade badge */
+				
 				appendNoticeDiv		= function(serviceDiv, notice) {
 				
 					if( badges.notice[ serviceDiv ] != true ) {
@@ -383,6 +423,8 @@ jQuery(document).ready( function() {
 		
 		}
 		
+		/* Build the wx.types object */
+		
 		var buildTabTypes		= function() {
 		
 			wx.types	= wx.types || {};
@@ -405,6 +447,8 @@ jQuery(document).ready( function() {
 		
 		}
 		
+		/* Build dialogs initializer */
+		
 		var createDialogsInit	= function() {
 		
 			buildTabTypes();
@@ -420,7 +464,7 @@ jQuery(document).ready( function() {
 					
 						"<div id='wx-add-" + item.id + "-dialog' class='wx-jquery-dialog wx-hide'>" +
 						
-							"<div id='wx-add-" + item.id + "-items'><p>" + item.description + "</p>" +
+							"<div id='wx-add-" + item.id + "-items'><div class='wx-service-description'>" + item.description + "</div>" +
 							
 							"</div>" +
 							
@@ -448,83 +492,5 @@ jQuery(document).ready( function() {
 		}();
 		
 	}();
-	
-
-	jQuery('div.wx-add-source-icon').click(function() {
-	
-		var typeId 		= jQuery(this).attr('id'),
-			typeRel		= jQuery(this).attr('rel'),
-			dialogId,
-			buttonNames	= ["Cancel", "Add to App"],
-			backAction,
-			buttons		= {};
-			
-		if( jQuery(this).is('.wx-unavailable') ) {
-		
-			alert("This function is not available");
-			return;
-		
-		} else if( jQuery(this).is('.wx-upgrade-prompt') ) {
-			
-			dialogId	=  '#wx-upgrade-notice';
-			
-			wx.localizedConditionalDialog( ["Cancel"], dialogId );
-			
-			return;
-		
-		}
-		
-		backAction		= function() { 
-		
-			jQuery( "#wx-add-" + typeRel + "-type-dialog" ).dialog('open'); 
-		
-		}
-		
-		dialogId = "#wx-" + typeId + "-dialog";
-		
-		jQuery('.wx-jquery-dialog').dialog('close');
-		
-		buttons[ buttonNames[0] ] 		= function() {
-		
-			jQuery(this).dialog( "close" );
-		
-		}
-		
-		if( jQuery(this).hasClass('wx-add-single') ) {
-		
-			buttons[ buttonNames[1] ] 	= function() {
-			
-				jQuery(this).dialog( "close" );
-			
-			}
-		
-		}
-	
-		wx.localizedConditionalDialog( ["« Back", "Add to App"], dialogId, backAction );
-	
-	});	
-	
-	
-	jQuery('div.wx-add-item-icon').click(function() {
-
-		var typeId		= jQuery(this).attr('id'),
-			dialogId,
-			backAction,
-			service		= typeId.split('-')[1];
-			
-		backAction		= function() { 
-		
-			jQuery('#wx-add-'+ service +'-dialog').dialog('open'); 
-		
-		}
-		
-		jQuery('.wx-jquery-dialog').dialog('close');
-		
-		dialogId = "#wx-" + typeId + "-dialog";
-		
-		wx.localizedConditionalDialog( ["« Back", "Add to App"], dialogId, backAction );
-		
-	});		
-
 
 });

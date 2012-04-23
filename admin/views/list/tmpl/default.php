@@ -24,6 +24,8 @@ defined('_JEXEC') or die;
 $option 		= JRequest::getCmd('option');
 $document 		= &JFactory::getDocument();
 
+$extraScript	= '';
+
 JHTML::_('behavior.tooltip');
 JHTML::_('behavior.mootools');
 JHTML::_('behavior.modal', 'a.modal');
@@ -34,6 +36,16 @@ if(comWeeverHelper::joomlaVersion() == '1.5')  // ### 1.5 only
 	$js_close = "document.getElementById('sbox-window').close();";
 else 
 	$js_close = "window.parent.SqueezeBox.close();";
+	
+if( !comWeeverHelper::componentExists("com_k2") )
+	$extraScript .= "var wxComK2	= false;";
+else 
+	$extraScript .= "var wxComK2	= true;";
+	
+if( !comWeeverHelper::componentExists("com_easyblog") )
+	$extraScript .= "var wxComEasyBlog	= false;";
+else 
+	$extraScript .= "var wxComEasyBlog	= true;";
 
 $document->addCustomTag ('<script type="text/javascript">
 
@@ -57,6 +69,8 @@ $document->addCustomTag ('<script type="text/javascript">
                                         
                 }
                 
+                '.$extraScript.'
+                
                 </script>
                 
 	');
@@ -68,6 +82,8 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.swipepages.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.tabcomponents.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/build.js?v='.comWeeverConst::VERSION );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/wx.list.joomla.ini.js?v='.comWeeverConst::VERSION );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jq.list.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/swipe.js?v='.comWeeverConst::VERSION );
 
 $this->loadTemplate('base64images');
@@ -166,12 +182,13 @@ else
 </span>
 </div>
 
-
+<div id="wx-list-workspace">
 
 <div id="listTabs">
+
 <ul id="listTabsSortable" style="padding-right: 5%">
 
-<li id="addTabID" class="wx-nav-tabs wx-nosort"><a href="#addTab" class="wx-tab-sortable"><div class="wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" title="Add"><img class="wx-nav-icon-img" src="data:image/png;base64,<?php echo $this->theme->addIcon; ?>" /></div><div class="wx-nav-label">Add More</div></a></li>
+	<li id="addTabID" class="wx-nav-tabs wx-nosort"><a href="#addTab" class="wx-tab-sortable"><div class="wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" title="Add"><img class="wx-nav-icon-img" src="data:image/png;base64,<?php echo $this->theme->addIcon; ?>" /></div><div class="wx-nav-label">Add App Content</div></a></li>
 
 <?php 
 
@@ -207,13 +224,51 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js?v='.comWeeverConst::VERSION );
 		
 	if($componentRowsCount && $tabActive == 0)
-		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs wx-sort" rel="unpublished" style="float:center;"><a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'"><div class="wx-grayed-out wx-nav-icon" rel="'.$this->site_key.'" style="height:32px;width:auto;min-width:32px;text-align:center" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label wx-grayed-out" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';	
+		echo '<li id="' . $row->component . 'TabID" class="wx-nav-tabs wx-sort" rel="unpublished" style="float:center;">
+				<a href="#' . $row->component . 'Tab" class="wx-tab-sortable' . $trialClass.'">
+				
+					<div id="wx-nav-icon-' . $row->id . '" ref="' . $row->id . '" class="wx-grayed-out wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" title="' . $row->component . '">
+					
+						<img class="wx-nav-icon-img" src="data:image/png;base64,' . @$this->theme->{$tabIcon} . '" />
+						
+					</div>
+					
+					<div id="wx-nav-label-' . $row->id . '" class="wx-nav-label wx-grayed-out" ref="' . $row->id . '" title="ID #' . $row->id . '">' . $row->name . '</div>
+					
+				</a>
+				
+			</li>';	
 	
 	else if(!$componentRowsCount)
-		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs" rel="unpublished" style="float:right;display:none" style="float:center;"><a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'"><div class="wx-grayed-out wx-nav-icon" rel="'.$this->site_key.'" style="height:32px;width:auto;min-width:32px;text-align:center" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label wx-grayed-out" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';
+		echo '<li id="' . $row->component . 'TabID" class="wx-nav-tabs" rel="unpublished" style="float:right;display:none" style="float:center;">
+				<a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'">
+				
+					<div id="wx-nav-icon-' . $row->id . '" ref="' . $row->id . '" class="wx-grayed-out wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" title="'.$row->component.'">
+					
+						<img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" />
+						
+					</div>
+					
+					<div id="wx-nav-label-' . $row->id . '" class="wx-nav-label wx-grayed-out" ref="' . $row->id . '" title="ID #'.$row->id.'">'.$row->name.'</div>
+					
+				</a>
+				
+			</li>';
 
 	else
-		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs wx-sort"><a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'"><div class="wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" rel="'.$this->site_key.'" title="'.$row->component.'"><img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" /></div><div class="wx-nav-label" title="ID #'.$row->id.'">'.$row->name.'</div></a></li>';	
+		echo '<li id="'. $row->component . 'TabID" class="wx-nav-tabs wx-sort">
+					<a href="#'. $row->component . 'Tab" class="wx-tab-sortable'.$trialClass.'">
+					
+						<div id="wx-nav-icon-' . $row->id . '" ref="' . $row->id . '" class="wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" title="'.$row->component.'">
+						
+							<img class="wx-nav-icon-img" src="data:image/png;base64,'.@$this->theme->{$tabIcon}.'" />
+						
+						</div>
+						
+						<div id="wx-nav-label-' . $row->id . '" ref="' . $row->id . '" class="wx-nav-label" title="ID #'.$row->id.'">'.$row->name.'</div>
+						
+					</a>
+				</li>';	
 	
 }
 
@@ -344,7 +399,21 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	<?php if ( comWeeverHelper::typeIsSupported($row->component) ) : ?>
 		
-		<?php echo $this->loadTemplate($row->component.'dropdown'); ?>
+		<?php //echo $this->loadTemplate($row->component.'dropdown'); ?>
+		
+		<div class="wx-tab-top-buttons-container">
+		
+			<button class="wx-add-source-icon wx-tab-top-buttons" ref="add-<?php echo $row->component; ?>-type">Add More Content</button>
+			<button class="wx-nav-label wx-tab-top-buttons" ref="<?php echo $row->id; ?>">Change Tab Name</button>
+			<button class="wx-nav-icon wx-tab-top-buttons" ref="<?php echo $row->id; ?>" title="<?php echo $row->component; ?>">Change Tab Icon</button>
+			
+			<?php if( $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map" ) : ?>
+			
+				<button class="wx-tab-settings wx-tab-top-buttons" rel="<?php echo $row->component; ?>">Change Tab Settings (adv)</button>
+				
+			<?php endif; ?>
+		
+		</div>
 		
 		<?php if($row->component == "panel") : ?>
 		
@@ -503,6 +572,7 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 <input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
 <?php echo JHTML::_('form.token'); ?>
 </form>
+</div>
 </div>
 
 <?php echo $this->loadTemplate('dialogs'); ?>

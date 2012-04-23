@@ -916,7 +916,7 @@ margin-right:20px;
 	position: absolute;
 	margin-top: -4px;
 	float: left;
-	margin-left: 10px;
+	margin-left: 20em;
 }
 
 #wx-overlay-drag div {
@@ -1697,7 +1697,7 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 
 }
 
-.wx-add-source-icon, .wx-add-item-icon {
+div.wx-add-source-icon, .wx-add-item-icon {
 
 	float: left;
 	text-align: center;
@@ -1709,7 +1709,7 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 	
 }
 
-.wx-add-source-icon img, .wx-add-item-icon img {
+div.wx-add-source-icon img, .wx-add-item-icon img {
 	display:  block;
 	width: 4em;
 	height: 4em;
@@ -1718,13 +1718,13 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 	cursor: pointer;
 }
 
-.wx-add-source-icon span, .wx-add-item-icon span {
+div.wx-add-source-icon span, .wx-add-item-icon span {
 	font-size: 1.175em;
 	font-weight: bold;
 	cursor: pointer;
 }
 
-.wx-add-source-icon div.wx-icon-badge-checkmark, .wx-add-item-icon div.wx-icon-badge-checkmark  {
+div.wx-add-source-icon div.wx-icon-badge-checkmark, .wx-add-item-icon div.wx-icon-badge-checkmark  {
 	position: absolute;
 	top: 0px;
 	right: 16px;
@@ -1736,10 +1736,11 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 	border-radius: 12px;
 	background-position: 3px 3px;
 	background-repeat: no-repeat;
+	opacity: 0.75;
 	background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAA3NCSVQICAjb4U/gAAAAqFBMVEVMnwm71qWDwFLU1NSfv4RjsyDC8J3l5eWs537FxsVWswySz2De7tBrtS/h79VXrBHS6cDq99+y1pahz31fwRCGuV3MzMxnuyTN5riM11BQpgrv+uXF3bFcwQx2tkLQ4cPc3Nzv7++ZyXK56pFbtRKIvlxUrwqBxkmo14PB36ni9dNcrxmU1lL1+fFXtwtsxSW/0rDf98xwuDXV8b6mzoRhwhNUpRKLwGDgG7+sAAAAOHRSTlP///////////////////////////////////////////////////////////8A/////////////wxlbe0AAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAfdEVYdFNvZnR3YXJlAE1hY3JvbWVkaWEgRmlyZXdvcmtzIDi1aNJ4AAAAf0lEQVQYlWPQRQMMaHxDNAFlNlQBYxVpFAEtbW4UMwRZzQSRBfhYGTRAtghIQ/gS2lJGYGs1eflAfGE1NX4eiDu0uZhMlFj19PSEoA6TERcXAQJ9VbhLGdV1JCUl5ZCcLm/OwcHEh+wXRRZRA4TnFNkVmMU4OcWYFdgVMX2rCwCUkSbn8tcLPAAAAABJRU5ErkJggg==')
 }
 
-.wx-add-source-icon div.wx-icon-badge-notice, .wx-add-item-icon div.wx-icon-badge-notice  {
+div.wx-add-source-icon div.wx-icon-badge-notice, .wx-add-item-icon div.wx-icon-badge-notice  {
 	position: absolute;
 	top: 0px;
 	right: 7em;
@@ -1751,13 +1752,25 @@ ul.supportlistarrow li.ui-state-hover a, ul.supportlistarrow li.ui-state-hover a
 	background-color: #FEAF1D;
 	border-radius: 4px;
 	background-position: 3px 3px;
-	background-repeat: no-repeat;	
+	background-repeat: no-repeat;
+	opacity: 0.75;	
 }
 
 .wx-add-item-prompt {
 	font-size: 1.5em;
 	padding: 1.25em;
 	padding-bottom: 0.25em;
+}
+
+button.wx-tab-top-buttons {
+	font-size: 1.375em;
+	margin-left: 1em;
+	margin-right:  1em;
+}
+
+div.wx-tab-top-buttons-container {
+	padding: 1.375em;
+	margin-top: 1.25em;
 }
 
 .wx-slide-wrapper {
@@ -1807,140 +1820,16 @@ div.wx-jquery-dialog.ui-dialog-content {
 	background-color: white;
 }
 
-#wx-segcon-type {
-	display:  none;
+div.wx-jquery-dialog {
+	max-width: 500px;
 }
 
-.wx-segcon-button-group {
-    background-color: #ccc;
-    list-style-type: none;
-    width: 34em;
-    height: 4em;
-    padding: 1px;
-    margin: 0 auto;
-    
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
+div#wx-list-workspace {
+	opacity: 0;
 }
 
-.wx-segcon-button-group li {
-    background-color: #eee;
-    float: left;
-    margin-left: 1px;
-}
-
-.wx-segcon-button-group li,
-.wx-segcon-button-group.alt li:target,
-.wx-segcon-button-group.alt li:target:active {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .1)), to(rgba(255, 255, 255, 0)));
-    
-    background-image: -moz-linear-gradient(0 0 -90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
-}
-
-.wx-segcon-button-group li, .wx-segcon-button-group.alt li:target {
-    -webkit-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
-    -moz-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
-    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
-}
-
-.wx-segcon-button-group li:first-child {
-    margin-left: 0;
-    
-    -webkit-border-top-left-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -moz-border-radius-topleft: 3px;
-    -moz-border-radius-bottomleft: 3px;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-}
-
-.wx-segcon-button-group li:last-child {
-    -webkit-border-top-right-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
-    -moz-border-radius-topright: 3px;
-    -moz-border-radius-bottomright: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-}
-
-.wx-segcon-button-group li {
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 24px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    width: 15em;
-    height: 4em;
-    color: black;
-}
-
-.wx-segcon-button-group a,
-.wx-segcon-button-group.alt li:target a {
-    color: #262626;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .15);
-}
-
-.wx-segcon-button-group li.wx-segcon-selected {background-color: #eee;}
-
-.wx-segcon-button-group li.wx-segcon-selected {
-    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
-                        inset 0 0 5px rgba(0, 0, 0, .1);
-    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
-                     inset 0 0 5px rgba(0, 0, 0, .1);
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
-                inset 0 0 5px rgba(0, 0, 0, .1);
-}
-
-.wx-segcon-button-group li.wx-segcon-selected {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .1);
-    position: relative;
-    top: 1px;
-}
-
-.wx-segcon-button-group li.wx-segcon-selected {
-    background-image:
-        -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, .1))),
-        url(../images/demos/background-segmented-control-selected.png);
-    
-    background-image:
-        -moz-linear-gradient(0% 0% -90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .1)),
-        url(../images/demos/background-segmented-control-selected.png);
-    
-    background-color: #ccc;
-    
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
-                        inset 0 0 5px rgba(0, 0, 0, .15);
-    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
-                     inset 0 0 5px rgba(0, 0, 0, .15);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
-                inset 0 0 5px rgba(0, 0, 0, .15);
-}
-
-.wx-segcon-button-group.alt li:target {background-color: #ddd;}
-
-.wx-segcon-button-group li:target a {color: #fff; text-shadow: 0 1px 0 #000;}
-
-.wx-segcon-button-group li:target:active {
-    background-image:
-        -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, .05))),
-        url(../images/demos/background-segmented-control-selected.png);
-        
-    background-image:
-        -moz-linear-gradient(0% 0% -90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .05)),
-        url(../images/demos/background-segmented-control-selected.png);
-    
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
-                        inset 0 0 5px rgba(0, 0, 0, .15);
-    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
-                     inset 0 0 5px rgba(0, 0, 0, .15);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
-                inset 0 0 5px rgba(0, 0, 0, .15);
+.wx-swipe-page {
+	margin-top: 1.375em;
 }
 
 .swipe {

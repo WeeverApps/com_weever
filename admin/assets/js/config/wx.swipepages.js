@@ -27,15 +27,15 @@ wx.swipePages = [
 		helpHtml:	'<p>This is some helper HTML to tell you what\'s going on!</p>',
 		items:		[
 		
-			'joomla',
+			'joomla.category',
 			'joomla.article',
 			'joomla.menu',
 			'joomla_contact',
 			'k2.category',
-			'k2.article',
+			'k2.item',
 			'k2.tag',
 			'easyblog.category',
-			'easyblog.article',
+			'easyblog.post',
 			'easyblog.tag',
 			'virtuemart'
 		
@@ -50,9 +50,9 @@ wx.swipePages = [
 		
 			'twitter',
 			'facebook',
-			'google_plus',
-			'identica',
 			'blogger',
+			'identica',
+			'google_plus',
 			'tumblr'
 		
 		]	
@@ -69,9 +69,9 @@ wx.swipePages = [
 			'youtube',
 			'vimeo',
 			'foursquare',
+			'facebook',
 			'soundcloud',
-			'bandcamp',
-			'facebook'
+			'bandcamp'
 		
 		]
 	
@@ -85,7 +85,8 @@ wx.swipePages = [
 			'google_calendar',
 			'wufoo',
 			'facebook',
-			'r3s'
+			'r3s',
+			'suggestion'
 		
 		]
 	
