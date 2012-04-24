@@ -266,7 +266,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-facebook-stream-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook wx-choose-content">
+<div id="wx-add-facebook-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook wx-choose-content">
 
 	<div><p>Enter your Facebook page URL</p>
 

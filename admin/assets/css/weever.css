@@ -1825,6 +1825,11 @@ div.wx-jquery-dialog.ui-dialog-content {
 
 }
 
+span.ui-dialog-title {
+	color: black;
+	font-size: 1.5em;
+}
+
 div#wx-list-workspace {
 	opacity: 0;
 }

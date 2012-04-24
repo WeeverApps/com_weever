@@ -32,7 +32,7 @@ wx.features = [
 			
 				id:				'blog',
 				name:			'Blog',
-				types:			['map', 'proximity', 'blog', 'directory']
+				types:			['blog', 'map', 'proximity',  'directory']
 			
 			},
 			{
@@ -210,32 +210,8 @@ wx.features = [
 				' <p><em>It is recommended you add Pages, rather than personal profiles. Due to privacy settings, personal profiles may not work in the app.</em></p>	',
 				
 		url:			'http://facebook.com/',
-		items:			[
-		
-			{
+		types:			['social', 'photo', 'calendar']
 			
-				id:			'stream',
-				name:		'Status Stream',
-				types:		'social'
-			
-			},
-			{
-			
-				id:			'albums',
-				name:		'Photo Albums',
-				types:		'photo'
-			
-			},
-			{
-			
-				id:			'events',
-				name:		'Events',
-				types:		'calendar'
-			
-			}
-		
-		]
-	
 	},
 	{
 	

@@ -154,7 +154,7 @@ jQuery(document).ready( function() {
 			if( !(item.items instanceof Array) )
 				extraClass += ' wx-add-single';
 				
-			if( true == addDescription && item.description ) {
+			if( true == addDescription && item.description && jQuery( '.wx-service-' + item.id + ' > div.wx-service-description' ).length == 0 ) {
 			
 				jQuery( '.wx-service-' + item.id ).prepend( 
 				
