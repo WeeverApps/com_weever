@@ -23,14 +23,15 @@ wx.swipePages = [
 
 	{
 	
-		name:		'Getting Started',
-		helpHtml:	'<p>This is some helper HTML to tell you what\'s going on!</p>',
+		name:		'1. Add Website Content to Your Mobile App',
+		helpHtml:	'<p>Add content to your app from the options below. Once you\'ve got everything you need, hit \"next\".</p>',
 		items:		[
 		
+			'joomla.blog',
 			'joomla.category',
 			'joomla.article',
-			'joomla.menu',
 			'joomla_contact',
+			'k2.blog',
 			'k2.category',
 			'k2.item',
 			'k2.tag',
@@ -44,8 +45,8 @@ wx.swipePages = [
 	},
 	{
 	
-		name:		'Social Networks',
-		helpHtml:	'<p>This is some Social Network help text&trade;!</p>',
+		name:		'2. Add Your Social Feeds',
+		helpHtml:	'<p>Add feeds from Twitter, Facebook, and more! Keep your visitors up to date on your most recent news.</p>',
 		items:		[
 		
 			'twitter',
@@ -60,8 +61,8 @@ wx.swipePages = [
 	},
 	{
 	
-		name:		'Audio / Visual Content',
-		helpHtml:	'<p>Add your videos, photos, and audios!</p>',
+		name:		'3. Add Your Multimeda Content',
+		helpHtml:	'<p>Show off your digital creations, or share your favorite content!</p>',
 		items:		[
 		
 			'flickr',
@@ -78,8 +79,8 @@ wx.swipePages = [
 	},
 	{
 	
-		name:		'Everything Else!',
-		helpHtml:	'<p>Missing something? Might be here..</p>',
+		name:		'4. Add Forms, Calendars, and More',
+		helpHtml:	'<p>Connect your visitors to everything they need to know, when they need to know it.</p>',
 		items:		[
 		
 			'google_calendar',
@@ -93,8 +94,8 @@ wx.swipePages = [
 	},
 	{
 	
-		name:		'Add Content by Type',
-		helpHtml:	'<p>Add content by type.. for advanced/technical users!</p>',
+		name:		'... or, Add Content by Navigation Tab Type',
+		helpHtml:	'<p>Choose which tab you\'d like to add content to.</p>',
 		items:		[
 		
 			'type.blog',

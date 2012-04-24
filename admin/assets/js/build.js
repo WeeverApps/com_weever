@@ -104,7 +104,7 @@ jQuery(document).ready( function() {
 	
 				jQuery( 'div#wx-add-' + item.id + '-items' ).append(
 					
-					"<div id='add-" + item.id + "-" + item.items[ii].id + "' class='wx-add-item-icon wx-add-" + item.id + "-dialog-item" + extraClass + "'>" +
+					"<div id='add-" + item.id + "-" + item.items[ii].id + "' class='wx-add-item-icon wx-add-" + item.id + "-dialog-item wx-add-single" + extraClass + "'>" +
 					
 						"<img src='components/com_weever/assets/icons/nav/" + icon + "' />" +
 						"<span>" + item.items[ii].name + "</span>" +
@@ -256,7 +256,7 @@ jQuery(document).ready( function() {
 					if( alias[0] == "type" ) 
 						return typeIconHtml(alias[1]);
 				
-					for( var i=0; i <   wx.features.length; i++ ) {
+					for( var i=0; i < wx.features.length; i++ ) {
 					
 						var feature		= wx.features[i];
 					

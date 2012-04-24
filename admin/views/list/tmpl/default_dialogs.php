@@ -75,7 +75,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-k2-category-dialog" class="wx-jquery-dialog wx-hide">
+<div id="wx-add-k2-category-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
 	<div><p>Choose a K2 Content Category</p>
 		
@@ -101,7 +101,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-easyblog-category-dialog" class="wx-jquery-dialog wx-hide">
+<div id="wx-add-easyblog-category-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
 	<div><p>Choose a EasyBlog Category</p>
 		
@@ -127,7 +127,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-k2-article-dialog" class="wx-jquery-dialog wx-hide">
+<div id="wx-add-k2-article-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
 	<div><p>Select a K2 Item</p>
 
@@ -152,8 +152,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-
-<div id="wx-add-k2-tag-dialog" class="wx-jquery-dialog wx-hide">
+<div id="wx-add-k2-tag-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
 	<div><p>Type in the K2 Tag</p>
 
@@ -170,11 +169,9 @@ defined('_JEXEC') or die;
 </div>
 
 
-
-
-<div id="wx-add-joomla-category-dialog" class="wx-jquery-dialog wx-hide">
-
-	<div><p>Choose a Joomla Content Category</p>
+<div id="wx-add-joomla-category-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
+	
+		<p>1. Choose a Joomla Content Category</p>
 		
 		<div id='wx-add-blog-jcategory-item'>
 		
@@ -192,14 +189,11 @@ defined('_JEXEC') or die;
 			</select>
 		
 		</div>
-		
-	</div>
 
 </div>
 
 
-
-<div id="wx-add-joomla-article-dialog" class="wx-jquery-dialog wx-hide">
+<div id="wx-add-joomla-article-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
 	<?php 
 	
@@ -238,7 +232,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-twitter-user-dialog" class="wx-jquery-dialog wx-hide wx-service-twitter">
+<div id="wx-add-twitter-user-dialog" class="wx-jquery-dialog wx-hide wx-service-twitter wx-choose-content">
 
 	<div><p>Type in your username</p>
 
@@ -249,7 +243,7 @@ defined('_JEXEC') or die;
 
 </div>
 
-<div id="wx-add-twitter-hashtag-dialog" class="wx-jquery-dialog wx-hide wx-service-twitter">
+<div id="wx-add-twitter-hashtag-dialog" class="wx-jquery-dialog wx-hide wx-service-twitter wx-choose-content">
 
 	<div><p>Type in your username</p>
 
@@ -260,7 +254,7 @@ defined('_JEXEC') or die;
 
 </div>
 
-<div id="wx-add-twitter-search-dialog" class="wx-jquery-dialog wx-hide wx-service-twitter">
+<div id="wx-add-twitter-search-dialog" class="wx-jquery-dialog wx-hide wx-service-twitter wx-choose-content">
 
 	<div><p>Type in your username</p>
 
@@ -272,7 +266,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-facebook-stream-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook">
+<div id="wx-add-facebook-stream-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook wx-choose-content">
 
 	<div><p>Enter your Facebook page URL</p>
 
@@ -284,7 +278,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-facebook-albums-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook">
+<div id="wx-add-facebook-albums-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook wx-choose-content">
 
 	<div><p>Enter your Facebook page URL</p>
 
@@ -296,7 +290,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-facebook-events-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook">
+<div id="wx-add-facebook-events-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook wx-choose-content">
 
 	<div><p>Enter your Facebook page URL</p>
 
@@ -309,7 +303,7 @@ defined('_JEXEC') or die;
 
 
 
-<div id="wx-add-youtube-channel-dialog" class="wx-jquery-dialog wx-hide wx-service-youtube">
+<div id="wx-add-youtube-channel-dialog" class="wx-jquery-dialog wx-hide wx-service-youtube wx-choose-content">
 
 	<div><p>From Youtube Channel / User...</p>
 		
@@ -324,7 +318,7 @@ defined('_JEXEC') or die;
 
 
 
-<div id="wx-add-youtube-playlist-dialog" class="wx-jquery-dialog wx-hide wx-service-youtube">
+<div id="wx-add-youtube-playlist-dialog" class="wx-jquery-dialog wx-hide wx-service-youtube wx-choose-content">
 
 	<div><p>From Youtube Playlist...</p>
 		
@@ -338,7 +332,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-vimeo-dialog" class="wx-jquery-dialog wx-hide wx-service-vimeo">
+<div id="wx-add-vimeo-dialog" class="wx-jquery-dialog wx-hide wx-service-vimeo wx-choose-content">
 
 	<div><p>From Vimeo User or Channel...</p>
 		
@@ -352,7 +346,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-wufoo-dialog" class="wx-jquery-dialog wx-hide wx-service-wufoo">
+<div id="wx-add-wufoo-dialog" class="wx-jquery-dialog wx-hide wx-service-wufoo wx-choose-content">
 
 	<div><p>Add your Wufoo Forms...</p>
 		
@@ -367,7 +361,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-foursquare-dialog" class="wx-jquery-dialog wx-hide wx-service-foursquare">
+<div id="wx-add-foursquare-dialog" class="wx-jquery-dialog wx-hide wx-service-foursquare wx-choose-content">
 
 	<div><p>Add your Foursquare Venue Photos...</p>
 		
@@ -379,7 +373,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-picasa-dialog" class="wx-jquery-dialog wx-hide wx-service-picasa">
+<div id="wx-add-picasa-dialog" class="wx-jquery-dialog wx-hide wx-service-picasa wx-choose-content">
 
 	<div><p>Add your Picasa Albums...</p>
 		
@@ -391,7 +385,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-google_calendar-dialog" class="wx-jquery-dialog wx-hide wx-service-google_calendar">
+<div id="wx-add-google_calendar-dialog" class="wx-jquery-dialog wx-hide wx-service-google_calendar wx-choose-content">
 
 	<div><p>Add your Google Calendar...</p>
 		
@@ -402,7 +396,7 @@ defined('_JEXEC') or die;
 
 </div>
 
-<div id="wx-add-blogger-dialog" class="wx-jquery-dialog wx-hide wx-service-blogger">
+<div id="wx-add-blogger-dialog" class="wx-jquery-dialog wx-hide wx-service-blogger wx-choose-content">
 
 	<div><p>Add your Blogger...</p>
 		
@@ -414,7 +408,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-tumblr-dialog" class="wx-jquery-dialog wx-hide wx-service-tumblr">
+<div id="wx-add-tumblr-dialog" class="wx-jquery-dialog wx-hide wx-service-tumblr wx-choose-content">
 
 	<div><p>Add your Tumblr...</p>
 		
@@ -426,7 +420,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-google_plus-dialog" class="wx-jquery-dialog wx-hide wx-service-google_plus">
+<div id="wx-add-google_plus-dialog" class="wx-jquery-dialog wx-hide wx-service-google_plus wx-choose-content">
 
 	<div><p>Add your Google+...</p>
 		
@@ -438,7 +432,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-identica-dialog" class="wx-jquery-dialog wx-hide wx-service-identica">
+<div id="wx-add-identica-dialog" class="wx-jquery-dialog wx-hide wx-service-identica wx-choose-content">
 
 	<div><p>Add your Identi.ca...</p>
 		
@@ -450,7 +444,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-flickr-photostream-dialog" class="wx-jquery-dialog wx-hide wx-service-flickr">
+<div id="wx-add-flickr-photostream-dialog" class="wx-jquery-dialog wx-hide wx-service-flickr wx-choose-content">
 
 	<div><p>From Flickr PhotoStream...</p>
 		
@@ -463,7 +457,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-flickr-photosets-dialog" class="wx-jquery-dialog wx-hide wx-service-flickr">
+<div id="wx-add-flickr-photosets-dialog" class="wx-jquery-dialog wx-hide wx-service-flickr wx-choose-content">
 
 	<div><p>From Flickr Photosets...</p>
 		
@@ -476,7 +470,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-soundcloud-set-dialog" class="wx-jquery-dialog wx-hide wx-service-soundcloud">
+<div id="wx-add-soundcloud-set-dialog" class="wx-jquery-dialog wx-hide wx-service-soundcloud wx-choose-content">
 
 	<div><p>From SoundCloud...</p>
 		
@@ -488,7 +482,7 @@ defined('_JEXEC') or die;
 
 </div>
 
-<div id="wx-add-soundcloud-user-dialog" class="wx-jquery-dialog wx-hide wx-service-soundcloud">
+<div id="wx-add-soundcloud-user-dialog" class="wx-jquery-dialog wx-hide wx-service-soundcloud wx-choose-content">
 
 	<div><p>From SoundCloud...</p>
 		
@@ -501,7 +495,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-bandcamp-band-dialog" class="wx-jquery-dialog wx-hide wx-service-bandcamp">
+<div id="wx-add-bandcamp-band-dialog" class="wx-jquery-dialog wx-hide wx-service-bandcamp wx-choose-content">
 
 	<div><p>From BandCamp...</p>
 		
@@ -514,7 +508,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-bandcamp-album-dialog" class="wx-jquery-dialog wx-hide wx-service-bandcamp">
+<div id="wx-add-bandcamp-album-dialog" class="wx-jquery-dialog wx-hide wx-service-bandcamp wx-choose-content">
 
 	<div><p>From BandCamp...</p>
 		
@@ -527,7 +521,7 @@ defined('_JEXEC') or die;
 </div>
 
 
-<div id="wx-add-r3s-dialog" class="wx-jquery-dialog wx-hide">
+<div id="wx-add-r3s-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
 	<p>Add an R3S Feed Directly...</p>
 	

@@ -22,12 +22,13 @@ jQuery( document ).ready( function() {
 
 	jQuery('.wx-add-source-icon').click(function(e) {
 	
-		var typeRef 	= jQuery(this).attr('ref'),
-			typeRel		= jQuery(this).attr('rel'),
+		var typeRef 		= jQuery(this).attr('ref'),
+			typeRel			= jQuery(this).attr('rel'),
 			dialogId,
-			buttonNames	= ["Cancel", "Add to App"],
+			buttonNames		= ["Cancel", "Add to App"],
 			backAction,
-			buttons		= {};
+			buttons			= {},
+			populateOptions	= false;
 			
 		if( jQuery(this).is('.wx-missing-extension') ) {
 		
@@ -74,10 +75,12 @@ jQuery( document ).ready( function() {
 				jQuery(this).dialog( "close" );
 			
 			}
+			
+			populateOptions = true;
 		
 		}
 	
-		wx.localizedConditionalDialog( ["« Back", "Add to App"], dialogId, backAction );
+		wx.localizedConditionalDialog( ["« Back", "Add to App"], dialogId, backAction, populateOptions );
 		
 		e.preventDefault();
 	

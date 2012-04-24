@@ -1818,10 +1818,11 @@ button.wx-add-content-nav-button {
 
 div.wx-jquery-dialog.ui-dialog-content {
 	background-color: white;
+	width: 550px !important;
 }
 
-div.wx-jquery-dialog {
-	max-width: 500px;
+div.wx-jquery-dialog.ui-dialog-content {
+
 }
 
 div#wx-list-workspace {

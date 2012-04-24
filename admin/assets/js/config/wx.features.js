@@ -30,8 +30,15 @@ wx.features = [
 		
 			{
 			
+				id:				'blog',
+				name:			'Blog',
+				types:			['map', 'proximity', 'blog', 'directory']
+			
+			},
+			{
+			
 				id:				'category',
-				name:			'Content Category',
+				name:			'Category',
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			},
@@ -40,13 +47,6 @@ wx.features = [
 				id:				'article',
 				name:			'Article',
 				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
-			
-			},
-			{
-			
-				id:				'menu',
-				name:			'Content from Menu',
-				types:			['page', 'panel', 'map', 'aboutapp', 'proximity', 'blog', 'directory']
 			
 			}
 		
@@ -68,6 +68,14 @@ wx.features = [
 		name:		'K2 Content',
 		items:	[
 		
+			{
+			
+				id:				'blog',
+				name:			'K2 Blog',
+				extension:		'com_k2',
+				types:			['blog', 'directory', 'map', 'proximity']
+			
+			},
 			{
 			
 				id:				'category',
@@ -185,7 +193,6 @@ wx.features = [
 	},
 	{
 	
-		group:			'third-party',
 		id:				'facebook',
 		vertical:		'all',
 		name:			'Facebook',
