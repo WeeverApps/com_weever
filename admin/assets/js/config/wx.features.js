@@ -32,6 +32,7 @@ wx.features = [
 			
 				id:				'blog',
 				name:			'Blog',
+				title:			true,
 				types:			['blog', 'map', 'proximity',  'directory']
 			
 			},
@@ -39,6 +40,7 @@ wx.features = [
 			
 				id:				'category',
 				name:			'Category',
+				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			},
@@ -46,6 +48,8 @@ wx.features = [
 			
 				id:				'article',
 				name:			'Article',
+				title:			true,
+				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
 				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
 			
 			}
@@ -56,9 +60,10 @@ wx.features = [
 	},
 	{
 	
-		id:			'joomla_contact',
-		name:		'Contact',
-		types:		'contact'
+		id:				'joomla_contact',
+		name:			'Contact',
+		defaultTitle:	'Contact Us',
+		types:			'contact'
 		
 	},
 	{
@@ -73,6 +78,7 @@ wx.features = [
 				id:				'blog',
 				name:			'K2 Blog',
 				extension:		'com_k2',
+				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			},
@@ -81,6 +87,7 @@ wx.features = [
 				id:				'category',
 				name:			'K2 Category',
 				extension:		'com_k2',
+				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			},
@@ -89,6 +96,8 @@ wx.features = [
 				id:				'item',
 				name:			'K2 Item',
 				extension:		'com_k2',
+				title:			true,
+				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
 				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
 			
 			},
@@ -97,6 +106,7 @@ wx.features = [
 				id:				'tag',
 				name:			'K2 Tag',
 				extension:		'com_k2',
+				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			}
@@ -111,6 +121,7 @@ wx.features = [
 		name:			'Virtuemart',
 		unavailable:	'Feature coming soon!',
 		types:			'product',
+		defaultTitle:	'Products',
 		tier:			2
 	
 	},
@@ -126,6 +137,7 @@ wx.features = [
 				id:				'category',
 				name:			'EasyBlog Category',
 				extension:		'com_easyblog',
+				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			},
@@ -134,6 +146,8 @@ wx.features = [
 				id:				'post',
 				name:			'EasyBlog Post',
 				extension:		'com_easyblog',
+				title:			true,
+				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
 				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
 			
 			},
@@ -142,6 +156,7 @@ wx.features = [
 				id:				'tag',
 				name:			'EasyBlog Tag',
 				extension:		'com_easyblog',
+				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity']
 			
 			}
@@ -168,9 +183,9 @@ wx.features = [
 		
 			{
 			
-				id:			'user',
-				name:		'Twitter User',
-				types:		'social'
+				id:				'user',
+				name:			'Twitter User',
+				types:			'social'
 			
 			},
 			{
@@ -259,16 +274,20 @@ wx.features = [
 		
 			{
 			
-				id:			'channel',
-				name:		'User or Channel',
-				types:		'video'
+				id:				'channel',
+				name:			'User or Channel',
+				types:			'video',
+				title:			true,
+				defaultTitle:	'Videos'
 			
 			},
 			{
 			
-				id:			'playlist',
-				name:		'Playlist',
-				types:		'video'
+				id:				'playlist',
+				name:			'Playlist',
+				types:			'video',
+				title:			true,
+				defaultTitle:	'Videos'
 			
 			}
 		
@@ -294,7 +313,9 @@ wx.features = [
 			    
 			'</ul>',
 			
-		types:			'video'
+		types:			'video',
+		title:			true,
+		defaultTitle:	'Videos'
 	
 	
 	},
@@ -325,6 +346,7 @@ wx.features = [
 			'<p>For more information check out: <a href="http://wufoo.com/integrations" target="_blank">http://wufoo.com/integrations</a></p>',
 			
 		types:			'form',
+		defaultTitle:	'Forms',
 		tier:			2
 	
 	},
@@ -354,16 +376,19 @@ wx.features = [
 		
 			{
 			
-				id:		'photostream',
-				name:	'Photostream (latest only)',
-				types:	'photo'
+				id:				'photostream',
+				name:			'Photostream (latest only)',
+				title:			true,
+				defaultTitle:	'Latest Photos',
+				types:			'photo'
 			
 			},
 			{
 			
-				id:		'photosets',
-				name:	'All Photosets',
-				types:	'photo'
+				id:				'photosets',
+				name:			'All Photosets',
+				defaultTitle:	'Photos',
+				types:			'photo'
 			
 			}
 		
@@ -376,6 +401,7 @@ wx.features = [
 		vertical:		'all',
 		name:			'Picasa',
 		url:			'http://picasa.google.com/',
+		defaultTitle:	'Photos',
 		description:	'<p>Fast and easy photo sharing from Google.</p>'+
 		
 			'<h4>Mobile App Features</h4>' +
@@ -397,6 +423,7 @@ wx.features = [
 		vertical:		'all',
 		id:				'foursquare',
 		name:			'Foursquare',
+		defaultTitle:	'Foursquare Photos',
 		url:			'http://foursquare.com/',
 		description:	'<p>Foursquare is a location-based social networking website for mobile devices. Users “check-in” at venues by selecting from a list of venues the app locates nearby. Each check-in awards the user points and sometimes “badges”.</p>' +
 		
@@ -482,6 +509,8 @@ wx.features = [
 	
 		id:				'blogger',
 		name:			'Blogger',
+		title:			true,
+		defaultTitle:	'Our Blog',
 		types:			'blog'
 	
 	},
@@ -493,12 +522,14 @@ wx.features = [
 					
 					'<p>In Weever, you can display a search term or hashtag stream.</p>',
 		types:			'social',
+		defaultTitle:	'Identi.ca Status',
 	
 	},
 	{
 	
 		id:				'r3s',
 		name:			'R3S Feed',
+		title:			'true',
 		types:			['blog', 'page', 'map', 'panel', 'directory', 'aboutapp', 'proximity']
 	
 	},

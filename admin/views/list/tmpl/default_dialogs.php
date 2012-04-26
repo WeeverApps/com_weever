@@ -41,9 +41,9 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-joomla_contact-dialog" class="wx-jquery-dialog wx-hide">
 
-	<div><p>From Your Joomla Contacts</p>
+	<div>
 		
-		<div id='wx-add-contact-joomla'>
+
 		
 			<select name='component_id' id='wx-add-contact-joomla-select' class='wx-component-id-select'>
 				<option value='0'><?php echo JText::_('WEEVER_CHOOSE_CONTACT_PARENTHESES'); ?></option>
@@ -66,7 +66,6 @@ defined('_JEXEC') or die;
 			
 			<?php echo $hidden; ?>
 		
-		</div>
 		
 		<label><?php echo JText::_('WEEVER_CONTACT_CHOOSE'); ?></label>
 		
@@ -77,35 +76,40 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-k2-blog-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
-	<div><p>Choose a K2 Content Category</p>
-		
-		<div id='wx-add-blog-k2-category-item'>
-		
-			<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'>
-				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
-				
-				<?php foreach( (object) $this->k2Categories as $k=>$v ) : ?>
-				
-					<?php $link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id; ?>
-					
-					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
-				
-				<?php endforeach; ?>
+	<div>
+	
+		<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select'>
+			<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
 			
-			</select>
+			<?php foreach( (object) $this->menuK2Blogs as $k=>$v ) : ?>
+				
+				<option value='<?php echo $v->link; ?>&template=weever_cartographer&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
+			
+			<?php endforeach; ?>
 		
-		</div>
-		
+		</select>
+	
 	</div>
+
+</div>
+
+
+
+<div id="wx-add-title-tab-dialog" class="wx-jquery-dialog wx-hide">
+
+	<h2>Give this content a title</h2>
+	
+	<p id="wx-add-title-use"></p>
+
+	<input type="text" id="wx-add-title-tab-item" class="wx-input" />	
 
 </div>
 
 
 <div id="wx-add-k2-category-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
-	<div><p>Choose a K2 Content Category</p>
-		
-		<div id='wx-add-blog-k2-category-item'>
+
+		<div>
 		
 			<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'>
 				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
@@ -122,16 +126,16 @@ defined('_JEXEC') or die;
 		
 		</div>
 		
-	</div>
+
 
 </div>
 
 
 <div id="wx-add-easyblog-category-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
-	<div><p>Choose a EasyBlog Category</p>
+
 		
-		<div id='wx-add-blog-k2-category-item'>
+		<div>
 		
 			<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'>
 				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
@@ -147,8 +151,6 @@ defined('_JEXEC') or die;
 			</select>
 		
 		</div>
-		
-	</div>
 
 </div>
 
@@ -196,19 +198,15 @@ defined('_JEXEC') or die;
 
 
 <div id="wx-add-joomla-blog-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
-	
-		<p>1. Choose a Joomla Content Category</p>
 		
-		<div id='wx-add-blog-jcategory-item'>
+		<div id='wx-add-blog-menu-item'>
 		
-			<select name='unnamed' id='wx-add-blog-jcategory-item-select' class='wx-cms-feed-select'>
-				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES'); ?></option>
+			<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select'>
+				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
 				
-				<?php foreach( (object) $this->contentCategories as $k=>$v ) : ?>
-				
-					<?php $link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id; ?>
+				<?php foreach( (object) $this->menuJoomlaBlogs as $k=>$v ) : ?>
 					
-					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+					<option value='<?php echo $v->link; ?>&template=weever_cartographer&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
 				
 				<?php endforeach; ?>
 			

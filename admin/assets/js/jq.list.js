@@ -75,7 +75,7 @@ jQuery( document ).ready( function() {
 			
 			}
 			
-			wx.localizedConditionalDialog(["Cancel", "Add to App"], dialogId, backAction, true );
+			wx.localizedConditionalDialog(["Add to App", "Cancel"], dialogId, backAction, true );
 			
 			return;
 		
@@ -105,7 +105,7 @@ jQuery( document ).ready( function() {
 		
 		dialogId = "#wx-" + typeId + "-dialog";
 		
-		wx.localizedConditionalDialog( ["« Back", "Add to App"], dialogId, backAction, true );
+		wx.localizedConditionalDialog( ["Add to App", "« Back"], dialogId, backAction, true );
 		
 	});		
 	

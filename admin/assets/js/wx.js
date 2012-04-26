@@ -18,7 +18,6 @@
 *
 */
 
-
 var wx	= wx || {};
 
 /* IE 8 and Camino give errors if a console.log is left in the code */
@@ -30,14 +29,126 @@ if (typeof console == "undefined") {
     
 }
 
+/* Make our Ajax call to the CMS */
+wx.contentAdd			= function() {
+
+	alert("ADD GOES HERE!");
+
+}
+
+/* Confirmation dialog, skipped if we don't ask about a title (wx.features [title] property is undefined) */
+wx.confirmContentAdd	= function(a) {
+
+	var dialogId		= '#wx-add-title-tab-dialog',
+		titlebarHtml	= "Confirm";
+		
+	if( undefined != a.featureData.defaultTitle )
+		jQuery('input#wx-add-title-tab-item').val(a.featureData.defaultTitle);
+	else
+		jQuery('input#wx-add-title-tab-item').val('');
+		
+	if( undefined != a.featureData.titleUse )
+		jQuery('p#wx-add-title-use').html(a.featureData.titleUse);
+	else
+		jQuery('p#wx-add-title-use').html(
+		
+			'This title will be just above your content, keep it short so it will fit easily on a small screen.'
+		
+		);
+
+	jQuery(dialogId).dialog({
+		
+		modal: 		true, 
+		resizable: 	false,
+		width: 		'auto',
+		height: 	'auto',
+		title:		titlebarHtml,
+		show:		'fade',
+		hide:		'drop',
+		buttons: 	wx.setButtonActions({
+			
+			buttonName:		['Finish', 'Cancel'],
+			dialogId:		dialogId,
+			backAction:		function() { 
+			
+				jQuery(a.previousDialog).dialog('open'); 
+			
+			},
+			action:			wx.contentAdd, 
+			actionArg:		{}
+			
+		}),
+		open:		function(e, ui) {
+		
+			/* click outside dialog to close */
+		
+			jQuery('.ui-widget-overlay').bind('click', function() { 
+			
+				jQuery(dialogId).dialog('close');
+				
+			});
+			
+		}
+			
+	}); 		
+
+}
+
+/* object to create a set of buttons, one cancel, one for action */
+wx.setButtonActions		= function(a) {
+
+	var buttons		= {};
+
+	if( undefined != a.buttonName[1] ) {
+		
+		/* action button */
+		buttons[ a.buttonName[0] ] = function() {
+		
+			jQuery(a.dialogId).dialog( "close" );
+
+			a.action(a.actionArg);
+		
+		};
+		
+		/* cancel button */
+		buttons[ a.buttonName[1] ] = function() {
+		
+			jQuery(a.dialogId).dialog( "close" );
+			
+			if( isFunction(a.backAction) )
+				a.backAction();
+		
+		};
+	
+	} 
+	else {
+	
+		/* solo cancel button */
+		buttons[ a.buttonName[0] ] = function() {
+		
+			jQuery(a.dialogId).dialog( "close" );
+			
+			if( isFunction(a.backAction) )
+				a.backAction();
+		
+		};
+	
+	}
+	
+	return buttons;
+
+};
+
+
 wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, populateOptions) {
 
-	var	buttons			= {},
-		type 			= dialogId.replace('#wx-add-', '').replace('-dialog', '').replace(/\-/, '.'),
+	var	type 			= dialogId.replace('#wx-add-', '').replace('-dialog', '').replace(/\-/, '.'),
 		subType 		= type.split('.'),
 		titlebarHtml	= '',
 		featureData,
 		parentFeatureData,
+		actionArg,
+		action,
 		getFeatureData	= function() {	
 		
 			for( var i=0; i < wx.features.length; i++ ) {
@@ -80,33 +191,21 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 		
 		};
 	
-	/* cancel button */
-	buttons[ buttonName[0] ] = function() {
+	if( subType[1] != 'type' ) {
 	
-		jQuery(dialogId).dialog( "close" );
-		
-		if( isFunction(backAction) )
-			backAction();
-	
-	}
-	
-	/* action button */
-	if( buttonName[1] != undefined ) {
-		
-		buttons[ buttonName[1] ] = function() {
-		
-			jQuery(dialogId).dialog( "close" );
-		
-		}
-	
-	}
-	
-	if( subType[1] != 'type' )
 		getFeatureData();
 		
+		if( true === featureData.title ) 
+			action 	= wx.confirmContentAdd;
+		else 
+			action	= wx.contentAdd;
+		
+	}	
 	else { 
 	
-		titlebarHtml += "<img class='wx-jquery-dialog-titlebar-icon' src='components/com_weever/assets/icons/nav/" + subType[0] + ".png' /> " + wx.types[ subType[0] ].name;
+		titlebarHtml 	+= "<img class='wx-jquery-dialog-titlebar-icon' src='components/com_weever/assets/icons/nav/" + subType[0] + ".png' /> " + wx.types[ subType[0] ].name;
+		
+		action 			= function(a) { null; };
 	
 	}
 	
@@ -193,21 +292,32 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 		resizable: 	false,
 		width: 		'auto',
 		height: 	'auto',
-		buttons: 	buttons,
 		title:		titlebarHtml,
 		show:		'fade',
 		hide:		'drop',
+		buttons: 	wx.setButtonActions({
+			
+			buttonName:		buttonName,
+			dialogId:		dialogId,
+			backAction:		backAction,
+			action:			action, 
+			actionArg:		{
+			
+				previousDialog: 	dialogId,
+				featureData:		featureData
+				
+			}
+			
+		}),
 		open:		function(e, ui) {
 		
 			/* click outside dialog to close */
-		
 			jQuery('.ui-widget-overlay').bind('click', function() { 
 			
 				jQuery(dialogId).dialog('close');
 				
 			});
 			
-		
 		}
 			
 	}); 		
@@ -215,9 +325,11 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 
 }
 
+/* helper for finding if something is a function */
 function isFunction(functionToCheck) {
 
  	var getType = {};
+ 	
 	return functionToCheck && getType.toString.call(functionToCheck) == '[object Function]';
 	
 }

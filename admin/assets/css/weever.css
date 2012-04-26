@@ -1831,6 +1831,10 @@ div.wx-jquery-dialog.ui-dialog-content {
 	font-size: 1.125em;
 }
 
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+	float: left;
+}
+
 img.wx-jquery-dialog-titlebar-icon {
 	width:	16px;
 	height:	16px;

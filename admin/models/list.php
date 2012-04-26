@@ -129,13 +129,26 @@ class WeeverModelList extends JModel
 	}
 
 	
-	public function getMenuCategories()
+	public function getMenuJoomlaBlogs()
 	{
 		
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE (link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_k2&view=itemlist%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=frontpage%') AND published = '1' AND access = '0'";  
+		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR  link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=frontpage%' ) AND published = '1' AND access = '0'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_k2&view=itemlist%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=featured%') AND published = '1' AND access < '2'";  
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=featured%' ) AND published = '1' AND access < '2'";  
+
+		return $this->_getList($query);		
+
+	}
+	
+	
+	public function getMenuK2Blogs()
+	{
+		
+		if(comWeeverHelper::joomlaVersion() == "1.5")
+		 	$query = "SELECT * FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1' AND access = '0'";  
+		else 
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1' AND access < '2'";  
 
 		return $this->_getList($query);		
 

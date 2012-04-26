@@ -86,13 +86,14 @@ class WeeverViewList extends JView
 			
 		$contentCategories 	= $this->get('contentCategories');
 		$menuItems 			= $this->get('menuItems');
-		$menuCategories		= $this->get('menuCategories');
+		$menuJoomlaBlogs	= $this->get('menuJoomlaBlogs');
+		$menuK2Blogs		= $this->get('menuK2Blogs');
 		$contactItems		= $this->get('contactItems');
 		
 		$this->assignRef('k2Categories', $k2Categories);
 		$this->assignRef('contentCategories', $contentCategories);
-		$this->assignRef('menuItems', $menuItems);
-		$this->assignRef('menuCategories', $menuCategories);
+		$this->assignRef('menuJoomlaBlogs', $menuJoomlaBlogs);
+		$this->assignRef('menuK2Blogs', $menuK2Blogs);
 		$this->assignRef('contactItems', $contactItems);
 		
 		$this->assign('site_key', $state->get('site_key'));
