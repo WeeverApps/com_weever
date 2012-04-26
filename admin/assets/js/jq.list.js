@@ -27,8 +27,7 @@ jQuery( document ).ready( function() {
 			dialogId,
 			buttonNames		= ["Cancel", "Add to App"],
 			backAction,
-			buttons			= {},
-			populateOptions	= false;
+			buttons			= {};
 			
 		if( jQuery(this).is('.wx-missing-extension') ) {
 		
@@ -76,11 +75,13 @@ jQuery( document ).ready( function() {
 			
 			}
 			
-			populateOptions = true;
+			wx.localizedConditionalDialog(["Cancel", "Add to App"], dialogId, backAction, true );
+			
+			return;
 		
 		}
 	
-		wx.localizedConditionalDialog( ["« Back", "Add to App"], dialogId, backAction, populateOptions );
+		wx.localizedConditionalDialog( ["Cancel"], dialogId, backAction );
 		
 		e.preventDefault();
 	
@@ -104,7 +105,7 @@ jQuery( document ).ready( function() {
 		
 		dialogId = "#wx-" + typeId + "-dialog";
 		
-		wx.localizedConditionalDialog( ["« Back", "Add to App"], dialogId, backAction );
+		wx.localizedConditionalDialog( ["« Back", "Add to App"], dialogId, backAction, true );
 		
 	});		
 	

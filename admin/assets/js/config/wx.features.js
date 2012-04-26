@@ -210,7 +210,14 @@ wx.features = [
 				' <p><em>It is recommended you add Pages, rather than personal profiles. Due to privacy settings, personal profiles may not work in the app.</em></p>	',
 				
 		url:			'http://facebook.com/',
-		types:			['social', 'photo', 'calendar']
+		types:			['social', 'photo', 'calendar'],
+		labels:			{
+		
+			'social':		new wx.labelText('Display my status updates as a stream', null),
+			'photo':		new wx.labelText('Display my public photo albums', null),
+			'calendar':		new wx.labelText('Display my upcoming events', null)
+		
+		}
 			
 	},
 	{
@@ -404,7 +411,12 @@ wx.features = [
 			
 			'</ul>',
 			
-		types:			'photo'	
+		types:			'photo',
+		labels:			{
+		
+			'photo':	new wx.labelText(null, 'This content will be displayed as a slideshow of photos')
+		
+		}
 	
 	},
 	{
@@ -480,7 +492,7 @@ wx.features = [
 		description:	'<p>Identi.ca is a social microblogging service similar to Twitter, but built on open source tools and open standards.' +
 					
 					'<p>In Weever, you can display a search term or hashtag stream.</p>',
-		types:			'social'
+		types:			'social',
 	
 	},
 	{

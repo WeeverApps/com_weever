@@ -1816,18 +1816,34 @@ button.wx-add-content-nav-button {
 	opacity: 0.25;
 }
 
-div.wx-jquery-dialog.ui-dialog-content {
-	background-color: white;
-	width: 550px !important;
+.wx-add-upgrade {
+	opacity: 0.65;
+}
+
+input.wx-dialog-input {
+	font-size: 1.5em;
+	margin: 0.825em;
 }
 
 div.wx-jquery-dialog.ui-dialog-content {
+	background-color: white;
+	width: 550px !important;
+	font-size: 1.125em;
+}
 
+img.wx-jquery-dialog-titlebar-icon {
+	width:	16px;
+	height:	16px;
 }
 
 span.ui-dialog-title {
 	color: black;
-	font-size: 1.5em;
+	font-size: 1.375em;
+	margin-left: 3em;
+}
+
+img.wx-jquery-dialog-titlebar-icon {
+	vertical-align: text-bottom;
 }
 
 div#wx-list-workspace {

@@ -44,25 +44,29 @@ comWeeverHelperJS::loadConfJS($staging);
 
 $document =& JFactory::getDocument();
 
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery.js?v='.comWeeverConst::VERSION );
 $document->addCustomTag ('<script type="text/javascript">jQuery.noConflict();</script>');
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jq.common.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js' );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/wx.js' );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-ui.js?v='.comWeeverConst::VERSION );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jquery-impromptu.js?v='.comWeeverConst::VERSION );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/jq.common.js?v='.comWeeverConst::VERSION );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/weever.js?v='.comWeeverConst::VERSION );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/wx.js?v='.comWeeverConst::VERSION );
 
-$cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css';
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/ui-lightness/jquery-ui.css?v='.comWeeverConst::VERSION;
+
     $document->addStyleSheet($cssFile, 'text/css', null, array());
 
-$cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css';
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/jquery-impromptu.css?v='.comWeeverConst::VERSION;
+
     $document->addStyleSheet($cssFile, 'text/css', null, array()); 
     
-$cssFile = JURI::base(true).'/components/com_weever/assets/css/fileuploader.css';
+$cssFile = JURI::base(true).'/components/com_weever/assets/css/fileuploader.css?v='.comWeeverConst::VERSION;
+
     $document->addStyleSheet($cssFile, 'text/css', null, array()); 
 
 $cssFile = JURI::base(true).'/components/com_weever/assets/css/weever.css?v='.comWeeverConst::VERSION;
-$document->addStyleSheet($cssFile, 'text/css', null, array());
+
+	$document->addStyleSheet($cssFile, 'text/css', null, array());
 
 if((ini_get('allow_url_fopen') != 1) && (!in_array('curl', get_loaded_extensions())) )
 	JError::raiseNotice(100, JText::_('WEEVER_NOTICE_ALLOW_URL_FOPEN_OFF'));	

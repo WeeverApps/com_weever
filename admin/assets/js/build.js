@@ -455,7 +455,7 @@ jQuery(document).ready( function() {
 	
 			for (var i=0; i < wx.features.length; i++) {
 			
-				var item 			= wx.features[i],
+				var item 			= jQuery.extend(true, {}, wx.features[i]), // clone, not reference
 					extraClass 		= checkExtraClasses(item);
 					
 				if( item.items instanceof Array ) {

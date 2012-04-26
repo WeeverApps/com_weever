@@ -78,6 +78,7 @@ $document->addCustomTag ('<script type="text/javascript">
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_icons.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js?v='.comWeeverConst::VERSION );
 
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.tabtypes.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.features.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.swipepages.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.tabcomponents.js?v='.comWeeverConst::VERSION );
@@ -219,9 +220,9 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	$componentRowsCount = count($componentRows);
 	$tabIcon = $row->component . "Icon";
-	
-	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/select/'.$row->component.'.select.js?v='.comWeeverConst::VERSION );
-	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js?v='.comWeeverConst::VERSION );
+//	
+//	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/select/'.$row->component.'.select.js?v='.comWeeverConst::VERSION );
+//	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js?v='.comWeeverConst::VERSION );
 		
 	if($componentRowsCount && $tabActive == 0)
 		echo '<li id="' . $row->component . 'TabID" class="wx-nav-tabs wx-sort" rel="unpublished" style="float:center;">

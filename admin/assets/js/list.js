@@ -55,25 +55,25 @@ jQuery(document).ready(function(){
 	
 	jQuery('.wx-table-sort').disableSelection();
 
-	jQuery("li.wx-nav-tabs.wx-sort").bind("mouseover", function(){
-
-		if(jQuery(this).attr("rel") == "unpublished")
-		{
-			jQuery("#wx-overlay-drag-img").hide();
-			jQuery("#wx-overlay-unpublished").show();
-		}
-		
-		jQuery("#wx-overlay-drag").show();
-
-	});
-	
-	jQuery("li.wx-nav-tabs").bind("mouseout", function(){
-	
-		jQuery("#wx-overlay-drag").hide();
-		jQuery("#wx-overlay-unpublished").hide();
-		jQuery("#wx-overlay-drag-img").show();
-	
-	});
+//	jQuery("li.wx-nav-tabs.wx-sort").bind("mouseover", function(){
+//
+//		if(jQuery(this).attr("rel") == "unpublished")
+//		{
+//			jQuery("#wx-overlay-drag-img").hide();
+//			jQuery("#wx-overlay-unpublished").show();
+//		}
+//		
+//		jQuery("#wx-overlay-drag").show();
+//
+//	});
+//	
+//	jQuery("li.wx-nav-tabs").bind("mouseout", function(){
+//	
+//		jQuery("#wx-overlay-drag").hide();
+//		jQuery("#wx-overlay-unpublished").hide();
+//		jQuery("#wx-overlay-drag-img").show();
+//	
+//	});
 
 	jQuery('a.wx-subtab-link').click(function() {
 	
