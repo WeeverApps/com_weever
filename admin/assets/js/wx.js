@@ -29,15 +29,79 @@ if (typeof console == "undefined") {
     
 }
 
-/* Make our Ajax call to the CMS */
-wx.contentAdd			= function() {
+wx.ajaxCms			= function(params, msgSuccess) { 
+
+	jQuery.ajax({
+	
+		type: 		"POST",
+		url: 		'index.php',
+		data: 		params,
+		success: 	function(msg) {
+		   
+			jQuery('#wx-modal-loading-text').html(msg);
+			
+			if(msg == msgSuccess) {
+			
+				jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+//				document.location.href = "index.php";
+				document.location.reload(true);
+				
+			}
+			else {
+			
+				jQuery('#wx-modal-secondary-text').html('');
+				jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+				
+			}
+			
+	   }
+	   
+	});	
+
+};
+
+/* Prep our Ajax call to the CMS */
+wx.ajaxAddTabItem	= function() {
 
 	alert("ADD GOES HERE!");
+	
+	return;// remove when ready
+	
+	/* to get: required database fields required from wx.features for a feature; IE:
+	
+		requiredFields:	[
+			
+			'cms_feed':		'#wx-input-field',
+			'var':			'xyz',
+			'rss':			1
+			
+		];
+		
+		*/ 
+	
+	var title		= jQuery('#wx-add-title-tab-item'),
+		type 		= '',
+		content		= '',
+		appKey		= jQuery("input#wx-site-key").val(),
+		buildParams	= function() {
+		
+			var params	= "option=com_weever&task=ajaxSaveNewTab&name=" + 
+							encodeURIComponent(title) + "&" +
+							"type=" + type + "&component=" + component + "&weever_action=add&" +
+							"site_key=" + appKey;			
+			
+			// add extra fields necessary for each tab
+		
+			return params;
+		
+		};
+		
+		wx.ajaxCms( buildParams(), "Item Added" );	
 
 }
 
 /* Confirmation dialog, skipped if we don't ask about a title (wx.features [title] property is undefined) */
-wx.confirmContentAdd	= function(a) {
+wx.confirmAddTabItem	= function(a) {
 
 	var dialogId		= '#wx-add-title-tab-dialog',
 		titlebarHtml	= "Confirm";
@@ -74,7 +138,7 @@ wx.confirmContentAdd	= function(a) {
 				jQuery(a.previousDialog).dialog('open'); 
 			
 			},
-			action:			wx.contentAdd, 
+			action:			wx.ajaxAddTabItem, 
 			actionArg:		{}
 			
 		}),
@@ -196,9 +260,9 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 		getFeatureData();
 		
 		if( true === featureData.title ) 
-			action 	= wx.confirmContentAdd;
+			action 	= wx.confirmAddTabItem;
 		else 
-			action	= wx.contentAdd;
+			action	= wx.ajaxAddTabItem;
 		
 	}	
 	else { 
