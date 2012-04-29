@@ -104,7 +104,7 @@ jQuery(document).ready( function() {
 	
 				jQuery( 'div#wx-add-' + item.id + '-items' ).append(
 					
-					"<div id='add-" + item.id + "-" + item.items[ii].id + "' class='wx-add-item-icon wx-add-" + item.id + "-dialog-item wx-add-single" + extraClass + "'>" +
+					"<div id='add-" + item.id + "-" + item.items[ii].id + "' class='wx-add-item-icon wxui-btn white large radius3 wx-alignleft wx-add-" + item.id + "-dialog-item wx-add-single" + extraClass + "'>" +
 					
 						"<img src='components/com_weever/assets/icons/nav/" + icon + "' />" +
 						"<span>" + item.items[ii].name + "</span>" +
@@ -128,7 +128,7 @@ jQuery(document).ready( function() {
 				
 				jQuery( 'div#wx-add-' + type + '-type-dialog' ).append(
 				
-					"<div id='add-" + item.id + "'  ref='add-" + item.id + "' rel='" + type + "' class='wx-add-source-icon" + extraClass + "'>" +
+					"<div id='add-" + item.id + "'  ref='add-" + item.id + "' rel='" + type + "' class='wxui-btn white large radius3 wx-floatleft wx-add-source-icon" + extraClass + "'>" +
 					
 						"<img src='components/com_weever/assets/icons/nav/" + icon + "' />" +
 						"<span>" + item.name + "</span>" +
@@ -194,7 +194,7 @@ jQuery(document).ready( function() {
 							
 					}
 				
-					return "<div id='add-" + id + "' ref='add-" + id + "' class='wx-add-source-icon" + 
+					return "<div id='add-" + id + "' ref='add-" + id + "' class='wxui-btn white large radius3 wx-floatleft wx-add-source-icon" + 
 										extraClass + "'>" +
 					
 								"<img src='components/com_weever/assets/icons/nav/" + 
@@ -237,7 +237,7 @@ jQuery(document).ready( function() {
 						
 					}
 				
-					return 	"<div id='add-" + type + "-type' ref='add-" + type + "-type' class='wx-add-source-icon'>" +
+					return 	"<div id='add-" + type + "-type' ref='add-" + type + "-type' class='wxui-btn white large radius3 wx-floatleft wx-add-source-icon'>" +
 					
 								"<img src='components/com_weever/assets/icons/nav/" + type + ".png' />" +
 								"<span>" + wx.types[type].name + "</span>" +
@@ -302,7 +302,7 @@ jQuery(document).ready( function() {
 				
 					"<div class='wx-swipe-page'>" +
 					
-						"<h2>" + page.name + "</h2>" + page.helpHtml + pageHtml +
+						 page.helpHtml + pageHtml +
 						
 					"</div>"			
 				
@@ -331,7 +331,7 @@ jQuery(document).ready( function() {
 							
 						jQuery( serviceDiv ).append(
 						
-							'<div class="wx-icon-badge-checkmark"></div>'
+							'<div class="wx-icon-badge-checkmark">&#x2713;</div>'
 						
 						);
 						

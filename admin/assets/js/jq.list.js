@@ -38,7 +38,7 @@ jQuery( document ).ready( function() {
 			
 		if( jQuery(this).is('.wx-unavailable') ) {
 		
-			alert("This feature is coming soon! See http://www.weeverapps.com/ for details.");
+			alert("This feature is coming soon! See http://www.weeverapps.com/mobile/tour for details.");
 			return;
 		
 		} else if( jQuery(this).is('.wx-upgrade-prompt') ) {

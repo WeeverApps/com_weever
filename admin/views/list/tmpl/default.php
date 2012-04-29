@@ -189,7 +189,7 @@ else
 
 <ul id="listTabsSortable" style="padding-right: 5%">
 
-	<li id="addTabID" class="wx-nav-tabs wx-nosort"><a href="#addTab" class="wx-tab-sortable"><div class="wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" title="Add"><img class="wx-nav-icon-img" src="data:image/png;base64,<?php echo $this->theme->addIcon; ?>" /></div><div class="wx-nav-label">Add App Content</div></a></li>
+	<li id="addTabID" class="wx-nav-tabs wx-nosort"><a href="#addTab" class="wx-tab-sortable"><div class="wx-nav-icon" style="height:32px;width:auto;min-width:32px;text-align:center" title="Add"><span style="display: block; margin: 0pt auto; position: relative; font-weight: bold; font-size: 2.75em; line-height: normal;">+</span></div><div class="wx-nav-label">New Feature</div></a></li>
 
 <?php 
 
@@ -278,30 +278,32 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
  </ul>
  
  <div id="addTab">
- 
- 	<div id="wx-add-content-to-app">
+
+    <div id="wx-add-content-to-app">
+    
+    <div id="wx-add-content-nav">
+    
+    <button class="wxui-btn red   large radius3 wx-floatleft" onclick="wx.swipe.slide(0, 300)">1. Add Site Content</button><span class="wx-rightarrow">&#x27A6;</span>
+    <button class="wxui-btn white large radius3 wx-floatleft" onclick="wx.swipe.slide(1, 300)">2. Add Social Media</button><span class="wx-rightarrow">&#x27A6;</span>
+    <button class="wxui-btn white large radius3 wx-floatleft" onclick="wx.swipe.slide(2, 300)">3. Add Audio, Video & Photos</button><span class="wx-rightarrow">&#x27A6;</span>
+    <button class="wxui-btn white large radius3 wx-floatleft" onclick="wx.swipe.slide(3, 300)">4. Add Events & Forms</button><span class="wx-rightarrow">&#x27A6;</span>
+    <button class="wxui-btn white large radius3 wx-floatleft" onclick="wx.swipe.slide(4, 300)">Done!</button>
+
+    
+    </div>
  		
  		<div id="wx-swipe" class="swipe">
  		
- 			<div id="wx-swipe-wrap" class="swipe-wrap">
+ 		<div id="wx-swipe-wrap" class="swipe-wrap">
  				
- 			</div>
- 			
  		</div>
+ 			
+        </div>
  		
- 	</div>
+    </div>
+    
  	
- 	<div id="wx-add-content-nav">
- 	
- 		<div id="wx-add-content-next"> <button class="wx-add-content-nav-button" onclick='wx.swipe.next()'>next</button></div>
- 		
- 		<div id="wx-add-content-prev"> <button class="wx-add-content-nav-button" onclick='wx.swipe.prev()'>prev</button></div>
- 		
- 		<div id="wx-add-content-skip"> <button class="wx-add-content-nav-button" onclick='wx.swipe.slide(4, 350)'>types</button></div>
- 	
- 	</div>
- 	
- </div>
+</div>
  
 <div id="wx-overlay-drag"><div id="wx-overlay-unpublished"><?php echo JText::_('WEEVER_ICON_HAS_NO_PUB_ITEMS'); ?></div><img id="wx-overlay-drag-img" src="components/com_weever/assets/icons/drag.png" /><div><?php echo JText::_('WEEVER_DOUBLE_CLICK_EDIT'); ?></div></div>
 
@@ -404,9 +406,9 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		
 		<div class="wx-tab-top-buttons-container">
 		
-			<button class="wx-add-source-icon wx-tab-top-buttons" ref="add-<?php echo $row->component; ?>-type">Add More Content</button>
-			<button class="wx-nav-label wx-tab-top-buttons" ref="<?php echo $row->id; ?>">Change Tab Name</button>
-			<button class="wx-nav-icon wx-tab-top-buttons" ref="<?php echo $row->id; ?>" title="<?php echo $row->component; ?>">Change Tab Icon</button>
+			<button class="wxui-btn white medium radius3 wx-add-source-icon" style="margin-right:1.5em;" ref="add-<?php echo $row->component; ?>-type">+ &nbsp;Add More Content</button>
+			<button class="wxui-btn white medium radius3 wx-nav-label" style="margin-right:1.5em;" ref="<?php echo $row->id; ?>">&bull; &nbsp;Change Tab Name</button>
+			<button class="wxui-btn white medium radius3 wx-nav-icon" style="margin-right:0;" ref="<?php echo $row->id; ?>" title="<?php echo $row->component; ?>">&bull; &nbsp;Change Tab Icon</button>
 			
 			<?php if( $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map" ) : ?>
 			

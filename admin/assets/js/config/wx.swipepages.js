@@ -19,12 +19,18 @@
 */
 
 
+
+
+
 wx.swipePages = [
 
 	{
 	
-		name:		'1. Add Website Content to Your Mobile App',
-		helpHtml:	'<p>Add content to your app from the options below. Once you\'ve got everything you need, hit \"next\".</p>',
+		/* name:		'1. Add Website Content to Your Mobile App', */
+		
+		helpHtml:	'<div id="wxnavtip-content" class="wx_box info wxblk"><h2 class="wxnavtip-title">Welcome to Weever Apps! <span style="font-size:14px; float:right;"><span class="wx-flip180 wx-flip180correct2">&#x27A5;</span> <a onclick="wx.swipe.prev()" href="#" class="wxnavtip-slide-info">previous</a> <span class="wxnavtip-minisep">|</span> <a onclick="wx.swipe.next()" href="#" class="wxnavtip-slide-info">next &#x27A6;</a></span></h2><p class="wxnavtip-description">You\'re currently on the &rdquo;Add Site Content&ldquo; slide. Each slide has different things that you can add to your app.</p></div>',
+		
+		
 		items:		[
 		
 			'joomla.blog',
@@ -45,8 +51,13 @@ wx.swipePages = [
 	},
 	{
 	
-		name:		'2. Add Your Social Feeds',
-		helpHtml:	'<p>Add feeds from Twitter, Facebook, and more! Keep your visitors up to date on your most recent news.</p>',
+		/* name:		'2. Add Your Social Feeds', */
+		
+		
+		helpHtml:	'<div id="wxnavtip-social" class="wx_box info wxblk"><h2 class="wxnavtip-title">2. Add Your Social Media Streams <span style="font-size:14px; float:right;"><span class="wx-flip180 wx-flip180correct2">&#x27A5;</span> <a onclick="wx.swipe.prev()" href="#" class="wxnavtip-slide-info">previous</a> <span class="wxnavtip-minisep">|</span> <a onclick="wx.swipe.next()" href="#" class="wxnavtip-slide-info">next &#x27A6;</a></span></h2><p class="wxnavtip-description">Be Social! &nbsp;The Weever Apps &ldquo;share tab&rdquo; and social-forwarding options make it easy for visitors to share your app!</p></div>',
+		
+		
+		
 		items:		[
 		
 			'twitter',
@@ -61,9 +72,11 @@ wx.swipePages = [
 	},
 	{
 	
-		name:		'3. Add Your Multimeda Content',
-		helpHtml:	'<p>Show off your digital creations, or share your favorite content!</p>',
-		items:		[
+		/* name:		'3. Add Your Multimeda Content', */
+		
+		helpHtml:	'<div id="wxnavtip-audiovideo" class="wx_box info wxblk"><h2 class="navtip-title">3. Add Audio, Video and Photos <span style="font-size:14px; float:right;"><span class="wx-flip180 wx-flip180correct2">&#x27A5;</span> <a onclick="wx.swipe.prev()" href="#" class="wxnavtip-slide-info">previous</a> <span class="wxnavtip-minisep">|</span> <a onclick="wx.swipe.next()" href="#" class="wxnavtip-slide-info">next &#x27A6;</a></span></h2><p class="wxnavtip-description">Share your products, services, tutorials, creative works or favorite content!</p></div>',
+		
+			items:		[
 		
 			'flickr',
 			'picasa',
@@ -79,8 +92,10 @@ wx.swipePages = [
 	},
 	{
 	
-		name:		'4. Add Forms, Calendars, and More',
-		helpHtml:	'<p>Connect your visitors to everything they need to know, when they need to know it.</p>',
+		/* name:		'4. Add Forms, Calendars, and More', */
+		
+		helpHtml:	'<div id="wxnavtip-eventsandforms" class="wx_box info wxblk"><h2 class="navtip-title">4. Add Event Calendars, Signup Forms & More! <span style="font-size:14px; float:right;"><span class="wx-flip180 wx-flip180correct2">&#x27A5;</span> <a onclick="wx.swipe.prev()" href="#" class="wxnavtip-slide-info">previous</a> <span class="wxnavtip-minisep">|</span> <a onclick="wx.swipe.next()" href="#" class="wxnavtip-slide-info">next &#x27A6;</a></span></h2><p class="wxnavtip-description">Connect your visitors to everything they need to know, when they need to know it.</p></div>',
+		
 		items:		[
 		
 			'google_calendar',
@@ -94,8 +109,11 @@ wx.swipePages = [
 	},
 	{
 	
-		name:		'... or, Add Content by Navigation Tab Type',
-		helpHtml:	'<p>Choose which tab you\'d like to add content to.</p>',
+		/* name:		'... or, Add Content by Navigation Tab Type', */
+		
+		helpHtml:	'<div id="wxnavtip-alltabs" class="wx_box info wxblk"><h2 class="navtip-title">...and Done!<span style="font-size:14px; float:right;"><span class="wx-flip180 wx-flip180correct2">&#x27A5;</span> <a onclick="wx.swipe.prev()" href="#" class="wxnavtip-slide-info">previous</a> <span class="wxnavtip-minisep">|</span> <a onclick="wx.swipe.next()" href="#" class="wxnavtip-slide-info">first &#x27A6;</a></span></h2><p class="wxnavtip-description">Easy, eh?  Well, we certainly hope so!  &#x263A; &nbsp; Here are all the <strong>&ldquo;tab-types&rdquo;</strong> we support (tabs are those little icon-buttons at the bottom of the app). Pick from the icons below to add a new feature to that tab &ndash; or just use the slides again if you like that better.<br/><br/>All set with features? Great! &nbsp;<a style="color:#2B6181;" class="wxreverse-decor" href="index.php?option=com_weever&view=theme&task=theme">Now let\s make this app look fantastic</a>!</p></div>',		
+		
+		
 		items:		[
 		
 			'type.blog',

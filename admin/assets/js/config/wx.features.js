@@ -176,7 +176,7 @@ wx.features = [
 					
 					   '<ul><li>Display Twitter user streams, #hashtag(s) or search results</li>'+
 					    '<li>Share Blog Post or Pages via Twitter (options button)</li>'+
-					    '<li>Share App via Twitter (from the ‘Share App’ tab)</li>'+
+					    '<li>Share App via Twitter (from the 'Share App' tab)</li>'+
 					    '</ul></p>',
 					
 		items:	[
@@ -216,7 +216,7 @@ wx.features = [
 				'<h4>Mobile App Features</h4>'+
 				
 				   '<ul><li>Display Facebook updates instantly</li>'+
-				    '<li>Share App via Facebook (from the ‘Share App’ tab)</li>'+
+				    '<li>Share App via Facebook (from the 'Share App' tab)</li>'+
 				    '<li>Display your Facebook Photos</li>'+
 				    '<li>Display your Facebook Events</li>'+
 				    
@@ -325,7 +325,7 @@ wx.features = [
 		id:				'wufoo',
 		name:			'Wufoo Forms',
 		url:			'http://wufoo.com/',
-		description:	'<p>Use Wufoo’s free online form creator to power your Weever App’s contact forms, online surveys, and event registrations.</p>'+
+		description:	'<p>Use Wufoo's free online form creator to power your Weever App's contact forms, online surveys, and event registrations.</p>'+
 		
 			'<p>Wufoo Forms connect to many free and paid services on the web.</p>'+
 			
@@ -339,7 +339,7 @@ wx.features = [
 				    '<li>SalesForce CRM</li>'+
 				    '<li>Freshbooks Accounting & Billing</li>'+
 				    '<li>Highrise Contact Management</li>'+
-				    '<li>Twitter “Auto Form Tweets”</li>'+
+				    '<li>Twitter "Auto Form Tweets"</li>'+
 				
 			'</ul>'+
 			
@@ -425,7 +425,7 @@ wx.features = [
 		name:			'Foursquare',
 		defaultTitle:	'Foursquare Photos',
 		url:			'http://foursquare.com/',
-		description:	'<p>Foursquare is a location-based social networking website for mobile devices. Users “check-in” at venues by selecting from a list of venues the app locates nearby. Each check-in awards the user points and sometimes “badges”.</p>' +
+		description:	'<p>Foursquare is a location-based social networking website for mobile devices. Users "check-in" at venues by selecting from a list of venues the app locates nearby. Each check-in awards the user points and sometimes "badges".</p>' +
 		
 			'<p>With Weever Apps, you can add a real-time photo stream for a Foursquare location.'+
 			
@@ -536,7 +536,7 @@ wx.features = [
 	{
 	
 		id:				'suggestion',
-		name:			'Something Missing?',
+		name:			'What\'s Missing?',
 	
 	}
 
