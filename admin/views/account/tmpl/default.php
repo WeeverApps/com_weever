@@ -109,7 +109,7 @@ else
 	<?php echo $pane->startPanel(JText::_('WEEVER_ACCOUNT_INFORMATION'), 'basic-settings'); ?>
 	
 	<div class="wx-submitcontainer">
-	        <a href="#" onclick="javascript:<?php echo $jsJoomla; ?>submitbutton('apply')"><button class="wx-button-submit wx-button-save"><img src="components/com_weever/assets/icons/check.png" style="width:1em;height:1em;padding-right: 0.625em;" /><?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
+	        <a href="#" onclick="javascript:<?php echo $jsJoomla; ?>submitbutton('apply')"><button class="wxui-btn orange medium radius3">&#x2713; &nbsp;<?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
 	</div>   
 	
 	<div>
@@ -160,7 +160,7 @@ else
 			
 			<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
 			<td>
-			<button type="button" class="wx-button-submit" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF'); ?></button>
+			<button type="button" class="wxui-btn orange medium radius3" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'">&#x2717; &nbsp;<?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF'); ?></button>
             <p style="clear:both; margin:1.5em 1em 0 0;"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_OFF_NOTE'); ?></p></td>
 			</tr>
 		
@@ -170,7 +170,7 @@ else
 			
 			<tr><td class="key"><?php echo JText::_('WEEVER_TOGGLE_STAGING_MODE'); ?></td>
 			<td>
-			<button type="button" class="wx-button-submit" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON'); ?></button>
+			<button type="button" class="wxui-btn orange medium radius3" onclick="window.location.href='index.php?option=com_weever&amp;task=staging'">&#x2713; &nbsp;<?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON'); ?></button>
             <p style="clear:both; margin:1.5em 1em 0 0;"><?php echo JText::_('WEEVER_STAGING_MODE_TOGGLE_ON_NOTE'); ?></p></td>
 			</tr>
 			
