@@ -42,32 +42,27 @@ defined('_JEXEC') or die;
 <div id="wx-add-joomla_contact-dialog" class="wx-jquery-dialog wx-hide">
 
 	<div>
-		
-
-		
-			<select name='component_id' id='wx-add-contact-joomla-select' class='wx-component-id-select'>
-				<option value='0'><?php echo JText::_('WEEVER_CHOOSE_CONTACT_PARENTHESES'); ?></option>
-				
-				<?php $hidden_array = ""; $hidden = ""; ?>
-				
-				<?php foreach( (object) $this->contactItems as $k=>$v ) : ?>
-					
-					<option value='<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
-					
-					<?php $hidden = "<input type='hidden' name='contact_name[]' value='".$v->name."' />"; ?>
-					<?php $hidden_array .= $v->id.","; ?>
-				
-				<?php endforeach; ?>
-				
-				<?php $hidden_array = rtrim($hidden_array,","); ?>
-				<?php $hidden .= "<input type='hidden' name='comp_array' value='".$hidden_array."' />"; ?>
+	
+		<select name='component_id' id='wx-add-contact-joomla-select' class='wx-component-id-select'>
+			<option value='0'><?php echo JText::_('WEEVER_CHOOSE_CONTACT_PARENTHESES'); ?></option>
 			
-			</select>
+			<?php $hidden_array = ""; $hidden = ""; ?>
 			
-			<?php echo $hidden; ?>
+			<?php foreach( (object) $this->contactItems as $k=>$v ) : ?>
+				
+				<option value='<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
+				
+				<?php $hidden = "<input type='hidden' name='contact_name[]' value='".$v->name."' />"; ?>
+				<?php $hidden_array .= $v->id.","; ?>
+			
+			<?php endforeach; ?>
+			
+			<?php $hidden_array = rtrim($hidden_array,","); ?>
+			<?php $hidden .= "<input type='hidden' name='comp_array' value='".$hidden_array."' />"; ?>
 		
+		</select>
 		
-		<label><?php echo JText::_('WEEVER_CONTACT_CHOOSE'); ?></label>
+		<?php echo $hidden; ?>
 		
 	</div>
 
@@ -78,7 +73,7 @@ defined('_JEXEC') or die;
 
 	<div>
 	
-		<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select'>
+		<select name='unnamed' id='wx-add-k2-blog-select' class='wx-cms-feed-select'>
 			<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
 			
 			<?php foreach( (object) $this->menuK2Blogs as $k=>$v ) : ?>
@@ -111,7 +106,7 @@ defined('_JEXEC') or die;
 
 		<div>
 		
-			<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'>
+			<select name='unnamed' id='wx-add-k2-category-select' class='wx-cms-feed-select'>
 				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
 				
 				<?php foreach( (object) $this->k2Categories as $k=>$v ) : ?>
@@ -157,42 +152,34 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-k2-item-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
-	<div><p>Select a K2 Item</p>
-
-
-		<div id='wx-add-panel-k2-item'>
-						
-			<div class="button2-left">
-				<div class="blank">
-					<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_K2_ITEM'); ?>"  href="index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object=k2item" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_PANEL_SELECT'); ?></a>
-				</div>
+	<div id='wx-add-panel-k2-item'>
+					
+		<div class="button2-left">
+		
+			<div class="blank">
+				<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_K2_ITEM'); ?>"  href="index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object=k2item" rel="{handler: 'iframe', size: {x: 700, y: 450}}">&nbsp;&nbsp;<?php echo JText::_('WEEVER_PANEL_SELECT'); ?>&nbsp;&nbsp;</a>
 			</div>
-			
+		
+		
 			<input type="text" id="k2item_name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
 
-			<input type="hidden" id="k2item_id" class="wx-panel-input" name="urlparams[id]" value="0" />
-			<label id="urlparamsid-lbl" for="urlparamsid" class="hasTip" title="<?php echo JText::_('WEEVER_PANEL_SELECT_ARTICLE_TOOLTIP'); ?>"><?php echo JText::_('WEEVER_PANEL_SELECT_CONTENT'); ?></label>
-
-		</div>		
+			<input type="hidden" id="k2item_id wx-add-k2-item-select" class="wx-panel-input" name="urlparams[id]" value="0" />
 		
-	</div>
+		</div>
 
+	</div>		
+		
 </div>
 
 
 <div id="wx-add-k2-tag-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
-	<div><p>Type in the K2 Tag</p>
-
-
-		<div id="wx-add-blog-k2-tag">
+	<div id="wx-add-blog-k2-tag">
+	
+		<input type='text' value='' id='wx-add-blog-k2-tag-input' class='wx-dialog-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_K2_TAG_PLACEHOLDER"); ?>' />
+		<label for='wx-add-blog-k2-tag-input' id='wx-add-k2-tag-select' class='wx-blog-label  wx-jqui-label'><?php echo JText::_('WEEVER_ADD_BLOG_K2_TAG'); ?></label>
 		
-			<input type='text' value='' id='wx-add-blog-k2-tag-input' class='wx-dialog-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_K2_TAG_PLACEHOLDER"); ?>' />
-			<label for='wx-add-blog-k2-tag-input' id='wx-add-blog-k2-tag-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_BLOG_K2_TAG'); ?></label>
-			
-		</div>	
-		
-	</div>
+	</div>	
 
 </div>
 
@@ -201,7 +188,7 @@ defined('_JEXEC') or die;
 		
 		<div id='wx-add-blog-menu-item'>
 		
-			<select name='unnamed' id='wx-add-blog-menu-item-select' class='wx-cms-feed-select'>
+			<select id='wx-add-joomla-blog-select' class='wx-cms-feed-select'>
 				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
 				
 				<?php foreach( (object) $this->menuJoomlaBlogs as $k=>$v ) : ?>
@@ -218,25 +205,23 @@ defined('_JEXEC') or die;
 
 
 <div id="wx-add-joomla-category-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
+		
+	<div id='wx-add-blog-jcategory-item'>
 	
-		<p>1. Choose a Joomla Content Category</p>
-		
-		<div id='wx-add-blog-jcategory-item'>
-		
-			<select name='unnamed' id='wx-add-blog-jcategory-item-select' class='wx-cms-feed-select'>
-				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES'); ?></option>
-				
-				<?php foreach( (object) $this->contentCategories as $k=>$v ) : ?>
-				
-					<?php $link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id; ?>
-					
-					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
-				
-				<?php endforeach; ?>
+		<select id='wx-add-joomla-category-select' class='wx-cms-feed-select'>
+			<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES'); ?></option>
 			
-			</select>
+			<?php foreach( (object) $this->contentCategories as $k=>$v ) : ?>
+			
+				<?php $link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id; ?>
+				
+				<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+			
+			<?php endforeach; ?>
 		
-		</div>
+		</select>
+	
+	</div>
 
 </div>
 
@@ -256,24 +241,19 @@ defined('_JEXEC') or die;
 
 	?>
 
-	<div><p>Select a Joomla Article</p>
-
-
-		<div id='wx-add-panel-content-joomla'>
+	<div id='wx-add-panel-content-joomla'>
+	
+		<div class="button2-left">
 		
-			<div class="button2-left">
-				<div class="blank">
-					<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_JOOMLA_ARTICLE'); ?>" href="<?php echo $link; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}"><?php echo JText::_('WEEVER_PANEL_SELECT'); ?></a>
-				</div>
-				
-				<input type="text" id="jarticle_name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
-				
-				<input type="hidden" id="jarticle_id" class="wx-panel-input" name="urlparams[id]" value="0" />
-				
+			<div class="blank">
+				<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_JOOMLA_ARTICLE'); ?>" href="<?php echo $link; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}">&nbsp;&nbsp;<?php echo JText::_('WEEVER_PANEL_SELECT'); ?>&nbsp;&nbsp;</a>
 			</div>
 			
+			<input type="text" id="jarticle_name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
+			
+			<input type="hidden" id="jarticle_id wx-add-joomla-article-select" class="wx-panel-input" name="urlparams[id]" value="0" />
+			
 		</div>
-		
 		
 	</div>
 
@@ -282,10 +262,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-twitter-user-dialog" class="wx-jquery-dialog wx-hide wx-service-twitter wx-choose-content">
 
-	<div><p>Type in your username</p>
+	<div>
 
-		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-twitter-user-value' name='component_behaviour' />
-		<label for='wx-twitter-user-value' id='wx-twitter-user' class='wx-social-label'><?php echo JText::_('WEEVER_TWITTER_USER'); ?></label>			
+		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-twitter-user-value' name='component_behaviour' placeholder='@mytwittername' />
+		<label for='wx-twitter-user-value' id='wx-twitter-user' class='wx-social-label  wx-jqui-label'><?php echo JText::_('WEEVER_TWITTER_USER'); ?></label>			
 		
 	</div>
 
@@ -293,10 +273,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-twitter-hashtag-dialog" class="wx-jquery-dialog wx-hide wx-service-twitter wx-choose-content">
 
-	<div><p>Type in your username</p>
+	<div>
 
-		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-twitter-hashtag-value' name='component_behaviour' />
-		<label for='wx-twitter-hashtag-value' id='wx-twitter-hashtag' class='wx-social-label'><?php echo JText::_('WEEVER_TWITTER_HASHTAG'); ?></label>		
+		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-twitter-hashtag-value' name='component_behaviour' placeholder='#MyHashtag' />
+		<label for='wx-twitter-hashtag-value' id='wx-twitter-hashtag' class='wx-social-label  wx-jqui-label'><?php echo JText::_('WEEVER_TWITTER_HASHTAG'); ?></label>		
 		
 	</div>
 
@@ -304,10 +284,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-twitter-search-dialog" class="wx-jquery-dialog wx-hide wx-service-twitter wx-choose-content">
 
-	<div><p>Type in your username</p>
+	<div>
 
-		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-twitter-search-value' name='component_behaviour' />
-		<label for='wx-twitter-search-value' id='wx-twitter-query' class='wx-social-label'><?php echo JText::_('WEEVER_TWITTER_QUERY'); ?></label>		
+		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-twitter-search-value' name='component_behaviour' placeholder='Enter a Search Term' />
+		<label for='wx-twitter-search-value' id='wx-twitter-query' class='wx-social-label  wx-jqui-label'><?php echo JText::_('WEEVER_TWITTER_QUERY'); ?></label>		
 		
 	</div>
 
@@ -318,46 +298,21 @@ defined('_JEXEC') or die;
 
 	<div>
 
-		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-facebook-stream-value' name='component_behaviour' />
-		<label for='wx-facebook-stream-value' id='wx-facebook-url' class='wx-social-label'><?php echo JText::_('WEEVER_FACEBOOK_URL'); ?></label>
+		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-facebook-user-value' name='component_behaviour' placeholder='http://facebook.com/MyPage' />
+		<label for='wx-facebook-stream-value' id='wx-facebook-url' class='wx-social-label  wx-jqui-label'><?php echo JText::_('WEEVER_FACEBOOK_URL'); ?></label>
 		
 	</div>
 
 </div>
-
-
-<div id="wx-add-facebook-albums-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook wx-choose-content">
-
-	<div><p>Enter your Facebook page URL</p>
-
-		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-facebook-albums-value' name='component_behaviour' />
-		<label for='wx-facebook-albums-value' id='wx-facebook-url' class='wx-social-label'><?php echo JText::_('WEEVER_FACEBOOK_URL'); ?></label>
-		
-	</div>
-
-</div>
-
-
-<div id="wx-add-facebook-events-dialog" class="wx-jquery-dialog wx-hide wx-service-facebook wx-choose-content">
-
-	<div><p>Enter your Facebook page URL</p>
-
-		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-facebook-events-value' name='component_behaviour' />
-		<label for='wx-facebook-events-value' id='wx-facebook-url' class='wx-social-label'><?php echo JText::_('WEEVER_FACEBOOK_URL'); ?></label>
-		
-	</div>
-
-</div>
-
 
 
 <div id="wx-add-youtube-channel-dialog" class="wx-jquery-dialog wx-hide wx-service-youtube wx-choose-content">
 
-	<div><p>From Youtube Channel / User...</p>
+	<div>
 		
 		
-		<input type='text' value='' placeholder='http://' name='component_behaviour' id='wx-youtube-channel-url' class='wx-dialog-input wx-video-input' />
-		<label for='wx-youtube-channel-url' id='wx-youtube-url' class='wx-video-label'><?php echo JText::_('WEEVER_YOUTUBE_URL'); ?></label>
+		<input type='text' value='' name='component_behaviour' id='wx-youtube-channel-url' class='wx-dialog-input wx-video-input' placeholder='MyChannelName' />
+		<label for='wx-youtube-channel-url' id='wx-youtube-url' class='wx-video-label wx-jqui-label'><?php echo JText::_('WEEVER_YOUTUBE_URL'); ?></label>
 				
 				
 	</div>
@@ -368,11 +323,11 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-youtube-playlist-dialog" class="wx-jquery-dialog wx-hide wx-service-youtube wx-choose-content">
 
-	<div><p>From Youtube Playlist...</p>
+	<div>
 		
 		
-		<input type='text' value='' placeholder='http://' name='component_behaviour' id='wx-youtube-playlist-url' class='wx-dialog-input wx-video-input' />
-		<label for='wx-youtube-playlist-url' id='wx-youtube-playlist-url-label' class='wx-video-label'><?php echo JText::_('WEEVER_YOUTUBE_PLAYLIST_URL'); ?></label>
+		<input type='text' value='' placeholder='http://youtube.com/playlist?list=abcd1234' name='component_behaviour' id='wx-youtube-playlist-url' class='wx-dialog-input wx-video-input' />
+		<label for='wx-youtube-playlist-url' id='wx-youtube-playlist-url-label' class='wx-video-label wx-jqui-label'><?php echo JText::_('WEEVER_YOUTUBE_PLAYLIST_URL'); ?></label>
 				
 				
 	</div>
@@ -382,11 +337,11 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-vimeo-dialog" class="wx-jquery-dialog wx-hide wx-service-vimeo wx-choose-content">
 
-	<div><p>From Vimeo User or Channel...</p>
+	<div>
 		
 		
-		<input type='text' value='' placeholder='http://' name='component_behaviour' id='wx-vimeo-channel-url' class='wx-dialog-input wx-video-input' />
-		<label for='wx-vimeo-channel-url' id='wx-vimeo-url' class='wx-video-label'><?php echo JText::_('WEEVER_VIMEO_URL'); ?></label>
+		<input type='text' value='' placeholder='https://vimeo.com/user1234' name='component_behaviour' id='wx-vimeo-channel-url' class='wx-dialog-input wx-video-input' />
+		<label for='wx-vimeo-channel-url' id='wx-vimeo-url' class='wx-video-label wx-jqui-label'><?php echo JText::_('WEEVER_VIMEO_URL'); ?></label>
 				
 				
 	</div>
@@ -396,13 +351,13 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-wufoo-dialog" class="wx-jquery-dialog wx-hide wx-service-wufoo wx-choose-content">
 
-	<div><p>Add your Wufoo Forms...</p>
+	<div>
 		
-		<input type='text' id='wx-form-url' class='wx-dialog-input wx-form-input' name='url' />
-		<label for='wx-form-url'><?php echo JText::_('WEEVER_WUFOO_FORM_URL'); ?></label>
+		<input type='text' id='wx-wufoo-form-url' class='wx-dialog-input wx-form-input' name='url' />
+		<label for='wx-form-url' class='wx-jqui-label'><?php echo JText::_('WEEVER_WUFOO_FORM_URL'); ?></label>
 		
-		<input type='text' id='wx-form-api-key' class='wx-dialog-input wx-form-input' name='api_key' />
-		<label for='wx-form-api-key'><?php echo JText::_('WEEVER_WUFOO_API_KEY'); ?></label>
+		<input type='text' id='wx-wufoo-form-api-key' class='wx-dialog-input wx-form-input' name='api_key' />
+		<label for='wx-form-api-key' class='wx-jqui-label'><?php echo JText::_('WEEVER_WUFOO_API_KEY'); ?></label>
 				
 	</div>
 
@@ -411,10 +366,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-foursquare-dialog" class="wx-jquery-dialog wx-hide wx-service-foursquare wx-choose-content">
 
-	<div><p>Add your Foursquare Venue Photos...</p>
+	<div>
 		
-		<input type='text' value='' id='wx-foursquare-photo-url' class='wx-dialog-input wx-photo-input' name='url' />
-		<label for='wx-foursquare-photo-url' id='wx-foursquare-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FOURSQUARE_URL'); ?></label>
+		<input type='text' value='' placeholder='http://foursquare.com/v/your-venue/abcd123456' id='wx-foursquare-photo-url' class='wx-dialog-input wx-photo-input' name='url' />
+		<label for='wx-foursquare-photo-url' id='wx-foursquare-url' class='wx-photo-label wx-jqui-label'><?php echo JText::_('WEEVER_FOURSQUARE_URL'); ?></label>
 				
 	</div>
 
@@ -423,10 +378,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-picasa-dialog" class="wx-jquery-dialog wx-hide wx-service-picasa wx-choose-content">
 
-	<div><p>Add your Picasa Albums...</p>
+	<div>
 		
-		<input type='text' value='' id='wx-picasa-photo-url' class='wx-dialog-input wx-photo-input' name='url' />
-		<label for='wx-picasa-photo-url' id='wx-google-picasa-email' class='wx-photo-label'><?php echo JText::_('WEEVER_GOOGLE_PICASA_EMAIL'); ?></label>
+		<input type='text' value='' placeholder='your.email@gmail.com' id='wx-picasa-photo-url' class='wx-dialog-input wx-photo-input' name='url' />
+		<label for='wx-picasa-photo-url' id='wx-google-picasa-email' class='wx-photo-label wx-jqui-label'><?php echo JText::_('WEEVER_GOOGLE_PICASA_EMAIL'); ?></label>
 				
 	</div>
 
@@ -435,10 +390,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-google_calendar-dialog" class="wx-jquery-dialog wx-hide wx-service-google_calendar wx-choose-content">
 
-	<div><p>Add your Google Calendar...</p>
+	<div>
 		
-		<input type='text' value='yourname@email.com' id='wx-google-calendar-email' class='wx-calendar-input wx-dialog-input' name='email' />
-		<label for='wx-google-calendar-email' id='wx-google-calendar-email-label'><?php echo JText::_('WEEVER_GOOGLE_CALENDAR_EMAIL_ID'); ?></label>
+		<input type='text' placeholder='abs123@group.calendar.google.com' id='wx-google-calendar-email' class='wx-calendar-input wx-dialog-input' name='email' />
+		<label for='wx-google-calendar-email' id='wx-google-calendar-email-label' class='wx-jqui-label'><?php echo JText::_('WEEVER_GOOGLE_CALENDAR_EMAIL_ID'); ?></label>
 				
 	</div>
 
@@ -446,10 +401,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-blogger-dialog" class="wx-jquery-dialog wx-hide wx-service-blogger wx-choose-content">
 
-	<div><p>Add your Blogger...</p>
+	<div>
 		
 		<input type='text' value='' id='wx-add-blog-blogger-url-input' class='wx-dialog-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_BLOGGER_URL_PLACEHOLDER"); ?>' />
-		<label for='wx-add-blog-blogger-url-input' id='wx-add-blog-blogger-url-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_BLOGGER_URL_LABEL'); ?></label>
+		<label for='wx-add-blog-blogger-url-input' id='wx-add-blog-blogger-url-input-label' class='wx-blog-label wx-jqui-label'><?php echo JText::_('WEEVER_ADD_BLOGGER_URL_LABEL'); ?></label>
 				
 	</div>
 
@@ -458,10 +413,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-tumblr-dialog" class="wx-jquery-dialog wx-hide wx-service-tumblr wx-choose-content">
 
-	<div><p>Add your Tumblr...</p>
+	<div>
 		
 		<input type='text' value='' id='wx-add-blog-tumblr-url-input' class='wx-dialog-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_TUMBLR_URL_PLACEHOLDER"); ?>' />
-		<label for='wx-add-blog-tumblr-url-input' id='wx-add-blog-tumblr-url-input-label' class='wx-blog-label'><?php echo JText::_('WEEVER_ADD_TUMBLR_URL_LABEL'); ?></label>
+		<label for='wx-add-blog-tumblr-url-input' id='wx-add-blog-tumblr-url-input-label' class='wx-blog-label wx-jqui-label'><?php echo JText::_('WEEVER_ADD_TUMBLR_URL_LABEL'); ?></label>
 				
 	</div>
 
@@ -470,10 +425,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-google_plus-dialog" class="wx-jquery-dialog wx-hide wx-service-google_plus wx-choose-content">
 
-	<div><p>Add your Google+...</p>
+	<div>
 		
 		<input type='text' value='' id='wx-add-google_plus-url-input' class='wx-dialog-input wx-social-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_GOOGLE_PLUS_URL_PLACEHOLDER"); ?>' />
-		<label for='wx-add-google_plus-url-input' id='wx-add-google_plus-url-input-label' class='wx-social-label'><?php echo JText::_('WEEVER_ADD_GOOGLE_PLUS_URL_LABEL'); ?></label>
+		<label for='wx-add-google_plus-url-input' id='wx-add-google_plus-url-input-label' class='wx-social-label wx-jqui-label'><?php echo JText::_('WEEVER_ADD_GOOGLE_PLUS_URL_LABEL'); ?></label>
 				
 	</div>
 
@@ -482,10 +437,10 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-identica-dialog" class="wx-jquery-dialog wx-hide wx-service-identica wx-choose-content">
 
-	<div><p>Add your Identi.ca...</p>
+	<div>
 		
-		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-identica-social-value' name='component_behaviour' />
-		<label for='wx-identica-social-value' id='wx-identica-query' class='wx-social-label'><?php echo JText::_('WEEVER_IDENTICA_QUERY'); ?></label>
+		<input type='text' value='' class='wx-dialog-input wx-social-input' id='wx-identica-social-value' name='component_behaviour' placeholder='Enter a Search Query' />
+		<label for='wx-identica-social-value' id='wx-identica-query' class='wx-social-label wx-jqui-label'><?php echo JText::_('WEEVER_IDENTICA_QUERY'); ?></label>
 
 	</div>
 
@@ -494,11 +449,11 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-flickr-photostream-dialog" class="wx-jquery-dialog wx-hide wx-service-flickr wx-choose-content">
 
-	<div><p>From Flickr PhotoStream...</p>
+	<div>
 		
 		
-		<input type='text' value='' id='wx-flickr-photostream-photo-url' class='wx-dialog-input wx-photo-input' name='url' />
-		<label for='wx-flickr-photostream-photo-url' id='wx-flickr-photostream-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FLICKR_URL'); ?></label>
+		<input type='text' value='' id='wx-flickr-photostream-photo-url' class='wx-dialog-input wx-photo-input' name='url' placeholder='http://flickr.com/photos/123456@N01' />
+		<label for='wx-flickr-photostream-photo-url' id='wx-flickr-photostream-url' class='wx-photo-label wx-jqui-label'><?php echo JText::_('WEEVER_FLICKR_URL'); ?></label>
 				
 	</div>
 
@@ -507,11 +462,11 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-flickr-photosets-dialog" class="wx-jquery-dialog wx-hide wx-service-flickr wx-choose-content">
 
-	<div><p>From Flickr Photosets...</p>
+	<div>
 		
 		
-		<input type='text' value='' id='wx-flickr-photosets-photo-url' class='wx-dialog-input wx-photo-input' name='url' />
-		<label for='wx-flickr-photosets-photo-url' id='wx-flickr-photosets-url' class='wx-photo-label'><?php echo JText::_('WEEVER_FLICKR_URL'); ?></label>
+		<input type='text' value='' placeholder='http://flickr.com/photos/123456@N01' id='wx-flickr-photosets-photo-url' class='wx-dialog-input wx-photo-input' name='url' />
+		<label for='wx-flickr-photosets-photo-url' id='wx-flickr-photosets-url' class='wx-photo-label wx-jqui-label'><?php echo JText::_('WEEVER_FLICKR_URL'); ?></label>
 				
 	</div>
 
@@ -520,11 +475,11 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-soundcloud-set-dialog" class="wx-jquery-dialog wx-hide wx-service-soundcloud wx-choose-content">
 
-	<div><p>From SoundCloud...</p>
+	<div>
 		
 		
 		<input type='text' value='' id='wx-soundcloud-set-audio-url' class='wx-dialog-input wx-audio-input' name='url' />
-		<label for='wx-soundcloud-set-audio-url' id='wx-soundcloud-set-url' class='wx-audio-label'><?php echo JText::_('WEEVER_SOUNDCLOUD_SET_URL'); ?></label>
+		<label for='wx-soundcloud-set-audio-url' id='wx-soundcloud-set-url' class='wx-audio-label wx-jqui-label'><?php echo JText::_('WEEVER_SOUNDCLOUD_SET_URL'); ?></label>
 				
 	</div>
 
@@ -532,11 +487,11 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-soundcloud-user-dialog" class="wx-jquery-dialog wx-hide wx-service-soundcloud wx-choose-content">
 
-	<div><p>From SoundCloud...</p>
+	<div>
 		
 		
 		<input type='text' value='' id='wx-soundcloud-user-audio-url' class='wx-dialog-input wx-audio-input' name='url' />
-		<label for='wx-soundcloud-user-audio-url' id='wx-soundcloud-user-url' class='wx-audio-label'><?php echo JText::_('WEEVER_SOUNDCLOUD_USER_URL'); ?></label>
+		<label for='wx-soundcloud-user-audio-url' id='wx-soundcloud-user-url' class='wx-audio-label wx-jqui-label'><?php echo JText::_('WEEVER_SOUNDCLOUD_USER_URL'); ?></label>
 				
 	</div>
 
@@ -545,11 +500,11 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-bandcamp-band-dialog" class="wx-jquery-dialog wx-hide wx-service-bandcamp wx-choose-content">
 
-	<div><p>From BandCamp...</p>
+	<div>
 		
 		
 		<input type='text' value='' id='wx-bandcamp-band-audio-url' class='wx-dialog-input wx-audio-input' name='url' />
-		<label for='wx-bandcamp-band-audio-url' id='wx-bandcamp-band-url' class='wx-audio-label'><?php echo JText::_('WEEVER_BANDCAMP_BAND_URL'); ?></label>
+		<label for='wx-bandcamp-band-audio-url' id='wx-bandcamp-band-url' class='wx-audio-label wx-jqui-label'><?php echo JText::_('WEEVER_BANDCAMP_BAND_URL'); ?></label>
 				
 	</div>
 
@@ -558,11 +513,11 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-bandcamp-album-dialog" class="wx-jquery-dialog wx-hide wx-service-bandcamp wx-choose-content">
 
-	<div><p>From BandCamp...</p>
+	<div>
 		
 		
 		<input type='text' value='' id='wx-bandcamp-album-audio-url' class='wx-dialog-input wx-audio-input' name='url' />
-		<label for='wx-bandcamp-album-audio-url' id='wx-bandcamp-album-url' class='wx-audio-label'><?php echo JText::_('WEEVER_BANDCAMP_ALBUM_URL'); ?></label>
+		<label for='wx-bandcamp-album-audio-url' id='wx-bandcamp-album-url' class='wx-audio-label wx-jqui-label'><?php echo JText::_('WEEVER_BANDCAMP_ALBUM_URL'); ?></label>
 				
 	</div>
 
@@ -571,12 +526,12 @@ defined('_JEXEC') or die;
 
 <div id="wx-add-r3s-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
-	<p>Add an R3S Feed Directly...</p>
+	<p>Add an R3S Object URL</p>
 	
 	<div id="wx-add-page-r3s-url">
 	
 		<input type='text' value='' id='wx-add-page-r3s-url-input' class='wx-dialog-input wx-page-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_R3S_URL_PLACEHOLDER"); ?>' />
-		<label for='wx-add-page-r3s-url-input' id='wx-add-page-r3s-url-input-label' class='wx-page-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>
+		<label for='wx-add-page-r3s-url-input' id='wx-add-page-r3s-url-input-label' class='wx-page-label wx-jqui-label'><?php echo JText::_('WEEVER_ADD_R3S_URL_LABEL'); ?></label>
 		
 	</div>
 

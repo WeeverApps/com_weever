@@ -1855,8 +1855,10 @@ div.wx-tab-top-buttons-container {
 }
 
 input.wx-dialog-input {
-	font-size: 1.5em;
+	font-size: 1.675em;
 	margin: 0.825em;
+	width: 75%;
+	display: block;
 }
 
 /* JQuery Modals and Dialogs
@@ -1873,7 +1875,7 @@ input.wx-dialog-input {
 div.wx-jquery-dialog.ui-dialog-content {
     background-color: white;
     padding: 20px;
-    width: 600px !important;
+    width: 530px !important;
 	font-size:12px;
 	line-height:1.618em;
 }
@@ -2029,11 +2031,27 @@ h2.wxnavtip-title {
     margin: 8px 0 0;
 }
 
+/* $Boxes for high swipe framerate */
 
+.wx_box{border:1px solid #d8d8d8; background-color:#f4f4f4;padding:10px 20px;margin:0 0 20px;
+ -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px; 
+}
+.wx_box.info{background-color:#EFF9FF;border:1px solid #b4ddfa; color: #2b6181;
+
+}
+.wx_box.note{background-color:#FFFCE5;border:1px solid #ffdc7d; color:#D69A2A;
+
+}
+.wx_box.warn{background-color:#ffcaca;border:1px solid #eb8d8d; color: #da3838;
+
+}
+.wx_box.tips{background-color:#d6fedd;border:1px solid #86d492; color:#589261;
+
+}
 
 /* $Boxes
  * ------ */
-.wx_box{border:1px solid #d8d8d8; background-color:#f4f4f4;padding:10px 20px;margin:0 0 20px;
+/*.wx_box{border:1px solid #d8d8d8; background-color:#f4f4f4;padding:10px 20px;margin:0 0 20px;
 text-shadow:0 1px 0 rgba(255,255,255,0.6); -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px; 
 -webkit-box-shadow: 0px 1px 3px rgba(130, 130, 130, 0.1),inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5);
 -moz-box-shadow: 0px 1px 3px rgba(130, 130, 130, 0.1), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5);
@@ -2058,7 +2076,7 @@ box-shadow: 0px 1px 2px rgba(160, 160, 160, 0.1), inset 0px 0px 0px 1px rgba(255
 -webkit-box-shadow: 0px 1px 2px rgba(130, 130, 130, 0.1),inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5);
 -moz-box-shadow: 0px 1px 2px rgba(130, 130, 130, 0.1), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5);
 box-shadow: 0px 1px 2px rgba(130, 130, 130, 0.1), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5);
-}
+}*/
 
 /* $Buttons
 /* -------- */
@@ -2070,39 +2088,39 @@ box-shadow: 0px 1px 2px rgba(130, 130, 130, 0.1), inset 0px 0px 0px 1px rgba(255
 	margin: 0 0 10px;
 	cursor:pointer;
 	display: inline-block;
-	text-shadow: 0 1px 0 rgba(255,255,255,.2); text-decoration: none;
+	/*text-shadow: 0 1px 0 rgba(255,255,255,.2); text-decoration: none;*/
 	border:1px solid #e3e3e3;
 	border-color: #c4c4c4 #b8b8b8 #adadad;
 	padding:5px 15px; 
 	background-color: #d5d5d5;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dedede', endColorstr='#c7c7c7'); /* IE6 & IE7 */  
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#dedede', endColorstr='#c7c7c7')"; /* IE8+ */
-	background: -ms-linear-gradient(top,#dedede,#c7c7c7); 
+/*	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dedede', endColorstr='#c7c7c7'); /* IE6 & IE7 *!/  
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#dedede', endColorstr='#c7c7c7')"; /* IE8+ *!/*/
+/*	background: -ms-linear-gradient(top,#dedede,#c7c7c7); 
     background: -webkit-gradient(linear, left top, left bottom, from(#dedede), to(#c7c7c7));
     background: -moz-linear-gradient(top, #dedede,  #c7c7c7);
-    background: linear-gradient(#dedede, #c7c7c7);
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.1);  /* box shadow */
+    background: linear-gradient(#dedede, #c7c7c7);*/
+/*    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.1);  /* box shadow *!/
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.1); 
-    box-shadow: 0 1px 2px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.1);*/
 	position:relative; /* chrome bold text fix */
 	/* For IE7 */
 	zoom: 1;
 	*display: inline;}
 	
-.wxui-btn:hover { 
+/*.wxui-btn:hover { 
     text-decoration: none; border-color: #bababa #b0b0b0 #a6a6a6;
-    /* background color (gradient) */
+    /* background color (gradient) *!/
     background: #e0e0e0;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#cfcfcf'); /* IE6 & IE7 */  
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#cfcfcf')"; /* IE8+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#cfcfcf'); /* IE6 & IE7 *!/  
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#cfcfcf')"; /* IE8+ *!/
 	background: -ms-linear-gradient(top,#ededed,#cfcfcf); 
     background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#cfcfcf));
     background: -moz-linear-gradient(top, #ededed,  #cfcfcf);
     background: linear-gradient(#ededed, #cfcfcf);
-    /* shadows */
+    /* shadows *!/
     -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.2); 
     -moz-box-shadow:    0 1px 2px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.2); 
-    box-shadow:         0 1px 2px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.2);}
+    box-shadow:         0 1px 2px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.2);}*/
     /* button active styles */
 	
 .wxui-btn:active { 
@@ -2456,8 +2474,14 @@ a.wxreverse-decor:hover { text-decoration:none; }
 
 /* Specialized Slide Controls */
 
-a.wxnavtip-slide-info, a.wxnavtip-slide-info:link { color:#2B6181 !important; font-weight:bold; }
+span.wxnavtip-slide-info { color:#2B6181; font-weight:bold; }
+span.wxnavtip-slide-info:hover { text-decoration:underline; cursor:pointer; }
 span.wxnavtip-minisep { font-weight:normal; vertical-align:middle; margin:0 6px; font-size:8px; }
 span.wx-rightarrow { float:left; margin:0 10px; padding-top: 5px; font-size:16px; }
 
 
+label.wx-jqui-label {
+font-size: 1.375em;
+color: #2B6181;
+padding-bottom: 2em;
+}

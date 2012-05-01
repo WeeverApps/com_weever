@@ -67,7 +67,7 @@ jQuery( document ).ready( function() {
 		
 		}
 		
-		if( jQuery(this).hasClass('wx-add-single') ) {
+		if( jQuery(this).hasClass('wx-add-single') && !( jQuery(this).hasClass('wx-special-notice') ) ) {
 		
 			buttons[ buttonNames[1] ] 	= function() {
 			
@@ -120,6 +120,69 @@ jQuery( document ).ready( function() {
 	
 		wx.settingsDialog[ jQuery(this).attr('rel') ](e);
 		
+	});
+	
+	jQuery('select#wx-add-contact-joomla-select').change( function() {
+	
+		var actionButton = 'div.ui-dialog-buttonset button#wxui-action';
+	    
+		jQuery(actionButton).removeAttr('disabled');
+		jQuery(actionButton).removeClass('white');
+		jQuery(actionButton).addClass('blue'); 
+
+	});
+	
+	jQuery('select.wx-cms-feed-select').change( function() {
+	
+		var actionButton = 'div.ui-dialog-buttonset button#wxui-action';
+
+		/* if no value='', some browsers take the text inside the option */
+		
+	    if(jQuery(this).val() != jQuery(this).find("option:selected").text() && jQuery(this).val() != '') {
+	    
+			jQuery(actionButton).removeAttr('disabled');
+			jQuery(actionButton).removeClass('white');
+			jQuery(actionButton).addClass('blue');
+	       
+		}
+		else {
+		
+			jQuery(actionButton).attr('disabled', 'disabled');
+			jQuery(actionButton).removeClass('blue');
+			jQuery(actionButton).addClass('white');
+			
+		}
+	    
+	});
+	
+	jQuery('a.modal').click( function() {
+	
+		var actionButton = 'div.ui-dialog-buttonset button#wxui-action';
+	
+		jQuery(actionButton).removeAttr('disabled');
+		jQuery(actionButton).removeClass('white');
+		jQuery(actionButton).addClass('blue');
+	
+	});
+	
+	jQuery('input.wx-dialog-input').keyup( function() {
+	
+		var actionButton = 'div.ui-dialog-buttonset button#wxui-action';
+	
+	    if( jQuery(this).val() != '' ) {
+	    
+	    	jQuery(actionButton).removeAttr('disabled');
+	    	jQuery(actionButton).removeClass('white');
+	    	jQuery(actionButton).addClass('blue');
+	    
+	    } else {
+	    
+		    jQuery(actionButton).attr('disabled', 'disabled');
+		    jQuery(actionButton).removeClass('blue');
+		    jQuery(actionButton).addClass('white');
+	    
+	    }
+	    
 	});
 
 });

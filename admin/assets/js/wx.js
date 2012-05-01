@@ -29,6 +29,8 @@ if (typeof console == "undefined") {
     
 }
 
+/* Call to the CMS */
+
 wx.ajaxCms			= function(params, msgSuccess) { 
 
 	jQuery.ajax({
@@ -60,10 +62,155 @@ wx.ajaxCms			= function(params, msgSuccess) {
 
 };
 
-/* Prep our Ajax call to the CMS */
-wx.ajaxAddTabItem	= function() {
+/* Assembles the URL params */
 
-	alert("ADD GOES HERE!");
+wx.ajaxUrl			= function(a) {
+
+	this.title					= "&name=" + encodeURIComponent( jQuery('#wx-add-title-tab-item').val() );
+	this.type 					= "&type=" + a.type;
+	this.component				= "&component=" + a.component;
+	this.appKey					= "&site_key=" + jQuery("input#wx-site-key").val();
+	this.var					= "";
+	this.component_behaviour	= "";
+	this.published				= "&published=" + a.published;
+	this.component_id			= "";
+	this.extra					= "";
+		
+	this.getParams		= function() {
+	
+		if(this.component_behaviour)
+			this.component_behaviour 	= "&component_behaviour=" + encodeURIComponent(this.component_behaviour);
+			
+		if(this.var) 
+			this.var					= "&var=" + encodeURIComponent(this.var);
+			
+		if(this.component_id)
+			this.component_id			= "&component_id=" + this.component_id;
+	
+		return "option=com_weever&task=ajaxSaveNewTab" + this.title + this.type +
+						this.component + this.component_behaviour + this.var + "&weever_action=add" +
+					 	this.appKey + this.published + this.component_id + this.extra;			
+
+	}
+	
+}
+
+/* Prep our Ajax call to the CMS */
+
+wx.ajaxAddTabItem	= function(a) {
+
+	//console.log(a);
+	
+	var ajaxUrls	= [],
+		returned	= 0,
+		addAjaxUrl	= function(type, data) {
+		
+			var newType = new wx.ajaxUrl({ 
+			
+				type:		type,
+				component:	data.component,
+				published:	1
+				
+			});
+			
+			/* If there's no user-entered title, use the default; e.g., Facebook */
+			if( undefined != data.defaultTitle && !( jQuery('#wx-add-title-tab-item').val() ) )
+				newType.title = "&name=" + encodeURIComponent( data.defaultTitle );
+		 
+		 	/* get all the fields we need */
+			for( var ii in data.fields ) {
+
+				newType[ii]	= jQuery( data.fields[ ii ] ).val();
+				
+			}
+			
+			/* for those where we're just going to set the title as a Twitter handle, etc */
+			if( "component_behaviour" == data.defaultTitle )
+				newType.title = "&name=" + encodeURIComponent( newType.component_behaviour );
+				
+			if(data.options) {
+			
+				for( var ii in data.options ) {
+				
+					newType.extra += "&" + ii + "=";
+				
+					if( jQuery('#wx-add-source-option-' + ii ).is(':checked') )
+						newType.extra += "1";
+					else	
+						newType.extra += "0";
+				
+				}
+			
+			}
+			
+			ajaxUrls.push( newType.getParams() );
+		
+		};
+	
+	if( a.featureData.types instanceof Array ) {
+	
+		/* for each type checked */
+		for( var i=0; i < a.featureData.types.length; i++ ) {
+		
+			console.log(a.featureData.types[i]);
+		
+			if ( jQuery('#wx-add-source-check-' + a.featureData.types[i] + ':checked').length > 0 ) {
+			
+				addAjaxUrl(a.featureData.types[i], a.featureData);
+			
+			}
+			
+		}
+	
+	} else {
+
+		addAjaxUrl(a.featureData.types, a.featureData);	
+	
+	}
+	
+	console.log(ajaxUrls);
+	
+	for( var i=0; i < ajaxUrls.length; i++ ) {
+	
+		jQuery.ajax({
+		
+		   type: 	"POST",
+		   url: 	"index.php",
+		   data: 	ajaxUrls[i],
+		   success: function(msg) {
+		   
+		     jQuery('#wx-modal-loading-text').html(msg);
+		     
+		     returned++;
+		     
+		     if( returned == ajaxUrls.length ) {
+		     
+			     if(msg == "Item Added")
+			     {
+			     
+			     	jQuery('#wx-modal-secondary-text').html('Reloading page..');
+			     	//document.location.href = "index.php?option=com_weever#calendarTab";
+			     	//Joomla.JText._('WEEVER_JS_APP_UPDATED')
+			     	document.location.reload(true);
+			     	
+			     }
+			     else
+			     {
+			     
+			     	jQuery('#wx-modal-secondary-text').html('');
+			     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+			     	
+			     }
+			     
+			 }
+		     
+		   }
+		   
+		 });
+	
+	}
+	
+	//document.location.reload(true);
 	
 	return;// remove when ready
 	
@@ -79,28 +226,14 @@ wx.ajaxAddTabItem	= function() {
 		
 		*/ 
 	
-	var title		= jQuery('#wx-add-title-tab-item'),
-		type 		= '',
-		content		= '',
-		appKey		= jQuery("input#wx-site-key").val(),
-		buildParams	= function() {
-		
-			var params	= "option=com_weever&task=ajaxSaveNewTab&name=" + 
-							encodeURIComponent(title) + "&" +
-							"type=" + type + "&component=" + component + "&weever_action=add&" +
-							"site_key=" + appKey;			
-			
-			// add extra fields necessary for each tab
-		
-			return params;
-		
-		};
+
 		
 		wx.ajaxCms( buildParams(), "Item Added" );	
 
 }
 
 /* Confirmation dialog, skipped if we don't ask about a title (wx.features [title] property is undefined) */
+
 wx.confirmAddTabItem	= function(a) {
 
 	var dialogId		= '#wx-add-title-tab-dialog',
@@ -139,7 +272,12 @@ wx.confirmAddTabItem	= function(a) {
 			
 			},
 			action:			wx.ajaxAddTabItem, 
-			actionArg:		{}
+			actionArg:		{
+			
+				previousDialog: 	a.dialogId,
+				featureData:		a.featureData
+				
+			}
 			
 		}),
 		open:		function(e, ui) {
@@ -159,6 +297,7 @@ wx.confirmAddTabItem	= function(a) {
 }
 
 /* object to create a set of buttons, one cancel, one for action */
+
 wx.setButtonActions		= function(a) {
 
 	var buttons		= {};
@@ -166,11 +305,17 @@ wx.setButtonActions		= function(a) {
 	if( undefined != a.buttonName[1] ) {
 		
 		/* action button */
-		buttons[ a.buttonName[0] ] = function() {
-		
-			jQuery(a.dialogId).dialog( "close" );
-
-			a.action(a.actionArg);
+		buttons[ a.buttonName[0] ] = {
+			
+			id:		'wxui-action',
+			text:	a.buttonName[0],
+			click:	function() {
+			
+				jQuery(a.dialogId).dialog( "close" );
+	
+				a.action(a.actionArg);
+				
+			}
 		
 		};
 		
@@ -203,6 +348,7 @@ wx.setButtonActions		= function(a) {
 
 };
 
+/* Create our dialog, with localization */
 
 wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, populateOptions) {
 
@@ -273,7 +419,7 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 	
 	}
 	
-	if( populateOptions == true && jQuery(dialogId + ' > div#wx-added-elems').length == 0 ) {
+	if( populateOptions == true && jQuery(dialogId + ' > div#wx-added-elems').length == 0 && undefined != featureData.types ) {
 	
 		var checkboxOptions	= '<div id="wx-added-elems"></div>', // hidden div to detect repetition
 			serviceTypes	= featureData.types;
@@ -296,6 +442,22 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 				checkboxOptions		+= "<p>" + featureData.labels[ serviceTypes[0] ].futurePassive;
 		
 			checkboxOptions 	+= " in the tab \"" + wx.types[ serviceTypes[0] ].name + "\".</p>";	
+			
+			if( featureData.options ) {
+			
+				for( var i in featureData.options ) {
+				
+					checkboxOptions		+= "<div>"+
+									
+							"<input type='checkbox' class='wx-add-source-check' id='wx-add-source-option-" + i + "' value='" + i + "' />" +
+							
+							"<label for='wx-add-source-option-" + i + "'>"+ featureData.options[i] +"</label>" +
+			
+						"</div>"
+				
+				}			
+			
+			}
 		
 		}
 		else
@@ -375,6 +537,12 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 		}),
 		open:		function(e, ui) {
 		
+			var actionButton = 'div.ui-dialog-buttonset button#wxui-action';
+			
+			jQuery(actionButton).attr('disabled', 'disabled');
+			jQuery(actionButton).removeClass('blue');
+			jQuery(actionButton).addClass('white');
+
 			/* click outside dialog to close */
 			jQuery('.ui-widget-overlay').bind('click', function() { 
 			
@@ -382,6 +550,9 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 				
 			});
 			
+			jQuery( 'input:first-child', jQuery(this) ).blur();
+			jQuery('.wx-dialog-input').val('');
+
 		}
 			
 	}); 		
@@ -390,6 +561,7 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 }
 
 /* helper for finding if something is a function */
+
 function isFunction(functionToCheck) {
 
  	var getType = {};

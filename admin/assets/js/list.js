@@ -328,14 +328,14 @@ jQuery(document).ready(function(){
 		jQuery('#wx-proximity-submit').removeAttr('disabled');
 	
 	});
-	
-	jQuery('#wx-add-contact-joomla-select').change(function(){
-		
-		var thisText = jQuery("select#wx-add-contact-joomla-select option:selected").text();
-		jQuery('input#wx-contact-title').val(thisText);
-		jQuery('#wx-contact-submit').removeAttr('disabled');
-		
-	});
+//	
+//	jQuery('#wx-add-contact-joomla-select').change(function(){
+//		
+//		var thisText = jQuery("select#wx-add-contact-joomla-select option:selected").text();
+//		jQuery('input#wx-contact-title').val(thisText);
+//		jQuery('#wx-contact-submit').removeAttr('disabled');
+//		
+//	});
 	
 	jQuery('select.wx-component-id-select').change(function(){
 	

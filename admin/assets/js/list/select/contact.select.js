@@ -18,23 +18,23 @@
 *
 */
 
-jQuery(document).ready(function(){ 
-
-	jQuery('#wx-select-contact').change(function() {
-	
-		jQuery('.wx-title').attr('name','noname');
-		jQuery('#wx-contact-title').attr('name','name');
-		jQuery('.wx-contact-help').hide();
-		jQuery('.wx-dummy').hide();
-		jQuery('.wx-submit').attr('disabled', 'disabled');
-		
-		if(jQuery(this).val() == "jcontact") 
-		{
-			jQuery('#wx-add-contact-joomla').show();
-			jQuery('#wx-add-contact-joomla-help').show();
-		}
-		
-		jQuery('.wx-contact-reveal').show();
-	});
-
-});
+//jQuery(document).ready(function(){ 
+//
+//	jQuery('#wx-select-contact').change(function() {
+//	
+//		jQuery('.wx-title').attr('name','noname');
+//		jQuery('#wx-contact-title').attr('name','name');
+//		jQuery('.wx-contact-help').hide();
+//		jQuery('.wx-dummy').hide();
+//		jQuery('.wx-submit').attr('disabled', 'disabled');
+//		
+//		if(jQuery(this).val() == "jcontact") 
+//		{
+//			jQuery('#wx-add-contact-joomla').show();
+//			jQuery('#wx-add-contact-joomla-help').show();
+//		}
+//		
+//		jQuery('.wx-contact-reveal').show();
+//	});
+//
+//});

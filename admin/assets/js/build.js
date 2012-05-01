@@ -151,8 +151,14 @@ jQuery(document).ready( function() {
 			if( item.unavailable )
 				extraClass += ' wx-unavailable';
 				
-			if( !(item.items instanceof Array) )
+			if( !(item.items instanceof Array) ) {
+			
 				extraClass += ' wx-add-single';
+				
+				if( undefined == item.types )
+					extraClass += ' wx-special-notice';
+				
+			}
 				
 			if( true == addDescription && item.description && jQuery( '.wx-service-' + item.id + ' > div.wx-service-description' ).length == 0 ) {
 			
@@ -487,7 +493,20 @@ jQuery(document).ready( function() {
 			addIconBadges();
 			
 			wx.swipeElem	= jQuery('#wx-swipe')[0];
-			wx.swipe 		= new Swipe(wx.swipeElem, {continuous: true});
+			wx.swipe 		= new Swipe(wx.swipeElem, {
+						
+						continuous: 	true,
+						speed:			400,
+						transitionEnd:	function(i, el) {
+						
+							jQuery('button.red').addClass('white');
+							jQuery('button.red').removeClass('red');
+							jQuery( 'button#wx-content-nav-' + i ).removeClass('white');
+							jQuery( 'button#wx-content-nav-' + i ).addClass('red');
+						
+						}
+						
+			});
 		
 		}();
 		

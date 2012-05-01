@@ -31,26 +31,44 @@ wx.features = [
 			{
 			
 				id:				'blog',
+				component:		'blog',
 				name:			'Blog',
 				title:			true,
-				types:			['blog', 'map', 'proximity',  'directory']
+				types:			['blog', 'map', 'proximity',  'directory'],
+				fields:			{
+				
+					cms_feed:	'#wx-add-joomla-blog-select',
+					
+				}
 			
 			},
 			{
 			
 				id:				'category',
+				component:		'blog',
 				name:			'Category',
 				title:			true,
-				types:			['blog', 'directory', 'map', 'proximity']
+				types:			['blog', 'directory', 'map', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-add-joomla-category-select',
+					
+				}
 			
 			},
 			{
 			
 				id:				'article',
 				name:			'Article',
+				component:		'page',
 				title:			true,
 				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
-				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
+				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-add-joomla-article-select',
+					
+				}
 			
 			}
 		
@@ -62,7 +80,20 @@ wx.features = [
 	
 		id:				'joomla_contact',
 		name:			'Contact',
+		component:		'contact',
 		defaultTitle:	'Contact Us',
+		fields:			{
+		
+			component_id:	'#wx-add-contact-joomla-select'
+		
+		},
+		options:		{
+		
+			'emailform':	'Display a form instead of my email address',	
+			'googlemaps':	'Show my location on a Google Map',
+			'showimages':	'Add the image from my Joomla contact'
+		
+		},
 		types:			'contact'
 		
 	},
@@ -79,7 +110,12 @@ wx.features = [
 				name:			'K2 Blog',
 				extension:		'com_k2',
 				title:			true,
-				types:			['blog', 'directory', 'map', 'proximity']
+				types:			['blog', 'directory', 'map', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-add-k2-blog-select',
+					
+				}
 			
 			},
 			{
@@ -88,7 +124,12 @@ wx.features = [
 				name:			'K2 Category',
 				extension:		'com_k2',
 				title:			true,
-				types:			['blog', 'directory', 'map', 'proximity']
+				types:			['blog', 'directory', 'map', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-add-k2-category-select',
+					
+				}
 			
 			},
 			{
@@ -98,7 +139,12 @@ wx.features = [
 				extension:		'com_k2',
 				title:			true,
 				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
-				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
+				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-add-k2-item-select',
+					
+				}
 			
 			},
 			{
@@ -107,7 +153,12 @@ wx.features = [
 				name:			'K2 Tag',
 				extension:		'com_k2',
 				title:			true,
-				types:			['blog', 'directory', 'map', 'proximity']
+				types:			['blog', 'directory', 'map', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-add-k2-tag-select',
+					
+				}
 			
 			}
 		
@@ -136,28 +187,46 @@ wx.features = [
 			
 				id:				'category',
 				name:			'EasyBlog Category',
-				extension:		'com_easyblog',
+				//extension:		'com_easyblog',
+				unavailable:	'Feature coming soon!',
 				title:			true,
-				types:			['blog', 'directory', 'map', 'proximity']
+				types:			['blog', 'directory', 'map', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-input-field',
+					
+				}
 			
 			},
 			{
 			
 				id:				'post',
 				name:			'EasyBlog Post',
-				extension:		'com_easyblog',
+				//extension:		'com_easyblog',
+				unavailable:	'Feature coming soon!',
 				title:			true,
 				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
-				types:			['page', 'panel', 'map', 'aboutapp', 'proximity']
+				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-input-field',
+					
+				}
 			
 			},
 			{
 			
 				id:				'tag',
 				name:			'EasyBlog Tag',
-				extension:		'com_easyblog',
+				//extension:		'com_easyblog',
+				unavailable:	'Feature coming soon!',
 				title:			true,
-				types:			['blog', 'directory', 'map', 'proximity']
+				types:			['blog', 'directory', 'map', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-input-field',
+					
+				}
 			
 			}
 		
@@ -176,7 +245,7 @@ wx.features = [
 					
 					   '<ul><li>Display Twitter user streams, #hashtag(s) or search results</li>'+
 					    '<li>Share Blog Post or Pages via Twitter (options button)</li>'+
-					    '<li>Share App via Twitter (from the 'Share App' tab)</li>'+
+					    '<li>Share App via Twitter (from the "Share App" tab)</li>'+
 					    '</ul></p>',
 					
 		items:	[
@@ -185,21 +254,39 @@ wx.features = [
 			
 				id:				'user',
 				name:			'Twitter User',
-				types:			'social'
+				defaultTitle:	'component_behaviour',
+				types:			'social',
+				fields:			{
+				
+					component_behaviour: 	'#wx-twitter-user-value'
+				
+				}
 			
 			},
 			{
 				
-				id:			'hashtag',
-				name:		'Hash Tag',
-				types:		'social'
+				id:				'hashtag',
+				name:			'Hash Tag',
+				defaultTitle:	'component_behaviour',
+				types:			'social',
+				fields:			{
+				
+					component_behaviour: 	'#wx-twitter-hashtag-value'
+				
+				}
 			
 			},
 			{
 			
-				id:			'search',
-				name:		'Search Term',
-				types:		'social'
+				id:				'search',
+				name:			'Search Term',
+				types:			'social',
+				defaultTitle:	'Twitter',
+				fields:			{
+				
+					component_behaviour: 	'#wx-twitter-search-value'
+				
+				}
 			
 			}			
 		
@@ -209,14 +296,22 @@ wx.features = [
 	{
 	
 		id:				'facebook',
+		defaultTitle:	'Facebook',
 		vertical:		'all',
+		component:		{
+		
+			'social':	'facebook',
+			'photo':	'facebook.photos',
+			'calendar':	'facebook.events'
+		
+		},
 		name:			'Facebook',
 		description:	'<p>Add a stream of Facebook updates to your mobile app!</p>' +
 			
 				'<h4>Mobile App Features</h4>'+
 				
 				   '<ul><li>Display Facebook updates instantly</li>'+
-				    '<li>Share App via Facebook (from the 'Share App' tab)</li>'+
+				    '<li>Share App via Facebook (from the "Share App" tab)</li>'+
 				    '<li>Display your Facebook Photos</li>'+
 				    '<li>Display your Facebook Events</li>'+
 				    
@@ -231,6 +326,11 @@ wx.features = [
 			'social':		new wx.labelText('Display my status updates as a stream', null),
 			'photo':		new wx.labelText('Display my public photo albums', null),
 			'calendar':		new wx.labelText('Display my upcoming events', null)
+		
+		},
+		fields:			{
+		
+			component_behaviour: 	'#wx-facebook-user-value'
 		
 		}
 			
@@ -278,7 +378,13 @@ wx.features = [
 				name:			'User or Channel',
 				types:			'video',
 				title:			true,
-				defaultTitle:	'Videos'
+				defaultTitle:	'Videos',
+				component:		'youtube',
+				fields:			{
+				
+					component_behaviour:	'#wx-youtube-channel-url'
+				
+				}
 			
 			},
 			{
@@ -286,8 +392,14 @@ wx.features = [
 				id:				'playlist',
 				name:			'Playlist',
 				types:			'video',
+				component:		'youtube.playlists',
 				title:			true,
-				defaultTitle:	'Videos'
+				defaultTitle:	'Videos',
+				fields:			{
+				
+					component_behaviour:	'#wx-youtube-playlist-url'
+				
+				}
 			
 			}
 		
@@ -299,6 +411,7 @@ wx.features = [
 		vertical:		'all',
 		id:				'vimeo',
 		name:			'Vimeo',
+		component:		'vimeo',
 		url:			'http://vimeo.com/',
 		description:	'<p>Add Vimeo video channels to your mobile app – share your media!</p>'+
 		
@@ -315,7 +428,12 @@ wx.features = [
 			
 		types:			'video',
 		title:			true,
-		defaultTitle:	'Videos'
+		defaultTitle:	'Videos',
+		fields:			{
+		
+			component_behaviour:	'#wx-vimeo-channel-url'
+		
+		}
 	
 	
 	},
@@ -324,8 +442,9 @@ wx.features = [
 		vertical:		'all',
 		id:				'wufoo',
 		name:			'Wufoo Forms',
+		component:		'wufoo',
 		url:			'http://wufoo.com/',
-		description:	'<p>Use Wufoo's free online form creator to power your Weever App's contact forms, online surveys, and event registrations.</p>'+
+		description:	'<p>Use Wufoo\'s free online form creator to power your Weever App\'s contact forms, online surveys, and event registrations.</p>'+
 		
 			'<p>Wufoo Forms connect to many free and paid services on the web.</p>'+
 			
@@ -337,7 +456,7 @@ wx.features = [
 				    '<li>Campaign Monitor Newsletters</li>'+
 				    '<li>PayPal Donations and Payments</li>'+
 				    '<li>SalesForce CRM</li>'+
-				    '<li>Freshbooks Accounting & Billing</li>'+
+				    '<li>Freshbooks Accounting &amp; Billing</li>'+
 				    '<li>Highrise Contact Management</li>'+
 				    '<li>Twitter "Auto Form Tweets"</li>'+
 				
@@ -347,7 +466,13 @@ wx.features = [
 			
 		types:			'form',
 		defaultTitle:	'Forms',
-		tier:			2
+		tier:			2,
+		fields:			{
+		
+			component_behaviour:	'#wx-wufoo-form-url',
+			var:					'#wx-wufoo-form-api-key'
+		
+		}
 	
 	},
 	{
@@ -380,7 +505,13 @@ wx.features = [
 				name:			'Photostream (latest only)',
 				title:			true,
 				defaultTitle:	'Latest Photos',
-				types:			'photo'
+				component:		'flickr',
+				types:			'photo',
+				fields:			{
+				
+					component_behaviour:	'#wx-flickr-photostream-photo-url'
+				
+				}
 			
 			},
 			{
@@ -388,7 +519,13 @@ wx.features = [
 				id:				'photosets',
 				name:			'All Photosets',
 				defaultTitle:	'Photos',
-				types:			'photo'
+				component:		'flickr.photosets',
+				types:			'photo',
+				fields:			{
+				
+					component_behaviour:	'#wx-flickr-photosets-photo-url'
+				
+				}
 			
 			}
 		
@@ -400,6 +537,7 @@ wx.features = [
 		id:				'picasa',
 		vertical:		'all',
 		name:			'Picasa',
+		component:		'google.picasa',
 		url:			'http://picasa.google.com/',
 		defaultTitle:	'Photos',
 		description:	'<p>Fast and easy photo sharing from Google.</p>'+
@@ -415,7 +553,12 @@ wx.features = [
 			'</ul>', 
 			
 		
-		types:			'photo'
+		types:			'photo',
+		fields:			{
+		
+			component_behaviour:	'#wx-picasa-photo-url'
+		
+		}
 	
 	},
 	{
@@ -423,6 +566,7 @@ wx.features = [
 		vertical:		'all',
 		id:				'foursquare',
 		name:			'Foursquare',
+		component:		'foursquare',
 		defaultTitle:	'Foursquare Photos',
 		url:			'http://foursquare.com/',
 		description:	'<p>Foursquare is a location-based social networking website for mobile devices. Users "check-in" at venues by selecting from a list of venues the app locates nearby. Each check-in awards the user points and sometimes "badges".</p>' +
@@ -442,6 +586,11 @@ wx.features = [
 		labels:			{
 		
 			'photo':	new wx.labelText(null, 'This content will be displayed as a slideshow of photos')
+		
+		},
+		fields:			{
+		
+			component_behaviour:	'#wx-foursquare-photo-url'
 		
 		}
 	
@@ -502,41 +651,65 @@ wx.features = [
 	
 		id:				'google_calendar',
 		name:			'Google Calendar',
-		types:			'calendar'
+		types:			'calendar',
+		component:		'google.calendar',
+		fields:			{
+		
+			component_behaviour: 	'#wx-google-calendar-email'
+		
+		}
 	
 	},
 	{
 	
 		id:				'blogger',
 		name:			'Blogger',
+		component:		'blogger',
 		title:			true,
 		defaultTitle:	'Our Blog',
-		types:			'blog'
+		types:			'blog',
+		fields:			{
+		
+			component_behaviour: 	'#wx-add-blog-blogger-url-input'
+		
+		}
 	
 	},
 	{
 	
 		id:				'identica',
 		name:			'Identi.ca',
+		component:		'identi.ca',
 		description:	'<p>Identi.ca is a social microblogging service similar to Twitter, but built on open source tools and open standards.' +
 					
 					'<p>In Weever, you can display a search term or hashtag stream.</p>',
 		types:			'social',
 		defaultTitle:	'Identi.ca Status',
+		fields:			{
+		
+			component_behaviour: 	'#wx-identica-social-value'
+		
+		}
 	
 	},
 	{
 	
 		id:				'r3s',
-		name:			'R3S Feed',
+		name:			'R3S Object (advanced)',
+		component:		'r3s',
 		title:			'true',
-		types:			['blog', 'page', 'map', 'panel', 'directory', 'aboutapp', 'proximity']
+		types:			['blog', 'page', 'map', 'panel', 'directory', 'aboutapp', 'proximity'],
+		fields:			{
+		
+			cms_feed: 	'#wx-add-page-r3s-url-input'
+		
+		}
 	
 	},
 	{
 	
 		id:				'suggestion',
-		name:			'What\'s Missing?',
+		name:			'What\'s Missing?'
 	
 	}
 
