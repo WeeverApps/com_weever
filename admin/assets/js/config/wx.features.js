@@ -26,6 +26,7 @@ wx.features = [
 		id:			'joomla',
 		name:		'Joomla Content',
 		description:'Add Content from your Joomla website.',
+		splitTypes:	true,
 		items:	[
 		
 			{
@@ -79,7 +80,7 @@ wx.features = [
 				component:		'page',
 				title:			true,
 				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
-				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
+				types:			['page', 'panel', 'map', 'aboutapp'],
 				fields:			{
 				
 					cms_feed:	'#wx-add-joomla-article-url',
@@ -88,7 +89,6 @@ wx.features = [
 				component:		{
 				
 					'map':			'map',
-					'proximity':	'proximity',
 					'page':			'page',
 					'panel':		'panel',
 					'aboutapp':		'aboutapp'
@@ -127,6 +127,7 @@ wx.features = [
 		id:			'k2',
 		extension:	'com_k2',
 		name:		'K2 Content',
+		splitTypes:	true,
 		description:'Add content from the K2 extension.',
 		items:	[
 		
@@ -181,11 +182,10 @@ wx.features = [
 				extension:		'com_k2',
 				title:			true,
 				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
-				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
+				types:			['page', 'panel', 'map', 'aboutapp'],
 				component:		{
 				
 					'map':			'map',
-					'proximity':	'proximity',
 					'page':			'page',
 					'panel':		'panel',
 					'aboutapp':		'aboutapp'

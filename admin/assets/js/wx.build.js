@@ -102,11 +102,20 @@ jQuery(document).ready( function() {
 				if( item.items[ii].extension )
 					iiExtraClass += ' wx-require-extension-' + item.extension;
 					
-				item.types = pushItemTypes(item.types, item.items[ii].types);		
+				item.types = pushItemTypes(item.types, item.items[ii].types);
+				
+				if( typeof item.items[ii].types == "string" )
+					item.items[ii].types = [item.items[ii].types];
+				
+				for( var iii = 0; iii < item.items[ii].types.length; iii++ ) {
+				
+					iiExtraClass += " wx-type-" + item.items[ii].types[iii] + "-option";
+				
+				}	
 	
 				jQuery( 'div#wx-add-' + item.id + '-items' ).append(
 					
-					"<div id='add-" + item.id + "-" + item.items[ii].id + "' class='wx-add-item-icon wxui-btn white large radius3 wx-alignleft wx-add-" + item.id + "-dialog-item wx-add-single" + extraClass + "'>" +
+					"<div id='add-" + item.id + "-" + item.items[ii].id + "' class='wx-add-item-icon wxui-btn white large radius3 wx-alignleft wx-sub-item-option wx-add-" + item.id + "-dialog-item wx-add-single" + extraClass + iiExtraClass + "'>" +
 					
 						"<img src='" + wx.navIconDir + icon + "' />" +
 						"<span>" + item.items[ii].name + "</span>" +
@@ -481,13 +490,21 @@ jQuery(document).ready( function() {
 					);
 					
 					pushSubItemTypes(item, extraClass);
+					
+//					for( var ii=0; ii < item.items.length; ii++ ) {
+//					
+//						insertToTypeDialogs(item.items[ii], extraClass, item.id);
+//					
+//					}
 				
 				}
 				
 				if( !(item.types instanceof Array) )
 					item.types = [ item.types ];
 				
-				insertToTypeDialogs(item, extraClass);
+				//if( !(item.items instanceof Array) || true != item.splitTypes )
+					insertToTypeDialogs(item, extraClass);
+					
 					
 			}
 			

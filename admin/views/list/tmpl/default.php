@@ -55,32 +55,34 @@ else
 $document->addCustomTag ('<script type="text/javascript">
 
 				function jSelectItem(id, title, object) {
-				
-                        jQuery(\'#wx-add-k2-item-url\').val(\'index.php?option=com_k2&view=item&id=\' + id);
-                        jQuery(\'#wx-add-k2-item-name\').val(title);
-                       '.$js_close.'
+			
+                    jQuery(\'#wx-add-k2-item-url\').val(\'index.php?option=com_k2&view=item&id=\' + id);
+                    jQuery(\'#wx-add-k2-item-name\').val(title);
+                   '.$js_close.'
                        
                 }
                 
                 function jSelectArticle(id, title, object) {
                 
-                		jQuery(\'#wx-add-joomla-article-name\').val(id);
-                		jQuery(\'#wx-add-joomla-article-url\').val(title);
-                		'.$js_close.'
+            		jQuery(\'#wx-add-joomla-article-name\').val(title);
+            		jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?opton=com_content&view=article&id=\' + id);
+            		'.$js_close.'
                 		
                 }
                 
                 function jSelectArticleNew(id, title, catid, object) {
-                
-                		document.getElementById(\'id_id\').value = id;
-                		document.getElementById(\'id_name\').value = title;
-                		'.$js_close.'
-                                        
+					
+					jQuery(\'#wx-add-joomla-article-name\').val(title);
+					jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?opton=com_content&view=article&id=\' + id);
+					'.$js_close.'
+					
                 }
                 
                 jQuery( document ).ready( function() {
                 
                 	'.$js_swipe_page.'
+                	
+                	jQuery(\'html, body\').animate({scrollTop:0}, \'fast\');
                 
                 });
                 
@@ -97,7 +99,7 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.features.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.swipepages.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.tabcomponents.js?v='.comWeeverConst::VERSION );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/build.js?v='.comWeeverConst::VERSION );
+$document->addScript( JURI::base(true).'/components/com_weever/assets/js/wx.build.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/wx.list.joomla.ini.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/jq.list.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/swipe.js?v='.comWeeverConst::VERSION );

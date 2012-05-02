@@ -133,12 +133,14 @@ wx.ajaxAddTabItem	= function(a) {
 			     	var hashTab;
 			     	
 			     	if( wx.activeTypeDialog != null )
-			     		hashTab	= "#" + wx.activeTypeDialog + "Tab";
+			     		hashTab	= "&refresh=" + Math.random() + "#" + wx.activeTypeDialog + "Tab";
 			     	else 
-			     		hashTab = "&swipe_page=" + wx.swipe.getPos() + "#addTab";
+			     		hashTab = "&swipe_page=" + wx.swipe.getPos() + "&refresh=" + Math.random() + "#addTab";
 			     
 			     	jQuery('#wx-modal-secondary-text').html('Reloading page..');
 			     	document.location.href = wx.baseExtensionUrl + hashTab;
+			     	
+			     	//setTimeout( function() { document.location.reload(true); }, 25 );
 			     	
 			     }
 			     else
@@ -339,6 +341,13 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 
 			wx.activeTypeDialog = null;
 
+		}
+		
+		if( wx.activeTypeDialog != null ) {
+		
+			jQuery('.wx-sub-item-option').hide();
+			jQuery('.wx-type-' + wx.activeTypeDialog + '-option').show();
+		
 		}
 		
 		if( true === featureData.title ) 
