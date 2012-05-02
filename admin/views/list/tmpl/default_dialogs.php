@@ -38,6 +38,7 @@ defined('_JEXEC') or die;
 <div id="wx-add-aboutapp-type-dialog" class="wx-jquery-dialog wx-hide"></div>
 <div id="wx-add-audio-type-dialog" class="wx-jquery-dialog wx-hide"></div>
 <div id="wx-add-product-type-dialog" class="wx-jquery-dialog wx-hide"></div>
+<div id="wx-add-proximity-type-dialog" class="wx-jquery-dialog wx-hide"></div>
 
 <div id="wx-add-joomla_contact-dialog" class="wx-jquery-dialog wx-hide">
 
@@ -83,6 +84,8 @@ defined('_JEXEC') or die;
 			<?php endforeach; ?>
 		
 		</select>
+		
+		<label for='wx-add-joomla-blog-select' class='wx-blog-label wx-jqui-label'><?php echo JText::_('WEEVER_ADD_K2_BLOG'); ?></label>
 	
 	</div>
 
@@ -161,9 +164,9 @@ defined('_JEXEC') or die;
 			</div>
 		
 		
-			<input type="text" id="k2item_name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
+			<input type="text" id="wx-add-k2-item-name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
 
-			<input type="hidden" id="k2item_id wx-add-k2-item-select" class="wx-panel-input" name="urlparams[id]" value="0" />
+			<input type="hidden" id="wx-add-k2-item-url" class="wx-panel-input" name="urlparams[id]" value="0" />
 		
 		</div>
 
@@ -198,6 +201,7 @@ defined('_JEXEC') or die;
 				<?php endforeach; ?>
 			
 			</select>
+			<label for='wx-add-joomla-blog-select' class='wx-blog-label wx-jqui-label'><?php echo JText::_('WEEVER_ADD_JOOMLA_BLOG'); ?></label>
 		
 		</div>
 
@@ -249,9 +253,9 @@ defined('_JEXEC') or die;
 				<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_JOOMLA_ARTICLE'); ?>" href="<?php echo $link; ?>" rel="{handler: 'iframe', size: {x: 700, y: 450}}">&nbsp;&nbsp;<?php echo JText::_('WEEVER_PANEL_SELECT'); ?>&nbsp;&nbsp;</a>
 			</div>
 			
-			<input type="text" id="jarticle_name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
+			<input type="text" id="wx-add-joomla-article-name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
 			
-			<input type="hidden" id="jarticle_id wx-add-joomla-article-select" class="wx-panel-input" name="urlparams[id]" value="0" />
+			<input type="hidden" id="wx-add-joomla-article-url" class="wx-panel-input" name="urlparams[id]" value="0" />
 			
 		</div>
 		

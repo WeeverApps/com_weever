@@ -2,8 +2,9 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	0.9.3
+*	Author: 	Robert Gerald Porter 	<rob@weeverapps.com>
+*   CSS Design: Andrew J. Holden		<andrew@weeverapps.com>
+*	Version: 	1.7
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -1713,7 +1714,7 @@ div.wx-add-source-icon, div.wx-add-item-icon {
 }
 
 div.wx-add-source-icon { min-width:110px; }
-div.wx-add-item-icon   { width:84px; height:84px; }
+div.wx-add-item-icon   { width:84px; }
 
 div.wx-add-source-icon.wxui-btn.white:hover, .wx-add-item-icon.wxui-btn.white:hover {
 		

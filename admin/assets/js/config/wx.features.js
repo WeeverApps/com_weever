@@ -25,7 +25,7 @@ wx.features = [
 	
 		id:			'joomla',
 		name:		'Joomla Content',
-		summary:	'From your Joomla site...',
+		description:'Add Content from your Joomla website.',
 		items:	[
 		
 			{
@@ -37,8 +37,16 @@ wx.features = [
 				types:			['blog', 'map', 'proximity',  'directory'],
 				fields:			{
 				
-					cms_feed:	'#wx-add-joomla-blog-select',
+					'cms_feed':	'#wx-add-joomla-blog-select',
 					
+				},
+				component:		{
+				
+					'blog':			'blog',
+					'directory':	'directory',
+					'map':			'map',
+					'proximity':	'proximity'
+				
 				}
 			
 			},
@@ -53,6 +61,14 @@ wx.features = [
 				
 					cms_feed:	'#wx-add-joomla-category-select',
 					
+				},
+				component:		{
+				
+					'blog':			'blog',
+					'directory':	'directory',
+					'map':			'map',
+					'proximity':	'proximity'
+				
 				}
 			
 			},
@@ -66,8 +82,17 @@ wx.features = [
 				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
 				fields:			{
 				
-					cms_feed:	'#wx-add-joomla-article-select',
+					cms_feed:	'#wx-add-joomla-article-url',
 					
+				},
+				component:		{
+				
+					'map':			'map',
+					'proximity':	'proximity',
+					'page':			'page',
+					'panel':		'panel',
+					'aboutapp':		'aboutapp'
+				
 				}
 			
 			}
@@ -102,6 +127,7 @@ wx.features = [
 		id:			'k2',
 		extension:	'com_k2',
 		name:		'K2 Content',
+		description:'Add content from the K2 extension.',
 		items:	[
 		
 			{
@@ -111,6 +137,14 @@ wx.features = [
 				extension:		'com_k2',
 				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity'],
+				component:		{
+				
+					'blog':			'blog',
+					'directory':	'directory',
+					'map':			'map',
+					'proximity':	'proximity'
+				
+				},
 				fields:			{
 				
 					cms_feed:	'#wx-add-k2-blog-select',
@@ -125,6 +159,14 @@ wx.features = [
 				extension:		'com_k2',
 				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity'],
+				component:		{
+				
+					'blog':			'blog',
+					'directory':	'directory',
+					'map':			'map',
+					'proximity':	'proximity'
+				
+				},
 				fields:			{
 				
 					cms_feed:	'#wx-add-k2-category-select',
@@ -140,9 +182,18 @@ wx.features = [
 				title:			true,
 				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
 				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
+				component:		{
+				
+					'map':			'map',
+					'proximity':	'proximity',
+					'page':			'page',
+					'panel':		'panel',
+					'aboutapp':		'aboutapp'
+				
+				},
 				fields:			{
 				
-					cms_feed:	'#wx-add-k2-item-select',
+					cms_feed:		'#wx-add-k2-item-url',
 					
 				}
 			
@@ -154,9 +205,17 @@ wx.features = [
 				extension:		'com_k2',
 				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity'],
+				component:		{
+				
+					'blog':			'blog',
+					'directory':	'directory',
+					'map':			'map',
+					'proximity':	'proximity'
+				
+				},
 				fields:			{
 				
-					cms_feed:	'#wx-add-k2-tag-select',
+					component_behaviour:	'#wx-add-blog-k2-tag-input',
 					
 				}
 			
@@ -180,6 +239,7 @@ wx.features = [
 	
 		id:				'easyblog',
 		extension:		'com_easyblog',
+		unavailable:	'Feature coming soon!',
 		name:			'EasyBlog Content',
 		items:	[
 		
@@ -255,11 +315,17 @@ wx.features = [
 				id:				'user',
 				name:			'Twitter User',
 				defaultTitle:	'component_behaviour',
+				component:		'twitteruser',
 				types:			'social',
 				fields:			{
 				
 					component_behaviour: 	'#wx-twitter-user-value'
 				
+				},
+				defaultValue:	{
+				
+					component_behaviour:	'@'
+					
 				}
 			
 			},
@@ -267,12 +333,18 @@ wx.features = [
 				
 				id:				'hashtag',
 				name:			'Hash Tag',
+				component:		'twitter',
 				defaultTitle:	'component_behaviour',
 				types:			'social',
 				fields:			{
 				
 					component_behaviour: 	'#wx-twitter-hashtag-value'
 				
+				},
+				defaultValue:	{
+				
+					component_behaviour:	'#'
+					
 				}
 			
 			},
@@ -280,6 +352,7 @@ wx.features = [
 			
 				id:				'search',
 				name:			'Search Term',
+				component:		'twitter',
 				types:			'social',
 				defaultTitle:	'Twitter',
 				fields:			{
@@ -332,6 +405,11 @@ wx.features = [
 		
 			component_behaviour: 	'#wx-facebook-user-value'
 		
+		},
+		defaultValue:	{
+		
+			component_behaviour:	'http://facebook.com/'
+			
 		}
 			
 	},
@@ -375,7 +453,7 @@ wx.features = [
 			{
 			
 				id:				'channel',
-				name:			'User or Channel',
+				name:			'User / Channel',
 				types:			'video',
 				title:			true,
 				defaultTitle:	'Videos',
@@ -383,6 +461,11 @@ wx.features = [
 				fields:			{
 				
 					component_behaviour:	'#wx-youtube-channel-url'
+				
+				},
+				defaultValue:	{
+				
+					component_behaviour:	'http://youtube.com/'
 				
 				}
 			
@@ -398,6 +481,11 @@ wx.features = [
 				fields:			{
 				
 					component_behaviour:	'#wx-youtube-playlist-url'
+				
+				},
+				defaultValue:	{
+				
+					component_behaviour:	'http://youtube.com/playlist?list='
 				
 				}
 			
@@ -432,6 +520,11 @@ wx.features = [
 		fields:			{
 		
 			component_behaviour:	'#wx-vimeo-channel-url'
+		
+		},
+		defaultValue:	{
+		
+			component_behaviour:	'http://vimeo.com/'
 		
 		}
 	
@@ -502,7 +595,7 @@ wx.features = [
 			{
 			
 				id:				'photostream',
-				name:			'Photostream (latest only)',
+				name:			'Latest Photos',
 				title:			true,
 				defaultTitle:	'Latest Photos',
 				component:		'flickr',
@@ -511,6 +604,11 @@ wx.features = [
 				
 					component_behaviour:	'#wx-flickr-photostream-photo-url'
 				
+				},
+				defaultValue:	{
+				
+					component_behaviour:	'http://flickr.com/photos/'
+					
 				}
 			
 			},
@@ -521,6 +619,11 @@ wx.features = [
 				defaultTitle:	'Photos',
 				component:		'flickr.photosets',
 				types:			'photo',
+				defaultValue:	{
+				
+					component_behaviour:	'http://flickr.com/photos/'
+					
+				},
 				fields:			{
 				
 					component_behaviour:	'#wx-flickr-photosets-photo-url'
@@ -591,6 +694,11 @@ wx.features = [
 		fields:			{
 		
 			component_behaviour:	'#wx-foursquare-photo-url'
+		
+		},
+		defaultValue:	{
+		
+			component_behaviour:	'https://foursquare.com/v/'
 		
 		}
 	
@@ -670,7 +778,7 @@ wx.features = [
 		types:			'blog',
 		fields:			{
 		
-			component_behaviour: 	'#wx-add-blog-blogger-url-input'
+			cms_feed: 	'#wx-add-blog-blogger-url-input'
 		
 		}
 	
@@ -695,10 +803,21 @@ wx.features = [
 	{
 	
 		id:				'r3s',
-		name:			'R3S Object (advanced)',
+		name:			'R3S Object',
 		component:		'r3s',
 		title:			'true',
 		types:			['blog', 'page', 'map', 'panel', 'directory', 'aboutapp', 'proximity'],
+		component:		{
+		
+			'blog':			'blog',
+			'directory':	'dir	ectory',
+			'map':			'map',
+			'proximity':	'proximity',
+			'aboutapp':		'aboutapp',
+			'page':			'page',
+			'panel':		'panel'
+		
+		},
 		fields:			{
 		
 			cms_feed: 	'#wx-add-page-r3s-url-input'

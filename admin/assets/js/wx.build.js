@@ -18,6 +18,8 @@
 *
 */
 
+/* builds the jQuery UI + SwipeJS Pages system using settings from /config */
+
 jQuery(document).ready( function() { 
 
 	wx.build = function() {
@@ -106,7 +108,7 @@ jQuery(document).ready( function() {
 					
 					"<div id='add-" + item.id + "-" + item.items[ii].id + "' class='wx-add-item-icon wxui-btn white large radius3 wx-alignleft wx-add-" + item.id + "-dialog-item wx-add-single" + extraClass + "'>" +
 					
-						"<img src='components/com_weever/assets/icons/nav/" + icon + "' />" +
+						"<img src='" + wx.navIconDir + icon + "' />" +
 						"<span>" + item.items[ii].name + "</span>" +
 						
 					"</div>"
@@ -130,7 +132,7 @@ jQuery(document).ready( function() {
 				
 					"<div id='add-" + item.id + "'  ref='add-" + item.id + "' rel='" + type + "' class='wxui-btn white large radius3 wx-floatleft wx-add-source-icon" + extraClass + "'>" +
 					
-						"<img src='components/com_weever/assets/icons/nav/" + icon + "' />" +
+						"<img src='"  + wx.navIconDir + icon + "' />" +
 						"<span>" + item.name + "</span>" +
 						
 					"</div>"
@@ -203,7 +205,7 @@ jQuery(document).ready( function() {
 					return "<div id='add-" + id + "' ref='add-" + id + "' class='wxui-btn white large radius3 wx-floatleft wx-add-source-icon" + 
 										extraClass + "'>" +
 					
-								"<img src='components/com_weever/assets/icons/nav/" + 
+								"<img src='"  + wx.navIconDir  + 
 											icon + "' />" +
 											
 								"<span>" + item.name + "</span>" + appendDiv +
@@ -245,7 +247,7 @@ jQuery(document).ready( function() {
 				
 					return 	"<div id='add-" + type + "-type' ref='add-" + type + "-type' class='wxui-btn white large radius3 wx-floatleft wx-add-source-icon'>" +
 					
-								"<img src='components/com_weever/assets/icons/nav/" + type + ".png' />" +
+								"<img src='" + wx.navIconDir + type + ".png' />" +
 								"<span>" + wx.types[type].name + "</span>" +
 						
 							"</div>";

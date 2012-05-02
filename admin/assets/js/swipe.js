@@ -39,7 +39,7 @@ window.Swipe = function(element, options) {
   this.callback = options.callback || function() {};
   this.transitionEnd = options.transitionEnd || function() {};
   this.delay = options.auto || 0;
-  this.cont = !!options.continuous;
+  this.cont = (options.continuous != undefined) ? !!options.continuous : true;
   this.disableScroll = !!options.disableScroll;
 
   // verify index is a number not string
@@ -69,7 +69,9 @@ window.Swipe = function(element, options) {
 
   // to play nice with old IE
   else {
-    window.onresize = this.setup;
+    window.onresize = function () {
+      _this.setup();
+    };
   }
 
 };
@@ -449,3 +451,15 @@ Swipe.prototype = {
   }
 
 };
+
+
+if ( window.jQuery || window.Zepto ) {
+  (function($) {
+    $.fn.Swipe = function(params) {
+      return this.each(function() {
+        var _this = $(this);
+        _this.data('Swipe', new Swipe(_this[0], params));
+      });
+    }
+  })( window.jQuery || window.Zepto )
+}

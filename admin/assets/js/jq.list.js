@@ -75,7 +75,7 @@ jQuery( document ).ready( function() {
 			
 			}
 			
-			wx.localizedConditionalDialog(["Add to App", "Cancel"], dialogId, backAction, true );
+			wx.localizedConditionalDialog(["Add to App", "Cancel"], dialogId, backAction, true, true );
 			
 			return;
 		
@@ -183,6 +183,236 @@ jQuery( document ).ready( function() {
 	    
 	    }
 	    
+	});
+	
+	jQuery('.wx-table-sort').sortable({
+	
+	    cursor:     			'move',
+	    axis:       			'y',
+	    revert:  				true,
+	    forcePlaceholderSize: 	true,
+	    placeholder: 			'group_move_placeholder',
+	    items: 					'tr',
+	    update: 				function(e, ui) {
+	    
+			jQuery(this).sortable("refresh");
+			
+			var siteKey 	= jQuery("input#wx-site-key").val();
+			var str 		= String(jQuery(this).sortable('toArray'));
+			
+			jQuery.ajax({
+			
+				type: 		"POST",
+				url: 		"index.php",
+				data: 		"option=com_weever&task=ajaxSaveTabOrder&site_key="+siteKey+"&order="+str,
+				success: 	function(msg) {
+				
+					jQuery('#wx-modal-loading-text').html(msg);
+					
+					if(msg == "Order Updated")
+						jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+					
+					else {
+					
+						jQuery('#wx-modal-secondary-text').html('');
+						jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+					
+					}
+				
+				}
+			
+			});
+	      	 
+	    }
+	    
+	});
+		
+	jQuery('.wx-table-sort').disableSelection();
+	
+	jQuery('a.wx-subtab-link').click(function() {
+	
+		var tabId 		= jQuery(this).attr('title');
+			tabId 		= tabId.substring(4);
+		
+		var siteKey		= jQuery("input#wx-site-key").val(),
+			htmlName 	= jQuery(this).html(),
+			txt 		= '<h3 class="wx-imp-h3">' + Joomla.JText._('WEEVER_JS_ENTER_NEW_APP_ITEM') + '</h3>' +
+			'<input type="text" id="alertName" name="alertName" value="'+htmlName+'" />',
+			clickedElem = jQuery(this);
+		
+		myCallbackForm = function(v,m,f) {
+		
+			if(v != undefined && v == true) { 
+			
+				tabName = f["alertName"];
+				
+				jQuery.ajax({
+				
+					type: 		"POST",
+					url: 		"index.php",
+					data: 		"option=com_weever&task=ajaxSaveTabName&name=" + encodeURIComponent(tabName) + "&id=" + tabId + '&site_key=' + siteKey,
+					success: 	function(msg) {
+					
+						jQuery('#wx-modal-loading-text').html(msg);
+						
+						if(msg == "Tab Changes Saved") {
+						
+							jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+							clickedElem.html(tabName);
+							
+						}
+						else {
+						
+							jQuery('#wx-modal-secondary-text').html('');
+							jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+							
+						}
+						
+					}
+					
+				});
+			
+			}
+			
+		}	
+		
+		submitCheck = function(v,m,f) {
+		
+			an = m.children('#alertName');
+			
+			if(f.alertName == "" && v == true) {
+			
+				an.css("border", "solid #ff0000 1px");
+				
+				return false;
+				
+			}
+			
+			return true;
+		
+		}		
+		
+		var tabName 	= jQuery.prompt(txt, {
+		
+			callback: 		myCallbackForm, 
+			submit: 		submitCheck,
+			overlayspeed: 	"fast",
+			buttons: 		{  Cancel: false, Submit: true },
+			focus: 			1
+			
+		});
+		
+		jQuery('input#alertName').select();
+		// hit 'enter/return' to save
+		jQuery("input#alertName").bind("keypress", function (e) {
+		
+			if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+				
+				jQuery('button#jqi_state0_buttonSubmit').click();
+				return false;
+				
+			} else {
+			
+			return true;
+			
+			}
+			
+		});
+		
+	});
+			
+	jQuery("a.wx-subtab-publish").click(function() {
+	
+		var tabId 	= jQuery(this).attr('title');
+			tabId = tabId.substring(4);
+			
+		var siteKey 		= jQuery("input#wx-site-key").val(),
+			clickedElem 	= jQuery(this),
+			pubStatus 		= jQuery(this).attr('rel'),
+			unpublishedIcon = '<img src="components/com_weever/assets/icons/publish_x.png" border="0" alt="Unpublished">',
+			publishedIcon 	= '<img src="components/com_weever/assets/icons/tick.png" border="0" alt="Published">';
+		
+		jQuery.ajax({
+		
+			type: 		"POST",
+			url: 		"index.php",
+			data: 		"option=com_weever&task=ajaxTabPublish&status=" + pubStatus + "&id=" + tabId+ '&site_key=' + siteKey,
+			success: 	function(msg) {
+			
+				jQuery('#wx-modal-loading-text').html(msg);
+				
+				if(msg == "Item Published" || msg == "Item Unpublished") {
+				
+					jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+				
+					if(pubStatus == 1) {
+					
+						clickedElem.html(unpublishedIcon);
+						clickedElem.attr('rel', 0);
+						
+					} else {
+					
+						clickedElem.html(publishedIcon);
+						clickedElem.attr('rel', 1);
+						
+					}
+					
+				} else {
+				
+					jQuery('#wx-modal-secondary-text').html('');
+					jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+					
+				}
+			
+			}
+			
+		});
+	
+	});
+			
+	
+	jQuery("a.wx-subtab-delete").click(function() {
+	
+		var tabId = jQuery(this).attr('title');
+			tabId = tabId.substring(4);
+			
+		var siteKey 	= jQuery("input#wx-site-key").val(),
+			tabType 	= jQuery(this).attr('rel'),
+			tabName 	= jQuery(this).attr('alt'),		
+			confDelete 	= confirm( Joomla.JText._('WEEVER_JS_ARE_YOU_SURE_YOU_WANT_TO') + tabName + Joomla.JText._('WEEVER_JS_QUESTION_MARK') );
+		
+		if(!confDelete)
+			return false;
+		
+		jQuery.ajax({
+			
+			type: 		"POST",
+			url: 		"index.php",
+			data: 		"option=com_weever&task=ajaxSubtabDelete&id="+tabId+'&site_key='+siteKey,
+			success: 	function(msg) {
+			
+				jQuery('#wx-modal-loading-text').html(msg);
+				
+				if(msg == "Item Deleted")
+				{
+				
+					jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
+					document.location.href = "index.php?option=com_weever#"+tabType+"Tab";
+					setTimeout("document.location.reload(true);",20);
+					
+				}
+				else
+				{
+				
+					jQuery('#wx-modal-secondary-text').html('');
+					jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+					
+				}
+			
+			}
+			
+		});
+	
 	});
 
 });

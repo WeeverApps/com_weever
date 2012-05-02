@@ -29,7 +29,7 @@ final class comWeeverConst
 {
 
 	const VERSION			= "1.7";
-	const RELEASE_TYPE		= "dev";
+	const RELEASE_TYPE		= "stable";
 	const RELEASE_NAME		= "<a href='http://www.grandriver.ca/index/document.cfm?Sec=27&Sub1=129&Sub2=0' target='_blank'>Pinehurst Lake</a>";
 	const NAME				= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR	= "(c) 2010-2012";
@@ -37,10 +37,10 @@ final class comWeeverConst
 	const COPYRIGHT_URL		= "http://www.weeverapps.com/";
 	const LICENSE			= "GPL v3.0";
 	const LICENSE_URL		= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE		= "March 22, 2012";
+	const RELEASE_DATE		= "May 2, 2012";
 	const SUPPORT_WEB		= "http://support.weeverapps.com/";
 	const LIVE_SERVER		= "http://weeverapp.com/";
-	const LIVE_STAGE		= "http://cephalopod.weeverapp.com/";
+	const LIVE_STAGE		= "http://stage.weeverapp.com/";
 	const API_VERSION		= "api/v1/";
 	const SUPPORTED_TYPES	= "-blog--calendar--component--contact--form--listingcomponent--page--photo--social--video--panel--aboutapp--map--directory--proximity-";
 

@@ -99,6 +99,50 @@ jQuery(function() {
 
 });
 
+/* Joomla specific vars */
+
+wx.navIconDir 			= "components/com_weever/assets/icons/nav/";
+wx.baseExtensionUrl 	= "index.php?option=com_weever";
+
+/* Assembles the URL params */
+
+wx.ajaxUrl			= function(a) {
+
+	this.title					= "&name=" + encodeURIComponent( jQuery('#wx-add-title-tab-item').val() );
+	this.type 					= "&type=" + a.type;
+	this.component				= "&component=" + a.component;
+	this.appKey					= "&site_key=" + jQuery("input#wx-site-key").val();
+	this.var					= "";
+	this.component_behaviour	= "";
+	this.published				= "&published=" + a.published;
+	this.component_id			= "";
+	this.extra					= "";
+	this.cms_feed				= "";
+		
+	this.getParams		= function() {
+	
+		if(this.component_behaviour)
+			this.component_behaviour 	= "&component_behaviour=" + encodeURIComponent(this.component_behaviour);
+			
+		if(this.var) 
+			this.var					= "&var=" + encodeURIComponent(this.var);
+			
+		if(this.component_id)
+			this.component_id			= "&component_id=" + this.component_id;
+			
+		if(this.cms_feed)
+			this.cms_feed				= "&cms_feed=" + encodeURIComponent(this.cms_feed);
+	
+		return "option=com_weever&task=ajaxSaveNewTab" + this.title + this.type +
+						this.component + this.component_behaviour + this.var + "&weever_action=add" +
+					 	this.appKey + this.published + this.component_id + this.cms_feed + this.extra;			
+
+	}
+	
+}
+
+/* Change Tab Name */
+
 wx.navLabelDialog	= function(e) {
 
 	var tabId 		= jQuery(this).attr('ref'),
@@ -196,6 +240,7 @@ wx.navLabelDialog	= function(e) {
 
 };
 
+/* Change Tab Icon */
 
 wx.navIconDialog	= function(e) {
 	
@@ -316,6 +361,8 @@ wx.navIconDialog	= function(e) {
 	e.preventDefault();
 	
 };
+
+/* Tab Settings Dialogs */
 
 wx.settingsDialog	= {
 

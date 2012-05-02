@@ -20,6 +20,8 @@
 
 var wx	= wx || {};
 
+wx.activeTypeDialog	= null;
+
 /* IE 8 and Camino give errors if a console.log is left in the code */
 /* Let's fix that: */
 
@@ -29,71 +31,6 @@ if (typeof console == "undefined") {
     
 }
 
-/* Call to the CMS */
-
-wx.ajaxCms			= function(params, msgSuccess) { 
-
-	jQuery.ajax({
-	
-		type: 		"POST",
-		url: 		'index.php',
-		data: 		params,
-		success: 	function(msg) {
-		   
-			jQuery('#wx-modal-loading-text').html(msg);
-			
-			if(msg == msgSuccess) {
-			
-				jQuery('#wx-modal-secondary-text').html(Joomla.JText._('WEEVER_JS_APP_UPDATED'));
-//				document.location.href = "index.php";
-				document.location.reload(true);
-				
-			}
-			else {
-			
-				jQuery('#wx-modal-secondary-text').html('');
-				jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
-				
-			}
-			
-	   }
-	   
-	});	
-
-};
-
-/* Assembles the URL params */
-
-wx.ajaxUrl			= function(a) {
-
-	this.title					= "&name=" + encodeURIComponent( jQuery('#wx-add-title-tab-item').val() );
-	this.type 					= "&type=" + a.type;
-	this.component				= "&component=" + a.component;
-	this.appKey					= "&site_key=" + jQuery("input#wx-site-key").val();
-	this.var					= "";
-	this.component_behaviour	= "";
-	this.published				= "&published=" + a.published;
-	this.component_id			= "";
-	this.extra					= "";
-		
-	this.getParams		= function() {
-	
-		if(this.component_behaviour)
-			this.component_behaviour 	= "&component_behaviour=" + encodeURIComponent(this.component_behaviour);
-			
-		if(this.var) 
-			this.var					= "&var=" + encodeURIComponent(this.var);
-			
-		if(this.component_id)
-			this.component_id			= "&component_id=" + this.component_id;
-	
-		return "option=com_weever&task=ajaxSaveNewTab" + this.title + this.type +
-						this.component + this.component_behaviour + this.var + "&weever_action=add" +
-					 	this.appKey + this.published + this.component_id + this.extra;			
-
-	}
-	
-}
 
 /* Prep our Ajax call to the CMS */
 
@@ -105,10 +42,17 @@ wx.ajaxAddTabItem	= function(a) {
 		returned	= 0,
 		addAjaxUrl	= function(type, data) {
 		
+			var component;
+		
+			if( typeof data.component === "object" ) 			
+				component = data.component[ type ];
+			else
+				component = data.component;
+
 			var newType = new wx.ajaxUrl({ 
 			
 				type:		type,
-				component:	data.component,
+				component:	component,
 				published:	1
 				
 			});
@@ -152,8 +96,6 @@ wx.ajaxAddTabItem	= function(a) {
 		/* for each type checked */
 		for( var i=0; i < a.featureData.types.length; i++ ) {
 		
-			console.log(a.featureData.types[i]);
-		
 			if ( jQuery('#wx-add-source-check-' + a.featureData.types[i] + ':checked').length > 0 ) {
 			
 				addAjaxUrl(a.featureData.types[i], a.featureData);
@@ -168,7 +110,7 @@ wx.ajaxAddTabItem	= function(a) {
 	
 	}
 	
-	console.log(ajaxUrls);
+	//console.log(ajaxUrls);
 	
 	for( var i=0; i < ajaxUrls.length; i++ ) {
 	
@@ -187,18 +129,23 @@ wx.ajaxAddTabItem	= function(a) {
 		     
 			     if(msg == "Item Added")
 			     {
+
+			     	var hashTab;
+			     	
+			     	if( wx.activeTypeDialog != null )
+			     		hashTab	= "#" + wx.activeTypeDialog + "Tab";
+			     	else 
+			     		hashTab = "&swipe_page=" + wx.swipe.getPos() + "#addTab";
 			     
 			     	jQuery('#wx-modal-secondary-text').html('Reloading page..');
-			     	//document.location.href = "index.php?option=com_weever#calendarTab";
-			     	//Joomla.JText._('WEEVER_JS_APP_UPDATED')
-			     	document.location.reload(true);
+			     	document.location.href = wx.baseExtensionUrl + hashTab;
 			     	
 			     }
 			     else
 			     {
 			     
 			     	jQuery('#wx-modal-secondary-text').html('');
-			     	jQuery('#wx-modal-error-text').html(Joomla.JText._('WEEVER_JS_SERVER_ERROR'));
+			     	jQuery('#wx-modal-error-text').html( Joomla.JText._('WEEVER_JS_SERVER_ERROR') );
 			     	
 			     }
 			     
@@ -210,26 +157,6 @@ wx.ajaxAddTabItem	= function(a) {
 	
 	}
 	
-	//document.location.reload(true);
-	
-	return;// remove when ready
-	
-	/* to get: required database fields required from wx.features for a feature; IE:
-	
-		requiredFields:	[
-			
-			'cms_feed':		'#wx-input-field',
-			'var':			'xyz',
-			'rss':			1
-			
-		];
-		
-		*/ 
-	
-
-		
-		wx.ajaxCms( buildParams(), "Item Added" );	
-
 }
 
 /* Confirmation dialog, skipped if we don't ask about a title (wx.features [title] property is undefined) */
@@ -350,7 +277,7 @@ wx.setButtonActions		= function(a) {
 
 /* Create our dialog, with localization */
 
-wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, populateOptions) {
+wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, populateOptions, single) {
 
 	var	type 			= dialogId.replace('#wx-add-', '').replace('-dialog', '').replace(/\-/, '.'),
 		subType 		= type.split('.'),
@@ -389,37 +316,66 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 			
 			if( undefined != parentFeatureData ) {
 			
-				titlebarHtml += "<img class='wx-jquery-dialog-titlebar-icon' src='components/com_weever/assets/icons/nav/" + parentFeatureData.id + ".png' /> " + parentFeatureData.name + ": " + featureData.name;
+				titlebarHtml += "<img class='wx-jquery-dialog-titlebar-icon' src='" + wx.navIconDir + parentFeatureData.id + ".png' /> " + parentFeatureData.name + ": " + featureData.name;
 			
 			}
 			else
 			{
 			
-				titlebarHtml += "<img class='wx-jquery-dialog-titlebar-icon' src='components/com_weever/assets/icons/nav/" + featureData.id + ".png' /> " + featureData.name;
+				titlebarHtml += "<img class='wx-jquery-dialog-titlebar-icon' src='" + wx.navIconDir + featureData.id + ".png' /> " + featureData.name;
 			
 			}
 		
 		};
 	
+	/* Services only */
+	
 	if( subType[1] != 'type' ) {
 	
 		getFeatureData();
+		
+		/* So correct tab type is checkboxed if we got here via Tab Types */
+		if( true == populateOptions && true == single ) {
+
+			wx.activeTypeDialog = null;
+
+		}
 		
 		if( true === featureData.title ) 
 			action 	= wx.confirmAddTabItem;
 		else 
 			action	= wx.ajaxAddTabItem;
+			
+		/* add any default values for the input */
+		
+		if( undefined != featureData.defaultValue ) {
+		
+			for( var i in featureData.defaultValue ) {
+			
+				jQuery( featureData.fields[i] ).val( featureData.defaultValue[i] );
+				
+			}
+		
+		}
+		
 		
 	}	
+	/* Tab Types only; no action button, use Tab Name for icon */
 	else { 
 	
-		titlebarHtml 	+= "<img class='wx-jquery-dialog-titlebar-icon' src='components/com_weever/assets/icons/nav/" + subType[0] + ".png' /> " + wx.types[ subType[0] ].name;
+		wx.activeTypeDialog = subType[0];
+		
+		//alert(wx.activeTypeDialog);
+		
+		titlebarHtml 	+= "<img class='wx-jquery-dialog-titlebar-icon' src='" + wx.navIconDir +  subType[0] + ".png' /> " + wx.types[ subType[0] ].name;
 		
 		action 			= function(a) { null; };
 	
 	}
 	
-	if( populateOptions == true && jQuery(dialogId + ' > div#wx-added-elems').length == 0 && undefined != featureData.types ) {
+	/* build checkbox options; if only one option, do not display checkbox */
+	
+	if( true == populateOptions && jQuery(dialogId + ' > div#wx-added-elems').length == 0 && undefined != featureData.types ) {
 	
 		var checkboxOptions	= '<div id="wx-added-elems"></div>', // hidden div to detect repetition
 			serviceTypes	= featureData.types;
@@ -468,11 +424,14 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 
 			for( var i=0; i < serviceTypes.length; i++ ) {
 			
-				if( i == 0 )	
+				if( i == 0 && wx.activeTypeDialog == null)	
 					checked = " checked='checked'";
 				else
 					checked = 0;
 					
+				if( wx.activeTypeDialog == serviceTypes[i] )
+					checked = " checked='checked'";
+
 				if( undefined == featureData.labels )
 					label	= wx.tabTypes[ serviceTypes[i] ].label;
 				else
@@ -537,11 +496,12 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 		}),
 		open:		function(e, ui) {
 		
-			var actionButton = 'div.ui-dialog-buttonset button#wxui-action';
+			var actionButton 	= 'div.ui-dialog-buttonset button#wxui-action',
+				allButtons		= 'div.ui-dialog-buttonset button'
 			
 			jQuery(actionButton).attr('disabled', 'disabled');
-			jQuery(actionButton).removeClass('blue');
-			jQuery(actionButton).addClass('white');
+			jQuery(allButtons).removeClass('blue');
+			jQuery(allButtons).addClass('white');
 
 			/* click outside dialog to close */
 			jQuery('.ui-widget-overlay').bind('click', function() { 
@@ -551,7 +511,7 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 			});
 			
 			jQuery( 'input:first-child', jQuery(this) ).blur();
-			jQuery('.wx-dialog-input').val('');
+			//jQuery('.wx-dialog-input').val('');
 
 		}
 			

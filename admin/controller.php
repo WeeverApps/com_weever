@@ -1,5 +1,4 @@
 <?php
-
 /*	
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
@@ -125,7 +124,7 @@ class WeeverController extends JController
 	
 		$jsonResult = comWeeverHelper::pushTabIconToCloud();
 
-		comWeeverHelper::saveThemeJson($jsonResult);
+		//comWeeverHelper::saveThemeJson($jsonResult);
 	
 		echo "Icon Saved";
 		

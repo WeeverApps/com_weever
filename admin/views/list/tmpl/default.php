@@ -46,28 +46,43 @@ if( !comWeeverHelper::componentExists("com_easyblog") )
 	$extraScript .= "var wxComEasyBlog	= false;";
 else 
 	$extraScript .= "var wxComEasyBlog	= true;";
+	
+if( JRequest::getVar('swipe_page') )
+	$js_swipe_page = " wx.swipe.slide( " . JRequest::getVar('swipe_page') . ", 400 ); ";
+else 
+	$js_swipe_page = "";
 
 $document->addCustomTag ('<script type="text/javascript">
 
 				function jSelectItem(id, title, object) {
-                        document.getElementById(object + \'_id\').value = id;
-                        document.getElementById(object + \'_name\').value = title;
+				
+                        jQuery(\'#wx-add-k2-item-url\').val(\'index.php?option=com_k2&view=item&id=\' + id);
+                        jQuery(\'#wx-add-k2-item-name\').val(title);
                        '.$js_close.'
+                       
                 }
                 
                 function jSelectArticle(id, title, object) {
-                		document.getElementById(object + \'_id\').value = id;
-                		document.getElementById(object + \'_name\').value = title;
+                
+                		jQuery(\'#wx-add-joomla-article-name\').val(id);
+                		jQuery(\'#wx-add-joomla-article-url\').val(title);
                 		'.$js_close.'
                 		
                 }
                 
                 function jSelectArticleNew(id, title, catid, object) {
+                
                 		document.getElementById(\'id_id\').value = id;
                 		document.getElementById(\'id_name\').value = title;
                 		'.$js_close.'
                                         
                 }
+                
+                jQuery( document ).ready( function() {
+                
+                	'.$js_swipe_page.'
+                
+                });
                 
                 '.$extraScript.'
                 
@@ -76,7 +91,7 @@ $document->addCustomTag ('<script type="text/javascript">
 	');
 	
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_icons.js?v='.comWeeverConst::VERSION );
-$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js?v='.comWeeverConst::VERSION );
+//$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js?v='.comWeeverConst::VERSION );
 
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.tabtypes.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.features.js?v='.comWeeverConst::VERSION );
@@ -220,9 +235,6 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 	
 	$componentRowsCount = count($componentRows);
 	$tabIcon = $row->component . "Icon";
-//	
-//	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/select/'.$row->component.'.select.js?v='.comWeeverConst::VERSION );
-//	$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list/submit/'.$row->component.'.submit.js?v='.comWeeverConst::VERSION );
 		
 	if($componentRowsCount && $tabActive == 0)
 		echo '<li id="' . $row->component . 'TabID" class="wx-nav-tabs wx-sort" rel="unpublished" style="float:center;">
@@ -408,11 +420,11 @@ for($i=0, $n=count($this->tabRows); $i < $n; $i++)
 		
 			<button class="wxui-btn white medium radius3 wx-add-source-icon" style="margin-right:1.5em;" ref="add-<?php echo $row->component; ?>-type">+ &nbsp;Add More Content</button>
 			<button class="wxui-btn white medium radius3 wx-nav-label" style="margin-right:1.5em;" ref="<?php echo $row->id; ?>">&bull; &nbsp;Change Tab Name</button>
-			<button class="wxui-btn white medium radius3 wx-nav-icon" style="margin-right:0;" ref="<?php echo $row->id; ?>" title="<?php echo $row->component; ?>">&bull; &nbsp;Change Tab Icon</button>
+			<button class="wxui-btn white medium radius3 wx-nav-icon" style="margin-right:1.5em;" ref="<?php echo $row->id; ?>" title="<?php echo $row->component; ?>">&bull; &nbsp;Change Tab Icon</button>
 			
 			<?php if( $row->component == "panel" || $row->component == "aboutapp" || $row->component == "map" ) : ?>
 			
-				<button class="wx-tab-settings wx-tab-top-buttons" rel="<?php echo $row->component; ?>">Change Tab Settings (adv)</button>
+				<button class="wxui-btn white medium radius3 wx-tab-settings" rel="<?php echo $row->component; ?>">&bull; &nbsp;Change Tab Settings</button>
 				
 			<?php endif; ?>
 		
