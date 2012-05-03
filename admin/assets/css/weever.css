@@ -1776,20 +1776,19 @@ div.wx-add-source-icon div.wx-icon-badge-checkmark, .wx-add-item-icon div.wx-ico
 }
 
 div.wx-add-source-icon div.wx-icon-badge-notice, .wx-add-item-icon div.wx-icon-badge-notice  {
-	position: absolute;
-	top: 0px;
-	right: 7em;
-	height: 1em;
-	padding: 3px;
-	color: 	#ffffff;
-	font-size: 1.25em;
-	border: 1px solid #FAAB18;
-	background-color: #FEAF1D;
-	border-radius: 4px;
-	background-position: 3px 3px;
-	background-repeat: no-repeat;
-	opacity: 0.75;	
+	div.wx-add-source-icon div.wx-icon-badge-notice, .wx-add-item-icon div.wx-icon-badge-notice {
+    background-color: #FEAF1D;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: bold;
+    height: auto;
+    padding: 4px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
 }
+
 
 .wx-add-item-prompt {
 	font-size: 1.5em;
