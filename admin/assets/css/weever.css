@@ -1776,7 +1776,6 @@ div.wx-add-source-icon div.wx-icon-badge-checkmark, .wx-add-item-icon div.wx-ico
 }
 
 div.wx-add-source-icon div.wx-icon-badge-notice, .wx-add-item-icon div.wx-icon-badge-notice  {
-	div.wx-add-source-icon div.wx-icon-badge-notice, .wx-add-item-icon div.wx-icon-badge-notice {
     background-color: #FEAF1D;
     border-radius: 4px 4px 4px 4px;
     color: #FFFFFF;
