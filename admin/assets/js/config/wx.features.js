@@ -3,7 +3,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.7
+*	Version: 	1.7.1.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -760,7 +760,9 @@ wx.features = [
 		id:				'google_calendar',
 		name:			'Google Calendar',
 		types:			'calendar',
+		defaultTitle:	'Calendar',
 		component:		'google.calendar',
+		title:			true,
 		fields:			{
 		
 			component_behaviour: 	'#wx-google-calendar-email'

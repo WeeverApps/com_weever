@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.7
+*	Version: 	1.7.0.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -39,6 +39,17 @@ class WeeverViewList extends JView
 		$appData 		= json_decode($tabsData)->results;
 		$accountData 	= $this->get('AccountData');
 		$tabRows 		= array();
+		
+		// fix for broken URLs
+		$row			=& JTable::getInstance('WeeverConfig', 'Table');
+		$row->load(4);
+		
+		if( $row->setting == "" ) {
+		
+			$row->setting 	= $appData->config->primary_domain;		
+			$row->store();
+			
+		}
 		
 		$document 		= &JFactory::getDocument();
 		
