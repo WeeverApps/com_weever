@@ -3,7 +3,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.7.1.1
+*	Version: 	1.7.1.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -239,17 +239,17 @@ wx.features = [
 	
 		id:				'easyblog',
 		extension:		'com_easyblog',
-		unavailable:	'Feature coming soon!',
+		unavailable:	'Coming soon!',
 		name:			'EasyBlog Content',
 		items:	[
 		
 			{
 			
 				id:				'category',
-				name:			'EasyBlog Category',
-				//extension:		'com_easyblog',
-				unavailable:	'Feature coming soon!',
+				name:			'EasyBlog: All Entries',
+				extension:		'com_easyblog',
 				title:			true,
+				unavailable:	'Coming soon!',
 				types:			['blog', 'directory', 'map', 'proximity'],
 				fields:			{
 				
@@ -260,13 +260,12 @@ wx.features = [
 			},
 			{
 			
-				id:				'post',
-				name:			'EasyBlog Post',
-				//extension:		'com_easyblog',
-				unavailable:	'Feature coming soon!',
+				id:				'tag',
+				name:			'EasyBlog Tags',
+				extension:		'com_easyblog',
 				title:			true,
-				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
-				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
+				unavailable:	'Coming soon!',
+				types:			['blog', 'directory', 'map', 'proximity'],
 				fields:			{
 				
 					cms_feed:	'#wx-input-field',
@@ -277,10 +276,39 @@ wx.features = [
 			{
 			
 				id:				'tag',
-				name:			'EasyBlog Tag',
-				//extension:		'com_easyblog',
-				unavailable:	'Feature coming soon!',
+				name:			'EasyBlog Category',
+				extension:		'com_easyblog',
 				title:			true,
+				unavailable:	'Coming soon!',
+				types:			['blog', 'directory', 'map', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-input-field',
+					
+				}
+			
+			},
+			{
+			
+				id:				'tag',
+				name:			'EasyBlog Entry',
+				extension:		'com_easyblog',
+				title:			true,
+				unavailable:	'Coming soon!',
+				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
+				fields:			{
+				
+					cms_feed:	'#wx-input-field',
+					
+				}
+			
+			},{
+			
+				id:				'tag',
+				name:			'EasyBlog Teamblog',
+				extension:		'com_easyblog',
+				title:			true,
+				unavailable:	'Coming soon!',
 				types:			['blog', 'directory', 'map', 'proximity'],
 				fields:			{
 				
@@ -807,7 +835,7 @@ wx.features = [
 		id:				'r3s',
 		name:			'R3S Object',
 		component:		'r3s',
-		title:			'true',
+		title:			true,
 		types:			['blog', 'page', 'map', 'panel', 'directory', 'aboutapp', 'proximity'],
 		component:		{
 		

@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.7
+*	Version: 	1.7.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -41,6 +41,26 @@ class comWeeverHelper
 	
 	}
 	
+	
+	public static function phpVersionCheck() 
+	{
+	
+		if (!defined('PHP_VERSION_ID')) {
+		
+		    $version = explode('.', PHP_VERSION);
+		
+		    define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+		    
+		}
+		
+		/* PHP 5.2 added JSON support */
+		if (PHP_VERSION_ID < 50200) {
+		
+		   JError::raiseNotice(100, JText::_('WEEVER_NOTICE_PHP_NO_JSON'));
+		   
+		}	
+	
+	}
 	
 	public static function getSetting($id)
 	{

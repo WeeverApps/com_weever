@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.7.0.1
+*	Version: 	1.7.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -27,6 +27,8 @@ class WeeverViewList extends JView
 
 	public function display($tpl = null)
 	{
+	
+		comWeeverHelper::phpVersionCheck();
 	
 		$k2Categories 	= new stdClass();
 		$component 		= JComponentHelper::getComponent( 'com_weever' );
