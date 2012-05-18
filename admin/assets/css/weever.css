@@ -2480,7 +2480,10 @@ span.wx-rightarrow { float:left; margin:0 10px; padding-top: 5px; font-size:16px
 
 
 label.wx-jqui-label {
-font-size: 1.375em;
-color: #2B6181;
-padding-bottom: 2em;
+    clear: both;
+    color: #2B6181;
+    display: block;
+    font-size: 1.25em;
+    line-height: 1.618em;
+    margin: 0 auto 1.5em;
 }
