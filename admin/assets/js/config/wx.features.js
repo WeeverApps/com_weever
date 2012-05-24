@@ -840,7 +840,7 @@ wx.features = [
 		component:		{
 		
 			'blog':			'blog',
-			'directory':	'dir	ectory',
+			'directory':	'directory',
 			'map':			'map',
 			'proximity':	'proximity',
 			'aboutapp':		'aboutapp',
