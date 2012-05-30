@@ -92,7 +92,7 @@ wx.swipePages = [
 	
 		/* name:		'4. Add Forms, Calendars, and More', */
 		
-		helpHtml:	'<div id="wxnavtip-eventsandforms" class="wx_box info wxblk"><h2 class="navtip-title">4. Add Event Calendars, Signup Forms & More! <span style="font-size:14px; float:right;"><span onclick="wx.swipe.prev()" class="wxnavtip-slide-info">&larr; previous</span> <span class="wxnavtip-minisep">|</span> <span onclick="wx.swipe.next()" class="wxnavtip-slide-info">next &rarr;</span></span></h2><p class="wxnavtip-description">Connect your visitors to everything they need to know, when they need to know it.</p></div>',
+		helpHtml:	'<div id="wxnavtip-eventsandforms" class="wx_box info wxblk"><h2 class="navtip-title">4. Add Event Calendars, Signup Forms &amp; More! <span style="font-size:14px; float:right;"><span onclick="wx.swipe.prev()" class="wxnavtip-slide-info">&larr; previous</span> <span class="wxnavtip-minisep">|</span> <span onclick="wx.swipe.next()" class="wxnavtip-slide-info">next &rarr;</span></span></h2><p class="wxnavtip-description">Connect your visitors to everything they need to know, when they need to know it.</p></div>',
 		
 		items:		[
 		
