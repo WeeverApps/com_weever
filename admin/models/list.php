@@ -154,6 +154,19 @@ class WeeverModelList extends JModel
 
 	}
 	
+
+	public function getMenuEasyBlogBlogs()
+	{
+		
+		if(comWeeverHelper::joomlaVersion() == "1.5")
+		 	$query = "SELECT * FROM #__menu WHERE link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' AND published = '1' AND access = '0'";  
+		else 
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' AND published = '1' AND access < '2'";  
+
+		return $this->_getList($query);		
+
+	}
+	
 	
 	public function getContentCategories()
 	{
@@ -167,7 +180,7 @@ class WeeverModelList extends JModel
 	
 	}
 	
-	
+/*
 	public function getK2Categories()
 	{
 		
@@ -179,7 +192,7 @@ class WeeverModelList extends JModel
 		return $this->_getList($query);
 	
 	}
-	
+*/	
 	
 	public function getMenuItems()
 	{

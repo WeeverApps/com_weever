@@ -58,11 +58,6 @@ wx.features = [
 				name:			'Category',
 				title:			true,
 				types:			['blog', 'directory', 'map', 'proximity'],
-				fields:			{
-				
-					cms_feed:	'#wx-add-joomla-category-select',
-					
-				},
 				component:		{
 				
 					'blog':			'blog',
@@ -70,6 +65,11 @@ wx.features = [
 					'map':			'map',
 					'proximity':	'proximity'
 				
+				},
+				fields:			{
+				
+					cms_feed:	'#wx-add-joomla-category-select',
+					
 				}
 			
 			},
@@ -170,7 +170,7 @@ wx.features = [
 				},
 				fields:			{
 				
-					cms_feed:	'#wx-add-k2-category-select',
+					cms_feed:	'#wx-add-k2-category-url',
 					
 				}
 			
@@ -215,7 +215,7 @@ wx.features = [
 				},
 				fields:			{
 				
-					component_behaviour:	'#wx-add-blog-k2-tag-input',
+					cms_feed:	'#wx-add-k2-tag-url',
 					
 				}
 			
@@ -239,51 +239,77 @@ wx.features = [
 	
 		id:				'easyblog',
 		extension:		'com_easyblog',
-		unavailable:	'Coming soon!',
+		//unavailable:	'Coming soon!',
 		name:			'EasyBlog Content',
+		description:	'Add content from the easyblog extension.',
 		items:	[
 		
 			{
 			
+				id:				'blog',
+				name:			'EasyBlog Blog',
+				extension:		'com_easyblog',
+				title:			true,
+				//unavailable:	'Coming soon!',
+				types:			['blog', 'directory', 'map', 'proximity'],
+				component:		{
+				
+					'blog':			'blog',
+					'directory':	'directory',
+					'map':			'map',
+					'proximity':	'proximity'
+				
+				},
+				fields:			{
+				
+					cms_feed:	'#wx-add-k2-blog-select',
+					
+				}
+			
+			},
+			{
+			
 				id:				'category',
-				name:			'EasyBlog: All Entries',
-				extension:		'com_easyblog',
-				title:			true,
-				unavailable:	'Coming soon!',
-				types:			['blog', 'directory', 'map', 'proximity'],
-				fields:			{
-				
-					cms_feed:	'#wx-input-field',
-					
-				}
-			
-			},
-			{
-			
-				id:				'tag',
-				name:			'EasyBlog Tags',
-				extension:		'com_easyblog',
-				title:			true,
-				unavailable:	'Coming soon!',
-				types:			['blog', 'directory', 'map', 'proximity'],
-				fields:			{
-				
-					cms_feed:	'#wx-input-field',
-					
-				}
-			
-			},
-			{
-			
-				id:				'tag',
 				name:			'EasyBlog Category',
 				extension:		'com_easyblog',
 				title:			true,
-				unavailable:	'Coming soon!',
+				//unavailable:	'Coming soon!',
 				types:			['blog', 'directory', 'map', 'proximity'],
+				component:		{
+				
+					'blog':			'blog',
+					'directory':	'directory',
+					'map':			'map',
+					'proximity':	'proximity'
+				
+				},
 				fields:			{
 				
-					cms_feed:	'#wx-input-field',
+					cms_feed:	'#wx-add-easyblog-category-url',
+					
+				}
+			
+			},
+			{
+			
+				id:				'item',
+				name:			'EasyBlog Item',
+				extension:		'com_easyblog',
+				title:				true,
+				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',
+				//unavailable:	'Coming soon!',
+				types:			['page', 'panel', 'map', 'aboutapp'],
+				component:		{
+				
+					'map':			'map',
+					'page':			'page',
+					'panel':			'panel',
+					'aboutapp':	'aboutapp'
+				
+				},
+				fields:			{
+				
+					cms_feed:	'#wx-add-easyblog-item-url',
 					
 				}
 			
@@ -291,28 +317,22 @@ wx.features = [
 			{
 			
 				id:				'tag',
-				name:			'EasyBlog Entry',
+				name:			'EasyBlog Tag',
 				extension:		'com_easyblog',
 				title:			true,
-				unavailable:	'Coming soon!',
-				types:			['page', 'panel', 'map', 'aboutapp', 'proximity'],
-				fields:			{
-				
-					cms_feed:	'#wx-input-field',
-					
-				}
-			
-			},{
-			
-				id:				'tag',
-				name:			'EasyBlog Teamblog',
-				extension:		'com_easyblog',
-				title:			true,
-				unavailable:	'Coming soon!',
+				//unavailable:	'Coming soon!',
 				types:			['blog', 'directory', 'map', 'proximity'],
+				component:		{
+				
+					'blog':			'blog',
+					'directory':	'directory',
+					'map':			'map',
+					'proximity':	'proximity'
+				
+				},
 				fields:			{
 				
-					cms_feed:	'#wx-input-field',
+					cms_feed:	'#wx-add-easyblog-tag-url',
 					
 				}
 			
@@ -840,7 +860,7 @@ wx.features = [
 		component:		{
 		
 			'blog':			'blog',
-			'directory':	'directory',
+			'directory':	'dir	ectory',
 			'map':			'map',
 			'proximity':	'proximity',
 			'aboutapp':		'aboutapp',

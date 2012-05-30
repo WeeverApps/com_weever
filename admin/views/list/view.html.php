@@ -30,7 +30,7 @@ class WeeverViewList extends JView
 	
 		comWeeverHelper::phpVersionCheck();
 	
-		$k2Categories 	= new stdClass();
+		//$k2Categories 	= new stdClass();
 		$component 		= JComponentHelper::getComponent( 'com_weever' );
 		$params 		= new JParameter( $component->params );
 		
@@ -93,20 +93,22 @@ class WeeverViewList extends JView
 		$this->assignRef('calendarRows', $calendarRows);
 		$this->assignRef('mapRows', $mapRows);
 		$this->assignRef('proximityRows', $proximityRows);
-		
+		/*
 		if( comWeeverHelper::componentExists("com_k2") )
 			$k2Categories 	= $this->get('k2Categories');
-			
+		*/	
 		$contentCategories 	= $this->get('contentCategories');
 		$menuItems 			= $this->get('menuItems');
 		$menuJoomlaBlogs	= $this->get('menuJoomlaBlogs');
 		$menuK2Blogs		= $this->get('menuK2Blogs');
+		$menuEasyBlogBlogs		= $this->get('menuEasyBlogBlogs');
 		$contactItems		= $this->get('contactItems');
 		
-		$this->assignRef('k2Categories', $k2Categories);
+		//$this->assignRef('k2Categories', $k2Categories);
 		$this->assignRef('contentCategories', $contentCategories);
 		$this->assignRef('menuJoomlaBlogs', $menuJoomlaBlogs);
 		$this->assignRef('menuK2Blogs', $menuK2Blogs);
+		$this->assignRef('menuEasyBlogBlogs', $menuEasyBlogBlogs);
 		$this->assignRef('contactItems', $contactItems);
 		
 		$this->assign('site_key', $state->get('site_key'));

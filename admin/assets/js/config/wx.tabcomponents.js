@@ -196,7 +196,7 @@ wx.tabComponents	= {
 				
 					if( str.search( /com_easyblog/ ) != -1 ) { 
 						
-						if( str.search( /tag=/ ) != -1 )
+						if( str.search( /=tags/ ) != -1 )
 							return 'easyblog-tag';
 						else
 							return 'easyblog-category';
@@ -263,7 +263,7 @@ wx.tabComponents	= {
 				
 					if( str.search( /com_easyblog/ ) != -1 ) { 
 						
-						if( str.search( /tag=/ ) != -1 )
+						if( str.search( /=tags/ ) != -1 )
 							return 'easyblog-tag';
 						else
 							return 'easyblog-category';
@@ -311,7 +311,7 @@ wx.tabComponents	= {
 				check:			function(str) {
 				
 					if( str.search( /com_k2/ ) != -1 ) 
-						return 'k2-article';
+						return 'k2-item';
 				
 				}
 			
@@ -322,7 +322,7 @@ wx.tabComponents	= {
 				check:			function(str) {
 				
 					if( str.search( /com_easyblog/ ) != -1 ) 
-						return 'easyblog-article';
+						return 'easyblog-item';
 				
 				}
 			
@@ -376,7 +376,7 @@ wx.tabComponents	= {
 				check:			function(str) {
 				
 					if( str.search( /com_easyblog/ ) != -1 ) 
-						return 'easyblog-article';
+						return 'easyblog-item';
 				
 				}
 			
@@ -430,7 +430,7 @@ wx.tabComponents	= {
 				check:			function(str) {
 				
 					if( str.search( /com_easyblog/ ) != -1 ) 
-						return 'easyblog-article';
+						return 'easyblog-tag';
 				
 				}
 			
@@ -492,7 +492,7 @@ wx.tabComponents	= {
 				
 					if( str.search( /com_easyblog/ ) != -1  ) { 
 						
-						if( str.search( /tag=/ ) != -1  )
+						if( str.search( /=tags/ ) != -1  )
 							return 'easyblog-tag';
 						else
 							return 'easyblog-category';
@@ -559,7 +559,7 @@ wx.tabComponents	= {
 				
 					if( str.search( /com_easyblog/ ) != -1 ) { 
 						
-						if( str.search( /tag=/ ) )
+						if( str.search( /=tags/ ) )
 							return 'easyblog-tag';
 						else
 							return 'easyblog-category';

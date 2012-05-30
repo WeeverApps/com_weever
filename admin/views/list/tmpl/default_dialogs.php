@@ -92,6 +92,27 @@ defined('_JEXEC') or die;
 </div>
 
 
+<div id="wx-add-easyblog-blog-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
+
+	<div>
+	
+		<select name='unnamed' id='wx-add-easyblog-blog-select' class='wx-cms-feed-select'>
+			<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
+			
+			<?php foreach( (object) $this->menuEasyBlogBlogs as $k=>$v ) : ?>
+				
+				<option value='<?php echo $v->link; ?>&format=weever&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
+			
+			<?php endforeach; ?>
+		
+		</select>
+		
+		<label for='wx-add-joomla-blog-select' class='wx-blog-label wx-jqui-label'><?php echo JText::_('WEEVER_ADD_EASYBLOG_BLOG'); ?></label>
+	
+	</div>
+
+</div>
+
 
 <div id="wx-add-title-tab-dialog" class="wx-jquery-dialog wx-hide">
 
@@ -99,57 +120,52 @@ defined('_JEXEC') or die;
 	
 	<p id="wx-add-title-use"></p>
 
-	<input type="text" id="wx-add-title-tab-item" class="wx-input" />	
+	<input type="text" id="wx-add-title-tab-item" class="wx-input" />
 
 </div>
 
 
 <div id="wx-add-k2-category-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
-
-		<div>
-		
-			<select name='unnamed' id='wx-add-k2-category-select' class='wx-cms-feed-select'>
-				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
-				
-				<?php foreach( (object) $this->k2Categories as $k=>$v ) : ?>
-				
-					<?php $link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id; ?>
+	<div id='wx-add-panel-k2-category'>
 					
-					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
-				
-				<?php endforeach; ?>
-			
-			</select>
+		<div class="button2-left">
+		
+			<div class="blank">
+				<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_K2_CATEGORY'); ?>"  href="index.php?option=com_k2&amp;view=categories&amp;task=element&amp;tmpl=component&amp;object=k2category" rel="{handler: 'iframe', size: {x: 700, y: 450}}">&nbsp;&nbsp;<?php echo JText::_('WEEVER_PANEL_SELECT'); ?>&nbsp;&nbsp;</a>
+			</div>
+		
+		
+			<input type="text" id="wx-add-k2-category-name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
+
+			<input type="hidden" id="wx-add-k2-category-url" class="wx-panel-input" name="urlparams[id]" value="0" />
 		
 		</div>
+
+	</div>		
 		
-
-
 </div>
 
 
 <div id="wx-add-easyblog-category-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
-
-		
-		<div>
-		
-			<select name='unnamed' id='wx-add-blog-k2-category-item-select' class='wx-cms-feed-select'>
-				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_K2_CATEGORY_PARENTHESES'); ?></option>
-				
-				<?php foreach( (object) $this->k2Categories as $k=>$v ) : ?>
-				
-					<?php $link = "index.php?option=com_k2&view=itemlist&layout=blog&task=category&id=".$v->id; ?>
+	<div id='wx-add-panel-easyblog-category'>
 					
-					<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
-				
-				<?php endforeach; ?>
-			
-			</select>
+		<div class="button2-left">
+		
+			<div class="blank">
+				<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_EASYBLOG_CATEGORY'); ?>"  href="index.php?option=com_easyblog&amp;view=categories&amp;tmpl=component&amp;browse=1&amp;browsefunction=jEasyblogSelectCategory" rel="{handler: 'iframe', size: {x: 700, y: 450}}">&nbsp;&nbsp;<?php echo JText::_('WEEVER_PANEL_SELECT'); ?>&nbsp;&nbsp;</a>
+			</div>
+		
+		
+			<input type="text" id="wx-add-easyblog-category-name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
+
+			<input type="hidden" id="wx-add-easyblog-category-url" class="wx-panel-input" name="urlparams[id]" value="0" />
 		
 		</div>
 
+	</div>		
+		
 </div>
 
 
@@ -175,15 +191,69 @@ defined('_JEXEC') or die;
 </div>
 
 
+<div id="wx-add-easyblog-item-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
+
+	<div id='wx-add-panel-easyblog-item'>
+					
+		<div class="button2-left">
+		
+			<div class="blank">
+				<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_EASYBLOG_ITEM'); ?>"  href="index.php?option=com_easyblog&amp;view=blogs&amp;tmpl=component&amp;browse=1&amp;browsefunction=jEasyblogSelectItem" rel="{handler: 'iframe', size: {x: 700, y: 450}}">&nbsp;&nbsp;<?php echo JText::_('WEEVER_PANEL_SELECT'); ?>&nbsp;&nbsp;</a>
+			</div>
+		
+		
+			<input type="text" id="wx-add-easyblog-item-name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
+
+			<input type="hidden" id="wx-add-easyblog-item-url" class="wx-panel-input" name="urlparams[id]" value="0" />
+		
+		</div>
+
+	</div>		
+		
+</div>
+
+
 <div id="wx-add-k2-tag-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
 
-	<div id="wx-add-blog-k2-tag">
-	
-		<input type='text' value='' id='wx-add-blog-k2-tag-input' class='wx-dialog-input wx-blog-input' name='unnamed' placeholder='<?php echo JText::_("WEEVER_K2_TAG_PLACEHOLDER"); ?>' />
-		<label for='wx-add-blog-k2-tag-input' id='wx-add-k2-tag-select' class='wx-blog-label  wx-jqui-label'><?php echo JText::_('WEEVER_ADD_BLOG_K2_TAG'); ?></label>
+	<div id='wx-add-panel-k2-tag'>
+					
+		<div class="button2-left">
 		
-	</div>	
+			<div class="blank">
+				<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_EASYBLOG_ITEM'); ?>"  href="index.php?option=com_k2&amp;view=tags&amp;task=element&amp;tmpl=component&amp;object=k2tag" rel="{handler: 'iframe', size: {x: 700, y: 450}}">&nbsp;&nbsp;<?php echo JText::_('WEEVER_PANEL_SELECT'); ?>&nbsp;&nbsp;</a>
+			</div>
+		
+		
+			<input type="text" id="wx-add-k2-tag-name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
 
+			<input type="hidden" id="wx-add-k2-tag-url" class="wx-panel-input" name="urlparams[id]" value="0" />
+		
+		</div>
+
+	</div>		
+		
+</div>
+
+
+<div id="wx-add-easyblog-tag-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
+
+	<div id='wx-add-panel-easyblog-tag'>
+					
+		<div class="button2-left">
+		
+			<div class="blank">
+				<a class="modal" title="<?php echo JText::_('WEEVER_PANEL_SELECT_EASYBLOG_ITEM'); ?>"  href="index.php?option=com_easyblog&amp;view=tags&amp;tmpl=component&amp;browse=1&amp;browsefunction=jEasyblogSelectTag" rel="{handler: 'iframe', size: {x: 700, y: 450}}">&nbsp;&nbsp;<?php echo JText::_('WEEVER_PANEL_SELECT'); ?>&nbsp;&nbsp;</a>
+			</div>
+		
+		
+			<input type="text" id="wx-add-easyblog-tag-name" placeholder="Select content..." class='wx-dialog-input wx-panel-input wx-panel-content-name' disabled="disabled" />
+
+			<input type="hidden" id="wx-add-easyblog-tag-url" class="wx-panel-input" name="urlparams[id]" value="0" />
+		
+		</div>
+
+	</div>		
+		
 </div>
 
 

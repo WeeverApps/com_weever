@@ -61,11 +61,51 @@ $document->addCustomTag ('<script type="text/javascript">
                    '.$js_close.'
                        
                 }
+				
+				function jEasyblogSelectItem(id, title, object) {
+			
+                    jQuery(\'#wx-add-easyblog-item-url\').val(\'index.php?option=com_easyblog&view=entry&format=weever&id=\' + id);
+                    jQuery(\'#wx-add-easyblog-item-name\').val(title);
+                   '.$js_close.'
+                       
+                }
+
+				function jSelectCategory(id, title, object) {
+			
+                    jQuery(\'#wx-add-k2-category-url\').val(\'index.php?option=com_k2&view=itemlist&layout=category&task=category&template=weever_cartographer&id=\' + id);
+                    jQuery(\'#wx-add-k2-category-name\').val(title);
+                   '.$js_close.'
+                       
+                }
+				
+				function jEasyblogSelectCategory(id, title, object) {
+			
+                    jQuery(\'#wx-add-easyblog-category-url\').val(\'index.php?option=com_easyblog&view=categories&layout=listings&format=weever&id=\' + id);
+                    jQuery(\'#wx-add-easyblog-category-name\').val(title);
+                   '.$js_close.'
+                       
+                }
+
+				function jSelectTag(id, title, object) {
+			
+                    jQuery(\'#wx-add-k2-tag-url\').val(\'index.php?option=com_k2&view=itemlist&task=tag&template=weever_cartographer&tag=\' + title);
+                    jQuery(\'#wx-add-k2-tag-name\').val(title);
+                   '.$js_close.'
+                       
+                }
+				
+				function jEasyblogSelectTag(id, title, object) {
+			
+                    jQuery(\'#wx-add-easyblog-tag-url\').val(\'index.php?option=com_easyblog&view=tags&layout=tag&format=weever&id=\' + id);
+                    jQuery(\'#wx-add-easyblog-tag-name\').val(title);
+                   '.$js_close.'
+                       
+                }
                 
                 function jSelectArticle(id, title, object) {
                 
             		jQuery(\'#wx-add-joomla-article-name\').val(title);
-            		jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?option=com_content&view=article&id=\' + id);
+            		jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?opton=com_content&view=article&id=\' + id);
             		'.$js_close.'
                 		
                 }
@@ -73,7 +113,7 @@ $document->addCustomTag ('<script type="text/javascript">
                 function jSelectArticleNew(id, title, catid, object) {
 					
 					jQuery(\'#wx-add-joomla-article-name\').val(title);
-					jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?option=com_content&view=article&id=\' + id);
+					jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?opton=com_content&view=article&id=\' + id);
 					'.$js_close.'
 					
                 }
@@ -93,7 +133,7 @@ $document->addCustomTag ('<script type="text/javascript">
 	');
 	
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/list_icons.js?v='.comWeeverConst::VERSION );
-//$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js?v='.comWeeverConst::VERSION );
+//99$document->addScript( JURI::base(true).'/components/com_weever/assets/js/list.js?v='.comWeeverConst::VERSION );
 
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.tabtypes.js?v='.comWeeverConst::VERSION );
 $document->addScript( JURI::base(true).'/components/com_weever/assets/js/config/wx.features.js?v='.comWeeverConst::VERSION );
