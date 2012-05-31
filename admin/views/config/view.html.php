@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.5
+*	Version: 	1.8
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -31,6 +31,11 @@ class WeeverViewConfig extends JView
 	{
 
 		$configData = $this->get('configdata');
+		
+		if( JRequest::getVar("wxConfigSync") )
+		{
+			var_dump($configData);
+		}
 		
 		if(!$configData->local)
 			$configData->local = "en-US";

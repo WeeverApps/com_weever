@@ -2,10 +2,10 @@
 
 /*	
 *	Weever Apps Administrator Component for Joomla
-*	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
+*	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.3
+*	Version: 	1.8
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 *
 */
 
-
+defined('_JEXEC') or die;
 
 	echo '
     <fieldset class="adminForm" style="margin:1.5em;">

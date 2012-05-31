@@ -33,10 +33,9 @@ class comWeeverHelper
 	public static function joomlaVersion() 
 	{
 	
-		$version = new JVersion;
-		$joomla = $version->getShortVersion();
-		
-		$joomla = substr($joomla,0,3);
+		$version 	= new JVersion;
+		$joomla 	= $version->getShortVersion();
+		$joomla 	= substr($joomla,0,3);
 		
 		return $joomla;
 	
