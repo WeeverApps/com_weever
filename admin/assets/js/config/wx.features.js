@@ -294,7 +294,7 @@ wx.features = [
 			{
 			
 				id:				'item',
-				name:			'EasyBlog Item',
+				name:			'EasyBlog Entry',
 				extension:		'com_easyblog',
 				title:				true,
 				titleUse:		'Change only if you think a shorter title is more appropriate for a mobile app.',

@@ -48,7 +48,7 @@ class WeeverViewList extends JView
 		$row			=& JTable::getInstance('WeeverConfig', 'Table');
 		$row->load(4);
 		
-		if( $row->setting == "" ) {
+		if( $row->setting != $appData->config->primary_domain ) {
 		
 			$row->setting 	= $appData->config->primary_domain;		
 			$row->store();
