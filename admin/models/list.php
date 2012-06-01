@@ -132,9 +132,9 @@ class WeeverModelList extends JModel
 	{
 		
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR  link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=frontpage%' ) AND published = '1' AND access = '0'";  
+		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR  link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=frontpage%' ) AND published = '1'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=featured%' ) AND published = '1' AND access < '2'";  
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=featured%' ) AND published = '1'";  
 
 		return $this->_getList($query);		
 
@@ -145,9 +145,9 @@ class WeeverModelList extends JModel
 	{
 		
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1' AND access = '0'";  
+		 	$query = "SELECT * FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1' AND access < '2'";  
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1'";  
 
 		return $this->_getList($query);		
 
@@ -158,9 +158,9 @@ class WeeverModelList extends JModel
 	{
 		
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' AND published = '1' AND access = '0'";  
+		 	$query = "SELECT * FROM #__menu WHERE link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' AND published = '1'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' AND published = '1' AND access < '2'";  
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%') AND published = '1' AND title NOT LIKE '%COM_EASYBLOG_ADMIN%'";  
 
 		return $this->_getList($query);		
 
@@ -171,9 +171,9 @@ class WeeverModelList extends JModel
 	{
 	
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access = '0'";  
+		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access < '2'";  
+		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1'";  
 	
 		return $this->_getList($query);
 	
@@ -197,9 +197,9 @@ class WeeverModelList extends JModel
 	{
 
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1' AND access = '0'"; 
+		 	$query = "SELECT * FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1'"; 
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1' AND access < '2'"; 
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1'"; 
 		
 		return $this->_getList($query);		
 

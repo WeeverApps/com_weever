@@ -22,6 +22,13 @@
 
 defined('_JEXEC') or die;
 
+if( comWeeverHelper::joomlaVersion() != "1.5" )
+	$access_level = 1;
+else 
+	$access_level = 0;
+	
+$note = "";
+
 ?>
 
 <div style="clear:both;" id="wx-hidden-dialogs">&nbsp;</div>
@@ -80,8 +87,18 @@ defined('_JEXEC') or die;
 			<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
 			
 			<?php foreach( (object) $this->menuK2Blogs as $k=>$v ) : ?>
+			
+				<?php if( $v->access > $access_level ) : ?>
 				
-				<option value='<?php echo $v->link; ?>&template=weever_cartographer&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
+					<?php $note = " (non-public)"; ?>
+					
+				<?php else : ?>
+				
+					<?php $note = ""; ?>
+				
+				<?php endif; ?>
+				
+				<option value='<?php echo $v->link; ?>&template=weever_cartographer&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?><?php echo $note; ?></option>
 			
 			<?php endforeach; ?>
 		
@@ -102,8 +119,18 @@ defined('_JEXEC') or die;
 			<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
 			
 			<?php foreach( (object) $this->menuEasyBlogBlogs as $k=>$v ) : ?>
+			
+				<?php if( $v->access > $access_level ) : ?>
 				
-				<option value='<?php echo $v->link; ?>&format=weever&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
+					<?php $note = " (non-public)"; ?>
+					
+				<?php else : ?>
+				
+					<?php $note = ""; ?>
+				
+				<?php endif; ?>
+				
+				<option value='<?php echo $v->link; ?>&format=weever&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?><?php echo $note; ?></option>
 			
 			<?php endforeach; ?>
 		
@@ -266,9 +293,19 @@ defined('_JEXEC') or die;
 			<select id='wx-add-joomla-blog-select' class='wx-cms-feed-select'>
 				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
 				
+				<?php if( $v->access > $access_level ) : ?>
+				
+					<?php $note = " (non-public)"; ?>
+					
+				<?php else : ?>
+				
+					<?php $note = ""; ?>
+				
+				<?php endif; ?>
+				
 				<?php foreach( (object) $this->menuJoomlaBlogs as $k=>$v ) : ?>
 					
-					<option value='<?php echo $v->link; ?>&template=weever_cartographer&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?></option>
+					<option value='<?php echo $v->link; ?>&template=weever_cartographer&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?><?php echo $note; ?></option>
 				
 				<?php endforeach; ?>
 			
@@ -287,11 +324,21 @@ defined('_JEXEC') or die;
 		<select id='wx-add-joomla-category-select' class='wx-cms-feed-select'>
 			<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES'); ?></option>
 			
+			<?php if( $v->access > $access_level ) : ?>
+			
+				<?php $note = " (non-public)"; ?>
+				
+			<?php else : ?>
+			
+				<?php $note = ""; ?>
+			
+			<?php endif; ?>
+			
 			<?php foreach( (object) $this->contentCategories as $k=>$v ) : ?>
 			
 				<?php $link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id; ?>
 				
-				<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?></option>
+				<option value='<?php echo $link; ?>&template=weever_cartographer'><?php echo $v->name; ?><?php echo $note; ?></option>
 			
 			<?php endforeach; ?>
 		
