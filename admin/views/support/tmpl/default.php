@@ -3,8 +3,9 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.5.1
+*	Authors: 	Robert Gerald Porter 	<rob@weeverapps.com>
+*				Aaron Song 				<aaron@weeverapps.com>
+*	Version: 	1.8
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -67,7 +68,7 @@ else
 	
 
 <span id="wx-admin-topbar-left" class="wx-admin-topbar">
-			<a href="http://weeverapps.com/pricing"><?php echo JText::_('WEEVER_PLANS_AND_PRICING'); ?></a> &nbsp; | &nbsp; <a href="http://twitter.com/weeverapps"><?php echo JText::_('WEEVER_FOLLOW_TWITTER'); ?></a> &nbsp; | &nbsp; <a href="http://eepurl.com/fP-oD"><?php echo JText::_('WEEVER_NEWSLETTER'); ?></a>
+			<a href="http://weeverapps.com/pricing"><?php echo JText::_('WEEVER_PLANS_AND_PRICING'); ?></a> &nbsp; | &nbsp; <a href="http://twitter.com/weeverapps"><?php echo JText::_('WEEVER_FOLLOW_TWITTER'); ?></a> &nbsp;</a>
 
 </span>
     
