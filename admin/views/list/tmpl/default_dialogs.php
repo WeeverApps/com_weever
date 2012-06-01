@@ -293,17 +293,17 @@ $note = "";
 			<select id='wx-add-joomla-blog-select' class='wx-cms-feed-select'>
 				<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_PARENTHESES'); ?></option>
 				
-				<?php if( $v->access > $access_level ) : ?>
-				
-					<?php $note = " (non-public)"; ?>
-					
-				<?php else : ?>
-				
-					<?php $note = ""; ?>
-				
-				<?php endif; ?>
-				
 				<?php foreach( (object) $this->menuJoomlaBlogs as $k=>$v ) : ?>
+				
+					<?php if( $v->access > $access_level ) : ?>
+					
+						<?php $note = " (non-public)"; ?>
+						
+					<?php else : ?>
+					
+						<?php $note = ""; ?>
+					
+					<?php endif; ?>
 					
 					<option value='<?php echo $v->link; ?>&template=weever_cartographer&Itemid=<?php echo $v->id; ?>'><?php echo $v->name; ?><?php echo $note; ?></option>
 				
@@ -324,17 +324,17 @@ $note = "";
 		<select id='wx-add-joomla-category-select' class='wx-cms-feed-select'>
 			<option><?php echo JText::_('WEEVER_CHOOSE_BLOG_JCATEGORY_PARENTHESES'); ?></option>
 			
-			<?php if( $v->access > $access_level ) : ?>
-			
-				<?php $note = " (non-public)"; ?>
-				
-			<?php else : ?>
-			
-				<?php $note = ""; ?>
-			
-			<?php endif; ?>
-			
 			<?php foreach( (object) $this->contentCategories as $k=>$v ) : ?>
+			
+				<?php if( $v->access > $access_level ) : ?>
+				
+					<?php $note = " (non-public)"; ?>
+					
+				<?php else : ?>
+				
+					<?php $note = ""; ?>
+				
+				<?php endif; ?>
 			
 				<?php $link = "index.php?option=com_content&view=category&layout=blog&id=".$v->id; ?>
 				
