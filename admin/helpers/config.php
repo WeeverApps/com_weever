@@ -31,14 +31,14 @@ final class comWeeverConst
 
 	const VERSION			= "1.8";
 	const RELEASE_TYPE		= "stable";
-	const RELEASE_NAME		= "<a href='http://quinteconservation.ca/web/' target='_blank'>Quinte</a>";
+	const RELEASE_NAME		= "<a href='http://www.conservationhalton.on.ca/ShowCategory.cfm?subCatID=1091' target='_blank'>Rattlesnake Point</a>";
 	const NAME				= "Weever Apps Administrator Component for Joomla!";
 	const COPYRIGHT_YEAR	= "(c) 2010-2012";
 	const COPYRIGHT			= "Weever Apps Inc.";
 	const COPYRIGHT_URL		= "http://www.weeverapps.com/";
 	const LICENSE			= "GPL v3.0";
 	const LICENSE_URL		= "http://www.gnu.org/licenses/gpl-3.0.html";
-	const RELEASE_DATE		= "May 31, 2012";
+	const RELEASE_DATE		= "June 2, 2012";
 	const SUPPORT_WEB		= "http://support.weeverapps.com/";
 	const LIVE_SERVER		= "http://weeverapp.com/";
 	const LIVE_STAGE		= "http://stage.weeverapp.com/";

@@ -40,7 +40,9 @@ class WeeverModelList extends JModel
         parent::__construct();
         
         $this->json 			= comWeeverHelper::getJsonTabSync();
-        $this->jsonAccount 		= comWeeverHelper::getJsonAccountSync();
+    
+        if( $this->json != false )        
+        	$this->jsonAccount 		= comWeeverHelper::getJsonAccountSync();
          
         $mainframe 	= JFactory::getApplication();
         $option 	= JRequest::getCmd('option');

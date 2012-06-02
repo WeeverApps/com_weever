@@ -36,9 +36,6 @@ $pane = &JPane::getInstance('tabs');
 
 $plugin_html_enabled = "";
 $plugin_html_disabled = "";
-
-if(!$this->site_key)
-	JError::raiseNotice(100, JText::_('WEEVER_NOTICE_NO_SITEKEY'));
 	
 $onlineSpan = "";
 $offlineSpan = "";
@@ -192,6 +189,8 @@ else
 
 		<fieldset class='adminForm'>
 			<legend><?php echo JText::_('WEEVER_CONFIG_PRO_FEATURES'); ?></legend>
+			
+			<p><b><?php echo ( comWeeverHelper::componentExists('com_weeverlogin') ) ? "<a href='index.php?option=com_weeverlogin'>".JText::_("WEEVER_LOGIN_SETTINGS")."</a>" : "<a href='http://weeverapps.com/downloads/' target='_blank'>".JText::_('WEEVER_LOGIN_DOWNLOAD')."</a>"; ?></b></p>
 		
 			<p><?php echo JText::_("WEEVER_DOMAIN_MAPPING_INSTRUCTIONS"); ?></p>
 		

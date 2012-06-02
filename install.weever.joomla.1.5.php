@@ -3,8 +3,9 @@
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.7
+*	Authors: 	Robert Gerald Porter 	<rob@weeverapps.com>
+*				Aaron Song 				<aaron@weeverapps.com>
+*	Version: 	1.8
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -23,6 +24,8 @@ defined('_JEXEC') or die;
 
 jimport('joomla.installer.installer');
 
+$release = "1.8";
+
 $detailsTemplate = null; $cartographerId = null; $cartographerK2Id = null; $mobileespId = null;
 
 $lang = &JFactory::getLanguage();
@@ -33,6 +36,15 @@ $db = & JFactory::getDBO();
 $query = "SELECT `id` FROM `#__plugins` WHERE element=".$db->Quote('mobileesp')." AND folder=".$db->Quote('system');
 $db->setQuery($query);
 $check = $db->loadResultArray();
+
+echo "
+		<div style='clear:both'>
+		
+				<img src='components/com_weever/assets/icons/icon-48-weever_toolbar_title.png' style='float:left;padding-right:2em' />
+				<h1 style='padding-top:0.625em;padding-bottom:1em;'>Weever Apps for Joomla version ". $release ."</h1>
+				
+		</div>
+		";
 
 if(count($check) > 0)
 {	
@@ -225,12 +237,12 @@ else
 	
 		
 		<tr>
-		<td><a href="http://weeverapps.com/free" target="_blank" id="headerbutton"><?php JText::_("WEEVER_GET_A_KEY"); ?></a></td>
+		<td><?php echo JText::_("WEEVER_GET_A_KEY"); ?></td>
 		</tr>
 
 	
 		<tr>
-		<td><input type="text" name="site_key" maxlength="42" style="width:250px;" placeholder="<?php JText::_("WEEVER_PASTE_WEEVER_SITE_KEY_HERE"); ?>" value="" /><input type="submit" value="<?php echo JText::_("WEEVER_INSTALL_SUBMIT_KEY"); ?>" /><p><?php echo JText::_("WEEVER_ALLOW_FEW_SECONDS"); ?></p></td>
+		<td><input type="text" name="site_key" maxlength="42" style="width:250px;" placeholder="<?php JText::_("WEEVER_PASTE_WEEVER_SITE_KEY_HERE"); ?>" value="" /><input type="submit" value="<?php echo JText::_("WEEVER_INSTALL_SUBMIT_KEY"); ?>" /><p></p></td>
 		</tr>	
 	
 		<tr>

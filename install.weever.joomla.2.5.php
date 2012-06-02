@@ -27,7 +27,7 @@ jimport("joomla.installer.installer");
 class com_WeeverInstallerScript
 {
 
-	public		$release 	= "1.7";
+	public		$release 	= "1.8";
 	public		$src;
 	public		$installer;
 
@@ -86,17 +86,17 @@ class com_WeeverInstallerScript
 				<legend><?php echo JText::_("WEEVER_INSTALL_SITE_KEY"); ?></legend>
 	
 					<table class="admintable">
-			
+
 						<tr>
-							<td><a href="http://weeverapps.com/free" target="_blank"><?php JText::_("WEEVER_GET_A_KEY"); ?></a></td>
+							<td><?php echo JText::_("WEEVER_GET_A_KEY"); ?></td>
 						</tr>
 					
 						<tr>
-							<td><input type="text" name="site_key" maxlength="42" style="width:250px;" placeholder="Paste your Site Key here" value="" /><input type="submit" value="<?php echo JText::_("WEEVER_INSTALL_SUBMIT_KEY"); ?>" /> <?php echo JText::_("WEEVER_ALLOW_FEW_SECONDS"); ?></td>
+							<td><input type="text" name="site_key" maxlength="42" style="width:250px;" placeholder="Paste your Site Key here" value="" /><input type="submit" value="<?php echo JText::_("WEEVER_INSTALL_SUBMIT_KEY"); ?>" /> </td>
 						</tr>	
 					
 						<tr>
-							<td><input type="checkbox" name="staging" value="1" id="checkStaging" /> <label for="checkStaging"><?php echo JText::_("WEEVER_INSTALL_STAGING_MODE"); ?></label></td>
+							<td><input type="checkbox" name="staging" value="1" id="checkStaging" style="float: left;" /> <label for="checkStaging"><?php echo JText::_("WEEVER_INSTALL_STAGING_MODE"); ?></label></td>
 						</tr>
 				
 					</table>
@@ -123,7 +123,14 @@ class com_WeeverInstallerScript
 	protected function installPackagedExtensions($manifest)
 	{
 		
-		$output = "";
+		$output = "
+				<div style='clear:both'>
+				
+						<img src='components/com_weever/assets/icons/icon-48-weever_toolbar_title.png' style='float:left;padding-right:2em' />
+						<h1 style='padding-top:0.625em;padding-bottom:1em;'>Weever Apps for Joomla version ". $manifest->version ."</h1>
+						
+				</div>
+				";
 	
 		if( isset($manifest->plugins) )
 			$output .= $this->installPlugins($manifest);
@@ -163,7 +170,7 @@ class com_WeeverInstallerScript
 			$result = $this->enablePlugin($attributes['plugin']);
 			
 			if($result)			
-				$output .= "<p><i>".JText::_("WEEVER_ENABLED_PLUGIN").$attributes['plugin']."</i></p>";
+				$output .= "<p><i>".JText::_("WEEVER_ENABLED_PLUGIN").$attributes['name']."</i></p>";
 			else 
 				$output .= "<p style='color:red'><i>".JText::_("WEEVER_ENABLE_PLUGIN_ERROR").$attributes['plugin']."</i></p>";
 				
@@ -194,6 +201,8 @@ class com_WeeverInstallerScript
 			
 			$output .= "<p>".JText::_("WEEVER_INSTALLING_COMPONENT").
 							$attributes['component'].": <b>".$message."</b></p>";
+							
+			$output .= "<p><i>".JText::_("WEEVER_INSTALLED").$attributes['name']."</i></p>";
 				
 		}
 		
@@ -223,6 +232,8 @@ class com_WeeverInstallerScript
 			
 			$output .= "<p>".JText::_("WEEVER_INSTALLING_TEMPLATE").'templates'.DS.
 							$attributes['template'].": <b>".$message."</b></p>";
+							
+			$output .= "<p><i>".JText::_("WEEVER_INSTALLED").$attributes['name']."</i></p>";
 				
 		}
 		
@@ -300,27 +311,44 @@ class com_WeeverInstallerScript
 		
 		$uninstaller = new JInstaller();
 		
-		foreach($manifest->plugins->plugin as $plugin) 
+		if( isset( $manifest->plugins ) ) 
 		{
-			$attributes = $plugin->attributes();
-			// 'group' for uninstall. 
-			$id = $this->getExtensionId('plugin', $attributes['plugin'], $attributes['group']);
-			$uninstaller->uninstall('plugin',$id,0);   			
+		
+			foreach($manifest->plugins->plugin as $plugin) 
+			{
+				$attributes 	= $plugin->attributes();
+				// 'group' required for uninstall. 
+				$id 			= $this->getExtensionId('plugin', $attributes['plugin'], $attributes['group']);
+				
+				$uninstaller->uninstall('plugin',$id,0);   			
+			}
+			
 		}
 		
-		foreach($manifest->templates->template as $template) 
+		if( isset( $manifest->templates ) ) 
 		{
-			$attributes = $template->attributes();
-			$id = $this->getExtensionId('template', $attributes['template']);
-			$uninstaller->uninstall('template',$id);
+		
+			foreach($manifest->templates->template as $template) 
+			{
+				$attributes = $template->attributes();
+				$id = $this->getExtensionId('template', $attributes['template']);
+				$uninstaller->uninstall('template',$id);
+			}
+			
 		}
 		
-		foreach($manifest->components->component as $component) 
+		if( isset( $manifest->components ) ) 
 		{
-			$attributes = $component->attributes();
-			$id = $this->getExtensionId('component', $attributes['component']);
-			$uninstaller->uninstall('component',$id);
+		
+			foreach($manifest->components->component as $component) 
+			{
+				$attributes = $component->attributes();
+				$id = $this->getExtensionId('component', $attributes['component']);
+				$uninstaller->uninstall('component',$id);
+			}
+			
 		}
+	
 			
 	
 	}

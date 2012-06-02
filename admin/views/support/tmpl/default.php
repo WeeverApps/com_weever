@@ -56,12 +56,12 @@ else
 
 ?>
 
-<?php if($this->account->tier_number == 1) : ?>
+<?php if(@$this->account->tier_number == 1) : ?>
 	<div class="wx-promotion-basic<?php echo $dashWebKit; ?>">
 	<span class="wx-promotion-basic-title"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION'); ?></span>
 	<span class="wx-promotion-basic-link"><?php echo JText::_('WEEVER_PREMIUM_PROMOTION_LEARN_MORE'); ?></span></div>
 
-<?php elseif($this->account->tier_number == 2.1) : ?>
+<?php elseif(@$this->account->tier_number == 2.1) : ?>
 	<span class="wx-promotion-trial<?php echo $dashWebKit; ?>"><a href="http://weeverapps.com/pricing" class="wx-promotion-trial-button" id="headerbutton"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BUTTON'); ?></a><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_CALL'); ?><br><span class="wx-promotion-trial-byline"><?php echo JText::_('WEEVER_PREMIUM_UPGRADE_BYLINE'); ?></span></span>
 	
 <?php endif; ?>

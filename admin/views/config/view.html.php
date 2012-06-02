@@ -32,6 +32,9 @@ class WeeverViewConfig extends JView
 
 		$configData = $this->get('configdata');
 		
+		if( $configData == false )
+			return;
+		
 		if( JRequest::getVar("wxConfigSync") )
 		{
 			var_dump($configData);

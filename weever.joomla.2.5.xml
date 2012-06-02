@@ -2,7 +2,7 @@
 <extension type="component" version="1.7" method="upgrade">
 
 	<name>COM_WEEVER</name>
-	<creationDate>2012-05-31</creationDate>
+	<creationDate>2012-06-02</creationDate>
 	<author>Robert Gerald Porter, Aaron Song</author>
 	<authorEmail>rob@weeverapps.com</authorEmail>
 	<authorUrl>http://www.weeverapps.com/</authorUrl>
@@ -69,9 +69,9 @@
 	
 	<plugins>
 	
-		<plugin folder="plugins/system" plugin="mobileesp" name="System - MobileESP for Joomla" group="system" />
-		<plugin folder="plugins/k2" plugin="weevermapsk2" name="K2 - Weever Maps Geotagger for K2" group="k2" />
-		<plugin folder="plugins/content" plugin="weevermaps" name="Content - Weever Maps Geotagger" group="content" />
+		<plugin folder="plugins/system" plugin="mobileesp" name="MobileESP for Joomla" group="system" />
+		<plugin folder="plugins/k2" plugin="weevermapsk2" name="Weever Maps Geotagger for K2" group="k2" />
+		<plugin folder="plugins/content" plugin="weevermaps" name="Weever Maps Geotagger" group="content" />
 		
 	</plugins>
  
