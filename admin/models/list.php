@@ -1,11 +1,11 @@
 <?php
+
 /*	
 *	Weever Apps Administrator Component for Joomla
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
-*	Authors: 	Robert Gerald Porter 	<rob@weeverapps.com>
-*				Aaron Song 				<aaron@weeverapps.com>
-*	Version: 	1.8
+*	Author: 	Robert Gerald Porter <rob@weeverapps.com>
+*	Version: 	1.5.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 *   GNU General Public License for more details <http://www.gnu.org/licenses/>.
 *
 */
+
 
 defined('_JEXEC') or die;
 
@@ -40,9 +41,7 @@ class WeeverModelList extends JModel
         parent::__construct();
         
         $this->json 			= comWeeverHelper::getJsonTabSync();
-    
-        if( $this->json != false )        
-        	$this->jsonAccount 		= comWeeverHelper::getJsonAccountSync();
+        $this->jsonAccount 		= comWeeverHelper::getJsonAccountSync();
          
         $mainframe 	= JFactory::getApplication();
         $option 	= JRequest::getCmd('option');
@@ -134,9 +133,9 @@ class WeeverModelList extends JModel
 	{
 		
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR  link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=frontpage%' ) AND published = '1'";  
+		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR  link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=frontpage%' OR link LIKE '%option=com_content&view=article%' ) AND published = '1' AND access = '0'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=featured%' ) AND published = '1'";  
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE ( link LIKE '%option=com_content&view=category%' OR link LIKE '%option=com_content&view=section%' OR link LIKE '%option=com_content&view=featured%' ) AND published = '1' AND access < '2'";  
 
 		return $this->_getList($query);		
 
@@ -147,9 +146,9 @@ class WeeverModelList extends JModel
 	{
 		
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1'";  
+		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_k2&view=itemlist%' OR link LIKE '%option=com_k2&view=item%' ) AND published = '1' AND access = '0'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1'";  
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1' AND access < '2'";  
 
 		return $this->_getList($query);		
 
@@ -160,9 +159,12 @@ class WeeverModelList extends JModel
 	{
 		
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' AND published = '1'";  
+		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' OR link LIKE '%option=com_easyblog&view=latest%' 
+							OR link LIKE '%option=com_easyblog&view=entry%' OR link LIKE '%option=com_easyblog&view=archive%' OR link LIKE '%option=com_easyblog&view=dashboard%' 
+							OR link LIKE '%option=com_easyblog&view=featured%' OR link LIKE '%option=com_easyblog&view=login%' OR link LIKE '%option=com_easyblog&view=myblog%' 
+							OR link LIKE '%option=com_easyblog&view=search%' OR link LIKE '%option=com_easyblog&view=subscription%' OR link LIKE '%option=com_easyblog&view=teamblog%' ) AND published = '1' AND access = '0'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%') AND published = '1' AND title NOT LIKE '%COM_EASYBLOG_ADMIN%'";  
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' AND published = '1' AND access < '2'";  
 
 		return $this->_getList($query);		
 
@@ -173,9 +175,9 @@ class WeeverModelList extends JModel
 	{
 	
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1'";  
+		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access = '0'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1'";  
+		 	$query = "SELECT *, title AS name FROM #__categories WHERE published = '1' AND access < '2'";  
 	
 		return $this->_getList($query);
 	
@@ -199,9 +201,9 @@ class WeeverModelList extends JModel
 	{
 
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1'"; 
+		 	$query = "SELECT * FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1' AND access = '0'"; 
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1'"; 
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE (link LIKE '%option=com_content&view=article%' OR link LIKE '%option=com_k2&view=item&layout=item%') AND published = '1' AND access < '2'"; 
 		
 		return $this->_getList($query);		
 
