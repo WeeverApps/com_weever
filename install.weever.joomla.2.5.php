@@ -27,7 +27,7 @@ jimport("joomla.installer.installer");
 class com_WeeverInstallerScript
 {
 
-	public		$release 	= "1.8";
+	public		$release 	= "1.8.2";
 	public		$src;
 	public		$installer;
 

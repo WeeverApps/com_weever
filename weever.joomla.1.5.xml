@@ -2,13 +2,13 @@
 <install type="component" version="1.5.0" method="upgrade">
 
 	<name>Weever</name>
-	<creationDate>2012-06-07</creationDate>
+	<creationDate>2012-06-29</creationDate>
 	<author>Robert Gerald Porter, Aaron Song</author>
 	<authorEmail>rob@weeverapps.com</authorEmail>
 	<authorUrl>http://www.weeverapps.com/</authorUrl>
 	<copyright>(c) 2010-2012 Weever Apps Inc.</copyright>
 	<license>GPLv3</license>
-	<version>1.8.1</version>
+	<version>1.8.2</version>
 	<releaseType>Stable</releaseType>
 	<description>Weever turns your Joomla site into a mobile web app!</description>
 	

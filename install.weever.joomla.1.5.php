@@ -5,7 +5,7 @@
 *
 *	Authors: 	Robert Gerald Porter 	<rob@weeverapps.com>
 *				Aaron Song 				<aaron@weeverapps.com>
-*	Version: 	1.8.1
+*	Version: 	1.8.2
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.installer.installer');
 
-$release = "1.8.1";
+$release = "1.8.2";
 
 $detailsTemplate = null; $cartographerId = null; $cartographerK2Id = null; $mobileespId = null;
 
