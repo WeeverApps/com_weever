@@ -24,7 +24,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.installer.installer');
 
-$release = "1.8.2";
+$release = "1.8.2.1";
 
 $detailsTemplate = null; $cartographerId = null; $cartographerK2Id = null; $mobileespId = null;
 
