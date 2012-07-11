@@ -5,7 +5,7 @@
 *
 *	Authors: 	Robert Gerald Porter 	<rob@weeverapps.com>
 *				Aaron Song 				<aaron@weeverapps.com>
-*	Version: 	1.8.2
+*	Version: 	1.8.2.1
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ jimport('joomla.plugin.helper');
 final class comWeeverConst
 {
 
-	const VERSION			= "1.8.2";
+	const VERSION			= "1.8.2.1";
 	const RELEASE_TYPE		= "stable";
 	const RELEASE_NAME		= "<a href='http://www.svca.on.ca' target='_blank'>Saugeen</a>";
 	const NAME				= "Weever Apps Administrator Component for Joomla!";
