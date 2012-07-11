@@ -106,7 +106,7 @@ $document->addCustomTag ('<script type="text/javascript">
                 function jSelectArticle(id, title, object) {
                 
             		jQuery(\'#wx-add-joomla-article-name\').val(title);
-            		jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?opton=com_content&view=article&id=\' + id);
+            		jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?option=com_content&view=article&id=\' + id);
             		'.$js_close.'
                 		
                 }
@@ -114,7 +114,7 @@ $document->addCustomTag ('<script type="text/javascript">
                 function jSelectArticleNew(id, title, catid, object) {
 					
 					jQuery(\'#wx-add-joomla-article-name\').val(title);
-					jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?opton=com_content&view=article&id=\' + id);
+					jQuery(\'#wx-add-joomla-article-url\').val(\'index.php?option=com_content&view=article&id=\' + id);
 					'.$js_close.'
 					
                 }
