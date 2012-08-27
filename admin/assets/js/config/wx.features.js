@@ -263,7 +263,7 @@ wx.features = [
 				},
 				fields:			{
 				
-					cms_feed:	'#wx-add-k2-blog-select',
+					cms_feed:	'#wx-add-easyblog-blog-select',
 					
 				}
 			
