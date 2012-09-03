@@ -5,7 +5,7 @@
 *
 *	Authors: 	Robert Gerald Porter 	<rob@weeverapps.com>
 *				Aaron Song 				<aaron@weeverapps.com>
-*	Version: 	1.8
+*	Version: 	1.9
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -25,14 +25,23 @@ defined('_JEXEC') or die;
 $option = JRequest::getCmd('option');
 JHTML::_('behavior.mootools');
 JHTML::_('behavior.tooltip');
-jimport('joomla.html.pane');
 
-if(comWeeverHelper::joomlaVersion() != '1.5')  // ### non-1.5 only
-	$jsJoomla = "Joomla.";
-else 
-	$jsJoomla = "";
+if( comWeeverHelper::isLegacyJoomla() )  // ### 1.5 only
+{
 
-$pane = &JPane::getInstance('tabs');
+	$jsJoomla 	= "";
+	jimport('joomla.html.pane');
+	$pane 		= &JPane::getInstance('tabs');
+	
+}
+else
+{
+ 
+ 	$jsJoomla 	= "Joomla.";
+ 	jimport( 'joomla.html.html.tabs' );
+ 	$pane		= null;
+	
+}
 
 $plugin_html_enabled = "";
 $plugin_html_disabled = "";
@@ -110,9 +119,8 @@ else
 <form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>
 	
 
-	
-	<?php echo $pane->startPane('config'); ?>
-	<?php echo $pane->startPanel(JText::_("WEEVER_BASIC_SETTINGS"), 'basic-settings'); ?>
+	<?php echo comWeeverHelper::startJHtmlPane( 'config', $pane ); ?>
+	<?php echo comWeeverHelper::startJHtmlTabPanel( JText::_("WEEVER_BASIC_SETTINGS"), 'basic-settings', $pane ); ?>
 	
 	<div class="wx-submitcontainer">
 	        <a href="#" onclick="javascript:<?php echo $jsJoomla; ?>submitbutton('apply')"><button class="wxui-btn orange medium radius3">&#x2713; &nbsp;<?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
@@ -214,9 +222,9 @@ else
 
 
 	</div>
-		
-	<?php echo $pane->endPanel(); ?>
-	<?php echo $pane->startPanel(JText::_("WEEVER_ADVANCED_DEVICE_SETTINGS_TAB"), 'advanced-settings'); ?>
+	
+	<?php echo comWeeverHelper::endJHtmlTabPanel( $pane ); ?>
+	<?php echo comWeeverHelper::startJHtmlTabPanel( JText::_("WEEVER_ADVANCED_DEVICE_SETTINGS_TAB"), 'advanced-settings', $pane ); ?>
 			
 			<div class="wx-submitcontainer">
 			        <a href="#" onclick="javascript:<?php echo $jsJoomla; ?>submitbutton('apply')"><button class="wxui-btn orange medium radius3">&#x2713; &nbsp;<?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
@@ -346,8 +354,18 @@ else
 		</fieldset>
 		</div>
 		
-	<?php echo $pane->endPanel(); ?>
-	<?php echo $pane->endPane(); ?>
+	<?php echo comWeeverHelper::endJHtmlTabPanel( $pane ); ?>
+	<?php echo comWeeverHelper::startJHtmlTabPanel( JText::_("WEEVER_PLATFORM_VERSION"), 'platform-version', $pane ); ?>
+	
+		<table>
+		<tr>
+		<td class="key hasTip" title="<?php echo JText::_("WEEVER_VERSION_TWO_BETA_TOOLTIP"); ?>"><?php echo JText::_('WEEVER_VERSION_TWO_BETA'); ?></td>
+		<td><input type="checkbox" name="platform_version" id="wx-platform-version-check" value="2" <?php echo ($this->platform_version == 2 ? "checked='checked'":""); ?> /> <label for="wx-platform-version-check"><?php echo JText::_('WEEVER_VERSION_TWO_BETA_OPTION'); ?></label></td>	
+		</tr>
+		</table>
+	
+	<?php echo comWeeverHelper::endJHtmlTabPanel( $pane ); ?>
+	<?php echo comWeeverHelper::endJHtmlPane(); ?>
 
 	<input type="hidden" name="option" value="<?php echo $option; ?>" />
 	<input type="hidden" name="app_enabled" value="<?php echo $this->app_enabled; ?>" />

@@ -5,7 +5,7 @@
 *
 *	Authors: 	Robert Gerald Porter 	<rob@weeverapps.com>
 *				Aaron Song 				<aaron@weeverapps.com>
-*	Version: 	1.8
+*	Version: 	1.9
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -24,14 +24,11 @@ defined('_JEXEC') or die;
 
 $option = JRequest::getCmd('option');
 JHTML::_('behavior.mootools');
-jimport('joomla.html.pane');
 
 if(comWeeverHelper::joomlaVersion() != '1.5')  // ### non-1.5 only
 	$jsJoomla = "Joomla.";
 else 
 	$jsJoomla = "";
-
-$pane = &JPane::getInstance('tabs');
 
 $plugin_html_enabled = "";
 $plugin_html_disabled = "";

@@ -5,7 +5,7 @@
 *
 *	Authors: 	Robert Gerald Porter 	<rob@weeverapps.com>
 *				Aaron Song 				<aaron@weeverapps.com>
-*	Version: 	1.8
+*	Version: 	1.9
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -29,6 +29,17 @@ require_once (JPATH_COMPONENT.DS.'helpers'.DS.'theme'.'.php');
 
 class comWeeverHelper
 {
+
+	public static function isLegacyJoomla()
+	{
+	
+		if( self::joomlaVersion() == "1.5" )
+			return true;
+			
+		return false;	
+	
+	}
+
 
 	public static function joomlaVersion() 
 	{
@@ -62,6 +73,50 @@ class comWeeverHelper
 	
 	}
 	
+	
+	public static function endJHtmlPane( $paneObj = null )
+	{
+	
+		if( self::isLegacyJoomla() )
+			return $paneObj->endPane();
+			
+		return JHtmlTabs::end();
+	
+	}
+	
+	
+	public static function endJHtmlTabPanel( $paneObj = null )
+	{
+	
+		if( self::isLegacyJoomla() )
+			return $paneObj->endPanel();
+	
+	}
+	
+	
+	public static function startJHtmlPane( $id, $paneObj = null )
+	{
+	
+		if( self::isLegacyJoomla() )
+			return  $paneObj->startPane( $id );
+			
+		return JHtmlTabs::start( $id );
+	
+	}
+	
+	
+	public static function startJHtmlTabPanel( $text, $id, $paneObj = null )
+	{
+	
+		if( self::isLegacyJoomla() )		
+			return $paneObj->startPanel( $text, $id );
+		
+		else 
+			return JHtmlTabs::panel( $text, $id );
+	
+	}
+	
+	
 	public static function getSetting($id)
 	{
 	
@@ -77,6 +132,7 @@ class comWeeverHelper
 	public static function getDeviceSettings() 	{ return self::getSetting(5); }
 	public static function getAppStatus() 		{ return self::getSetting(6); }
 	public static function getStageStatus()		{ return self::getSetting(7); }
+	public static function getPlatformVersion()	{ return self::getSetting(15); }
 	
 	
 	public static function isWebKit()
@@ -475,10 +531,10 @@ class comWeeverHelper
 		}
 		
 			 
-		for($i = 1; $i <= 12; $i++)
+		for($i = 1; $i <= 15; $i++)
 		{
 		
-			if($i == 2 || $i == 1 || $i == 6)
+			if($i == 2 || $i == 1 || $i == 6 || $i == 13 || $i == 14)
 				continue;
 		
 			$row->load($i); 
@@ -823,11 +879,12 @@ class comWeeverHelper
 	{
 
 		$query = array( 	
-					'id' 			=> JRequest::getVar('id'),
-					'reordering' 	=> 'subtab',
-					'type' 			=> JRequest::getVar('type'),
-					'dir' 			=> JRequest::getVar('dir'),
-					'm' 			=> "update_order"
+					'id' 				=> JRequest::getVar('id'),
+					'reordering' 		=> 'subtab',
+					'type' 				=> JRequest::getVar('type'),
+					'dir' 				=> JRequest::getVar('dir'),
+					'm' 				=> "update_order",
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 				);
 		
 		return self::buildAjaxQuery($query);
@@ -839,8 +896,9 @@ class comWeeverHelper
 	{
 
 		$query = array( 	
-					'reordering' 	=> JRequest::getVar('reordering'),
-					'm' 			=> "update_order"
+					'reordering' 		=> JRequest::getVar('reordering'),
+					'm' 				=> "update_order",
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 				);
 		
 		return self::buildAjaxQuery($query);
@@ -852,10 +910,11 @@ class comWeeverHelper
 	{
 	
 		$query = array( 	
-					'var' 		=> $var,
-					'id' 		=> JRequest::getVar('id'),
-					'type' 		=> JRequest::getVar('type'),
-					'm' 		=> "update_tab_settings"
+					'var' 				=> $var,
+					'id' 				=> JRequest::getVar('id'),
+					'type' 				=> JRequest::getVar('type'),
+					'm' 				=> "update_tab_settings",
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 				);
 		
 		return self::buildAjaxQuery($query);
@@ -867,9 +926,10 @@ class comWeeverHelper
 	{
 	
 		$query = array( 	
-					'url' 		=> $url,
-					'type' 		=> JRequest::getVar('type'),
-					'm' 		=> "edit_image"
+					'url' 				=> $url,
+					'type' 				=> JRequest::getVar('type'),
+					'm' 				=> "edit_image",
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 				);
 			
 		return self::buildAjaxQuery($query);
@@ -881,9 +941,10 @@ class comWeeverHelper
 	{
 	
 		$query = array( 	
-					'name' 	=> JRequest::getVar('name'),
-					'id' 	=> JRequest::getVar('id'),
-					'm' 	=> "edit_tab_name"
+					'name' 				=> JRequest::getVar('name'),
+					'id' 				=> JRequest::getVar('id'),
+					'm' 				=> "edit_tab_name",
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 				);
 		
 		return self::buildAjaxQuery($query);
@@ -898,7 +959,8 @@ class comWeeverHelper
 			
 					'icon' 			=> JRequest::getVar('icon'),
 					'type' 			=> JRequest::getVar('type'),
-					'm' 			=> "edit_tab_icon"
+					'm' 			=> "edit_tab_icon",
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 					
 				);
 			
@@ -916,7 +978,8 @@ class comWeeverHelper
 					'launch' 			=> $jsonLaunch,
 					'titlebar_title' 	=> JRequest::getVar('titlebar_title'),
 					'title' 			=> JRequest::getVar('title'),
-					'm' 				=> "edit_theme"
+					'm' 				=> "edit_theme",
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 					
 				);
 		
@@ -938,7 +1001,8 @@ class comWeeverHelper
 					'loadspinner' 		=> JRequest::getVar('loadspinner',"", "post","string",JREQUEST_ALLOWHTML),
 					'google_analytics' 	=> JRequest::getVar('google_analytics'),
 					'local' 			=> JRequest::getVar('local'),
-					'm' 				=> "edit_config"
+					'm' 				=> "edit_config",
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 					
 				);
 		
@@ -953,7 +1017,8 @@ class comWeeverHelper
 		$query = array( 	
 		
 					'app_enabled' 		=> $status,
-					'm' 				=> "app_status"
+					'm' 				=> "app_status",
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 					
 				);
 		
@@ -981,7 +1046,8 @@ class comWeeverHelper
 					'component_behaviour' 	=> JRequest::getVar('component_behaviour'),
 					'var' 					=> JRequest::getVar('var',"", "post","string",JREQUEST_ALLOWRAW),
 					'cms_feed' 				=> JRequest::getVar('cms_feed'),
-					'm' 					=> JRequest::getVar('weever_action') . "_tab"
+					'm' 					=> JRequest::getVar('weever_action') . "_tab",
+					'build_version'			=> comWeeverHelper::getPlatformVersion()
 					
 				);
 
@@ -997,7 +1063,8 @@ class comWeeverHelper
 		
 					'published' 		=> $publish,
 					'm' 				=> 'publish_tab',
-					'cloud_tab_id' 		=> $cid
+					'cloud_tab_id' 		=> $cid,
+					'build_version'		=> comWeeverHelper::getPlatformVersion()
 					
 				);
 				

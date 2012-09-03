@@ -5,7 +5,7 @@
 *
 *	Authors: 	Robert Gerald Porter 	<rob@weeverapps.com>
 *				Aaron Song 				<aaron@weeverapps.com>
-*	Version: 	1.8
+*	Version: 	1.9
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -31,11 +31,7 @@ class WeeverViewList extends JView
 	{
 	
 		comWeeverHelper::phpVersionCheck();
-	
-		//$k2Categories 	= new stdClass();
-		$component 		= JComponentHelper::getComponent( 'com_weever' );
-		$params 		= new JParameter( $component->params );
-		
+
 		JRequest::setVar('layout','default');
 		
 		$state 			= &$this->get( 'state' );

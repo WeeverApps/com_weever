@@ -4,7 +4,7 @@
 *	(c) 2010-2011 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob.porter@weever.ca)
-*	Version: 	1.8
+*	Version: 	1.9
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -53,6 +53,7 @@ class WeeverViewConfig extends JView
 		$this->assign('loadspinner', $configData->loadspinner);
 		$this->assign('domain', $configData->domain);
 		$this->assign('site_key', comWeeverHelper::getKey() );
+		$this->assign('platform_version', comWeeverHelper::getPlatformVersion() );
 		
 		$this->assign('granular','');
 		$this->assign('DetectIphoneOrIpod','');

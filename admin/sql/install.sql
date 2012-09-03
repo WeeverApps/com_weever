@@ -32,4 +32,5 @@ INSERT IGNORE INTO `#__weever_config` VALUES(11, 'about_app', '');
 INSERT IGNORE INTO `#__weever_config` VALUES(12, 'loadspinner', '');
 INSERT IGNORE INTO `#__weever_config` VALUES(13, 'login', '0');
 INSERT IGNORE INTO `#__weever_config` VALUES(14, 'login_css_url', '');
+INSERT IGNORE INTO `#__weever_config` VALUES(15, 'platform_version', '1');
 INSERT IGNORE INTO `#__weever_config` VALUES(100, 'theme_params', '{"aLink":null,"spanLogo":"","contentButton":"","border":"","fontType":"","blogIcon":"","pagesIcon":"","contactIcon":"","socialIcon":"","videoIcon":"","photoIcon":"","mapIcon":null,"titlebarHtml":null,"template":"sencha"}');

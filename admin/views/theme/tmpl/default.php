@@ -4,7 +4,7 @@
 *	(c) 2010-2012 Weever Apps Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	1.5.1
+*	Version: 	1.9
 *   License: 	GPL v3.0
 *
 *   This extension is free software: you can redistribute it and/or modify
@@ -28,7 +28,6 @@ $plugin_html_disabled = "";
 JHTML::_('behavior.mootools');
 JHTML::_('behavior.modal', 'a.popup');
 JHTML::_('behavior.tooltip');
-jimport('joomla.html.pane');
 
 $document = &JFactory::getDocument();
 	
@@ -37,13 +36,15 @@ $document->addScript( JURI::base(true).'/components/com_weever/assets/js/fileupl
 if(comWeeverHelper::joomlaVersion() != '1.5')  // ### non-1.5 only
 {
 	$jsJoomla = "Joomla.";
+	jimport( 'joomla.html.html.tabs' );
+	$pane = null;
 }
 else 
 {
 	$jsJoomla = "";
+	jimport('joomla.html.pane');
+	$pane = &JPane::getInstance('tabs');
 }
-
-$pane = &JPane::getInstance('tabs');
 
 $onlineSpan = "";
 $offlineSpan = "";
@@ -143,9 +144,9 @@ else
 </div>
 
 <form action='index.php' enctype='multipart/form-data' method='post' name='adminForm' id='adminForm'>	
-	
-	<?php echo $pane->startPane('theme'); ?>
-	<?php echo $pane->startPanel(JText::_('WEEVER_BASIC_SETTINGS'), 'basic-settings'); ?>
+
+	<?php echo comWeeverHelper::startJHtmlPane( 'theme', $pane ); ?>
+	<?php echo comWeeverHelper::startJHtmlTabPanel( JText::_('WEEVER_BASIC_SETTINGS'), 'basic-settings', $pane ); ?>
         
     <div class="wx-submitcontainer">
             <a href="#" onclick="javascript:<?php echo $jsJoomla; ?>submitbutton('apply')"><button class="wxui-btn orange medium radius3">&#x2713; &nbsp;<?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
@@ -552,9 +553,8 @@ else
 	    window.onload = createUploader;     
 	</script>  
 	
-	<?php echo $pane->endPanel(); ?>
-	<?php echo $pane->startPanel(JText::_("WEEVER_ADVANCED_LAUNCHSCREEN_SETTINGS"), 'advanced-launch-settings'); ?>
-	
+	<?php echo comWeeverHelper::endJHtmlTabPanel( $pane ); ?>
+	<?php echo comWeeverHelper::startJHtmlTabPanel( JText::_("WEEVER_ADVANCED_LAUNCHSCREEN_SETTINGS"), 'advanced-launch-settings', $pane ); ?>
 	
 	<div class="wx-submitcontainer">
 	        <a href="#" onclick="javascript:<?php echo $jsJoomla; ?>submitbutton('apply')"><button class="wxui-btn orange medium radius3">&#x2713; &nbsp;<?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
@@ -625,10 +625,10 @@ else
 	
 	
 	</div>
-
-	<?php echo $pane->endPanel(); ?>
-	<?php echo $pane->startPanel(JText::_("WEEVER_ADVANCED_THEME_SETTINGS"), 'advanced-settings'); ?>
 	
+	<?php echo comWeeverHelper::endJHtmlTabPanel( $pane ); ?>
+	<?php echo comWeeverHelper::startJHtmlTabPanel( JText::_("WEEVER_ADVANCED_THEME_SETTINGS"), 'advanced-settings', $pane ); ?>
+
 	<div class="wx-submitcontainer">
 	        <a href="#" onclick="javascript:<?php echo $jsJoomla; ?>submitbutton('apply')"><button class="wxui-btn orange medium radius3">&#x2713; &nbsp;<?php echo JText::_('WEEVER_SAVE_BUTTON'); ?></button></a>
 	</div>    
@@ -683,8 +683,8 @@ else
 
 	</div>
 	
-	<?php echo $pane->endPanel(); ?>
-	<?php echo $pane->endPane(); ?>
+	<?php echo comWeeverHelper::endJHtmlTabPanel( $pane ); ?>
+	<?php echo comWeeverHelper::endJHtmlPane(); ?>
 
 	<input type="hidden" name="option" value="<?php echo $option; ?>" />
 	<input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $this->site_key; ?>" />
