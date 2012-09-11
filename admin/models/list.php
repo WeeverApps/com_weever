@@ -146,7 +146,7 @@ class WeeverModelList extends JModel
 	{
 		
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_k2&view=itemlist%' OR link LIKE '%option=com_k2&view=item%' ) AND published = '1' AND access = '0'";  
+		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_k2&view=itemlist%' ) AND published = '1' AND access = '0'";  
 		else 
 		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_k2&view=itemlist%' AND published = '1' AND access < '2'";  
 
@@ -159,10 +159,9 @@ class WeeverModelList extends JModel
 	{
 		
 		if(comWeeverHelper::joomlaVersion() == "1.5")
-		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' OR link LIKE '%option=com_easyblog&view=latest%' 
-							OR link LIKE '%option=com_easyblog&view=entry%' OR link LIKE '%option=com_easyblog&view=archive%' OR link LIKE '%option=com_easyblog&view=dashboard%' 
-							OR link LIKE '%option=com_easyblog&view=featured%' OR link LIKE '%option=com_easyblog&view=login%' OR link LIKE '%option=com_easyblog&view=myblog%' 
-							OR link LIKE '%option=com_easyblog&view=search%' OR link LIKE '%option=com_easyblog&view=subscription%' OR link LIKE '%option=com_easyblog&view=teamblog%' ) AND published = '1' AND access = '0'";  
+		 	$query = "SELECT * FROM #__menu WHERE ( link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%'
+							OR link LIKE '%option=com_easyblog&view=archive%' OR link LIKE '%option=com_easyblog&view=featured%' OR link LIKE '%option=com_easyblog&view=myblog%' 
+							OR link LIKE '%option=com_easyblog&view=subscription%' OR link LIKE '%option=com_easyblog&view=teamblog%' ) AND published = '1' AND access = '0'";  
 		else 
 		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' AND published = '1' AND access < '2'";  
 
