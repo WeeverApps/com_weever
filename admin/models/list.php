@@ -163,7 +163,7 @@ class WeeverModelList extends JModel
 							OR link LIKE '%option=com_easyblog&view=latest%' OR link LIKE '%option=com_easyblog&view=archive%' OR link LIKE '%option=com_easyblog&view=featured%'
 							OR link LIKE '%option=com_easyblog&view=myblog%' OR link LIKE '%option=com_easyblog&view=subscription%' OR link LIKE '%option=com_easyblog&view=teamblog%' ) AND published = '1' AND access = '0'";  
 		else 
-		 	$query = "SELECT *, title AS name FROM #__menu WHERE link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' AND published = '1' AND access < '2'";  
+		 	$query = "SELECT *, title AS name FROM #__menu WHERE ( link LIKE '%option=com_easyblog&view=categories%' OR link LIKE '%option=com_easyblog&view=tags%' OR link LIKE '%option=com_easyblog&view=latest%' ) AND published = '1' AND access < '2'";  
 
 		return $this->_getList($query);		
 
