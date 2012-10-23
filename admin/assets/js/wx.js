@@ -446,7 +446,7 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 				else
 					label	= featureData.labels[ serviceTypes[i] ];
 					
-				if( wx.types[ serviceTypes[i] ].tier > wx.tabSyncData.results.config.tier ) {
+				if( undefined != wx.types[ serviceTypes[i] ] && wx.types[ serviceTypes[i] ].tier > wx.tabSyncData.results.config.tier ) {
 				
 					extraClass	= ' wx-add-upgrade';
 					disabled	= ' disabled="disabled"';
@@ -460,17 +460,21 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 				
 				}
 					
-				checkboxOptions += "<div class='wx-add-source-check-container" + extraClass + "'>" +
+				if ( undefined != wx.types[ serviceTypes[i] ] ) {
 				
-						"<input type='checkbox' class='wx-add-source-check' id='wx-add-source-check-" +
-						 	serviceTypes[i] + "' value='" + serviceTypes[i] + 
-						 		"' " + checked + disabled + " />" +
-						
-						"<label for='wx-add-source-check-" +  serviceTypes[i] + "'>" + label.active + "</label>" +
-						
-					 	" in the tab \"" + wx.types[ serviceTypes[i] ].name + "\"."+
-					 	
-				 	"</div>";
+					checkboxOptions += "<div class='wx-add-source-check-container" + extraClass + "'>" +
+					
+							"<input type='checkbox' class='wx-add-source-check' id='wx-add-source-check-" +
+							 	serviceTypes[i] + "' value='" + serviceTypes[i] + 
+							 		"' " + checked + disabled + " />" +
+							
+							"<label for='wx-add-source-check-" +  serviceTypes[i] + "'>" + label.active + "</label>" +
+							
+						 	" in the tab \"" + wx.types[ serviceTypes[i] ].name + "\"."+
+						 	
+					 	"</div>";
+					
+				}
 			
 			}
 			
